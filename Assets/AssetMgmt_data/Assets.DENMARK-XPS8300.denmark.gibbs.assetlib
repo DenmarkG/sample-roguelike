@@ -120,6 +120,73 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Enemies/RL_EvilCubie_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1395872875013153000,
+                "LastEditTime": 1395872875925153000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Enemies/RL_EvilCubie_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Enemies/RL_EvilCubie_MOD.model_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1723316645,
+                "TimeStamp": 1395872875004153000,
+                "LastEditTime": 1395872875879153000
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Enemies/RL_EvilCubie_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 721551394,
+                "TimeStamp": 1395872875016153000,
+                "LastEditTime": 1395872875925153000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/DesignTextures/FlatColors/Black_128.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -693,6 +760,11 @@
             "Hash": 0,
             "TimeStamp": 1395862004159179000,
             "LastEditTime": 1395862005162179000
+        },
+        "Models/Enemies/RL_EvilCubie_MOD.model_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1395872875006153000,
+            "LastEditTime": 1395872875814153000
         },
         "Models/Textures/Blue_128.tga": {
             "Hash": 0,

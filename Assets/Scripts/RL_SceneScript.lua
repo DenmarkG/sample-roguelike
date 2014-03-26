@@ -4,3 +4,7 @@ function OnBeforeSceneLoaded(self)
 	G.isWindows = (Application:GetPlatformName() == "WIN32DX9" or Application:GetPlatformName() == "WIN32DX11")
 	
 end
+
+function OnAfterSceneLoaded(self)
+	G.player = Game:GetEntity("Player")
+end

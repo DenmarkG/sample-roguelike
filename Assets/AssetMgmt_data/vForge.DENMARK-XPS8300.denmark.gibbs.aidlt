@@ -3,6 +3,9 @@ meshes/rl_simpleground_mesh.vmesh	meshes/rl_simpleground_mesh.vmesh	LODSwitchDis
 models/character/fps_charstandin_mod.anim	models/character/fps_charstandin_mod.anim	
 models/character/fps_charstandin_mod.model	models/character/fps_charstandin_mod.model	LODSwitchDistances=
 models/character/fps_charstandin_mod.vcolmesh	models/character/fps_charstandin_mod.vcolmesh	
+models/enemies/rl_evilcubie_mod.anim	models/enemies/rl_evilcubie_mod.anim	
+models/enemies/rl_evilcubie_mod.model	models/enemies/rl_evilcubie_mod.model	LODSwitchDistances=
+models/enemies/rl_evilcubie_mod.vcolmesh	models/enemies/rl_evilcubie_mod.vcolmesh	
 textures/designtextures/flatcolors/black_128.tga	textures/designtextures/flatcolors/black_128.tga	sRGB=false
 textures/designtextures/flatcolors/blue_128.tga	textures/designtextures/flatcolors/blue_128.tga	sRGB=false
 textures/designtextures/flatcolors/gray_128.tga	textures/designtextures/flatcolors/gray_128.tga	sRGB=false

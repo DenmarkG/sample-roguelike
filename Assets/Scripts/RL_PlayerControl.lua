@@ -10,9 +10,11 @@ function OnAfterSceneLoaded(self)
 	self.map = Input:CreateMap("PlayerInputMap")
 	
 	--set the controls for the input map
-	--WASD control for character movement
-	self.map:MapTriggerAxis("HORIZONTAL", "KEYBOARD", "CT_KB_A", "CT_KB_D")
+	--WASD or Arrow keys control for character movement
+	self.map:MapTriggerAxis("HORIZONTAL", "KEYBOARD", "CT_KB_D", "CT_KB_A")
+	self.map:MapTriggerAxis("HORIZONTAL", "KEYBOARD", "CT_KB_RIGHT", "CT_KB_LEFT")
 	self.map:MapTriggerAxis("VERTICAL", "KEYBOARD", "CT_KB_S", "CT_KB_W")
+	self.map:MapTriggerAxis("VERTICAL", "KEYBOARD", "CT_KB_DOWN", "CT_KB_UP")
 	
 	--Button for sneaking
 	self.map:MapTrigger("SNEAK", "KEYBOARD", "CT_KB_LSHIFT")
@@ -50,7 +52,9 @@ function OnThink(self)
 	local sneak = self.map:GetTrigger("SNEAK") > 0 
 	
 	--process the input
-	ProcessInput(self, horz, vert, sneak)
+	if horz ~= 0 or vert ~= 0 then
+		ProcessInput(self, horz, vert, sneak)
+	end
 end
 
 function ProcessInput(self, horz, vert, sneak)
@@ -70,7 +74,7 @@ function ProcessInput(self, horz, vert, sneak)
 	
 	-- move the character forward/back
 	if horz ~= 0 then
-		self.moveVector.y = self.moveVector.y - horz
+		self.moveVector.y = self.moveVector.y + horz
 	end
 	
 	-- normalize the movement vector
