@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Manifest xmlns="http://schemas.tizen.org/2012/12/manifest">
+    <Id>0x445a2572</Id>
+    <Version>1.0.0</Version>
+    <Type>C++App</Type>
+    <Author/>
+    <Descriptions/>
+    <Requirements>
+        <Feature Name="http://tizen.org/feature/platform.core.cpu.arch">armv7</Feature>
+    </Requirements>
+    <Apps>
+        <ApiVersion>3.0</ApiVersion>
+        <Privileges>
+                <Privilege>http://tizen.org/privilege/power</Privilege>
+        </Privileges>
+        <UiApp Main="True" MenuIconVisible="True" Name="ProjectTemplate">
+            <UiScalability BaseScreenSize="Normal" CoordinateSystem="Logical" LogicalCoordinate="720"/>
+            <UiTheme SystemTheme="Black"/>
+            <DisplayNames>
+                <DisplayName Locale="eng-GB">ProjectTemplate</DisplayName>
+            </DisplayNames>
+            <Icons>
+                <Icon Section="MainMenu" Type="Xhigh">icon.png</Icon>
+            </Icons>
+            <LaunchConditions/>
+            <Notifications/>
+        </UiApp>
+    </Apps>
+</Manifest>

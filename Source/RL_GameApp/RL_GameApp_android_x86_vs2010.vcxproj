@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|hkAndroid">
+      <Configuration>Debug</Configuration>
+      <Platform>hkAndroid</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dev|hkAndroid">
+      <Configuration>Dev</Configuration>
+      <Platform>hkAndroid</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|hkAndroid">
+      <Configuration>Release</Configuration>
+      <Platform>hkAndroid</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4910E2EB-2888-4829-9FE1-3E7B6FA0ED76}</ProjectGuid>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectName>RL_GameApp</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Dev|hkAndroid'">
+    <PlatformToolset>x86-4.6</PlatformToolset>
+    <AndroidArch>x86</AndroidArch>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <PlatformToolset>x86-4.6</PlatformToolset>
+    <AndroidArch>x86</AndroidArch>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|hkAndroid'">
+    <PlatformToolset>x86-4.6</PlatformToolset>
+    <AndroidArch>x86</AndroidArch>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <Import Project="$(VISION_SDK)\Build\Vision\PropertySheets\Application_android_x86_vs2010_anarchyDebug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dev|hkAndroid'">
+    <Import Project="$(VISION_SDK)\Build\Vision\PropertySheets\Application_android_x86_vs2010_anarchyDev.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|hkAndroid'">
+    <Import Project="$(VISION_SDK)\Build\Vision\PropertySheets\Application_android_x86_vs2010_anarchyRelease.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <OutDir>..\..\Bin\android_x86_vs2010_anarchy\$(Configuration)\</OutDir>
+    <IntDir>..\..\Obj\android_x86_vs2010_anarchy\$(Configuration)\RL_GameApp\</IntDir>
+    <TargetName>RL_GameApp</TargetName>
+    <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dev|hkAndroid'">
+    <TargetName>RL_GameApp</TargetName>
+    <OutDir>..\..\Bin\android_x86_vs2010_anarchy\$(Configuration)\</OutDir>
+    <IntDir>..\..\Obj\android_x86_vs2010_anarchy\$(Configuration)\RL_GameApp\</IntDir>
+    <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|hkAndroid'">
+    <TargetName>RL_GameApp</TargetName>
+    <OutDir>..\..\Bin\android_x86_vs2010_anarchy\$(Configuration)\</OutDir>
+    <IntDir>..\..\Obj\android_x86_vs2010_anarchy\$(Configuration)\RL_GameApp\</IntDir>
+    <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <ClCompile>
+      <PrecompiledHeader>Yes</PrecompiledHeader>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <ClCompile>
+      <PrecompiledHeaderFile>RL_GameAppPCH.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|hkAndroid'">
+    <ClCompile>
+      <PrecompiledHeaderOutputFile>$(IntDir)RL_GameAppPCH.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>-lVisionAppD;-lRL_EnginePlugin;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Lib\android_x86_vs2010_anarchy\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Deploy>
+      <DeployTool>$(VISION_SDK)\Build\StandaloneTools\Deployment\Exe\deployAndroid.exe</DeployTool>
+      <ResDir>..\..\Data\Common\Anarchy\Android</ResDir>
+      <Install>true</Install>
+      <WriteExternal>true</WriteExternal>      
+      <Libraries>$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodexL.so;$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodeventL.so</Libraries>
+      <Assets>..\../Data/Vision/Base/ Data/Vision/Base/;..\../Assets/ Assets/</Assets>
+    </Deploy>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dev|hkAndroid'">
+    <ClCompile>
+      <PrecompiledHeader>Yes</PrecompiledHeader>
+      <PrecompiledHeaderFile>RL_GameAppPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)RL_GameAppPCH.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\Lib\android_x86_vs2010_anarchy\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lVisionApp;-lRL_EnginePlugin;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Deploy>
+      <DeployTool>$(VISION_SDK)\Build\StandaloneTools\Deployment\Exe\deployAndroid.exe</DeployTool>
+      <ResDir>..\..\Data\Common\Anarchy\Android</ResDir>
+      <Install>true</Install>
+      <WriteExternal>true</WriteExternal>      
+      <Libraries>$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodex.so;$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodevent.so</Libraries>
+      <Assets>..\../Data/Vision/Base/ Data/Vision/Base/;..\../Assets/ Assets/</Assets>
+    </Deploy>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|hkAndroid'">
+    <ClCompile>
+      <PrecompiledHeader>Yes</PrecompiledHeader>
+      <PrecompiledHeaderFile>RL_GameAppPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)RL_GameAppPCH.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\Lib\android_x86_vs2010_anarchy\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lVisionApp;-lRL_EnginePlugin;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Deploy>
+      <DeployTool>$(VISION_SDK)\Build\StandaloneTools\Deployment\Exe\deployAndroid.exe</DeployTool>
+      <ResDir>..\..\Data\Common\Anarchy\Android</ResDir>
+      <Install>true</Install>
+      <WriteExternal>true</WriteExternal>      
+      <Libraries>$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodex.so;$(HAVOK_THIRDPARTY_DIR)/redistsdks/fmod/4.44.23/lib/android/x86/libfmodevent.so</Libraries>
+      <Assets>..\../Data/Vision/Base/ Data/Vision/Base/;..\../Assets/ Assets/</Assets>
+    </Deploy>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(NDKROOT)\sources\android\native_app_glue\android_native_app_glue.c" />
+    <ClCompile Include="RL_GameAppPCH.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RL_GameAppPCH.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,9 @@
+<root>
+    <Resources Version="1" Count="5" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/RL_SimpleGround_MESH.vmesh_data\materials.xml" OwnerRes="3" Size="499" />
+        <Resource Manager="EffectLibs" Filename="Shaders\BaseShaders.ShaderLib" Size="63088" />
+        <Resource Manager="Textures" Filename="Textures\DesignTextures\textureGrid_Blue.tga" CustomInt="1,64" Size="349524" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/RL_SimpleGround_MESH.vmesh" CustomInt="1,1" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+    </Resources>
+</root>

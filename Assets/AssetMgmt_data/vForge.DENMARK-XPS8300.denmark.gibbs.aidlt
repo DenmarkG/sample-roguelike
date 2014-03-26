@@ -1,0 +1,26 @@
+meshes/rl_simpleground_mesh.vcolmesh	meshes/rl_simpleground_mesh.vcolmesh	
+meshes/rl_simpleground_mesh.vmesh	meshes/rl_simpleground_mesh.vmesh	LODSwitchDistances=
+models/character/fps_charstandin_mod.anim	models/character/fps_charstandin_mod.anim	
+models/character/fps_charstandin_mod.model	models/character/fps_charstandin_mod.model	LODSwitchDistances=
+models/character/fps_charstandin_mod.vcolmesh	models/character/fps_charstandin_mod.vcolmesh	
+textures/designtextures/flatcolors/black_128.tga	textures/designtextures/flatcolors/black_128.tga	sRGB=false
+textures/designtextures/flatcolors/blue_128.tga	textures/designtextures/flatcolors/blue_128.tga	sRGB=false
+textures/designtextures/flatcolors/gray_128.tga	textures/designtextures/flatcolors/gray_128.tga	sRGB=false
+textures/designtextures/flatcolors/green_128.tga	textures/designtextures/flatcolors/green_128.tga	sRGB=false
+textures/designtextures/flatcolors/red_128.tga	textures/designtextures/flatcolors/red_128.tga	sRGB=false
+textures/designtextures/flatcolors/white_128.tga	textures/designtextures/flatcolors/white_128.tga	sRGB=false
+textures/designtextures/flatcolors/yellow_128.tga	textures/designtextures/flatcolors/yellow_128.tga	sRGB=false
+textures/designtextures/texturegrid_blue.tga	textures/designtextures/texturegrid_blue.tga	sRGB=false
+textures/mobilehud/fps_button_blue.tga	textures/mobilehud/fps_button_blue.tga	sRGB=false
+textures/mobilehud/fps_button_blue_64.tga	textures/mobilehud/fps_button_blue_64.tga	sRGB=false
+textures/mobilehud/fps_button_green.tga	textures/mobilehud/fps_button_green.tga	sRGB=false
+textures/mobilehud/fps_button_green_64.tga	textures/mobilehud/fps_button_green_64.tga	sRGB=false
+textures/mobilehud/fps_button_red.tga	textures/mobilehud/fps_button_red.tga	sRGB=false
+textures/mobilehud/fps_button_red_64.tga	textures/mobilehud/fps_button_red_64.tga	sRGB=false
+textures/mobilehud/fps_button_yellow.tga	textures/mobilehud/fps_button_yellow.tga	sRGB=false
+textures/mobilehud/fps_button_yellow_64.tga	textures/mobilehud/fps_button_yellow_64.tga	sRGB=false
+textures/mobilehud/fps_dpad_128.tga	textures/mobilehud/fps_dpad_128.tga	sRGB=false
+textures/mobilehud/fps_dpad_64.tga	textures/mobilehud/fps_dpad_64.tga	sRGB=false
+textures/sky/skybox_basic_bottom.tga	textures/sky/skybox_basic_bottom.tga	sRGB=false
+textures/sky/skybox_basic_sides.tga	textures/sky/skybox_basic_sides.tga	sRGB=false
+textures/sky/skybox_basic_top.tga	textures/sky/skybox_basic_top.tga	sRGB=false
