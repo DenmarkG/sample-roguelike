@@ -1,29 +1,37 @@
-meshes/rl_simpleground_mesh.vcolmesh	meshes/rl_simpleground_mesh.vcolmesh	
-meshes/rl_simpleground_mesh.vmesh	meshes/rl_simpleground_mesh.vmesh	LODSwitchDistances=
-models/character/fps_charstandin_mod.anim	models/character/fps_charstandin_mod.anim	
-models/character/fps_charstandin_mod.model	models/character/fps_charstandin_mod.model	LODSwitchDistances=
-models/character/fps_charstandin_mod.vcolmesh	models/character/fps_charstandin_mod.vcolmesh	
-models/enemies/rl_evilcubie_mod.anim	models/enemies/rl_evilcubie_mod.anim	
-models/enemies/rl_evilcubie_mod.model	models/enemies/rl_evilcubie_mod.model	LODSwitchDistances=
-models/enemies/rl_evilcubie_mod.vcolmesh	models/enemies/rl_evilcubie_mod.vcolmesh	
-textures/designtextures/flatcolors/black_128.tga	textures/designtextures/flatcolors/black_128.tga	sRGB=false
-textures/designtextures/flatcolors/blue_128.tga	textures/designtextures/flatcolors/blue_128.tga	sRGB=false
-textures/designtextures/flatcolors/gray_128.tga	textures/designtextures/flatcolors/gray_128.tga	sRGB=false
-textures/designtextures/flatcolors/green_128.tga	textures/designtextures/flatcolors/green_128.tga	sRGB=false
-textures/designtextures/flatcolors/red_128.tga	textures/designtextures/flatcolors/red_128.tga	sRGB=false
-textures/designtextures/flatcolors/white_128.tga	textures/designtextures/flatcolors/white_128.tga	sRGB=false
-textures/designtextures/flatcolors/yellow_128.tga	textures/designtextures/flatcolors/yellow_128.tga	sRGB=false
-textures/designtextures/texturegrid_blue.tga	textures/designtextures/texturegrid_blue.tga	sRGB=false
-textures/mobilehud/fps_button_blue.tga	textures/mobilehud/fps_button_blue.tga	sRGB=false
-textures/mobilehud/fps_button_blue_64.tga	textures/mobilehud/fps_button_blue_64.tga	sRGB=false
-textures/mobilehud/fps_button_green.tga	textures/mobilehud/fps_button_green.tga	sRGB=false
-textures/mobilehud/fps_button_green_64.tga	textures/mobilehud/fps_button_green_64.tga	sRGB=false
-textures/mobilehud/fps_button_red.tga	textures/mobilehud/fps_button_red.tga	sRGB=false
-textures/mobilehud/fps_button_red_64.tga	textures/mobilehud/fps_button_red_64.tga	sRGB=false
-textures/mobilehud/fps_button_yellow.tga	textures/mobilehud/fps_button_yellow.tga	sRGB=false
-textures/mobilehud/fps_button_yellow_64.tga	textures/mobilehud/fps_button_yellow_64.tga	sRGB=false
-textures/mobilehud/fps_dpad_128.tga	textures/mobilehud/fps_dpad_128.tga	sRGB=false
-textures/mobilehud/fps_dpad_64.tga	textures/mobilehud/fps_dpad_64.tga	sRGB=false
-textures/sky/skybox_basic_bottom.tga	textures/sky/skybox_basic_bottom.tga	sRGB=false
-textures/sky/skybox_basic_sides.tga	textures/sky/skybox_basic_sides.tga	sRGB=false
-textures/sky/skybox_basic_top.tga	textures/sky/skybox_basic_top.tga	sRGB=false
+meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh	
+meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
+models/character/fps_charstandin_mod.anim	Models/Character/FPS_CharStandIn_MOD.anim	
+models/character/fps_charstandin_mod.model	Models/Character/FPS_CharStandIn_MOD.model	LODSwitchDistances=
+models/character/fps_charstandin_mod.vcolmesh	Models/Character/FPS_CharStandIn_MOD.vcolmesh	
+models/enemies/rl_evilcubie_mod.anim	Models/Enemies/RL_EvilCubie_MOD.anim	
+models/enemies/rl_evilcubie_mod.model	Models/Enemies/RL_EvilCubie_MOD.model	LODSwitchDistances=
+models/enemies/rl_evilcubie_mod.vcolmesh	Models/Enemies/RL_EvilCubie_MOD.vcolmesh	
+textures/designtextures/flatcolors/black_128.tga	Textures/DesignTextures/FlatColors/Black_128.tga	sRGB=false
+textures/designtextures/flatcolors/blue_128.tga	Textures/DesignTextures/FlatColors/Blue_128.tga	sRGB=false
+textures/designtextures/flatcolors/gray_128.tga	Textures/DesignTextures/FlatColors/Gray_128.tga	sRGB=false
+textures/designtextures/flatcolors/green_128.tga	Textures/DesignTextures/FlatColors/Green_128.tga	sRGB=false
+textures/designtextures/flatcolors/red_128.tga	Textures/DesignTextures/FlatColors/Red_128.tga	sRGB=false
+textures/designtextures/flatcolors/white_128.tga	Textures/DesignTextures/FlatColors/White_128.tga	sRGB=false
+textures/designtextures/flatcolors/yellow_128.tga	Textures/DesignTextures/FlatColors/Yellow_128.tga	sRGB=false
+textures/designtextures/texturegrid_blue.tga	Textures/DesignTextures/textureGrid_Blue.tga	sRGB=false
+textures/mobilehud/fps_button_blue.tga	Textures/MobileHud/FPS_Button_Blue.tga	sRGB=false
+textures/mobilehud/fps_button_blue_64.tga	Textures/MobileHud/FPS_Button_Blue_64.tga	sRGB=false
+textures/mobilehud/fps_button_green.tga	Textures/MobileHud/FPS_Button_Green.tga	sRGB=false
+textures/mobilehud/fps_button_green_64.tga	Textures/MobileHud/FPS_Button_Green_64.tga	sRGB=false
+textures/mobilehud/fps_button_red.tga	Textures/MobileHud/FPS_Button_Red.tga	sRGB=false
+textures/mobilehud/fps_button_red_64.tga	Textures/MobileHud/FPS_Button_Red_64.tga	sRGB=false
+textures/mobilehud/fps_button_yellow.tga	Textures/MobileHud/FPS_Button_Yellow.tga	sRGB=false
+textures/mobilehud/fps_button_yellow_64.tga	Textures/MobileHud/FPS_Button_Yellow_64.tga	sRGB=false
+textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=false
+textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
+textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
+textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
+textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
+models/props/rl_basiccollectible_mod.model	Models/Props/RL_BasicCollectible_MOD.model	LODSwitchDistances=
+models/props/rl_basiccollectible_mod.anim	Models/Props/RL_BasicCollectible_MOD.anim	
+models/props/rl_basiccollectible_mod.vcolmesh	Models/Props/RL_BasicCollectible_MOD.vcolmesh	
+textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
+fonts/rl_gulim_font_00.dds	Fonts/RL_Gulim_Font_00.dds	sRGB=false
+fonts/rl_gulim_font_01.dds	Fonts/RL_Gulim_Font_01.dds	sRGB=false
+meshes/rl_walltest.vmesh	Meshes/RL_WallTest.vmesh	LODSwitchDistances=
+meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	

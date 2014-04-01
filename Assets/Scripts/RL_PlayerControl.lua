@@ -31,10 +31,6 @@ function OnBeforeSceneUnloaded(self)
 	--delete the controller map
 	Input:DestroyMap(self.map)
 	self.map = nil
-	
-	--delete the screen masks
-	--[#todo] move to Scene Script
-	Game:DeleteAllUnrefScreenMasks()
 end
 
 function OnExpose(self)
@@ -42,18 +38,22 @@ function OnExpose(self)
 end
 
 function OnThink(self)
-	--set the moveVector
-	self.moveVector = self.zeroVector
-	
-	--get and cache the player input
-	local horz = self.map:GetTrigger("HORIZONTAL")
-	local vert = self.map:GetTrigger("VERTICAL")
-	
-	local sneak = self.map:GetTrigger("SNEAK") > 0 
-	
-	--process the input
-	if horz ~= 0 or vert ~= 0 then
-		ProcessInput(self, horz, vert, sneak)
+	if not G.gameOver then
+		--set the moveVector
+		self.moveVector = self.zeroVector
+		
+		--get and cache the player input
+		local horz = self.map:GetTrigger("HORIZONTAL")
+		local vert = self.map:GetTrigger("VERTICAL")
+		
+		local sneak = self.map:GetTrigger("SNEAK") > 0
+		
+		--process the input
+		if horz ~= 0 or vert ~= 0 then
+			ProcessInput(self, horz, vert, sneak)
+		end
+		
+		ShowPlayerStats(self)
 	end
 end
 
@@ -87,4 +87,9 @@ function ProcessInput(self, horz, vert, sneak)
 	
 	-- move the character
 	self:SetMotionDeltaWorldSpace(self.moveVector)
+end
+
+
+function ShowPlayerStats(self)
+	Debug:PrintAt(10, 64, "Item Count: " .. self.inventory.itemsCollected, Vision.V_RGBA_WHITE, G.fontPath)
 end

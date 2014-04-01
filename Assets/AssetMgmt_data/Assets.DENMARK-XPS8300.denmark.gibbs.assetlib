@@ -5,6 +5,60 @@
         "LastEditTime": 1395861338021641700
     },
     "Assets": {
+        "Fonts/RL_Gulim_Font_00.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2318443569,
+                "TimeStamp": 1396309147090439800,
+                "LastEditTime": 1396309148006439800
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 256,
+                "Height": 256,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Fonts/RL_Gulim_Font_01.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2499153291,
+                "TimeStamp": 1396309147402439800,
+                "LastEditTime": 1396309148040439800
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 256,
+                "Height": 256,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Meshes/RL_SimpleGround_MESH.vcolmesh": {
             "AssetType": "CollisionMesh",
             "Common": {
@@ -43,6 +97,53 @@
                 "Hash": 1620668741,
                 "TimeStamp": 1395862004156179000,
                 "LastEditTime": 1395862430128850900
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/RL_WallTest.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 839431018,
+                "TimeStamp": 1396311575161340900,
+                "LastEditTime": 1396311576092434000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/RL_WallTest.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/RL_WallTest.vmesh_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2208705684,
+                "TimeStamp": 1396311575136338400,
+                "LastEditTime": 1396311576093434100
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -182,6 +283,75 @@
                 "Hash": 721551394,
                 "TimeStamp": 1395872875016153000,
                 "LastEditTime": 1395872875925153000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_BasicCollectible_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1396304928243450000,
+                "LastEditTime": 1396304929035450000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_BasicCollectible_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Props/RL_BasicCollectible_MOD.model_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/Props/RL_BasicCollectible_DIFFUSE.tga",
+                    "Textures/RL_BasicCollectible_DIFFUSE.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 804252843,
+                "TimeStamp": 1396304928233450000,
+                "LastEditTime": 1396305812678556000
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_BasicCollectible_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4056010479,
+                "TimeStamp": 1396304928247450000,
+                "LastEditTime": 1396304929035450000
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -673,6 +843,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Props/RL_BasicCollectible_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1612482204,
+                "TimeStamp": 1396304458858450000,
+                "LastEditTime": 1396304977680450000
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Sky/SkyBox_Basic_Bottom.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -753,6 +950,24 @@
             "Transformations": {
                 "TemplateName": "Default"
             }
+        },
+        "Textures/RL_BasicCollectible_DIFFUSE.tga": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1396304969489450000
+            },
+            "File": {
+                "LastEditTime": 1396304969489450000
+            }
+        },
+        "Textures/Sky/RL_BasicCollectible_DIFFUSE.tga": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1396304976447450000
+            },
+            "File": {
+                "LastEditTime": 1396304976447450000
+            }
         }
     },
     "TrackedFiles": {
@@ -761,15 +976,30 @@
             "TimeStamp": 1395862004159179000,
             "LastEditTime": 1395862005162179000
         },
+        "Meshes/RL_WallTest.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1396311575157340500,
+            "LastEditTime": 1396311576092434000
+        },
         "Models/Enemies/RL_EvilCubie_MOD.model_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1395872875006153000,
             "LastEditTime": 1395872875814153000
         },
+        "Models/Props/RL_BasicCollectible_MOD.model_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1396305811628451000,
+            "LastEditTime": 1396304928847450000
+        },
         "Models/Textures/Blue_128.tga": {
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1395862584740002600
+        },
+        "Textures/RL_BasicCollectible_DIFFUSE.tga": {
+            "Hash": 0,
+            "TimeStamp": 0,
+            "LastEditTime": 1396304969489450000
         },
         "Textures/textureGrid_Blue.tga": {
             "Hash": 0,

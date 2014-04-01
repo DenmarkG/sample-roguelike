@@ -49,6 +49,25 @@
                 }
             }
         },
+        "Particle": {
+            "Default": {
+                "pcdx9": {
+                    "None": {
+
+                    }
+                },
+                "android": {
+                    "None": {
+
+                    }
+                },
+                "ios": {
+                    "None": {
+
+                    }
+                }
+            }
+        },
         "Model": {
             "Default": {
                 "pcdx9": {

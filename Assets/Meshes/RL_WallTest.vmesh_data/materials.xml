@@ -1,0 +1,5 @@
+<root>
+    <Materials>
+        <Material name="__DEFAULT__" diffuse="" normalmap="" specularmap="" ambient="0,0,0,255" specmul="0.000000" specexp="1.000000" parallaxscale="-0.030000" parallaxbias="-0.015000" lightmapsize="512,512" lightmapID="0" userstring="" userflags="0" sortingkey="0" alphathreshold="-1" doublesided="FALSE" staticshadows="TRUE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" Lighting="Fullbright" deferredID="0" pass="Auto" transparency="opaque" overridemateriallib="" overridematerialname="" />
+    </Materials>
+</root>
