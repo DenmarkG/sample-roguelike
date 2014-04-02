@@ -1,11 +1,11 @@
 -- new script file
 function OnAfterSceneLoaded(self)
-	--get and save the character controller component
-	self.characterController = self:GetComponentOfType("vHavokCharacterController")
-	if self.characterController == nil then
-		self.AddComponentOfType("vHavokCharacterController")
+	--get the rigidbody attached; if there is none, attach one.
+	self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
+	if self.rigidBody == nil then
+		self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
+		self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
 	end
-		
 	-- self.deadZone = self.characterController:GetCapsuleRadius()
 	self.deadZone = 75
 	
@@ -13,20 +13,34 @@ function OnAfterSceneLoaded(self)
 	self.map = Input:CreateMap("PlayerInputMap")
 	
 	--set the controls for the input map
+	
+	--mouse movement controls:
 	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
 	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
+	
+	--Interaction controls:
+	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
 	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
 	--set up the tuning values
-	self.moveSpeed = 15
+	self.moveSpeed = 150
+	self.spells = {}
+	self.maxSpellCount = 3
+	self.spellCoolDown = .75
 	
-	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red.tga")
-	self.validMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green.tga")
+	--fireball tuneables
+	self.fireballPath = "Particles\\RL_Fireball.xml"
+	self.fireballSpeed = 25
+	self.fireballDamage = 50
+	self.fireballRange = 500
 	
-	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red.tga")
+	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
+	self.validMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	
+	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
 end
@@ -46,12 +60,17 @@ function OnThink(self)
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		
+		local magic = self.map:GetTrigger("MAGIC") > 0
+		
 		if self.map:GetTrigger("CLICK") > 0 then
 			UpdateTargetPosition(self, x, y)
 		end
 		
-		if self.path ~= nil then
-			NavigatePath(self)
+		--follow the path if one exists
+		NavigatePath(self)
+		
+		if magic then
+			G.CreateFireball(self)
 		end
 		
 		--update the mouse position on screen
@@ -67,38 +86,44 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 	
 	if goal ~= nil then
 		local start = self:GetPosition()
-		local path = AI:FindPath(start, goal, 20.0)
-		
+		local path = AI:FindPath(start, goal, 20.0, -1)
 		if path ~= nil then
 			local numPoints = table.getn(path)
 			local endPoint = path[numPoints]
-			
+			self.path = path
+			self.pathProgress = 0
 			self.pathLength = AI:GetPathLength(path)
-			
-			if self.pathLength > self.deadZone then
-				self.path = path
-				self.pathProgress = 0
-			end
 		end
 	end
 end
 
 function NavigatePath(self)
-	if self.path ~= nil then
+	if self.path then
 		local dt = Timer:GetTimeDiff()
+		
 		self.pathProgress = self.pathProgress + dt * self.moveSpeed
 
 		if self.pathProgress > self.pathLength then
 			self.pathProgress = self.pathLength
 		end
 		
+		--get the next point on the path
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
-		dir:normalize()
-		dir = dir * self.moveSpeed
-		self:SetMotionDeltaWorldSpace(dir)
-
-		if self.pathLength - self.pathProgress <= self.deadZone then
+		
+		--Make the player face the direction of movement
+		self:SetDirection(dir)
+		
+		--move the player to the new position
+		self:SetPosition(point)
+		
+		--[#todo] fix the bug in this line of code so that the player will move correctly
+		
+		-- dir:normalize()
+		-- dir = dir * self.moveSpeed
+		-- self:SetMotionDeltaWorldSpace(dir)
+		
+		if self.pathProgress == self.pathLength then
 			self.path = nil
 		end
 	end

@@ -1,0 +1,80 @@
+<root>
+    <particlelayer>
+        <description name="Flame Trail" description="Flame Trail" />
+        <defaultemitter type="point" emitfromsurface="FALSE">
+            <startupfillpercentage average="100" variation="0" />
+            <fixparticlecount average="-1" variation="0" />
+            <frequency average="200" variation="0" />
+            <countlookup time="10" randomofs="FALSE" />
+            <direction coneangle="0,-1" conemode="alldims" />
+        </defaultemitter>
+        <group topology="Billboards" trailoverlap="1" localspace="FALSE" localpos="0,0,0" localori="0,0,0" tcurvetime="1" tcurveradius="1" usetcurve="FALSE">
+            <groupsorting sortkey="0" />
+            <lifetime average="-1" variation="0" />
+            <timescale average="1" variation="0" />
+            <delay average="0" variation="0" />
+            <texture filename="SmokeSequence_A.dds" normalmap="" transparency="3" sizeaspect="1" animationsubdiv="8,8" usedframes="64" center="0.5,0.5" />
+            <lighting modcolor="255,255,255,255" applyscenebrightness="1" />
+            <geometry />
+            <visibility boundingbox="-100,-100,-100,100,100,100" dynamicInflateInterval="1" depthofs="0" softparticles="FALSE" alwaysinforeground="FALSE" handlewhenvisible="FALSE" filtermask="-1" fadeMode="none" fadeStart="1000" fadeEnd="2000" renderorder="particles" />
+        </group>
+        <particles>
+            <particlesorting enabled="FALSE" />
+            <lifetime average="1" variation="0.3" />
+            <color>
+                <colorcurve>
+                    <curve_red numpoints="2">
+                        <point pos="0,0.9953" t_in="0,0" t_out="0.0625,0" />
+                        <point pos="1,0.9953" t_in="-0.1875,0" t_out="0,0" />
+                    </curve_red>
+                    <curve_green numpoints="3">
+                        <point pos="0,0.9917" t_in="0,0" t_out="0,0" />
+                        <point pos="0.3719,0.6198" t_in="0,0" t_out="0,0" />
+                        <point pos="1,0.4959" t_in="0,0" t_out="0,0" />
+                    </curve_green>
+                    <curve_blue numpoints="3">
+                        <point pos="0,0.7438" t_in="0,0" t_out="0,0" />
+                        <point pos="0.3719,0.3719" t_in="0,0" t_out="0,0" />
+                        <point pos="1,0.2479" t_in="0,0" t_out="0,0" />
+                    </curve_blue>
+                    <curve_alpha numpoints="4">
+                        <point pos="0,0.0039" t_in="0,-0.0039" t_out="0.0083,0.2212" />
+                        <point pos="0.124,0.9953" t_in="-0.1054,-0.0035" t_out="0.1197,0.0047" />
+                        <point pos="0.7479,0.9953" t_in="-0.1193,0.0047" t_out="0.1198,-0.0035" />
+                        <point pos="1,0.0039" t_in="-0.0723,0.1586" t_out="0,-0.0039" />
+                    </curve_alpha>
+                </colorcurve>
+            </color>
+            <distortion enabled="FALSE" planealigned="FALSE">
+                <fixlength average="-1" variation="0" />
+                <speedmultiplier average="-1" variation="0" />
+                <sizemode enabled="FALSE" sizemultiplier="0,0,0,0" />
+            </distortion>
+            <normal enabled="FALSE" dir="0,0,1,1" />
+            <size>
+                <curve numpoints="2">
+                    <point pos="0,0.13" t_in="0,-0.0033" t_out="0.5667,0.7533" />
+                    <point pos="1,0.9961" t_in="-0.1867,0.0006" t_out="0,0.0039" />
+                </curve>
+                <start average="1" variation="0.25" />
+                <growth average="50" variation="0.4" />
+            </size>
+            <animation mode="0" startrandomframe="TRUE" smooth="TRUE">
+                <curve numpoints="2">
+                    <point pos="0,0.9933" t_in="0,0" t_out="0,0" />
+                    <point pos="1,0.9961" t_in="0,0" t_out="0,0" />
+                </curve>
+                <animtime average="4" variation="0" />
+            </animation>
+            <speed average="0" variation="0.4" />
+            <rotation mode="constspeed" initialangle="0,360" rotationspeed="0,30" curveduration="0" randomcurveofs="FALSE" />
+            <physics gravity="0,0,10" friction="0.2" emitterspeed="0" constraintbitmask="-1" gravityinertia="TRUE">
+                <inertia average="0" variation="0" />
+            </physics>
+            <ondestroy repeat="FALSE">
+                <newparticlecount average="-1" variation="0" />
+                <newparticletype copyflags="1" />
+            </ondestroy>
+        </particles>
+    </particlelayer>
+</root>

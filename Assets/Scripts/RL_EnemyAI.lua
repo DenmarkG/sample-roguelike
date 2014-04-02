@@ -1,26 +1,28 @@
 ﻿-- new script file
 function OnAfterSceneLoaded(self)
-	--get the character controller attched to this or assign one if nil
-	self.characterController = self:GetComponentOfType("vHavokCharacterController")
-	if self.characterController == nil then
-		self.AddComponentOfType("vHavokCharacterController")
+	self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
+	if self.rigidBody == nil then
+		self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
 	end
-	
+		
 	--tuning variables
-	self.chaseSpeed = 5 --how fast this character should move when chasing the player	
-	self.patrolSpeed = 30 --how fast this NPC should move when patrolling
+	self.chaseSpeed = 50 --how fast this character should move when chasing the player	
+	self.patrolSpeed = 2.5 --how fast this NPC should move when patrolling
 	self.rotSpeed = 10
 	self.attackRange = 60 --how close the NPC should get before attacking
 	self.sightRange = 500 --how far the enemy can see a player
 	self.viewingAngle = 60 --the angle that the NPC can see within
 	self.numSightRays = 5	--the number of rays to cast within the veiwing angle to look for the player
 	self.eyeHeight = 50
+	
+	self.localTimeScale = 1
 end
 
 function OnThink(self)
+	self.dt = Timer:GetTimeDiff() *  self.localTimeScale 
+
 	if not G.gameOver and G.player ~= nil then
-		local playerSighted = LookForPlayer(self)
-		if playerSighted then
+		if LookForPlayer(self) then
 			FindPath(self)
 		end
 		
@@ -33,9 +35,6 @@ function OnThink(self)
 end
 
 function FindPath(self)
-	--cache the time difference
-	local dt = Timer:GetTimeDiff()
-	
 	--get the this and the player's position
 	local playerPosition = G.player:GetPosition()
 	local myPosition = self:GetPosition()
@@ -57,17 +56,19 @@ function FindPath(self)
 		end
 		
 		if self.path then
-			self.pathProgress = self.pathProgress + dt
+			self.pathProgress = self.pathProgress + self.dt * self.chaseSpeed
 
 			if self.pathProgress > self.pathLength then
 				self.pathProgress = self.pathLength
 			end
 			
 			local point = AI:GetPointOnPath(self.path, self.pathProgress)
-			local dir = point - myPosition
-			dir:normalize()
-			dir = dir * self.chaseSpeed
-			self:SetMotionDeltaWorldSpace(dir)
+			self:SetPosition(point)
+			--[#todo] fix the bug that makes the character jump after x time(same as player script)
+			-- local dir = point - myPosition
+			-- dir:normalize()
+			-- dir = dir * self.chaseSpeed
+			-- self:SetMotionDeltaWorldSpace(dir)
 
 			if self.pathProgress == self.pathLength then
 				self.path = nil

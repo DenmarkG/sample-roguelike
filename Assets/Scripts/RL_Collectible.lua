@@ -14,7 +14,7 @@ end
 
 function OnObjectEnter(self, otherObj)
 	if otherObj:GetKey() == "Player" then
-		otherObj:Collect()
+		otherObj:Collect(self)
 	end
 end
 

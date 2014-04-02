@@ -1,0 +1,9 @@
+<root>
+    <Resources Version="1" Count="5" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/RL_WallTest.vmesh_data\materials.xml" OwnerRes="3" Size="473" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="Textures" Filename="Textures\Checkerboard.dds" CustomInt="1,64" Size="64" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/RL_WallTest.vmesh" CustomInt="1,1" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

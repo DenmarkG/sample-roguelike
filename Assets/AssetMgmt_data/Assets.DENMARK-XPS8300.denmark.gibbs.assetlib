@@ -357,6 +357,53 @@
                 "TemplateName": "Default"
             }
         },
+        "Particles/RL_Fireball.vpfx": {
+            "AssetType": "Particle",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/SmokeSequence_A.dds"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2109993966,
+                "TimeStamp": 1396465807369712300,
+                "LastEditTime": 1396465808370812400
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/SmokeSequence_A.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 399674561,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1396465684484425000
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Cursor/RL_Cursor_Diffuse_Green.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -384,6 +431,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1279306863,
+                "TimeStamp": 1396459701759845100,
+                "LastEditTime": 1396459702767744300
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 32,
+                "Height": 32,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Cursor/RL_Cursor_Diffuse_Red.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -404,6 +478,33 @@
                 "FileFormat": "TGA",
                 "Width": 64,
                 "Height": 64,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 570461143,
+                "TimeStamp": 1396459687259295300,
+                "LastEditTime": 1396459687867234500
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 32,
+                "Height": 32,
                 "HasAlpha": true,
                 "sRGB": false
             },

@@ -1,0 +1,10 @@
+<root>
+    <Resources Version="1" Count="6" PathType="Project">
+        <Resource Manager="Animations" Filename="Models/Enemies/RL_EvilCubie_MOD.anim" Size="1024" />
+        <Resource Manager="FILE" Filename="Models/Enemies/RL_EvilCubie_MOD.model_data\materials.xml" OwnerRes="4" Size="497" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="Textures" Filename="Textures\DesignTextures\FlatColors\Red_128.tga" CustomInt="1,64" Size="87380" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Enemies/RL_EvilCubie_MOD.model" CustomInt="1,2" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>
