@@ -5,11 +5,16 @@ function OnBeforeSceneLoaded(self)
 end
 
 function OnAfterSceneLoaded(self)
+	--get the screen size
+	G.w, G.h = Screen:GetViewportSize()
+	
+	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
 	
 	--set the font path
 	G.fontPath = "Fonts/RL_Gulim_Font.fnt"
 	
+	--set the gamestate
 	G.gameOver = false
 end
 

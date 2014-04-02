@@ -357,6 +357,60 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Cursor/RL_Cursor_Diffuse_Green.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4019389217,
+                "TimeStamp": 1396392088877877000,
+                "LastEditTime": 1396392194860474200
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 64,
+                "Height": 64,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/Cursor/RL_Cursor_Diffuse_Red.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 689211457,
+                "TimeStamp": 1396392054804470000,
+                "LastEditTime": 1396392196813669500
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 64,
+                "Height": 64,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/DesignTextures/FlatColors/Black_128.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -949,24 +1003,6 @@
             },
             "Transformations": {
                 "TemplateName": "Default"
-            }
-        },
-        "Textures/RL_BasicCollectible_DIFFUSE.tga": {
-            "AssetType": "__deleted__",
-            "Common": {
-                "DeleteTime": 1396304969489450000
-            },
-            "File": {
-                "LastEditTime": 1396304969489450000
-            }
-        },
-        "Textures/Sky/RL_BasicCollectible_DIFFUSE.tga": {
-            "AssetType": "__deleted__",
-            "Common": {
-                "DeleteTime": 1396304976447450000
-            },
-            "File": {
-                "LastEditTime": 1396304976447450000
             }
         }
     },
