@@ -21,6 +21,7 @@ function OnAfterSceneLoaded(self)
 	
 	--Interaction controls:
 	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
+	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE")
 	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
@@ -29,13 +30,18 @@ function OnAfterSceneLoaded(self)
 	self.moveSpeed = 150
 	self.spells = {}
 	self.maxSpellCount = 3
-	self.spellCoolDown = .75
+	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
+	
+	self.meleeCoolDown = 1.5 --how long the player must wait before doing another attack after a melee
+	
+	self.attackCoolDown = 0 
 	
 	--fireball tuneables
 	self.fireballPath = "Particles\\RL_Fireball.xml"
 	self.fireballSpeed = 25
 	self.fireballDamage = 50
 	self.fireballRange = 500
+	self.eyeHeight = 50
 	
 	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.validMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
@@ -61,6 +67,7 @@ function OnThink(self)
 		local y = self.map:GetTrigger("Y")
 		
 		local magic = self.map:GetTrigger("MAGIC") > 0
+		local melee = self.map:GetTrigger("MELEE") > 0
 		
 		if self.map:GetTrigger("CLICK") > 0 then
 			UpdateTargetPosition(self, x, y)
@@ -71,6 +78,8 @@ function OnThink(self)
 		
 		if magic then
 			G.CreateFireball(self)
+		elseif melee then
+			PerformMelee(self)
 		end
 		
 		--update the mouse position on screen
@@ -79,6 +88,10 @@ function OnThink(self)
 		--show the player's stats
 		ShowPlayerStats(self)
 	end
+end
+
+function PerformMelee(self)
+	--
 end
 
 function UpdateTargetPosition(self, mouseX, mouseY)
@@ -140,6 +153,10 @@ function UpdateMouse(self, xPos, yPos)
 	end
 	
 	self.mouseCursor:SetPos(xPos, yPos)
+end
+
+function StartCoolDown(self, coolDownTime)
+	self.attackCoolDown = coolDownTime
 end
 
 function ShowPlayerStats(self)

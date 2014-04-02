@@ -25,18 +25,21 @@ function OnThink(self)
 end	
 
 function CreateNewFireball(owner)
-	local spellParticle = Game:CreateEffect(owner:GetPosition(), owner.fireballPath)
+	local ownerPos = owner:GetPosition()
+	ownerPos.z = ownerPos.z + owner.eyeHeight
+	local spellParticle = Game:CreateEffect(ownerPos, owner.fireballPath)
 	spellParticle:SetDirection(owner:GetObjDir() )
 	
 	local newFireball = {}
 	newFireball.speed = owner.fireballSpeed
 	newFireball.damage = owner.fireballDamage
 	newFireball.range = owner.fireballRange
-	newFireball.startPos = owner:GetPosition()
+	newFireball.startPos = ownerPos
 	newFireball.pos = newFireball.startPos
 	newFireball.distance = 0
 	newFireball.owner = owner
 	newFireball.dir = owner:GetObjDir()
+	newFireball.particle = spellParticle
 	
 	newFireball.HitCallBack = function(fireball, hitObj)
 		if hitObj ~= nil and hitObj:GetKey() == "Enemy" then
@@ -56,11 +59,11 @@ function UpdateFireball(fireball)
 	local hitObject = false
 	
 	if dist > .1 then
-		local raystart = fireball.pos
+		local rayStart = fireball.pos
 		
 		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 		local hit, result = Physics.PerformRaycast(rayStart, nextPos, iCollisionFilterInfo)
-		
+ 		
 		if hit == true then
 			if result ~= nil then
 				if result["HitType"] == "Entity" then
@@ -71,10 +74,10 @@ function UpdateFireball(fireball)
 			
 			hitObject = true
 		else
-			fireball.distance = fireball + (nextPos - fireball.pos):GetLength()
+			fireball.distance = fireball.distance + (nextPos - fireball.pos):getLength()
 			
 			fireball.pos = nextPos
-			bullet.particle:SetPosition(nextPos)
+			fireball.particle:SetPosition(nextPos)
 			
 			hitObject = (fireball.distance > fireball.range)
 		end

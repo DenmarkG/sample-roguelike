@@ -13,6 +13,8 @@ models/enemies/rl_evilcubie_mod.vcolmesh	Models/Enemies/RL_EvilCubie_MOD.vcolmes
 models/props/rl_basiccollectible_mod.anim	Models/Props/RL_BasicCollectible_MOD.anim	
 models/props/rl_basiccollectible_mod.model	Models/Props/RL_BasicCollectible_MOD.model	LODSwitchDistances=
 models/props/rl_basiccollectible_mod.vcolmesh	Models/Props/RL_BasicCollectible_MOD.vcolmesh	
+particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
+particles/smokesequence_a.dds	Particles/SmokeSequence_A.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	Textures/Cursor/RL_Cursor_Diffuse_Green.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_red.tga	Textures/Cursor/RL_Cursor_Diffuse_Red.tga	sRGB=false
@@ -39,5 +41,3 @@ textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectibl
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
 textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
-particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
-particles/smokesequence_a.dds	Particles/SmokeSequence_A.dds	sRGB=false
