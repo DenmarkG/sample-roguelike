@@ -1,0 +1,5 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="__DEFAULT__" userflags="0" diffuse="..\..\Textures\DesignTextures\FlatColors\Gray_128.tga" Lighting="Fullbright" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="1" parallaxscale="-0.03" parallaxbias="-0.015" ambient="0,0,0,255" sortingkey="0" alphathreshold="-1" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+    </Materials>
+</root>

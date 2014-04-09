@@ -41,3 +41,5 @@ textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectibl
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
 textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
+models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
+models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	

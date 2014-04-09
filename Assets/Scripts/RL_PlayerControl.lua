@@ -6,6 +6,12 @@ function OnAfterSceneLoaded(self)
 		self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
 		self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
 	end
+	
+	--set up the player inventory, health and mana
+	SetUpHealth(self)
+	SetUpMana(self)
+	SetUpInventory(self)
+	
 	-- self.deadZone = self.characterController:GetCapsuleRadius()
 	self.deadZone = 75
 	
@@ -28,11 +34,14 @@ function OnAfterSceneLoaded(self)
 	
 	--set up the tuning values
 	self.moveSpeed = 150
+	self.rotSpeed = 2
 	self.spells = {}
 	self.maxSpellCount = 3
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	
-	self.meleeCoolDown = 1.5 --how long the player must wait before doing another attack after a melee
+	self.meleeWeapon = GetWeapon(self)
+	self.meleeRange = 15
+	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	
 	self.attackCoolDown = 0 
 	
@@ -76,10 +85,16 @@ function OnThink(self)
 		--follow the path if one exists
 		NavigatePath(self)
 		
-		if magic then
-			G.CreateFireball(self)
-		elseif melee then
-			PerformMelee(self)
+		if self.attackCoolDown > 0 then
+			self.attackCoolDown = self.attackCoolDown - Timer:GetTimeDiff()
+		elseif self.attackCoolDown <= 0 then
+			self.attackCoolDown = 0
+						
+			if magic then
+				PerformSpell(self)
+			elseif melee then
+				PerformMelee(self)
+			end
 		end
 		
 		--update the mouse position on screen
@@ -91,7 +106,37 @@ function OnThink(self)
 end
 
 function PerformMelee(self)
-	--
+	if self.meleeWeapon ~= nil then
+		--check to see if enemy is in front
+		local rayStart = self:GetPosition()
+		local rayEnd = rayStart + self:GetObjDir() * meleeRange
+		
+		--get the collision info for the ray
+		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
+		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
+		
+		local enemy = nil
+		
+		if hit == true then
+			if result ~= nil then
+				local hitObj = result["HitObject"]
+				
+				if hitObj:GetKey() == "Enemy" then
+					enemy = hitObj
+				end
+			end
+		end
+		
+		self.meleeWeapon:Attack(enemy)
+		StartCoolDown(self, self.meleeCoolDown)
+	end
+end
+
+function PerformSpell(self)
+	if table.getn(G.fireballs) < self.maxSpellCount then
+		G.CreateFireball(self)
+		StartCoolDown(self, self.spellCoolDown)
+	end
 end
 
 function UpdateTargetPosition(self, mouseX, mouseY)
@@ -124,8 +169,10 @@ function NavigatePath(self)
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
 		
-		--Make the player face the direction of movement
-		self:SetDirection(dir)
+		--Make the player rotate toward the direction of movement
+		local objDir = self:GetObjDir()
+		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
+		self:SetDirection(objDir)
 		
 		--move the player to the new position
 		self:SetPosition(point)
@@ -159,6 +206,60 @@ function StartCoolDown(self, coolDownTime)
 	self.attackCoolDown = coolDownTime
 end
 
+function GetWeapon(self)
+	local numChildren = self:GetNumChildren()
+	
+	for i = 0, numChildren - 1, 1 do
+		local entity = self:GetChild(i)
+		
+		if entity ~= nil then
+			if entity:GetKey() == "MeleeWeapon" then 
+				--entity.SetUp(entity)
+				return entity
+			end
+		end
+	end
+end
+
+function SetUpHealth(self)
+	self.Health = {}
+	self.Health.maxHealth = 100
+	self.Health.currentHealth = self.Health.maxHealth
+
+	self.Health.ModifyHealth = function(self, amount)
+		self.Health.currentHealth = self.Health.currentHealth + amount
+		
+		if self.Health.currentHealth > self.Health.maxHealth then
+			self.Health.currentHealth = self.Health.maxHealth
+		elseif self.Health.currentHealth < 0 then
+			self.Health.currentHealth = 0
+		end
+	end
+end
+
+function SetUpMana(self)
+	self.Mana = {}
+	self.Mana.maxMana = 150
+	self.Mana.currentMana = self.Mana.maxMana
+
+	self.Mana.ModifyMana = function(self, amount)
+		self.Mana.currentMana = self.Mana.currentMana + amount
+		
+		if self.Mana.currentMana > self.Mana.maxMana then
+			self.Mana.currentMana = self.Mana.maxMana
+		elseif self.Mana.currentMana < 0 then
+			self.Mana.currentMana = 0
+		end
+	end
+end
+	
+function SetUpInventory(self)
+	self.Inventory = {}
+	self.Inventory.AddItem = function(self, newItem)
+		table.insert(self.Inventory, newItem)
+	end
+end
+
 function ShowPlayerStats(self)
-	Debug:PrintAt(10, 64, "Item Count: " .. self.inventory.itemsCollected, Vision.V_RGBA_WHITE, G.fontPath)
+	--Debug:PrintAt(10, 64, "Item Count: " .. self.inventory.itemsCollected, Vision.V_RGBA_WHITE, G.fontPath)
 end

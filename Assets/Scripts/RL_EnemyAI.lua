@@ -23,8 +23,10 @@ function OnThink(self)
 
 	if not G.gameOver and G.player ~= nil then
 		if LookForPlayer(self) then
-			FindPath(self)
+			-- FindPath(self)
 		end
+		
+		FindPath(self)
 		
 		--debugging
 		local color = Vision.V_RGBA_RED
@@ -35,11 +37,22 @@ function OnThink(self)
 end
 
 function FindPath(self)
-	--get the this and the player's position
-	local playerPosition = G.player:GetPosition()
+	local playerPosition = Vision.hkvVec3(0,0,0)
 	local myPosition = self:GetPosition()
-	--get the distance to the player
-	local distance = myPosition:getDistanceTo(playerPosition)
+	local distance = 0
+	
+	if LookForPlayer(self) then
+		--get the this and the player's position
+		playerPosition = G.player:GetPosition()
+		
+		--get the distance to the player
+		distance = myPosition:getDistanceTo(playerPosition)
+	else
+		playerPosition = self.lastPlayerLocation
+
+		--get the distance to the player's last location 
+		distance = myPosition:getDistanceTo(playerPosition)
+	end
 	
 	--if out of attack range, move closer
 	if  distance > self.attackRange then
@@ -106,6 +119,7 @@ function LookForPlayer(self)
 					local angle = self:GetObjDir():getAngleBetween(G.player:GetPosition() -  self:GetPosition() )
 					if (angle < self.viewingAngle) and
 					   (angle > -self.viewingAngle) then
+					   self.lastPlayerLocation = hitObj:GetPosition()
 						return true
 					end
 				end

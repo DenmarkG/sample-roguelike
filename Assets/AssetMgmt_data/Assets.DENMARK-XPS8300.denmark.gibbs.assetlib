@@ -133,8 +133,8 @@
                 "Tags": "__NEW_ASSET__",
                 "Dependencies": [
                     "Meshes/RL_WallTest.vmesh_data/materials.xml",
-                    "plainwhite.dds",
-                    "Shaders/vMaterial.ShaderLib"
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/Checkerboard.dds"
                 ],
                 "Variants": [
 
@@ -143,7 +143,7 @@
             "File": {
                 "Hash": 2208705684,
                 "TimeStamp": 1396311575136338400,
-                "LastEditTime": 1396311576093434100
+                "LastEditTime": 1396987484592744900
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -247,8 +247,8 @@
                 "Tags": "__NEW_ASSET__",
                 "Dependencies": [
                     "Models/Enemies/RL_EvilCubie_MOD.model_data/materials.xml",
-                    "plainwhite.dds",
-                    "Shaders/vMaterial.ShaderLib"
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/DesignTextures/FlatColors/Red_128.tga"
                 ],
                 "Variants": [
 
@@ -257,7 +257,7 @@
             "File": {
                 "Hash": 1723316645,
                 "TimeStamp": 1395872875004153000,
-                "LastEditTime": 1395872875879153000
+                "LastEditTime": 1396987484643750000
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -352,6 +352,52 @@
                 "Hash": 4056010479,
                 "TimeStamp": 1396304928247450000,
                 "LastEditTime": 1396304929035450000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_MeleeSword_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1396991954378108900,
+                "LastEditTime": 1396991955178188900
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_MeleeSword_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2241716202,
+                "TimeStamp": 1396991954374108500,
+                "LastEditTime": 1396991955182189300
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
             },
             "Transformations": {
                 "TemplateName": "Default"
