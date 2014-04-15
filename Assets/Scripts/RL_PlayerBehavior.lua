@@ -1,10 +1,15 @@
 -- new script file
 function OnAfterSceneLoaded(self)
 	--get the rigidbody attached; if there is none, attach one.
-	self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
-	if self.rigidBody == nil then
-		self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
-		self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
+	-- self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
+	-- if self.rigidBody == nil then
+		-- self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
+		-- self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
+	-- end
+	
+	self.characterController = self:GetComponentOfType("vHavokCharacterController")
+	if self.characterController == nil then
+		self.characterController = self:AddComponentOfType("vHavokCharacterController")
 	end
 	
 	--create the input map
@@ -125,17 +130,17 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 		local start = self:GetPosition()
 		local path = AI:FindPath(start, goal, 20.0, -1)
 		if path ~= nil then
-			local numPoints = table.getn(path)
-			local endPoint = path[numPoints]
-			self.path = path
-			self.pathProgress = 0
-			self.pathLength = AI:GetPathLength(path)
+		local numPoints = table.getn(path)
+		local endPoint = path[numPoints]
+		self.path = path
+		self.pathProgress = 0
+		self.pathLength = AI:GetPathLength(path)
 		end
 	end
 end
 
 function NavigatePath(self)
-	if self.path then
+	if self.path ~= nil then
 		local dt = Timer:GetTimeDiff()
 		
 		self.pathProgress = self.pathProgress + dt * self.moveSpeed
@@ -147,23 +152,21 @@ function NavigatePath(self)
 		--get the next point on the path
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
-		
+			
 		--Make the player rotate toward the direction of movement
+		-- dir.z = self:GetPosition().z
 		local objDir = self:GetObjDir()
 		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
-		self:SetDirection(objDir)
+		-- self:SetDirection(objDir)
+		self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
 		
-		--move the player to the new position
-		self:SetPosition(point)
-		
-		--[#todo] fix the bug in this line of code so that the player will move correctly
-		
-		-- dir:normalize()
-		-- dir = dir * self.moveSpeed
-		-- self:SetMotionDeltaWorldSpace(dir)
+		dir:normalize()
+		dir = dir * 15
+		self:SetMotionDeltaWorldSpace(dir)
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil
+			self:ResetRotationDelta()
 		end
 	end
 end
@@ -193,7 +196,6 @@ function GetWeapon(self)
 		
 		if entity ~= nil then
 			if entity:GetKey() == "MeleeWeapon" then 
-				--entity.SetUp(entity)
 				return entity
 			end
 		end

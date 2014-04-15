@@ -22,6 +22,7 @@ end
 function OnThink(self)
 	local numSpellsInPlay = table.getn(self.spellsInPlay)
 	
+	--update all spells currently in the scene
 	for i = 1, numSpellsInPlay, 1 do
 		local currentSpell = self.spellsInPlay[i]
 		if currentSpell ~= nil then
@@ -50,6 +51,7 @@ function CreateNewFireball(owner)
 	--Creation of the Particle
 	newFireball.particle = Game:CreateEffect(owner:GetPosition(), owner.fireballParticlePath)
 	newFireball.particle:SetDirection(newFireball.dir)
+	newFireball.particle:SetKey("Particle")
 	
 	newFireball.HitCallBack = function(fireball, hitObj)
 		local other = hitObj
