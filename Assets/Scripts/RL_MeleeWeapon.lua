@@ -1,6 +1,8 @@
 function OnAfterSceneLoaded(self)
 	--[#todo] move to onexpose once tuned
 	self.attackStrength = 25
+	self.meleeRange = 15
+
 	
 	self.SetUp = SetUpWeapon
 	self.Attack = PerformAttack
