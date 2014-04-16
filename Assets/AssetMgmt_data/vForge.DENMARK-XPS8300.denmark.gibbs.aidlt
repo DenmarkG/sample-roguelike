@@ -4,6 +4,7 @@ meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh
 meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
 meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	
 meshes/rl_walltest.vmesh	Meshes/RL_WallTest.vmesh	LODSwitchDistances=
+models/character/animations/rl_playercharacter.anim	Models/Character/Animations/RL_PlayerCharacter.anim	
 models/character/fps_charstandin_mod.anim	Models/Character/FPS_CharStandIn_MOD.anim	
 models/character/fps_charstandin_mod.model	Models/Character/FPS_CharStandIn_MOD.model	LODSwitchDistances=
 models/character/fps_charstandin_mod.vcolmesh	Models/Character/FPS_CharStandIn_MOD.vcolmesh	
@@ -40,9 +41,8 @@ textures/mobilehud/fps_button_yellow_64.tga	Textures/MobileHud/FPS_Button_Yellow
 textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=false
 textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
+textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
+textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
 textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
-textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
-textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
-models/character/animations/rl_playercharacter.anim	Models/Character/Animations/RL_PlayerCharacter.anim	
