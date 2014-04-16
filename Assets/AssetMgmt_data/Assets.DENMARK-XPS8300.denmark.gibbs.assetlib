@@ -154,6 +154,26 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Character/Animations/RL_PlayerCharacter.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3849997704,
+                "TimeStamp": 1397605530069842400,
+                "LastEditTime": 1397606700373302500
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Models/Character/FPS_CharStandIn_MOD.anim": {
             "AssetType": "Animation",
             "Common": {
@@ -1065,6 +1085,60 @@
                 "Width": 512,
                 "Height": 512,
                 "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/RL_Player_Diffuse.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 179675895,
+                "TimeStamp": 1397514789247562100,
+                "LastEditTime": 1397606698215086700
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/RL_Sword_Diffuse.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3032011084,
+                "TimeStamp": 1397603584264887700,
+                "LastEditTime": 1397606700356300800
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 256,
+                "Height": 256,
+                "HasAlpha": false,
                 "sRGB": false
             },
             "Transformations": {

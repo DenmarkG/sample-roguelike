@@ -1,16 +1,16 @@
 -- new script file
 function OnAfterSceneLoaded(self)
 	--get the rigidbody attached; if there is none, attach one.
-	-- self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
-	-- if self.rigidBody == nil then
-		-- self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
-		-- self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
-	-- end
-	
-	self.characterController = self:GetComponentOfType("vHavokCharacterController")
-	if self.characterController == nil then
-		self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
+	if self.rigidBody == nil then
+		elf.rigidBody = self:AddComponentOfType("vHavokRigidBody")
+		self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
 	end
+	
+	-- self.characterController = self:GetComponentOfType("vHavokCharacterController")
+	-- if self.characterController == nil then
+		-- self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	-- end
 	
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
@@ -152,17 +152,24 @@ function NavigatePath(self)
 		--get the next point on the path
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
-			
+		
+		--[[
+		#todo
+		This section currently has several bugs
+		in order to move on to other tasks, I'm setting the position rather than
+		using movement/rotation delta. 
+		--]]
+		
 		--Make the player rotate toward the direction of movement
-		-- dir.z = self:GetPosition().z
 		local objDir = self:GetObjDir()
 		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
-		-- self:SetDirection(objDir)
-		self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		self:SetDirection(objDir)
+		--self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
 		
 		dir:normalize()
 		dir = dir * 15
-		self:SetMotionDeltaWorldSpace(dir)
+		-- self:SetMotionDeltaWorldSpace(dir)
+		self:SetPosition(point)
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil
