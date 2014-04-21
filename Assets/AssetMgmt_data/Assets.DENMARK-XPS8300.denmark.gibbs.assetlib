@@ -166,9 +166,9 @@
                 ]
             },
             "File": {
-                "Hash": 2118778693,
-                "TimeStamp": 1397681835784172600,
-                "LastEditTime": 1398096790460570400
+                "Hash": 3341159184,
+                "TimeStamp": 1398113475773979200,
+                "LastEditTime": 1398118473129811700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -236,6 +236,74 @@
                 "Hash": 3715699509,
                 "TimeStamp": 1390939481643489500,
                 "LastEditTime": 1395862584741002600
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Character/RL_Character_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1914662524,
+                "TimeStamp": 1398119956667665200,
+                "LastEditTime": 1398120002980314100
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Character/RL_Character_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/RL_Player_Diffuse.tga",
+                    "Textures/RL_Sword_Diffuse.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3874842568,
+                "TimeStamp": 1398119956665665000,
+                "LastEditTime": 1398120000768187600
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Character/RL_Character_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3781257999,
+                "TimeStamp": 1398119956669665300,
+                "LastEditTime": 1398120002982314200
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1105,7 +1173,7 @@
             "File": {
                 "Hash": 179675895,
                 "TimeStamp": 1397514789247562100,
-                "LastEditTime": 1397606698215086700
+                "LastEditTime": 1398119071877058000
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -1132,7 +1200,7 @@
             "File": {
                 "Hash": 3032011084,
                 "TimeStamp": 1397603584264887700,
-                "LastEditTime": 1397606700356300800
+                "LastEditTime": 1398119071891058800
             },
             "Texture": {
                 "FileFormat": "TGA",

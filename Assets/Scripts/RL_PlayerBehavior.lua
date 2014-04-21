@@ -1,16 +1,16 @@
 -- new script file
 function OnAfterSceneLoaded(self)
 	--get the rigidbody attached; if there is none, attach one.
-	self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
-	if self.rigidBody == nil then
-		elf.rigidBody = self:AddComponentOfType("vHavokRigidBody")
-		self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
-	end
-	
-	-- self.characterController = self:GetComponentOfType("vHavokCharacterController")
-	-- if self.characterController == nil then
-		-- self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	-- self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
+	-- if self.rigidBody == nil then
+		-- self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
+		-- self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
 	-- end
+	
+	self.characterController = self:GetComponentOfType("vHavokCharacterController")
+	if self.characterController == nil then
+		self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	end
 	
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
@@ -161,15 +161,16 @@ function NavigatePath(self)
 		--]]
 		
 		--Make the player rotate toward the direction of movement
-		local objDir = self:GetObjDir()
-		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
-		self:SetDirection(objDir)
-		--self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		-- local objDir = self:GetObjDir()
+		-- objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
+		-- self:SetDirection(objDir)
+		-- self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
 		
 		dir:normalize()
-		dir = dir * 15
-		-- self:SetMotionDeltaWorldSpace(dir)
-		self:SetPosition(point)
+		-- dir = dir * 15
+		self:SetMotionDeltaWorldSpace(dir)
+		-- self:SetPosition(point)
+		-- Debug:PrintLine("".. dir)
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil

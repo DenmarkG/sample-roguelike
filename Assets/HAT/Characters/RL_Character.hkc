@@ -1,0 +1,113 @@
+﻿<!--HBT-->
+<HBT version="1.0" appversion="2014.05" namespace="_RL_Character_hkc_">
+    <HBT_ITEM type="HavokTools.hkCharacter" name="RL_Character.hkc" priority="1">
+        <hkCharacter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCharacter:RL_Character.hkc:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <BehaviorFile>
+                <MangledTargetNames>
+                    <string>_Character_Behavior_hkb_:HavokTools.hkRefFile:Character_Behavior.hkb:IncomingRefs</string>
+                </MangledTargetNames>
+            </BehaviorFile>
+            <StateMachine>
+                <MangledTargetNames>
+                    <string>_Character_Behavior_hkb_:HavokTools.hkStateMachine:CharacterStateMachine:IncomingRefs</string>
+                </MangledTargetNames>
+            </StateMachine>
+            <Rig>
+                <MangledTargetNames>
+                    <string>_RL_Character_Attack_BasicConfig_hkt_:HavokTools.hkCharacterHKX:RL_Character_Attack_BasicConfig.hkt:IncomingRefs</string>
+                </MangledTargetNames>
+            </Rig>
+            <Ragdoll>
+                <MangledTargetNames />
+            </Ragdoll>
+            <DeformableSkins>
+                <MangledTargetNames>
+                    <string>_RL_Character_Attack_BasicConfig_hkt_:HavokTools.hkCharacterHKX:RL_Character_Attack_BasicConfig.hkt:IncomingRefs</string>
+                </MangledTargetNames>
+            </DeformableSkins>
+            <RigidSkins>
+                <MangledTargetNames />
+            </RigidSkins>
+            <SkeletonMappers>
+                <MangledTargetNames />
+            </SkeletonMappers>
+            <UseRigidSkin />
+            <UseDeformableSkin />
+            <UseSkeletonMapper />
+            <Sequence>
+                <MangledTargetNames />
+            </Sequence>
+            <UseSequence>false</UseSequence>
+            <Gamepad>
+                <MangledTargetNames />
+            </Gamepad>
+            <UseGamepad>false</UseGamepad>
+            <InitialX>0</InitialX>
+            <InitialY>0</InitialY>
+            <InitialZ>0</InitialZ>
+            <UniformCharacterScale>0.01</UniformCharacterScale>
+            <InitialRotation>0</InitialRotation>
+            <SavedSettingsNames>
+                <string>Default</string>
+            </SavedSettingsNames>
+            <SavedSettingsValues>
+                <ArrayOfFloat>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>1</float>
+                </ArrayOfFloat>
+            </SavedSettingsValues>
+            <SavedLODNames />
+            <SavedLODValues />
+            <CurrentLODName>Default (All Bones)</CurrentLODName>
+            <MirrorPartitionPairMap />
+            <MirrorBonePairMap />
+            <MirrorAxis />
+            <MirroredStringList1 />
+            <MirroredStringList2 />
+            <CharacterPropertyOverrides />
+            <LuaScriptOnCharacterActivated />
+            <LuaScriptOnCharacterDeactivated />
+            <LuaFilesChecked />
+            <Skins>
+                <FileNameMeshNamePair>
+                    <m_meshName>Sword</m_meshName>
+                    <m_fileName>..\Models\Character\Animations\RL_Character_Attack_BasicConfig.hkt</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Body</m_meshName>
+                    <m_fileName>..\Models\Character\Animations\RL_Character_Attack_BasicConfig.hkt</m_fileName>
+                </FileNameMeshNamePair>
+            </Skins>
+            <BoneAttachments />
+            <BoneAttachmentBoneIndices />
+            <BoneAttachmentTransforms />
+            <ProxyHeight>1.7</ProxyHeight>
+            <ProxyRadius>0.4</ProxyRadius>
+            <ProxyCollisionFilterInfo>1</ProxyCollisionFilterInfo>
+            <CustomCharacterControllerCinfo>
+                <MangledTargetNames />
+            </CustomCharacterControllerCinfo>
+            <FootIkEnabled>false</FootIkEnabled>
+            <FootIkDriverInfo>
+                <MangledTargetNames />
+            </FootIkDriverInfo>
+            <HandIkEnabled>false</HandIkEnabled>
+            <HandIkDriverInfo>
+                <MangledTargetNames />
+            </HandIkDriverInfo>
+            <AiControlEnabled>false</AiControlEnabled>
+            <AiControlDriverInfo>
+                <MangledTargetNames />
+            </AiControlDriverInfo>
+            <NumLODBones>35</NumLODBones>
+        </hkCharacter>
+    </HBT_ITEM>
+</HBT>

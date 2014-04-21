@@ -1,0 +1,298 @@
+﻿<!--HBT-->
+<HBT version="1.0" appversion="2014.05">
+    <HBT_ITEM type="HavokTools.hkAssetLocationInfo" name="AssetLocationInfo" priority="0">
+        <hkAssetLocationInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs />
+            <AnimationsIncludePaths>
+                <string>Animations\</string>
+                <string>C:\Projects\sample-roguelike\Assets\Models\Character\Animations\</string>
+            </AnimationsIncludePaths>
+            <AnimationsExcludePaths />
+            <BehaviorsIncludePaths>
+                <string>Behaviors\</string>
+                <string>C:\Projects\sample-roguelike\Assets\Models\Character\Animations\</string>
+            </BehaviorsIncludePaths>
+            <BehaviorsExcludePaths />
+            <CharactersIncludePaths>
+                <string>Characters\</string>
+                <string>C:\Projects\sample-roguelike\Assets\Models\Character\Animations\</string>
+            </CharactersIncludePaths>
+            <CharactersExcludePaths />
+            <CharacterAssetsIncludePaths>
+                <string>CharacterAssets\</string>
+                <string>C:\Projects\sample-roguelike\Assets\Models\Character\Animations\</string>
+            </CharacterAssetsIncludePaths>
+            <CharacterAssetsExcludePaths />
+            <TerrainsIncludePaths>
+                <string>Terrains\</string>
+            </TerrainsIncludePaths>
+            <TerrainsExcludePaths />
+            <ScriptsIncludePaths>
+                <string>..\Scripts\</string>
+            </ScriptsIncludePaths>
+            <ScriptsExcludePaths />
+            <ProjectPath>C:\Projects\sample-roguelike\Assets\HAT\</ProjectPath>
+            <ProjectName>RL_Character_HAT.hkp</ProjectName>
+            <CharacterAssetsFolder>CharacterAssets\</CharacterAssetsFolder>
+            <CharactersFolder>Characters\</CharactersFolder>
+            <AnimationsFolder>Animations\</AnimationsFolder>
+            <BehaviorsFolder>Behaviors\</BehaviorsFolder>
+            <TerrainFolder>Terrains\</TerrainFolder>
+            <ScriptsFolder>..\Scripts\</ScriptsFolder>
+        </hkAssetLocationInfo>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkPlatformExportConfig" name="PlatformExportConfig" priority="0">
+        <hkPlatformExportConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs />
+            <ParentNodes />
+            <Notes />
+            <CharactersItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>true</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>Characters\Export\</ExportFolder>
+            </CharactersItem>
+            <CharacterAssetsItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>false</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>CharacterAssets\Export\</ExportFolder>
+            </CharacterAssetsItem>
+            <BehaviorsItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>true</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>Behaviors\Export\</ExportFolder>
+            </BehaviorsItem>
+            <AnimationsItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>false</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>Animations\Export\</ExportFolder>
+            </AnimationsItem>
+            <TerrainsItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>false</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>Terrains\Export\</ExportFolder>
+            </TerrainsItem>
+            <ProjectItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>true</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>.\Export\</ExportFolder>
+            </ProjectItem>
+            <ScriptsItem>
+                <ExportXML>false</ExportXML>
+                <ExportBinary>false</ExportBinary>
+                <BinaryExtension>.hkx</BinaryExtension>
+                <ExportTagfile>false</ExportTagfile>
+                <TagFileExtension>.hkt</TagFileExtension>
+                <ExportFolder>..\Scripts\</ExportFolder>
+            </ScriptsItem>
+            <Checklist />
+            <ChecklistXML />
+            <Platforms />
+            <Suffixes />
+            <Extensions />
+            <ExportPaths />
+            <ExportSaveOptions />
+            <PostExportCommand />
+            <EnablePostExportCommand>true</EnablePostExportCommand>
+            <ExportInvalidBehaviors>false</ExportInvalidBehaviors>
+            <OnlyExportReferencedCharacterAssets>true</OnlyExportReferencedCharacterAssets>
+            <OnlyExportReferencedAnimations>true</OnlyExportReferencedAnimations>
+            <BundleReferencedAnimations>false</BundleReferencedAnimations>
+        </hkPlatformExportConfig>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkGenericConfigInfo" name="GenericConfigInfo" priority="0">
+        <hkGenericConfigInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs />
+            <Hash>
+                <Keys>
+                    <anyType xsi:type="xsd:string">AssetViewer.expansionList</anyType>
+                    <anyType xsi:type="xsd:string">AssetViewer.expansionListAssets</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.CaseSensitive</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.ConvertedStringArray</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.EnabledArray</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.OriginalStringArray</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.PersistentlyRenameUsingAnims</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.RenameClipNodes</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.RenameEvents</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.RenameStatesWithClipNodes</anyType>
+                    <anyType xsi:type="xsd:string">AutoRenameForm.RenameTransitions</anyType>
+                    <anyType xsi:type="xsd:string">Camera.FarClip</anyType>
+                    <anyType xsi:type="xsd:string">Camera.FieldOfView</anyType>
+                    <anyType xsi:type="xsd:string">Camera.FromX</anyType>
+                    <anyType xsi:type="xsd:string">Camera.FromY</anyType>
+                    <anyType xsi:type="xsd:string">Camera.FromZ</anyType>
+                    <anyType xsi:type="xsd:string">Camera.NearClip</anyType>
+                    <anyType xsi:type="xsd:string">Camera.Options</anyType>
+                    <anyType xsi:type="xsd:string">Camera.PreserveLocationBetweenSessions</anyType>
+                    <anyType xsi:type="xsd:string">Camera.ToX</anyType>
+                    <anyType xsi:type="xsd:string">Camera.ToY</anyType>
+                    <anyType xsi:type="xsd:string">Camera.ToZ</anyType>
+                    <anyType xsi:type="xsd:string">Camera.TypeName</anyType>
+                    <anyType xsi:type="xsd:string">DataStore.ActiveCharacters</anyType>
+                    <anyType xsi:type="xsd:string">DataStore.ActiveTerrains</anyType>
+                    <anyType xsi:type="xsd:string">DataStore.CurrentCharacter</anyType>
+                    <anyType xsi:type="xsd:string">Gamepad.DeadZone</anyType>
+                    <anyType xsi:type="xsd:string">General.AutoCreateEvents</anyType>
+                    <anyType xsi:type="xsd:string">General.CustomNodeFileFilter</anyType>
+                    <anyType xsi:type="xsd:string">General.CustomNodeLastDirectory</anyType>
+                    <anyType xsi:type="xsd:string">General.DefaultTransitionDuration</anyType>
+                    <anyType xsi:type="xsd:string">General.DefaultTransitionEffectName</anyType>
+                    <anyType xsi:type="xsd:string">General.EnableMultipleAssetSearchPaths</anyType>
+                    <anyType xsi:type="xsd:string">General.ExportOnSave</anyType>
+                    <anyType xsi:type="xsd:string">General.RandomizeEachSimulation</anyType>
+                    <anyType xsi:type="xsd:string">GraphView.TransitionEffectDefaultEventMode</anyType>
+                    <anyType xsi:type="xsd:string">GraphView.TransitionLabel</anyType>
+                    <anyType xsi:type="xsd:string">GraphView.TransitionLabelShowFactor</anyType>
+                    <anyType xsi:type="xsd:string">GraphView.ZoomExtentsOnGraphChange</anyType>
+                    <anyType xsi:type="xsd:string">Playback.AlwaysRecord</anyType>
+                    <anyType xsi:type="xsd:string">Playback.CyclicTolerance</anyType>
+                    <anyType xsi:type="xsd:string">Playback.PlaybackMode</anyType>
+                    <anyType xsi:type="xsd:string">Playback.SamplesPerSecond</anyType>
+                    <anyType xsi:type="xsd:string">Playback.TimeDisplayUnits</anyType>
+                    <anyType xsi:type="xsd:string">Playback.TimeMultiplier</anyType>
+                    <anyType xsi:type="xsd:string">Playback.TreadmillAccumulateMotionEnabled</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.AccumulateMotion</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.AmbientLevel</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.BackfaceCullingMode</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.BoneNames</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.CoordinateSystem</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DefaultViewers</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayAxisTripod</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayExtractedMotion</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayGridAsWireframe</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayMesh</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayOrigin</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.DisplayPhysicsGhosts</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.FlashlightLock</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.ForwardAxis</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.GridSize</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.GridSubdivisionsPerSide</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.LocalFrames</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.MinimumShadowDistance</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.PhysicsFloor</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.PhysicsWorldSize</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderFlashlight</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderFlashlightShadows</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderSceneLighting</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderShaded</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderSkeleton</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderTexture</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderVertexColor</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderWireframe</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.RenderWorldFromModelTripod</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.ShowCharacterBoundingBox</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.ShowGrid</anyType>
+                    <anyType xsi:type="xsd:string">Viewport.UpAxis</anyType>
+                </Keys>
+                <Values>
+                    <anyType xsi:type="xsd:string">111100010000</anyType>
+                    <anyType xsi:type="xsd:string">1101001</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="ArrayOfString" />
+                    <anyType xsi:type="ArrayOfBoolean" />
+                    <anyType xsi:type="ArrayOfString" />
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:float">1000</anyType>
+                    <anyType xsi:type="xsd:float">45</anyType>
+                    <anyType xsi:type="xsd:float">-0.183169931</anyType>
+                    <anyType xsi:type="xsd:float">-1.60832286</anyType>
+                    <anyType xsi:type="xsd:float">1.0432508</anyType>
+                    <anyType xsi:type="xsd:float">0.1</anyType>
+                    <anyType xsi:type="xsd:string">RL_Character.hkc</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:float">0.0284518264</anyType>
+                    <anyType xsi:type="xsd:float">0.152625412</anyType>
+                    <anyType xsi:type="xsd:float">0.271359354</anyType>
+                    <anyType xsi:type="xsd:string">hkTrackingCamera</anyType>
+                    <anyType xsi:type="hkRefMakerOfhkCharacter">
+                        <MangledTargetNames />
+                    </anyType>
+                    <anyType xsi:type="hkRefMakerOfhkTerrainHKX">
+                        <MangledTargetNames />
+                    </anyType>
+                    <anyType xsi:type="hkRefMakerOfhkCharacter">
+                        <MangledTargetNames>
+                            <string>_RL_Character_hkc_:HavokTools.hkCharacter:RL_Character.hkc:IncomingRefs</string>
+                        </MangledTargetNames>
+                    </anyType>
+                    <anyType xsi:type="xsd:float">0.125</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:string">All files (*.*)|*.*</anyType>
+                    <anyType xsi:nil="true" />
+                    <anyType xsi:type="xsd:float">0.5</anyType>
+                    <anyType xsi:type="xsd:string">DefaultBlendingTransitionEffect</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:string">IgnoreFromGenerator</anyType>
+                    <anyType xsi:type="xsd:string">EventName</anyType>
+                    <anyType xsi:type="xsd:float">1.25</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:float">21</anyType>
+                    <anyType xsi:type="xsd:string">Loop</anyType>
+                    <anyType xsi:type="xsd:int">30</anyType>
+                    <anyType xsi:type="xsd:string">Frames</anyType>
+                    <anyType xsi:type="xsd:float">1</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:string">AccumulateMotionOn</anyType>
+                    <anyType xsi:type="xsd:float">0.3</anyType>
+                    <anyType xsi:type="xsd:string">None</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:string">Right-handed</anyType>
+                    <anyType xsi:type="ArrayOfString">
+                        <string>Behavior Characters</string>
+                        <string>Behavior World From Model</string>
+                    </anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:string">X</anyType>
+                    <anyType xsi:type="xsd:float">10</anyType>
+                    <anyType xsi:type="xsd:int">10</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:float">5</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:float">1000</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:string">Z</anyType>
+                </Values>
+            </Hash>
+        </hkGenericConfigInfo>
+    </HBT_ITEM>
+</HBT>
