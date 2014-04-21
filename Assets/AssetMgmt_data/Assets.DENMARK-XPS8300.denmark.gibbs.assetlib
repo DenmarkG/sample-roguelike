@@ -166,9 +166,9 @@
                 ]
             },
             "File": {
-                "Hash": 3849997704,
-                "TimeStamp": 1397605530069842400,
-                "LastEditTime": 1397606700373302500
+                "Hash": 2118778693,
+                "TimeStamp": 1397681835784172600,
+                "LastEditTime": 1398096790460570400
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1219,6 +1219,33 @@
                 "FileFormat": "TGA",
                 "Width": 256,
                 "Height": 256,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/walkcycle.jpg": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1922864757,
+                "TimeStamp": 1396983074157730500,
+                "LastEditTime": 1398096788206570400
+            },
+            "Texture": {
+                "FileFormat": "JPG",
+                "Width": 160,
+                "Height": 76,
                 "HasAlpha": false,
                 "sRGB": false
             },
