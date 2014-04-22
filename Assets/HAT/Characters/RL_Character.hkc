@@ -49,7 +49,7 @@
             <UseGamepad>false</UseGamepad>
             <InitialX>0</InitialX>
             <InitialY>0</InitialY>
-            <InitialZ>0</InitialZ>
+            <InitialZ>0.05</InitialZ>
             <UniformCharacterScale>0.01</UniformCharacterScale>
             <InitialRotation>0</InitialRotation>
             <SavedSettingsNames>
@@ -59,9 +59,9 @@
                 <ArrayOfFloat>
                     <float>0</float>
                     <float>0</float>
+                    <float>0.05</float>
                     <float>0</float>
-                    <float>0</float>
-                    <float>1</float>
+                    <float>0.01</float>
                 </ArrayOfFloat>
             </SavedSettingsValues>
             <SavedLODNames />
@@ -89,11 +89,14 @@
             <BoneAttachments />
             <BoneAttachmentBoneIndices />
             <BoneAttachmentTransforms />
-            <ProxyHeight>1.7</ProxyHeight>
-            <ProxyRadius>0.4</ProxyRadius>
+            <ProxyHeight>0.51</ProxyHeight>
+            <ProxyRadius>0.25</ProxyRadius>
             <ProxyCollisionFilterInfo>1</ProxyCollisionFilterInfo>
             <CustomCharacterControllerCinfo>
-                <MangledTargetNames />
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo01:IncomingRefs</string>
+                    <string>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo00:IncomingRefs</string>
+                </MangledTargetNames>
             </CustomCharacterControllerCinfo>
             <FootIkEnabled>false</FootIkEnabled>
             <FootIkDriverInfo>
@@ -109,5 +112,87 @@
             </AiControlDriverInfo>
             <NumLODBones>35</NumLODBones>
         </hkCharacter>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkCustomCharacterControllerCinfo" name="CustomCharacterControllerCinfo00" priority="50">
+        <hkCustomCharacterControllerCinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo00:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <NodeType>Character Rigid Body Cinfo</NodeType>
+            <ParameterList>
+                <Names>
+                    <string>m_mass</string>
+                    <string>m_friction</string>
+                    <string>m_maxLinearVelocity</string>
+                    <string>m_allowedPenetrationDepth</string>
+                    <string>m_maxSlope</string>
+                    <string>m_maxForce</string>
+                    <string>m_unweldingHeightOffsetFactor</string>
+                    <string>m_maxSpeedForSimplexSolver</string>
+                    <string>m_supportDistance</string>
+                    <string>m_hardSupportDistance</string>
+                </Names>
+                <Values>
+                    <anyType xsi:type="xsd:float">100</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                    <anyType xsi:type="xsd:float">20</anyType>
+                    <anyType xsi:type="xsd:float">-0.1</anyType>
+                    <anyType xsi:type="xsd:float">1.04719758</anyType>
+                    <anyType xsi:type="xsd:float">1000</anyType>
+                    <anyType xsi:type="xsd:float">0.5</anyType>
+                    <anyType xsi:type="xsd:float">10</anyType>
+                    <anyType xsi:type="xsd:float">0.1</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                </Values>
+            </ParameterList>
+        </hkCustomCharacterControllerCinfo>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkCustomCharacterControllerCinfo" name="CustomCharacterControllerCinfo01" priority="50">
+        <hkCustomCharacterControllerCinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo01:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <NodeType>Character Proxy Cinfo</NodeType>
+            <ParameterList>
+                <Names>
+                    <string>m_dynamicFriction</string>
+                    <string>m_staticFriction</string>
+                    <string>m_keepContactTolerance</string>
+                    <string>m_keepDistance</string>
+                    <string>m_contactAngleSensitivity</string>
+                    <string>m_userPlanes</string>
+                    <string>m_maxCharacterSpeedForSolver</string>
+                    <string>m_characterStrength</string>
+                    <string>m_characterMass</string>
+                    <string>m_maxSlope</string>
+                    <string>m_penetrationRecoverySpeed</string>
+                    <string>m_maxCastIterations</string>
+                    <string>m_refreshManifoldInCheckSupport</string>
+                </Names>
+                <Values>
+                    <anyType xsi:type="xsd:float">1</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                    <anyType xsi:type="xsd:float">0.1</anyType>
+                    <anyType xsi:type="xsd:float">0.05</anyType>
+                    <anyType xsi:type="xsd:float">10</anyType>
+                    <anyType xsi:type="xsd:unsignedInt">4</anyType>
+                    <anyType xsi:type="xsd:float">10</anyType>
+                    <anyType xsi:type="xsd:float">3.40282E+38</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                    <anyType xsi:type="xsd:float">1.57079637</anyType>
+                    <anyType xsi:type="xsd:float">1</anyType>
+                    <anyType xsi:type="xsd:int">10</anyType>
+                    <anyType xsi:type="xsd:boolean">false</anyType>
+                </Values>
+            </ParameterList>
+        </hkCustomCharacterControllerCinfo>
     </HBT_ITEM>
 </HBT>

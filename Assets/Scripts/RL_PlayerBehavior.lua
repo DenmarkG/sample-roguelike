@@ -12,6 +12,12 @@ function OnAfterSceneLoaded(self)
 		self.characterController = self:AddComponentOfType("vHavokCharacterController")
 	end
 	
+	--grab the behavior component
+	self.behaviorComponent = self:GetComponentOfType("vHavokBehaviorComponent")
+	if self.behaviorComponent == nil then
+		self.behaviorComponent = self:AddComponentOfType("vHavokBehaviorComponent")
+	end
+	
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
 	
@@ -89,40 +95,6 @@ function OnThink(self)
 	end
 end
 
-function PerformMelee(self)
-	if self.meleeWeapon ~= nil then
-		--check to see if enemy is in front
-		local rayStart = self:GetPosition()
-		local rayEnd = rayStart + self:GetObjDir() * meleeRange
-		
-		--get the collision info for the ray
-		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
-		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
-		
-		local enemy = nil
-		
-		if hit == true then
-			if result ~= nil then
-				local hitObj = result["HitObject"]
-				
-				if hitObj:GetKey() == "Enemy" then
-					enemy = hitObj
-				end
-			end
-		end
-		
-		self.meleeWeapon:Attack(enemy)
-		StartCoolDown(self, self.meleeCoolDown)
-	end
-end
-
-function CastSpell(self)
-	if self.numSpellsInPlay < self.maxSpellCount then
-		self.CreateFireball(self)
-		StartCoolDown(self, self.spellCoolDown)
-	end
-end
-
 function UpdateTargetPosition(self, mouseX, mouseY)
 	local goal = AI:PickPoint(mouseX, mouseY)
 	
@@ -161,20 +133,22 @@ function NavigatePath(self)
 		--]]
 		
 		--Make the player rotate toward the direction of movement
-		-- local objDir = self:GetObjDir()
-		-- objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
+		local objDir = self:GetObjDir()
+		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
 		-- self:SetDirection(objDir)
-		-- self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
 		
 		dir:normalize()
 		-- dir = dir * 15
-		self:SetMotionDeltaWorldSpace(dir)
-		-- self:SetPosition(point)
+		-- self:SetMotionDeltaWorldSpace(dir)
+		self:SetPosition(point)
+		self.behaviorComponent:TriggerEvent("MoveStart")
 		-- Debug:PrintLine("".. dir)
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil
 			self:ResetRotationDelta()
+			self.behaviorComponent:TriggerEvent("MoveStop")
 		end
 	end
 end
@@ -190,6 +164,40 @@ function UpdateMouse(self, xPos, yPos)
 	end
 	
 	self.mouseCursor:SetPos(xPos, yPos)
+end
+
+function PerformMelee(self)
+	if self.meleeWeapon ~= nil then
+		--check to see if enemy is in front
+		local rayStart = self:GetPosition()
+		local rayEnd = rayStart + self:GetObjDir() * meleeRange
+		
+		--get the collision info for the ray
+		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
+		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
+		
+		local enemy = nil
+		
+		if hit == true then
+			if result ~= nil then
+				local hitObj = result["HitObject"]
+				
+				if hitObj:GetKey() == "Enemy" then
+					enemy = hitObj
+				end
+			end
+		end
+		
+		self.meleeWeapon:Attack(enemy)
+		StartCoolDown(self, self.meleeCoolDown)
+	end
+end
+
+function CastSpell(self)
+	if self.numSpellsInPlay < self.maxSpellCount then
+		self.CreateFireball(self)
+		StartCoolDown(self, self.spellCoolDown)
+	end
 end
 
 function StartCoolDown(self, coolDownTime)

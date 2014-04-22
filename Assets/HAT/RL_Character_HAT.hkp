@@ -202,8 +202,8 @@
                     <anyType xsi:type="xsd:string">Viewport.UpAxis</anyType>
                 </Keys>
                 <Values>
-                    <anyType xsi:type="xsd:string">111100010000</anyType>
-                    <anyType xsi:type="xsd:string">1101001</anyType>
+                    <anyType xsi:type="xsd:string">11111111010000</anyType>
+                    <anyType xsi:type="xsd:string">1101000</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="ArrayOfString" />
                     <anyType xsi:type="ArrayOfBoolean" />
@@ -215,15 +215,15 @@
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="xsd:float">1000</anyType>
                     <anyType xsi:type="xsd:float">45</anyType>
-                    <anyType xsi:type="xsd:float">-0.183169931</anyType>
-                    <anyType xsi:type="xsd:float">-1.60832286</anyType>
-                    <anyType xsi:type="xsd:float">1.0432508</anyType>
+                    <anyType xsi:type="xsd:float">-1.07637882</anyType>
+                    <anyType xsi:type="xsd:float">-1.52392113</anyType>
+                    <anyType xsi:type="xsd:float">0.772460938</anyType>
                     <anyType xsi:type="xsd:float">0.1</anyType>
                     <anyType xsi:type="xsd:string">RL_Character.hkc</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
-                    <anyType xsi:type="xsd:float">0.0284518264</anyType>
-                    <anyType xsi:type="xsd:float">0.152625412</anyType>
-                    <anyType xsi:type="xsd:float">0.271359354</anyType>
+                    <anyType xsi:type="xsd:float">0.9013557</anyType>
+                    <anyType xsi:type="xsd:float">0.180618048</anyType>
+                    <anyType xsi:type="xsd:float">0.191971466</anyType>
                     <anyType xsi:type="xsd:string">hkTrackingCamera</anyType>
                     <anyType xsi:type="hkRefMakerOfhkCharacter">
                         <MangledTargetNames />
@@ -262,6 +262,9 @@
                     <anyType xsi:type="xsd:boolean">false</anyType>
                     <anyType xsi:type="xsd:string">Right-handed</anyType>
                     <anyType xsi:type="ArrayOfString">
+                        <string>Shapes</string>
+                        <string>Phantoms</string>
+                        <string>Behavior Extracted Motion</string>
                         <string>Behavior Characters</string>
                         <string>Behavior World From Model</string>
                     </anyType>
