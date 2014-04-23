@@ -196,20 +196,6 @@
             </ExitNotifyEventPayloads>
         </hkState>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkFloatVariable" name="MoveSpeed" priority="1">
-        <hkFloatVariable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkFloatVariable:MoveSpeed:IncomingRefs</MangledName>
-            </IncomingRefs>
-            <ParentNodes />
-            <Notes />
-            <VariableType>Float</VariableType>
-            <MinValue>0</MinValue>
-            <MaxValue>6</MaxValue>
-            <DefaultValue>0</DefaultValue>
-            <Global>false</Global>
-        </hkFloatVariable>
-    </HBT_ITEM>
     <HBT_ITEM type="HavokTools.hkEvent" name="Event00" priority="1">
         <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
@@ -838,9 +824,106 @@
             </ChildModifier>
             <ChildNode>
                 <MangledTargetNames>
+                    <string>__local__:HavokTools.hkModifierGenerator:ModifierGenerator01:ParentNodes</string>
+                </MangledTargetNames>
+            </ChildNode>
+        </hkModifierGenerator>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkCustomModifier" name="RotateCharacterModifier00" priority="50">
+        <hkCustomModifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCustomModifier:RotateCharacterModifier00:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkCustomModifier:RotateCharacterModifier00:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <NodeType>Rotate Character Modifier</NodeType>
+            <ParameterList>
+                <Names>
+                    <string>m_enable</string>
+                    <string>m_degreesPerSecond</string>
+                    <string>m_speedMultiplier</string>
+                    <string>m_axisOfRotation</string>
+                </Names>
+                <Values>
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="hkRefMakerOfhkFloatVariable">
+                        <MangledTargetNames>
+                            <string>__local__:HavokTools.hkFloatVariable:RotationSpeed:ParentNodes</string>
+                        </MangledTargetNames>
+                    </anyType>
+                    <anyType xsi:type="xsd:float">1</anyType>
+                    <anyType xsi:type="hkCustomParameterList">
+                        <Names>
+                            <string>x</string>
+                            <string>y</string>
+                            <string>z</string>
+                            <string>w</string>
+                        </Names>
+                        <Values>
+                            <anyType xsi:type="xsd:float">0</anyType>
+                            <anyType xsi:type="xsd:float">0</anyType>
+                            <anyType xsi:type="xsd:float">1</anyType>
+                            <anyType xsi:type="xsd:float">0</anyType>
+                        </Values>
+                    </anyType>
+                </Values>
+            </ParameterList>
+        </hkCustomModifier>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkModifierGenerator" name="ModifierGenerator01" priority="50">
+        <hkModifierGenerator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkModifierGenerator:ModifierGenerator01:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkModifierGenerator:ModifierGenerator01:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <ChildModifier>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkCustomModifier:RotateCharacterModifier00:ParentNodes</string>
+                </MangledTargetNames>
+            </ChildModifier>
+            <ChildNode>
+                <MangledTargetNames>
                     <string>__local__:HavokTools.hkStateMachine:StateMachine00:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNode>
         </hkModifierGenerator>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkFloatVariable" name="RotationSpeed" priority="1">
+        <hkFloatVariable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkFloatVariable:RotationSpeed:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkFloatVariable:RotationSpeed:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <VariableType>Float</VariableType>
+            <MinValue>-90</MinValue>
+            <MaxValue>90</MaxValue>
+            <DefaultValue>0</DefaultValue>
+            <Global>false</Global>
+        </hkFloatVariable>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEvent" name="SetWalkBoolTrue" priority="1">
+        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEvent:SetWalkBoolTrue:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <CustomNotes />
+            <Global>false</Global>
+            <Silent>false</Silent>
+            <SyncPoint>false</SyncPoint>
+        </hkEvent>
     </HBT_ITEM>
 </HBT>

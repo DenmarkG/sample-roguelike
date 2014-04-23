@@ -7,10 +7,10 @@ function OnAfterSceneLoaded(self)
 		-- self.rigidBody:SetMotionType("MOTIONTYPE_KEYFRAMED")
 	-- end
 	
-	self.characterController = self:GetComponentOfType("vHavokCharacterController")
-	if self.characterController == nil then
-		self.characterController = self:AddComponentOfType("vHavokCharacterController")
-	end
+	-- self.characterController = self:GetComponentOfType("vHavokCharacterController")
+	-- if self.characterController == nil then
+		-- self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	-- end
 	
 	--grab the behavior component
 	self.behaviorComponent = self:GetComponentOfType("vHavokBehaviorComponent")
@@ -52,6 +52,13 @@ function OnAfterSceneLoaded(self)
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
+	
+	self.states = {}
+	self.states.walking = "walking"
+	self.states.idle = "idle"
+	self.states.attacking = "attacking"
+	
+	self.currentState = self.states.idle
 end
 
 function OnBeforeSceneUnloaded(self)
@@ -133,22 +140,31 @@ function NavigatePath(self)
 		--]]
 		
 		--Make the player rotate toward the direction of movement
-		local objDir = self:GetObjDir()
-		objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
+		-- local objDir = self:GetObjDir()
+		-- objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
 		-- self:SetDirection(objDir)
-		self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		-- self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		
+		local turnAngle = ComputeTurnAngle(self, point)
+		
+		self.behaviorComponent:SetFloatVar("RotationSpeed", turnAngle)
 		
 		dir:normalize()
 		-- dir = dir * 15
 		-- self:SetMotionDeltaWorldSpace(dir)
-		self:SetPosition(point)
-		self.behaviorComponent:TriggerEvent("MoveStart")
-		-- Debug:PrintLine("".. dir)
+		--self:SetPosition(point)
+		
+		if self.currentState == self.states.idle then		
+			self.behaviorComponent:TriggerEvent("MoveStart")
+			self.currentState = self.states.walking
+		end
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil
 			self:ResetRotationDelta()
 			self.behaviorComponent:TriggerEvent("MoveStop")
+			self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+			self.currentState = self.states.idle
 		end
 	end
 end
@@ -164,6 +180,13 @@ function UpdateMouse(self, xPos, yPos)
 	end
 	
 	self.mouseCursor:SetPos(xPos, yPos)
+end
+
+function ComputeTurnAngle(self, point)
+	local sign = self:GetObjDir():dot(point) < 0 and -1 or 1
+	local angle = self:GetObjDir():getAngleBetween(point) - 90
+	Debug:PrintLine("angle: "..angle .."sign: " .. sign)
+	return angle * sign
 end
 
 function PerformMelee(self)

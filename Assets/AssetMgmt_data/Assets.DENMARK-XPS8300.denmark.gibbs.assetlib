@@ -166,9 +166,9 @@
                 ]
             },
             "File": {
-                "Hash": 3341159184,
-                "TimeStamp": 1398113475773979200,
-                "LastEditTime": 1398118473129811700
+                "Hash": 3604083807,
+                "TimeStamp": 1398213050558385900,
+                "LastEditTime": 1398213051558585900
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -253,9 +253,9 @@
                 ]
             },
             "File": {
-                "Hash": 1914662524,
-                "TimeStamp": 1398119956667665200,
-                "LastEditTime": 1398120002980314100
+                "Hash": 1000962610,
+                "TimeStamp": 1398211910961238900,
+                "LastEditTime": 1398212040861238900
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -268,17 +268,16 @@
                 "Dependencies": [
                     "Shaders/BaseShaders.ShaderLib",
                     "Shaders/vMaterial.ShaderLib",
-                    "Textures/RL_Player_Diffuse.tga",
-                    "Textures/RL_Sword_Diffuse.tga"
+                    "Textures/RL_Player_Diffuse.tga"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 3874842568,
-                "TimeStamp": 1398119956665665000,
-                "LastEditTime": 1398120000768187600
+                "Hash": 296803905,
+                "TimeStamp": 1398211910958238900,
+                "LastEditTime": 1398213051656605500
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -1173,7 +1172,7 @@
             "File": {
                 "Hash": 179675895,
                 "TimeStamp": 1397514789247562100,
-                "LastEditTime": 1398119071877058000
+                "LastEditTime": 1398213051645603300
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -1200,7 +1199,7 @@
             "File": {
                 "Hash": 3032011084,
                 "TimeStamp": 1397603584264887700,
-                "LastEditTime": 1398119071891058800
+                "LastEditTime": 1398213051689612100
             },
             "Texture": {
                 "FileFormat": "TGA",
