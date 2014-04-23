@@ -132,40 +132,21 @@ function NavigatePath(self)
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
 		
-		--[[
-		#todo
-		This section currently has several bugs
-		in order to move on to other tasks, I'm setting the position rather than
-		using movement/rotation delta. 
-		--]]
 		
-		--Make the player rotate toward the direction of movement
-		-- local objDir = self:GetObjDir()
-		-- objDir:setInterpolate(objDir, dir, dt * self.rotSpeed)
-		-- self:SetDirection(objDir)
-		-- self:IncRotationDelta( Vision.hkvVec3(objDir.x, 0, 0) )
+		RotateToTarget(self, point)
 		
-		local turnAngle = ComputeTurnAngle(self, point)
+		-- if self.currentState == self.states.idle then		
+			-- self.behaviorComponent:TriggerEvent("MoveStart")
+			-- self.currentState = self.states.walking
+		-- end
 		
-		self.behaviorComponent:SetFloatVar("RotationSpeed", turnAngle)
-		
-		dir:normalize()
-		-- dir = dir * 15
-		-- self:SetMotionDeltaWorldSpace(dir)
-		--self:SetPosition(point)
-		
-		if self.currentState == self.states.idle then		
-			self.behaviorComponent:TriggerEvent("MoveStart")
-			self.currentState = self.states.walking
-		end
-		
-		if self.pathProgress == self.pathLength then
-			self.path = nil
-			self:ResetRotationDelta()
-			self.behaviorComponent:TriggerEvent("MoveStop")
-			self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
-			self.currentState = self.states.idle
-		end
+		-- if self.pathProgress == self.pathLength then
+			-- self.path = nil
+			-- self:ResetRotationDelta()
+			-- self.behaviorComponent:TriggerEvent("MoveStop")
+			-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+			-- self.currentState = self.states.idle
+		-- end
 	end
 end
 
@@ -182,11 +163,11 @@ function UpdateMouse(self, xPos, yPos)
 	self.mouseCursor:SetPos(xPos, yPos)
 end
 
-function ComputeTurnAngle(self, point)
-	local sign = self:GetObjDir():dot(point) < 0 and -1 or 1
-	local angle = self:GetObjDir():getAngleBetween(point) - 90
-	Debug:PrintLine("angle: "..angle .."sign: " .. sign)
-	return angle * sign
+function RotateToTarget(self, target)
+	local deadZone = .1
+	local myDir = -self:GetObjDir_Right()
+	local angle = myDir:getAngleBetween(target)
+	self.behaviorComponent:SetFloatVar("RotationSpeed", angle)
 end
 
 function PerformMelee(self)
