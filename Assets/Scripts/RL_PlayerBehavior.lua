@@ -36,8 +36,8 @@ function OnAfterSceneLoaded(self)
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
 	--set up the tuning values
-	self.moveSpeed = 150
-	self.rotSpeed = 2
+	self.moveSpeed = 180
+	self.rotSpeed = 90 --positive rotates left
 	self.maxSpellCount = 3
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	
@@ -122,6 +122,7 @@ function NavigatePath(self)
 	if self.path ~= nil then
 		local dt = Timer:GetTimeDiff()
 		
+		--[todo] change this!!!
 		self.pathProgress = self.pathProgress + dt * self.moveSpeed
 
 		if self.pathProgress > self.pathLength then
@@ -132,21 +133,20 @@ function NavigatePath(self)
 		local point = AI:GetPointOnPath(self.path, self.pathProgress)
 		local dir = point - self:GetPosition()
 		
-		
 		RotateToTarget(self, point)
 		
-		-- if self.currentState == self.states.idle then		
-			-- self.behaviorComponent:TriggerEvent("MoveStart")
-			-- self.currentState = self.states.walking
-		-- end
+		if self.currentState == self.states.idle then		
+			self.behaviorComponent:TriggerEvent("MoveStart")
+			self.currentState = self.states.walking
+		end
 		
-		-- if self.pathProgress == self.pathLength then
-			-- self.path = nil
-			-- self:ResetRotationDelta()
-			-- self.behaviorComponent:TriggerEvent("MoveStop")
-			-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
-			-- self.currentState = self.states.idle
-		-- end
+		if self.pathProgress == self.pathLength then
+			self.path = nil
+			self:ResetRotationDelta()
+			self.behaviorComponent:TriggerEvent("MoveStop")
+			self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+			self.currentState = self.states.idle
+		end
 	end
 end
 
@@ -164,10 +164,30 @@ function UpdateMouse(self, xPos, yPos)
 end
 
 function RotateToTarget(self, target)
-	local deadZone = .1
+	local deadZone = 5
 	local myDir = -self:GetObjDir_Right()
-	local angle = myDir:getAngleBetween(target)
-	self.behaviorComponent:SetFloatVar("RotationSpeed", angle)
+	local myPos = self:GetPosition()
+	local leftDir = self:GetObjDir()
+	local sign = 1 
+	local targetDir = (target - myPos):getNormalized()
+	local angle = myDir:getAngleBetween(targetDir) -- (90 * sign)
+		
+	if leftDir:dot(targetDir) < 0 then
+		Debug:PrintLine("I'm on happy side!")
+		sign = -1
+	end
+	
+	if math.abs(angle) > deadZone then
+		self.behaviorComponent:SetFloatVar("RotationSpeed", self.rotSpeed * sign)
+	else
+		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+	end	
+	
+	Debug.Draw:Line(myPos, myPos + myDir * 150, Vision.V_RGBA_RED)
+	Debug.Draw:Line(myPos, myPos + leftDir * 150, Vision.V_RGBA_BLUE)
+	Debug.Draw:Line(myPos, target, Vision.V_RGBA_GREEN)
+	
+	Debug:PrintLine("angle: " .. angle)
 end
 
 function PerformMelee(self)
