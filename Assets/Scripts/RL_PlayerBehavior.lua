@@ -45,7 +45,7 @@ function OnAfterSceneLoaded(self)
 	self.currentState = self.states.idle
 	
 	--need to add vars for AI pathfinding
-	self.goalRadius = .05 --how far the character should stop from a goal point
+	
 	--distance from point
 end
 
@@ -70,7 +70,9 @@ function OnThink(self)
 			end
 			
 			--follow the path if one exists
-			NavigatePath(self)
+			if self.path ~= nil then
+				NavigatePath(self)
+			end
 			
 			if self.timeToNextAttack > 0 then
 				self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
@@ -113,82 +115,43 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 		-- Debug:PrintLine("length: "..self.pathLength)
 		self.goalPoint = goal
 		self.lastPoint = start
+		self.nextPoint = AI:GetPointOnPath(self.path, 0)
 		end
 	end
 end
 
 function NavigatePath(self)
-	if self.path ~= nil then
-		--get the next point on the path
-		local nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
-		local dir = nextPoint - self:GetPosition()
-		
-		local distanceToNext = self:GetPosition():getDistanceTo(nextPoint)
-		
-		--if the distance to the next point is < than the goal radius, move to the next point
-		if distanceToNext <= self.goalRadius then
-			self.nextPoint = nextPoint
-			self.pathProgress = self.pathProgress + self:GetPosition():getDistanceTo(self.lastPoint)
-		end
-		
-		--set the nextpoint as the current point
-		--set the currentPoint as the previous point
-		--update the path progress
-		
-		if self.pathProgress >= self.pathLength then
-			self.pathProgress = self.pathLength
-		end
-		
-		RotateToTarget(self, nextPoint)
-		
-		if self.currentState == self.states.idle then		
-			self.behaviorComponent:TriggerEvent("MoveStart")
-			self.currentState = self.states.walking
-		end
-		
-		if self.pathProgress == self.pathLength then
-			self.path = nil
-			self:ResetRotationDelta()
-			self.behaviorComponent:TriggerEvent("MoveStop")
-			self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
-			self.currentState = self.states.idle
-			self.lastPoint = nil
-			self.nextPoint = nil
-		else
-			if distanceToNext < self.goalRadius then
-				self.nextPoint = nextPoint
-			end
-		end
+	self.goalRadius = 20 --how far the character should stop from a goal point
+	if self.currentState == self.states.idle then		
+		self.behaviorComponent:TriggerEvent("MoveStart")
+		self.currentState = self.states.walking
 	end
 	
-	-- if self.path ~= nil then
-	-- local dt = Timer:GetTimeDiff()
+	RotateToTarget(self, self.nextPoint)
 	
-	-- -- [todo] change this!!!
-	-- self.pathProgress = self.pathProgress + dt * self.moveSpeed
-
-	-- if self.pathProgress > self.pathLength then
-		-- self.pathProgress = self.pathLength
-	-- end
+	--check the distance to the next point
+	local distanceToNext = self:GetPosition():getDistanceTo(self.nextPoint)
 	
-	-- -- get the next point on the path
-	-- local point = AI:GetPointOnPath(self.path, self.pathProgress)
-	-- local dir = point - self:GetPosition()
+	--if the player is in range, recaculate the next point, and update the progress
+	if distanceToNext <= self.goalRadius then
+		self.pathProgress = self.pathProgress + (self.lastPoint:getDistanceTo(self.nextPoint) )
+		self.lastPoint = self.nextPoint
+		self.nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
+	end
 	
-	-- RotateToTarget(self, point)
+	local myPos = self:GetPosition()
+	Debug.Draw:Line(myPos, self.nextPoint, Vision.V_RGBA_RED)
 	
-	-- if self.currentState == self.states.idle then		
-		-- self.behaviorComponent:TriggerEvent("MoveStart")
-		-- self.currentState = self.states.walking
-	-- end
-	
-	-- if self.pathProgress == self.pathLength then
-		-- self.path = nil
-		-- self:ResetRotationDelta()
-		-- self.behaviorComponent:TriggerEvent("MoveStop")
-		-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
-		-- self.currentState = self.states.idle
-	-- end
+	--if the end of the path has been reached, reset the variables
+	if self.pathProgress >= self.pathLength then
+		self.path = nil
+		self:ResetRotationDelta()
+		self.behaviorComponent:TriggerEvent("MoveStop")
+		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+		self.currentState = self.states.idle
+		self.lastPoint = nil
+		self.nextPoint = nil
+	end
 end
 
 function UpdateMouse(self, xPos, yPos)

@@ -215,15 +215,15 @@
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="xsd:float">1000</anyType>
                     <anyType xsi:type="xsd:float">45</anyType>
-                    <anyType xsi:type="xsd:float">-0.838874936</anyType>
-                    <anyType xsi:type="xsd:float">-1.70055151</anyType>
-                    <anyType xsi:type="xsd:float">0.99051553</anyType>
+                    <anyType xsi:type="xsd:float">-0.9351555</anyType>
+                    <anyType xsi:type="xsd:float">-1.54692721</anyType>
+                    <anyType xsi:type="xsd:float">1.18968642</anyType>
                     <anyType xsi:type="xsd:float">0.1</anyType>
                     <anyType xsi:type="xsd:string">RL_Character.hkc</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
-                    <anyType xsi:type="xsd:float">0.152550608</anyType>
-                    <anyType xsi:type="xsd:float">-0.185467839</anyType>
-                    <anyType xsi:type="xsd:float">0.301153</anyType>
+                    <anyType xsi:type="xsd:float">0.0562713146</anyType>
+                    <anyType xsi:type="xsd:float">-0.0318434238</anyType>
+                    <anyType xsi:type="xsd:float">0.500322759</anyType>
                     <anyType xsi:type="xsd:string">hkTrackingCamera</anyType>
                     <anyType xsi:type="hkRefMakerOfhkCharacter">
                         <MangledTargetNames />
