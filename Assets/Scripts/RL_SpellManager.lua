@@ -36,7 +36,7 @@ function OnThink(self)
 	end
 end	
 
-function CreateNewFireball(owner)
+function CreateNewFireball(owner, direction)
 	local newFireball = {}
 	newFireball.owner = owner
 	newFireball.speed = owner.fireballSpeed
@@ -46,10 +46,11 @@ function CreateNewFireball(owner)
 	--variables for updating the position
 	newFireball.pos = owner:GetPosition()
 	newFireball.pos.z = newFireball.pos.z + 50
-	newFireball.dir = owner:GetObjDir()
+	newFireball.dir = direction
 	newFireball.distance = 0
 	--Creation of the Particle
-	newFireball.particle = Game:CreateEffect(owner:GetPosition(), owner.fireballParticlePath)
+	local spawnPoint = GetSpawnPoint(owner):GetPosition()
+	newFireball.particle = Game:CreateEffect(spawnPoint, owner.fireballParticlePath)
 	newFireball.particle:SetDirection(newFireball.dir)
 	newFireball.particle:SetKey("Particle")
 	
@@ -84,8 +85,10 @@ function CreateNewFireball(owner)
 				hitObject = (fireball.distance > fireball.range)
 			end
 		end
+		
 		return hitObject
 	end
+	
 	--add the new fireball to the array
 	table.insert(owner.spellsInPlay, newFireball)
 end
@@ -97,5 +100,19 @@ function ModifyMana(self, amount)
 		self.currentMana = self.maxMana
 	elseif self.currentMana < 0 then
 		self.currentMana = 0
+	end
+end
+
+function GetSpawnPoint(self)
+	local numChildren = self:GetNumChildren()
+	
+	for i = 0, numChildren - 1, 1 do
+		local entity = self:GetChild(i)
+		
+		if entity ~= nil then
+			if entity:GetKey() == "ParticleSpawn" then 
+				return entity
+			end
+		end
 	end
 end

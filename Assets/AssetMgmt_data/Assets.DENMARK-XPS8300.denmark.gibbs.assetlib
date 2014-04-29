@@ -253,9 +253,9 @@
                 ]
             },
             "File": {
-                "Hash": 1000962610,
-                "TimeStamp": 1398211910961238900,
-                "LastEditTime": 1398212040861238900
+                "Hash": 1914662524,
+                "TimeStamp": 1398709877104852500,
+                "LastEditTime": 1398713321836367900
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -268,16 +268,17 @@
                 "Dependencies": [
                     "Shaders/BaseShaders.ShaderLib",
                     "Shaders/vMaterial.ShaderLib",
-                    "Textures/RL_Player_Diffuse.tga"
+                    "Textures/RL_Player_Diffuse.tga",
+                    "Textures/RL_Sword_Diffuse.tga"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 296803905,
-                "TimeStamp": 1398211910958238900,
-                "LastEditTime": 1398213051656605500
+                "Hash": 3874842568,
+                "TimeStamp": 1398709877099852000,
+                "LastEditTime": 1398713319634367900
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -300,9 +301,9 @@
                 ]
             },
             "File": {
-                "Hash": 3781257999,
-                "TimeStamp": 1398119956669665300,
-                "LastEditTime": 1398120002982314200
+                "Hash": 1975305647,
+                "TimeStamp": 1398709877108852900,
+                "LastEditTime": 1398713321836367900
             },
             "Transformations": {
                 "TemplateName": "Default"
