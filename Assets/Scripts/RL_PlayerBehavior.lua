@@ -107,16 +107,6 @@ function OnThink(self)
 		
 		-- Debug:PrintLine(""..self.currentState) 
 	end
-	
-	--test ray
-	local numRays = 5
-	local angle = 60
-	local myDir = -self:GetObjDir_Right() --(angle/numRays - 1)
-	local newDir = RotateXY(myDir.x, myDir.y, myDir.z, (60 * (math.pi / 180) ) )
-	
-	local myPos = self:GetPosition()
-	local range = 50
-	Debug.Draw:Line(myPos, myPos + (newDir * range), Vision.V_RGBA_GREEN)
 end
 
 
@@ -223,7 +213,52 @@ function PerformMelee(self)
 	ClearPath(self)
 	self.behaviorComponent:TriggerEvent("AttackStart")
 	self.currentState = self.states.attacking
+	CheckForEnemy(self)
 	StartCoolDown(self, self.meleeCoolDown)
+end
+
+function CheckForEnemy(self)
+	--test ray
+	self.numRays = 5
+	self.attackAngle = 60
+	self.attackRange = 70
+	self.meleeDamage = 10
+	local myDir = -self:GetObjDir_Right() --(angle/self.numRays - 1)
+	local myPos = self:GetPosition()
+	myPos.z = myPos.z + 25
+	
+	
+	for i = - math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
+		--calculate the angle to cast a ray in relation to the current direction
+		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
+		--convert the current angle to raidans
+		currentAngle = currentAngle * (math.pi / 180)
+		
+		--rotate the forward direction based on the angle just calculated
+		local newDir = RotateXY(myDir.x, myDir.y, myDir.z, currentAngle)
+		
+		local rayStart = myPos
+		local rayEnd = myPos + (newDir * self.attackRange)
+		
+		--get the collision info
+		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
+		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
+		
+		
+		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_GREEN)
+		
+		if hit == true then
+			--check to see if a target was hit
+			if result ~= nil and result["HitType"] == "Entity" then
+				local hitObj = result["HitObject"]
+				if hitObj:GetKey() == "Enemy" then
+					hitObj.ModifyHealth(hitObj, -self.meleeDamage)
+					Debug:PrintLine("Enemy Hit!")
+					break
+				end
+			end
+		end
+	end
 end
 
 function CastSpell(self)
