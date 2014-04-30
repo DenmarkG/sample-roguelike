@@ -12,12 +12,12 @@ function OnAfterSceneLoaded(self)
 	
 	--set the controls for the input map
 	--mouse movement controls:
-	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
+	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON", {onceperframe=true} )
 	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
 	--Interaction controls:
 	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
-	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE")
+	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
 	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
@@ -27,7 +27,7 @@ function OnAfterSceneLoaded(self)
 	self.rotSpeed = 90 --positive rotates left
 	self.maxSpellCount = 3
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
-	self.meleeCoolDown = 5 --how long the player must wait before doing another attack after a melee
+	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	self.timeToNextAttack = 0 
 	
 	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
@@ -36,6 +36,8 @@ function OnAfterSceneLoaded(self)
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
+	
+	self.goalRadius = 50 --how far the character should stop from a goal point
 	
 	self.states = {}
 	self.states.walking = "walking"
@@ -57,26 +59,19 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
+	
+		if self.timeToNextAttack > 0 then
+			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
+		end
+		
+		local x = self.map:GetTrigger("X")
+		local y = self.map:GetTrigger("Y")
+		
 		if self.currentState ~= self.states.attacking then
-			
-			local x = self.map:GetTrigger("X")
-			local y = self.map:GetTrigger("Y")
-			
 			local magic = self.map:GetTrigger("MAGIC") > 0
 			local melee = self.map:GetTrigger("MELEE") > 0
 			
-			if self.map:GetTrigger("CLICK") > 0 then
-				UpdateTargetPosition(self, x, y)
-			end
-			
-			--follow the path if one exists
-			if self.path ~= nil then
-				NavigatePath(self)
-			end
-			
-			if self.timeToNextAttack > 0 then
-				self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
-			elseif self.timeToNextAttack <= 0 then
+			if self.timeToNextAttack <= 0 then
 				self.timeToNextAttack = 0
 							
 				if magic then
@@ -86,19 +81,44 @@ function OnThink(self)
 				end
 			end
 			
-			--update the mouse position on screen
-			UpdateMouse(self, x, y)
+			if self.map:GetTrigger("CLICK") > 0 then
+				UpdateTargetPosition(self, x, y)
+			end
 			
-			--show the player's stats
-			ShowPlayerStats(self)
+			--follow the path if one exists
+			if self.path ~= nil then
+				NavigatePath(self)
+			end
 		else
-			local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop")
+			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug
+			local attackStopped = not (self.timeToNextAttack > 0)
+			
 			if attackStopped then
+				-- Debug:PrintLine("AttackStopped!")
 				self.currentState = self.states.idle
 			end
 		end
+		
+		--update the mouse position on screen
+		UpdateMouse(self, x, y)
+		
+		--show the player's stats
+		ShowPlayerStats(self)
+		
+		-- Debug:PrintLine(""..self.currentState) 
 	end
+	
+	--test ray
+	local numRays = 5
+	local angle = 60
+	local myDir = -self:GetObjDir_Right() --(angle/numRays - 1)
+	local newDir = RotateXY(myDir.x, myDir.y, myDir.z, (60 * (math.pi / 180) ) )
+	
+	local myPos = self:GetPosition()
+	local range = 50
+	Debug.Draw:Line(myPos, myPos + (newDir * range), Vision.V_RGBA_GREEN)
 end
+
 
 function UpdateTargetPosition(self, mouseX, mouseY)
 	local goal = AI:PickPoint(mouseX, mouseY)
@@ -115,13 +135,18 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 		-- Debug:PrintLine("length: "..self.pathLength)
 		self.goalPoint = goal
 		self.lastPoint = start
-		self.nextPoint = AI:GetPointOnPath(self.path, 0)
+		
+		--[[
+		To get the initial point, we won't use the start point here (a path progress of 0), 
+		otherwise the character may walk in circles.
+		Instead, we use a value further along the path to give the character plenty of room to turn and walk
+		--]]
+		self.nextPoint = AI:GetPointOnPath(self.path, 0.1)
 		end
 	end
 end
 
 function NavigatePath(self)
-	self.goalRadius = 20 --how far the character should stop from a goal point
 	if self.currentState == self.states.idle then		
 		self.behaviorComponent:TriggerEvent("MoveStart")
 		self.currentState = self.states.walking
@@ -139,18 +164,16 @@ function NavigatePath(self)
 		self.nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
 	end
 	
-	local myPos = self:GetPosition()
-	Debug.Draw:Line(myPos, self.nextPoint, Vision.V_RGBA_RED)
+	--local myPos = self:GetPosition()
+	--Debug.Draw:Line(myPos, self.nextPoint, Vision.V_RGBA_RED)
 	
 	--if the end of the path has been reached, reset the variables
 	if self.pathProgress >= self.pathLength then
-		self.path = nil
-		self:ResetRotationDelta()
 		self.behaviorComponent:TriggerEvent("MoveStop")
 		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 		self.currentState = self.states.idle
-		self.lastPoint = nil
-		self.nextPoint = nil
+		StopRotation(self)
+		ClearPath(self)
 	end
 end
 
@@ -184,7 +207,8 @@ function RotateToTarget(self, target)
 	if math.abs(angle) > deadZone then
 		self.behaviorComponent:SetFloatVar("RotationSpeed", self.rotSpeed * sign * angle)
 	else
-		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+		-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+		StopRotation(self)
 	end	
 	
 	--Debug.Draw:Line(myPos, myPos + myDir * 150, Vision.V_RGBA_RED)
@@ -195,17 +219,31 @@ function RotateToTarget(self, target)
 end
 
 function PerformMelee(self)
+	StopRotation(self)
+	ClearPath(self)
 	self.behaviorComponent:TriggerEvent("AttackStart")
-	--self.currentState = self.states.attacking -- <--this currently crashes vForge
-	--StartCoolDown(self, self.meleeCoolDown)
+	self.currentState = self.states.attacking
+	StartCoolDown(self, self.meleeCoolDown)
 end
 
 function CastSpell(self)
+	StopRotation(self)
 	if self.numSpellsInPlay < self.maxSpellCount then
 		local myDir = -self:GetObjDir_Right()
 		self.CreateFireball(self, myDir)
 		StartCoolDown(self, self.spellCoolDown)
 	end
+end
+
+function ClearPath(self)
+	self.lastPoint = nil
+	self.nextPoint = nil
+	self.path = nil
+end
+
+function StopRotation(self)
+	self:ResetRotationDelta()
+	self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 end
 
 function StartCoolDown(self, coolDownTime)
@@ -214,4 +252,10 @@ end
 
 function ShowPlayerStats(self)
 	--Debug:PrintAt(10, 64, "Item Count: " .. self.inventory.itemsCollected, Vision.V_RGBA_WHITE, G.fontPath)
+end
+
+function RotateXY(x, y, z, angle)
+	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
+	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )
+	return Vision.hkvVec3(_x, _y, z)
 end
