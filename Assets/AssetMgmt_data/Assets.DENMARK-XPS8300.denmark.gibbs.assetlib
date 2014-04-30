@@ -59,6 +59,214 @@
                 "TemplateName": "Default"
             }
         },
+        "Meshes/LevelBlocks/Room_02.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3347467743,
+                "TimeStamp": 1398887317971724300,
+                "LastEditTime": 1398887318584785600
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-00.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3119827047,
+                "TimeStamp": 1398885627949729600,
+                "LastEditTime": 1398885841525085000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-00.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/LevelBlocks/SM_Room_Type-00.vmesh_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3979723839,
+                "TimeStamp": 1398885627943729000,
+                "LastEditTime": 1398885841526085100
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-01.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1279607390,
+                "TimeStamp": 1398885642460180500,
+                "LastEditTime": 1398885843926325100
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-01.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/LevelBlocks/SM_Room_Type-01.vmesh_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 99813080,
+                "TimeStamp": 1398885642454179900,
+                "LastEditTime": 1398885843926325100
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-02.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 761211169,
+                "TimeStamp": 1398885606585593400,
+                "LastEditTime": 1398885843957328200
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-02.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/LevelBlocks/SM_Room_Type-02.vmesh_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 899907112,
+                "TimeStamp": 1398885606580592900,
+                "LastEditTime": 1398890103659298900
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-03.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1274110954,
+                "TimeStamp": 1398885655433477700,
+                "LastEditTime": 1398885843987331200
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-03.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/LevelBlocks/SM_Room_Type-03.vmesh_data/materials.xml",
+                    "plainwhite.dds",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1942179148,
+                "TimeStamp": 1398885655428477200,
+                "LastEditTime": 1398885843987331200
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Meshes/RL_SimpleGround_MESH.vcolmesh": {
             "AssetType": "CollisionMesh",
             "Common": {
@@ -1320,9 +1528,47 @@
             "Transformations": {
                 "TemplateName": "Default"
             }
+        },
+        "Meshes/LevelBlocks/Main layer.prefab": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1398887335769503900
+            },
+            "File": {
+                "LastEditTime": 1398887335769503900
+            }
+        },
+        "Meshes/LevelBlocks/NavMesh.prefab": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1398887335769503900
+            },
+            "File": {
+                "LastEditTime": 1398887335769503900
+            }
         }
     },
     "TrackedFiles": {
+        "Meshes/LevelBlocks/SM_Room_Type-00.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1398885627945729200,
+            "LastEditTime": 1398885841525085000
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-01.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1398885642457180200,
+            "LastEditTime": 1398885841525085000
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-02.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1398890102505298900,
+            "LastEditTime": 1398885841525085000
+        },
+        "Meshes/LevelBlocks/SM_Room_Type-03.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1398885655430477400,
+            "LastEditTime": 1398885841525085000
+        },
         "Meshes/RL_SimpleGround_MESH.vmesh_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1395862004159179000,

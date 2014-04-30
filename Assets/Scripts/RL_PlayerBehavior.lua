@@ -107,6 +107,9 @@ function OnThink(self)
 		
 		-- Debug:PrintLine(""..self.currentState) 
 	end
+	
+	-- Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir_Right() * 50), Vision.V_RGBA_GREEN)
+	-- Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir() * 50), Vision.V_RGBA_RED)
 end
 
 
@@ -228,7 +231,7 @@ function CheckForEnemy(self)
 	myPos.z = myPos.z + 25
 	
 	
-	for i = - math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
+	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
 		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
 		--convert the current angle to raidans
