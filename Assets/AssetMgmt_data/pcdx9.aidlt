@@ -1,0 +1,62 @@
+fonts/rl_gulim_font_00.dds	AssetMgmt_data/transformed/rl_gulim_font_008nd5464clgdtc.dds	sRGB=false
+fonts/rl_gulim_font_01.dds	AssetMgmt_data/transformed/rl_gulim_font_0199yjfkdclgdtc.dds	sRGB=false
+meshes/levelblocks/room_02.prefab	Meshes/LevelBlocks/Room_02.prefab	
+meshes/levelblocks/sm_room_type-00.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-00.vcolmesh	
+meshes/levelblocks/sm_room_type-00.vmesh	Meshes/LevelBlocks/SM_Room_Type-00.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-01.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-01.vcolmesh	
+meshes/levelblocks/sm_room_type-01.vmesh	Meshes/LevelBlocks/SM_Room_Type-01.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-02.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-02.vcolmesh	
+meshes/levelblocks/sm_room_type-02.vmesh	Meshes/LevelBlocks/SM_Room_Type-02.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-03.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-03.vcolmesh	
+meshes/levelblocks/sm_room_type-03.vmesh	Meshes/LevelBlocks/SM_Room_Type-03.vmesh	LODSwitchDistances=
+meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh	
+meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
+meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	
+meshes/rl_walltest.vmesh	Meshes/RL_WallTest.vmesh	LODSwitchDistances=
+models/character/animations/rl_playercharacter.anim	Models/Character/Animations/RL_PlayerCharacter.anim	
+models/character/fps_charstandin_mod.anim	Models/Character/FPS_CharStandIn_MOD.anim	
+models/character/fps_charstandin_mod.model	Models/Character/FPS_CharStandIn_MOD.model	LODSwitchDistances=
+models/character/fps_charstandin_mod.vcolmesh	Models/Character/FPS_CharStandIn_MOD.vcolmesh	
+models/character/rl_character_mod.anim	Models/Character/RL_Character_MOD.anim	
+models/character/rl_character_mod.model	Models/Character/RL_Character_MOD.model	LODSwitchDistances=
+models/character/rl_character_mod.vcolmesh	Models/Character/RL_Character_MOD.vcolmesh	
+models/enemies/rl_evilcubie_mod.anim	Models/Enemies/RL_EvilCubie_MOD.anim	
+models/enemies/rl_evilcubie_mod.model	Models/Enemies/RL_EvilCubie_MOD.model	LODSwitchDistances=
+models/enemies/rl_evilcubie_mod.vcolmesh	Models/Enemies/RL_EvilCubie_MOD.vcolmesh	
+models/props/rl_basiccollectible_mod.anim	Models/Props/RL_BasicCollectible_MOD.anim	
+models/props/rl_basiccollectible_mod.model	Models/Props/RL_BasicCollectible_MOD.model	LODSwitchDistances=
+models/props/rl_basiccollectible_mod.vcolmesh	Models/Props/RL_BasicCollectible_MOD.vcolmesh	
+models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	
+models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
+particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
+particles/smokesequence_a.dds	AssetMgmt_data/transformed/smokesequence_a1hnnds4clgdtc.dds	sRGB=false
+textures/cursor/rl_cursor_diffuse_green.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_greeng#4s344clgdtc.dds	sRGB=false
+textures/cursor/rl_cursor_diffuse_green_32.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_green4sj5dfxclgdtc.dds	sRGB=false
+textures/cursor/rl_cursor_diffuse_red.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_red2l54884clgdtc.dds	sRGB=false
+textures/cursor/rl_cursor_diffuse_red_32.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_red_32404cvxclgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/black_128.tga	AssetMgmt_data/transformed/black_1281db9f50clgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/blue_128.tga	AssetMgmt_data/transformed/blue_1288hdmn9xclgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/gray_128.tga	AssetMgmt_data/transformed/gray_1283mykg34clgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/green_128.tga	AssetMgmt_data/transformed/green_128gl76ydsclgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/red_128.tga	AssetMgmt_data/transformed/red_1282tdsmz4clgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/white_128.tga	AssetMgmt_data/transformed/white_128447fvw0clgdtc.dds	sRGB=false
+textures/designtextures/flatcolors/yellow_128.tga	AssetMgmt_data/transformed/yellow_128f71r3rxclgdtc.dds	sRGB=false
+textures/designtextures/texturegrid_blue.tga	AssetMgmt_data/transformed/texturegrid_blue7145v88clgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_blue.tga	AssetMgmt_data/transformed/fps_button_bluehc8zbwjclgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_blue_64.tga	AssetMgmt_data/transformed/fps_button_blue_645yn16zjclgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_green.tga	AssetMgmt_data/transformed/fps_button_green6jsf5qnclgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_green_64.tga	AssetMgmt_data/transformed/fps_button_green_64byhq4l8clgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_red.tga	AssetMgmt_data/transformed/fps_button_redgzjpr0sclgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_red_64.tga	AssetMgmt_data/transformed/fps_button_red_64dzm1dt4clgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_yellow.tga	AssetMgmt_data/transformed/fps_button_yellow7bg1pc4clgdtc.dds	sRGB=false
+textures/mobilehud/fps_button_yellow_64.tga	AssetMgmt_data/transformed/fps_button_yellow_649#8r#t4clgdtc.dds	sRGB=false
+textures/mobilehud/fps_dpad_128.tga	AssetMgmt_data/transformed/fps_dpad_1287qm75f4clgdtc.dds	sRGB=false
+textures/mobilehud/fps_dpad_64.tga	AssetMgmt_data/transformed/fps_dpad_64b7jh5#xclgdtc.dds	sRGB=false
+textures/props/rl_basiccollectible_diffuse.tga	AssetMgmt_data/transformed/rl_basiccollectible_dif60746mjclgdtc.dds	sRGB=false
+textures/rl_player_diffuse.tga	AssetMgmt_data/transformed/rl_player_diffuse0pff2zxclgdtc.dds	sRGB=false
+textures/rl_sword_diffuse.tga	AssetMgmt_data/transformed/rl_sword_diffusec9g6k9jclgdtc.dds	sRGB=false
+textures/sky/skybox_basic_bottom.tga	AssetMgmt_data/transformed/skybox_basic_bottom25d7qmxclgdtc.dds	sRGB=false
+textures/sky/skybox_basic_sides.tga	AssetMgmt_data/transformed/skybox_basic_sides1xvmgd8clgdtc.dds	sRGB=false
+textures/sky/skybox_basic_top.tga	AssetMgmt_data/transformed/skybox_basic_top6cntqgsclgdtc.dds	sRGB=false
+textures/texturegrid_blue.tga	AssetMgmt_data/transformed/texturegrid_blue7145v88clgdtc.dds	sRGB=false
+textures/walkcycle.jpg	AssetMgmt_data/transformed/walkcycle7574qgnclgdtc.dds	sRGB=false

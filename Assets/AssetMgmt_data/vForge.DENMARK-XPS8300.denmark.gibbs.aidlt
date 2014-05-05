@@ -1,5 +1,14 @@
 fonts/rl_gulim_font_00.dds	Fonts/RL_Gulim_Font_00.dds	sRGB=false
 fonts/rl_gulim_font_01.dds	Fonts/RL_Gulim_Font_01.dds	sRGB=false
+meshes/levelblocks/room_02.prefab	Meshes/LevelBlocks/Room_02.prefab	
+meshes/levelblocks/sm_room_type-00.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-00.vcolmesh	
+meshes/levelblocks/sm_room_type-00.vmesh	Meshes/LevelBlocks/SM_Room_Type-00.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-01.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-01.vcolmesh	
+meshes/levelblocks/sm_room_type-01.vmesh	Meshes/LevelBlocks/SM_Room_Type-01.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-02.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-02.vcolmesh	
+meshes/levelblocks/sm_room_type-02.vmesh	Meshes/LevelBlocks/SM_Room_Type-02.vmesh	LODSwitchDistances=
+meshes/levelblocks/sm_room_type-03.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-03.vcolmesh	
+meshes/levelblocks/sm_room_type-03.vmesh	Meshes/LevelBlocks/SM_Room_Type-03.vmesh	LODSwitchDistances=
 meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh	
 meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
 meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	
@@ -49,13 +58,8 @@ textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
 textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
+textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/walkcycle.jpg	Textures/walkcycle.jpg	sRGB=false
-meshes/levelblocks/sm_room_type-00.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-00.vcolmesh	
-meshes/levelblocks/sm_room_type-00.vmesh	Meshes/LevelBlocks/SM_Room_Type-00.vmesh	LODSwitchDistances=
-meshes/levelblocks/sm_room_type-01.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-01.vcolmesh	
-meshes/levelblocks/sm_room_type-01.vmesh	Meshes/LevelBlocks/SM_Room_Type-01.vmesh	LODSwitchDistances=
-meshes/levelblocks/sm_room_type-02.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-02.vcolmesh	
-meshes/levelblocks/sm_room_type-02.vmesh	Meshes/LevelBlocks/SM_Room_Type-02.vmesh	LODSwitchDistances=
-meshes/levelblocks/sm_room_type-03.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-03.vcolmesh	
-meshes/levelblocks/sm_room_type-03.vmesh	Meshes/LevelBlocks/SM_Room_Type-03.vmesh	LODSwitchDistances=
-meshes/levelblocks/room_02.prefab	Meshes/LevelBlocks/Room_02.prefab	
+meshes/rl_fulllevel.vcolmesh	Meshes/RL_FullLevel.vcolmesh	
+meshes/rl_fulllevel.vmesh	Meshes/RL_FullLevel.vmesh	LODSwitchDistances=
+scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false

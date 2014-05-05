@@ -6,10 +6,10 @@ function OnBeforeSceneLoaded(self)
 	G.isWindows = (Application:GetPlatformName() == "WIN32DX9" or Application:GetPlatformName() == "WIN32DX11")
 	
 	
-	Room0 = "Meshes/LevelBlocks/SM_Room_Type-02.vmesh"
+	--Room0 = "Meshes/LevelBlocks/SM_Room_Type-02.vmesh"
 	
-	RoomSize = 768
-	GenerateRooms(self)
+	--RoomSize = 768
+	--GenerateRooms(self)
 end
 
 function OnAfterSceneLoaded(self)
@@ -31,10 +31,10 @@ function OnBeforeSceneUnloaded(self)
 	Game:DeleteAllUnrefScreenMasks()
 end
 
-function GenerateRooms(self)
+-- function GenerateRooms(self)
 	-- Debug:PrintLine("Rooms Generated")
 	-- Game:CreateEntity(Vision.hkvVec3(0,0,0), "VisBaseEntity_cl", Room0, "StartRoom")
-	--Game:InstantiatePrefab(Vision.hkvVec3(0,0,0), Room0)
-	local mesh = Game:CreateStaticMeshInstance(Vision.hkvVec3(0,0,0), Room0, true, "StartRoom")
-	mesh:SetVisibleBitmask(Vision.VBitmask("0xFF") )
-end
+	-- Game:InstantiatePrefab(Vision.hkvVec3(0,0,0), Room0)
+	-- local mesh = Game:CreateStaticMeshInstance(Vision.hkvVec3(0,0,0), Room0, true, "StartRoom")
+	-- mesh:SetVisibleBitmask(Vision.VBitmask("0xFF") )
+-- end

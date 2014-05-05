@@ -23,10 +23,10 @@ function OnThink(self)
 
 	if not G.gameOver and G.player ~= nil then
 		if LookForPlayer(self) then
-			-- FindPath(self)
+			FindPath(self)
 		end
 		
-		FindPath(self)
+		-- FindPath(self)
 		
 		--debugging
 		local color = Vision.V_RGBA_RED
@@ -76,12 +76,12 @@ function FindPath(self)
 			end
 			
 			local point = AI:GetPointOnPath(self.path, self.pathProgress)
-			self:SetPosition(point)
+			-- self:SetPosition(point)
 			--[#todo] fix the bug that makes the character jump after x time(same as player script)
-			-- local dir = point - myPosition
-			-- dir:normalize()
-			-- dir = dir * self.chaseSpeed
-			-- self:SetMotionDeltaWorldSpace(dir)
+			local dir = point - myPosition
+			dir:normalize()
+			dir = dir * self.chaseSpeed
+			self:SetMotionDeltaWorldSpace(dir)
 
 			if self.pathProgress == self.pathLength then
 				self.path = nil
