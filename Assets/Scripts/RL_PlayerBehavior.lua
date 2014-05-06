@@ -26,6 +26,9 @@ function OnAfterSceneLoaded(self)
 	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
 	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
 	
+	--GUI Display Controls
+	self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1") --will show the display whilst holding 
+	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
@@ -72,6 +75,8 @@ function OnThink(self)
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		
+		local showInventory = self.map:GetTrigger("INVENTORY") > 0
+		
 		if self.currentState ~= self.states.attacking then
 			local magic = self.map:GetTrigger("MAGIC") > 0
 			local melee = self.map:GetTrigger("MELEE") > 0
@@ -109,6 +114,11 @@ function OnThink(self)
 		
 		--show the player's stats
 		ShowPlayerStats(self)
+		
+		--toggle the inventory
+		if showInventory then
+			self:ShowInventory()
+		end
 		
 		-- Debug:PrintLine(""..self.currentState) 
 	end
@@ -293,7 +303,7 @@ function StartCoolDown(self, coolDownTime)
 end
 
 function ShowPlayerStats(self)
-	--Debug:PrintAt(10, 64, "Item Count: " .. self.inventory.itemsCollected, Vision.V_RGBA_WHITE, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_WHITE, G.fontPath)
 end
 
 function RotateXY(x, y, z, angle)

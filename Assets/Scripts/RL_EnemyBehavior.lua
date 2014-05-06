@@ -24,7 +24,7 @@ function OnAfterSceneLoaded(self)
 	self.meleeCoolDown = 1.5
 	self.timeToNextAttack = 0
 	
-	self.isAlive = false
+	self.isAlive = true
 end
 
 function OnThink(self)
@@ -200,6 +200,7 @@ function CheckForAttackHit(self)
 			--check to see if a target was hit
 			if result ~= nil and result["HitType"] == "Unknown" then
 				--hitObj.ModifyHealth(hitObj, -self.meleeDamage)
+				G.player:ModifyHealth(-self.meleeDamage)
 				Debug:PrintLine("Player Hit!")
 				break
 			end

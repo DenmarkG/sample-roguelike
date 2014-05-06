@@ -5,7 +5,7 @@
         "LastEditTime": 1395861338021641700
     },
     "Assets": {
-        "Fonts/RL_Gulim_Font_00.dds": {
+        "Fonts/Harrington_00.dds": {
             "AssetType": "Texture",
             "Common": {
                 "Tags": "__NEW_ASSET__",
@@ -17,36 +17,9 @@
                 ]
             },
             "File": {
-                "Hash": 2318443569,
-                "TimeStamp": 1396309147090439800,
-                "LastEditTime": 1396309148006439800
-            },
-            "Texture": {
-                "FileFormat": "DDS",
-                "Width": 256,
-                "Height": 256,
-                "HasAlpha": false,
-                "sRGB": false
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Fonts/RL_Gulim_Font_01.dds": {
-            "AssetType": "Texture",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2499153291,
-                "TimeStamp": 1396309147402439800,
-                "LastEditTime": 1396309148040439800
+                "Hash": 1068670930,
+                "TimeStamp": 1399397881587566100,
+                "LastEditTime": 1399397882593566100
             },
             "Texture": {
                 "FileFormat": "DDS",
@@ -1728,6 +1701,42 @@
             },
             "Transformations": {
                 "TemplateName": "Default"
+            }
+        },
+        "Fonts/FineCollege_32_00.dds": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1399397850047566100
+            },
+            "File": {
+                "LastEditTime": 1399397850047566100
+            }
+        },
+        "Fonts/RL_Gulim_Font_00.dds": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1399397850047566100
+            },
+            "File": {
+                "LastEditTime": 1399397850047566100
+            }
+        },
+        "Fonts/RL_Gulim_Font_01.dds": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1399397850047566100
+            },
+            "File": {
+                "LastEditTime": 1399397850047566100
+            }
+        },
+        "Fonts/Stencil_00.dds": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1399397850047566100
+            },
+            "File": {
+                "LastEditTime": 1399397850047566100
             }
         }
     },

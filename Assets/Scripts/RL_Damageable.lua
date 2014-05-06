@@ -8,7 +8,7 @@ function OnAfterSceneLoaded(self)
 end
 
 function OnThink(self)
-	Debug:PrintLine(self:GetKey() .. " health: " .. self.currentHealth)
+	--Debug:PrintLine(self:GetKey() .. " health: " .. self.currentHealth)
 end
 
 --modifies the current health amount

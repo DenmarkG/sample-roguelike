@@ -5,6 +5,9 @@ function OnBeforeSceneLoaded(self)
 	--get the current platform
 	G.isWindows = (Application:GetPlatformName() == "WIN32DX9" or Application:GetPlatformName() == "WIN32DX11")
 	
+	--set the font path
+	G.fontPath = "Fonts/Harrington.fnt"
+	G.fontSize = 32
 	
 	--Room0 = "Meshes/LevelBlocks/SM_Room_Type-02.vmesh"
 	
@@ -18,9 +21,6 @@ function OnAfterSceneLoaded(self)
 	
 	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
-	
-	--set the font path
-	G.fontPath = "Fonts/RL_Gulim_Font.fnt"
 	
 	--set the gamestate
 	G.gameOver = false
