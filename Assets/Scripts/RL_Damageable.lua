@@ -11,7 +11,6 @@ function OnThink(self)
 	Debug:PrintLine(self:GetKey() .. " health: " .. self.currentHealth)
 end
 
-
 --modifies the current health amount
 --positive numbers will heal the character up to the max health amount
 --negative numbers will hurt the player until 0 and the character is KO'd
@@ -23,5 +22,6 @@ function ModifyCurrentHealth(self, amount)
 		self.currentHealth = self.maxHealth
 	elseif self.currentHealth < 0 then
 		self.currentHealth = 0
+		self.isAlive = false
 	end
 end

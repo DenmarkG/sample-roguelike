@@ -705,6 +705,74 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Props/RL_Lootbag_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1399333223568168700,
+                "LastEditTime": 1399333224405168700
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Lootbag_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Props/RL_Lootbag_MOD.model_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/RL_LootBag_DIFFUSE.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2943178845,
+                "TimeStamp": 1399333223563168700,
+                "LastEditTime": 1399333224369168700
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Lootbag_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2086137396,
+                "TimeStamp": 1399333223569168700,
+                "LastEditTime": 1399333224405168700
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Models/Props/RL_MeleeSword_MOD.anim": {
             "AssetType": "Animation",
             "Common": {
@@ -1446,6 +1514,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/RL_LootBag_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4141153382,
+                "TimeStamp": 1399332768225168700,
+                "LastEditTime": 1399333224430168700
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/RL_Player_Diffuse.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -1681,6 +1776,11 @@
             "Hash": 0,
             "TimeStamp": 1396305811628451000,
             "LastEditTime": 1396304928847450000
+        },
+        "Models/Props/RL_Lootbag_MOD.model_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1399333223565168700,
+            "LastEditTime": 1399332890240168700
         },
         "Models/Textures/Blue_128.tga": {
             "Hash": 0,

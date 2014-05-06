@@ -96,6 +96,7 @@
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo01:IncomingRefs</string>
                     <string>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo00:IncomingRefs</string>
+                    <string xsi:nil="true" />
                 </MangledTargetNames>
             </CustomCharacterControllerCinfo>
             <FootIkEnabled>false</FootIkEnabled>

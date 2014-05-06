@@ -9,6 +9,8 @@ meshes/levelblocks/sm_room_type-02.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-02.v
 meshes/levelblocks/sm_room_type-02.vmesh	Meshes/LevelBlocks/SM_Room_Type-02.vmesh	LODSwitchDistances=
 meshes/levelblocks/sm_room_type-03.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-03.vcolmesh	
 meshes/levelblocks/sm_room_type-03.vmesh	Meshes/LevelBlocks/SM_Room_Type-03.vmesh	LODSwitchDistances=
+meshes/rl_fulllevel.vcolmesh	Meshes/RL_FullLevel.vcolmesh	
+meshes/rl_fulllevel.vmesh	Meshes/RL_FullLevel.vmesh	LODSwitchDistances=
 meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh	
 meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
 meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	
@@ -26,10 +28,14 @@ models/enemies/rl_evilcubie_mod.vcolmesh	Models/Enemies/RL_EvilCubie_MOD.vcolmes
 models/props/rl_basiccollectible_mod.anim	Models/Props/RL_BasicCollectible_MOD.anim	
 models/props/rl_basiccollectible_mod.model	Models/Props/RL_BasicCollectible_MOD.model	LODSwitchDistances=
 models/props/rl_basiccollectible_mod.vcolmesh	Models/Props/RL_BasicCollectible_MOD.vcolmesh	
+models/props/rl_lootbag_mod.anim	Models/Props/RL_Lootbag_MOD.anim	
+models/props/rl_lootbag_mod.model	Models/Props/RL_Lootbag_MOD.model	LODSwitchDistances=
+models/props/rl_lootbag_mod.vcolmesh	Models/Props/RL_Lootbag_MOD.vcolmesh	
 models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	
 models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	Particles/SmokeSequence_A.dds	sRGB=false
+scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	Textures/Cursor/RL_Cursor_Diffuse_Green.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_red.tga	Textures/Cursor/RL_Cursor_Diffuse_Red.tga	sRGB=false
@@ -53,6 +59,7 @@ textures/mobilehud/fps_button_yellow_64.tga	Textures/MobileHud/FPS_Button_Yellow
 textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=false
 textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
+textures/rl_lootbag_diffuse.tga	Textures/RL_LootBag_DIFFUSE.tga	sRGB=false
 textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
 textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
@@ -60,6 +67,3 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/walkcycle.jpg	Textures/walkcycle.jpg	sRGB=false
-meshes/rl_fulllevel.vcolmesh	Meshes/RL_FullLevel.vcolmesh	
-meshes/rl_fulllevel.vmesh	Meshes/RL_FullLevel.vmesh	LODSwitchDistances=
-scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false

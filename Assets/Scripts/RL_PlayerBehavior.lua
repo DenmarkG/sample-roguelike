@@ -7,12 +7,19 @@ function OnAfterSceneLoaded(self)
 		self.behaviorComponent = self:AddComponentOfType("vHavokBehaviorComponent")
 	end
 	
+	-- self.characterController = self.behaviorComponent:GetComponentOfType("vHavokCharacterController")
+	-- if self.characterController == nil then
+		-- self.characterController = self:AddComponentOfType("vHavokCharacterController")
+	-- end
+	
+	--self.characterController:SetCollisionInfo(1,0,0,0)
+	
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
 	
 	--set the controls for the input map
 	--mouse movement controls:
-	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON", {onceperframe=true} )
+	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON" )
 	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
 	--Interaction controls:
@@ -46,9 +53,7 @@ function OnAfterSceneLoaded(self)
 	
 	self.currentState = self.states.idle
 	
-	--need to add vars for AI pathfinding
-	
-	--distance from point
+	self.isAlive = true
 end
 
 function OnBeforeSceneUnloaded(self)
@@ -58,7 +63,7 @@ function OnBeforeSceneUnloaded(self)
 end
 
 function OnThink(self)
-	if not G.gameOver then
+	if not G.gameOver  and self.isAlive then
 	
 		if self.timeToNextAttack > 0 then
 			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
@@ -216,11 +221,11 @@ function PerformMelee(self)
 	ClearPath(self)
 	self.behaviorComponent:TriggerEvent("AttackStart")
 	self.currentState = self.states.attacking
-	CheckForEnemy(self)
+	CheckForAttackHit(self)
 	StartCoolDown(self, self.meleeCoolDown)
 end
 
-function CheckForEnemy(self)
+function CheckForAttackHit(self)
 	--test ray
 	self.numRays = 5
 	self.attackAngle = 60
@@ -256,7 +261,6 @@ function CheckForEnemy(self)
 				local hitObj = result["HitObject"]
 				if hitObj:GetKey() == "Enemy" then
 					hitObj.ModifyHealth(hitObj, -self.meleeDamage)
-					Debug:PrintLine("Enemy Hit!")
 					break
 				end
 			end
