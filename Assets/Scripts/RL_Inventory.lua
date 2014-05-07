@@ -3,27 +3,29 @@ function OnAfterSceneLoaded(self)
 	self.inventory = {}
 	self.itemCount = 0
 	self.maxItems = 8
+	self.xSize = G.w / self.maxItems
+	
+	--positioning varibles for display
+	self.vertStartPos = G.h * 3 / 4
 	
 	self.AddItem = AddNewItem
 	
-	self.isVisible = false
+	self.inventoryIsVisible = false
 	
 	self.ToggleInventory = function(self)
-		if not self.isVisible then
+		if not self.inventoryIsVisible then
 			-- Debug:PrintLine(""..table.getn(self.inventory) )
 			if self.itemCount > 0 then
-				local xSize = G.w / self.maxItems
-				
 				for i = 0, table.getn(self.inventory), 1 do
 					local currentItem = self.inventory[i]
 					-- Debug:PrintAt(10, G.fontSize * i, ""..currentItem.name, Vision.V_RGBA_GREEN, G.fontPath)
 					currentItem.itemImage:SetVisible(true)
 					currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
-					currentItem.itemImage:SetTargetSize(xSize, xSize)
-					currentItem.itemImage:SetPos(i * xSize, G.h * 3 / 4)
+					currentItem.itemImage:SetTargetSize(self.xSize, self.xSize)
+					currentItem.itemImage:SetPos(i * self.xSize, self.vertStartPos)
 				end
 				
-				self.isVisible = true
+				self.inventoryIsVisible = true
 			end
 		else
 			for i = 0, table.getn(self.inventory), 1 do
@@ -32,7 +34,43 @@ function OnAfterSceneLoaded(self)
 				-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 			end
 			
-			self.isVisible = false
+			self.inventoryIsVisible = false
+		end
+	end
+	
+	self.InventoryItemClicked = function(self, xPos, yPos)
+		if self.inventoryIsVisible then
+			local yUpperBound = self.vertStartPos + self.xSize
+			local ylowerBound = self.vertStartPos 
+			
+			if yPos < yUpperBound and yPos > ylowerBound then
+				local numElements = self.itemCount
+				local xUpperBound = self.xSize * numElements
+				if xPos < xUpperBound then
+					
+					local xLowerBound = 0
+					while xLowerBound <= xUpperBound do
+					
+						local middle = math.floor( (xUpperBound + xLowerBound) / 2)
+						
+						if xPos >= middle and xPos < middle + self.xSize then
+							local index = math.ceil(xPos / self.xSize) - 1
+							local item = self.inventory[index]
+							item:UseCallback(self)
+							item.itemImage:SetVisible(false)
+							table.remove(self.inventory, index)
+							self.ToggleInventory(self)
+							return true
+						elseif xPos < middle then
+							xUpperBound = middle
+						elseif xPos >= middle then
+							xLowerBound = middle
+						end
+					end
+				end
+			end
+			
+			return false
 		end
 	end
 end

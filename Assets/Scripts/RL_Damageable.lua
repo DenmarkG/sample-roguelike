@@ -4,7 +4,8 @@ end
 
 function OnAfterSceneLoaded(self)
 	self.maxHealth = 100
-	self.currentHealth = self.maxHealth
+	-- self.currentHealth = self.maxHealth
+	self.currentHealth = 50
 end
 
 function OnThink(self)

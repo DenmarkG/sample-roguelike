@@ -92,7 +92,14 @@ function OnThink(self)
 			end
 			
 			if self.map:GetTrigger("CLICK") > 0 then
-				UpdateTargetPosition(self, x, y)
+				local itemUsed = false
+				if self.inventoryIsVisible then
+					itemUsed = self.InventoryItemClicked(self, x, y)
+				end
+				
+				if not itemUsed then
+					UpdateTargetPosition(self, x, y)
+				end
 			end
 			
 			--follow the path if one exists
