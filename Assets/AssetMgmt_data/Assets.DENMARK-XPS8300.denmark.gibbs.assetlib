@@ -792,6 +792,74 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Props/RL_Waypoint_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1399414993211581500,
+                "LastEditTime": 1399414995332793600
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Waypoint_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Props/RL_Waypoint_MOD.model_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/Yellow_128.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 615614044,
+                "TimeStamp": 1399414993206581000,
+                "LastEditTime": 1399414995617822100
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Waypoint_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2666565251,
+                "TimeStamp": 1399414993213581700,
+                "LastEditTime": 1399414995332793600
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Particles/RL_Fireball.vpfx": {
             "AssetType": "Particle",
             "Common": {
@@ -1460,6 +1528,60 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Potions/RL_HealthPotion_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 390100917,
+                "TimeStamp": 1399405170189745900,
+                "LastEditTime": 1399405605220745900
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/Potions/RL_ManaPotion_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2473306000,
+                "TimeStamp": 1399405200057745900,
+                "LastEditTime": 1399405611444745900
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Props/RL_BasicCollectible_DIFFUSE.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -1703,40 +1825,31 @@
                 "TemplateName": "Default"
             }
         },
-        "Fonts/FineCollege_32_00.dds": {
-            "AssetType": "__deleted__",
+        "Textures/Yellow_128.tga": {
+            "AssetType": "Texture",
             "Common": {
-                "DeleteTime": 1399397850047566100
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
             },
             "File": {
-                "LastEditTime": 1399397850047566100
-            }
-        },
-        "Fonts/RL_Gulim_Font_00.dds": {
-            "AssetType": "__deleted__",
-            "Common": {
-                "DeleteTime": 1399397850047566100
+                "Hash": 3548832703,
+                "TimeStamp": 1388712492000000000,
+                "LastEditTime": 1399414995333793700
             },
-            "File": {
-                "LastEditTime": 1399397850047566100
-            }
-        },
-        "Fonts/RL_Gulim_Font_01.dds": {
-            "AssetType": "__deleted__",
-            "Common": {
-                "DeleteTime": 1399397850047566100
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": false,
+                "sRGB": false
             },
-            "File": {
-                "LastEditTime": 1399397850047566100
-            }
-        },
-        "Fonts/Stencil_00.dds": {
-            "AssetType": "__deleted__",
-            "Common": {
-                "DeleteTime": 1399397850047566100
-            },
-            "File": {
-                "LastEditTime": 1399397850047566100
+            "Transformations": {
+                "TemplateName": "Default"
             }
         }
     },
@@ -1790,6 +1903,11 @@
             "Hash": 0,
             "TimeStamp": 1399333223565168700,
             "LastEditTime": 1399332890240168700
+        },
+        "Models/Props/RL_Waypoint_MOD.model_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1399414993208581200,
+            "LastEditTime": 1399414994213681700
         },
         "Models/Textures/Blue_128.tga": {
             "Hash": 0,

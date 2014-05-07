@@ -1,5 +1,4 @@
-textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
-textures/walkcycle.jpg	Textures/walkcycle.jpg	sRGB=false
+fonts/harrington_00.dds	Fonts/Harrington_00.dds	sRGB=false
 meshes/levelblocks/room_02.prefab	Meshes/LevelBlocks/Room_02.prefab	
 meshes/levelblocks/sm_room_type-00.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-00.vcolmesh	
 meshes/levelblocks/sm_room_type-00.vmesh	Meshes/LevelBlocks/SM_Room_Type-00.vmesh	LODSwitchDistances=
@@ -33,6 +32,9 @@ models/props/rl_lootbag_mod.model	Models/Props/RL_Lootbag_MOD.model	LODSwitchDis
 models/props/rl_lootbag_mod.vcolmesh	Models/Props/RL_Lootbag_MOD.vcolmesh	
 models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	
 models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
+models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
+models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
+models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	Particles/SmokeSequence_A.dds	sRGB=false
 scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false
@@ -58,6 +60,8 @@ textures/mobilehud/fps_button_yellow.tga	Textures/MobileHud/FPS_Button_Yellow.tg
 textures/mobilehud/fps_button_yellow_64.tga	Textures/MobileHud/FPS_Button_Yellow_64.tga	sRGB=false
 textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=false
 textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
+textures/potions/rl_healthpotion_diffuse.tga	Textures/Potions/RL_HealthPotion_DIFFUSE.tga	sRGB=false
+textures/potions/rl_manapotion_diffuse.tga	Textures/Potions/RL_ManaPotion_DIFFUSE.tga	sRGB=false
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
 textures/rl_lootbag_diffuse.tga	Textures/RL_LootBag_DIFFUSE.tga	sRGB=false
 textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
@@ -65,4 +69,6 @@ textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
 textures/sky/skybox_basic_bottom.tga	Textures/Sky/SkyBox_Basic_Bottom.tga	sRGB=false
 textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=false
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
-fonts/harrington_00.dds	Fonts/Harrington_00.dds	sRGB=false
+textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
+textures/walkcycle.jpg	Textures/walkcycle.jpg	sRGB=false
+textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false

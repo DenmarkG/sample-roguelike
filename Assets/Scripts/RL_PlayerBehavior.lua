@@ -19,7 +19,7 @@ function OnAfterSceneLoaded(self)
 	
 	--set the controls for the input map
 	--mouse movement controls:
-	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON" )
+	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
 	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
 	--Interaction controls:
@@ -27,7 +27,7 @@ function OnAfterSceneLoaded(self)
 	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
 	
 	--GUI Display Controls
-	self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1") --will show the display whilst holding 
+	self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
 	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
@@ -117,7 +117,7 @@ function OnThink(self)
 		
 		--toggle the inventory
 		if showInventory then
-			self:ShowInventory()
+			self:ToggleInventory()
 		end
 		
 		-- Debug:PrintLine(""..self.currentState) 

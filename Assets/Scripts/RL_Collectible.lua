@@ -2,6 +2,10 @@
 
 function OnAfterSceneLoaded(self)
 	self.item = {}
+	
+	self.healthTexturePath = "Textures/Potions/RL_HealthPotion_DIFFUSE.tga"
+	self.manaTexturePath = "Textures/Potions/RL_ManaPotion_DIFFUSE.tga"
+	
 	GeneratePickupProperties(self)
 end
 
@@ -18,7 +22,7 @@ function OnObjectEnter(self, otherObj)
 end
 
 function OnBeforeSceneUnloaded(self)
-	--
+	Game:DeleteAllUnrefScreenMasks()
 end
 
 function Deactivate(self)
@@ -27,10 +31,16 @@ function Deactivate(self)
 end
 
 function GeneratePickupProperties(self)
-	self.item.name = "Bag of Stuff"
+	self.item.name = "HealthPotion"
+	self.item.value = 25
 	self.item.UseCallback = AddHealth
+	
+	--for drawing the inventory item on screen
+	local imagePath = self.healthTexturePath
+	self.item.itemImage = Game:CreateScreenMask(0, 0, "".. imagePath)
+	self.item.itemImage:SetVisible(false)
 end
 
 function AddHealth(self, character)
-	character:ModifyHealth(25)
+	character:ModifyHealth(self.value)
 end

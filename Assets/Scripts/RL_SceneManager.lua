@@ -16,6 +16,8 @@ function OnBeforeSceneLoaded(self)
 end
 
 function OnAfterSceneLoaded(self)
+	FindWaypoints(self)
+	
 	--get the screen size
 	G.w, G.h = Screen:GetViewportSize()
 	
@@ -38,3 +40,19 @@ end
 	-- local mesh = Game:CreateStaticMeshInstance(Vision.hkvVec3(0,0,0), Room0, true, "StartRoom")
 	-- mesh:SetVisibleBitmask(Vision.VBitmask("0xFF") )
 -- end
+
+function FindWaypoints(self)
+	G.waypoints = {}
+	local parent = Game:GetEntity("WaypointParent")
+	
+	local numChildren = parent:GetNumChildren()
+	for i = 0, numChildren - 1, 1 do
+		local entity = parent:GetChild(i)
+		
+		if entity ~= nil then
+			if entity:GetKey() == "Waypoint" then 
+				table.insert(G.waypoints, entity)
+			end
+		end
+	end
+end
