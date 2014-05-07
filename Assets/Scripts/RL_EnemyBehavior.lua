@@ -125,6 +125,8 @@ function NavigatePath(self)
 			--turn to face the player
 			UpdateRotation(self, dir)
 			dir = dir * self.moveSpeed * .1
+			
+			--test for crash when dir is wrong
 			self:SetMotionDeltaWorldSpace(dir)
 			-- self:SetPosition(point)
 		end

@@ -28,13 +28,15 @@ function OnAfterSceneLoaded(self)
 				self.inventoryIsVisible = true
 			end
 		else
-			for i = 0, table.getn(self.inventory), 1 do
-				local currentItem = self.inventory[i]
-				currentItem.itemImage:SetVisible(false)
-				-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
+			if self.itemCount > 0 then
+				for i = 0, table.getn(self.inventory), 1 do
+					local currentItem = self.inventory[i]
+					currentItem.itemImage:SetVisible(false)
+					-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
+				end
+				
+				self.inventoryIsVisible = false
 			end
-			
-			self.inventoryIsVisible = false
 		end
 	end
 	
@@ -54,12 +56,19 @@ function OnAfterSceneLoaded(self)
 						local middle = math.floor( (xUpperBound + xLowerBound) / 2)
 						
 						if xPos >= middle and xPos < middle + self.xSize then
-							local index = math.ceil(xPos / self.xSize) - 1
+							local index = math.floor(xPos / self.xSize)
 							local item = self.inventory[index]
 							item:UseCallback(self)
 							item.itemImage:SetVisible(false)
-							table.remove(self.inventory, index)
-							self.ToggleInventory(self)
+							if self.itemCount == 1 then
+								self.inventory = {}
+								self.itemCount = 0
+							else
+								table.remove(self.inventory, index)
+								self.ToggleInventory(self)
+								self.itemCount = self.itemCount - 1
+							end
+							
 							return true
 						elseif xPos < middle then
 							xUpperBound = middle
@@ -76,7 +85,18 @@ function OnAfterSceneLoaded(self)
 end
 
 function AddNewItem(self, newItem)
-	if not (self.itemCount >= self.maxItems) then
+	local notInInventory = true
+	if self.itemCount > 0 then
+		for i = 0, table.getn(self.inventory), 1 do
+			local item = self.inventory[i]
+			if newItem == item then
+				notInInventory = false
+			end
+		end
+	end
+
+
+	if notInInventory and not (self.itemCount >= self.maxItems) then
 		if self.itemCount > 0 then
 			self.inventory[self.itemCount] = newItem
 		else
