@@ -111,6 +111,12 @@ function NavigatePath(self)
 		
 		if self.pathProgress == self.pathLength then
 			self.path = nil
+			
+			if LookForPlayer(self) then
+				FindPathToPlayer(self)
+			else
+				FindNextWaypoint(self)
+			end
 		else
 			local point = AI:GetPointOnPath(self.path, self.pathProgress)
 			local dir = point - self:GetPosition()
@@ -168,56 +174,59 @@ function LookForPlayer(self)
 end
 
 function FindNextWaypoint(self)
-	local myPosition = self:GetPosition()
-	local distance = math.huge
-		
-	local numWaypoints = table.getn(G.waypoints)
-		
-	if numWaypoints > 0 then
-		local closestPoint = nil
-		for i =1, numWaypoints, 1 do
-			local waypoint = G.waypoints[i]
-			local currentDist = myPosition:getDistanceTo(waypoint:GetPosition())
+	if self.path == nil then
+		local myPosition = self:GetPosition()
+		local distance = math.huge
 			
-			local tableSize = table.getn(self.lastWaypoints)
+		local numWaypoints = table.getn(G.waypoints)
 			
-			--terrible block of code, will fix later
-			if tableSize == 0 then
-				if currentDist < distance then
-					closestPoint = waypoint
-					distance = currentDist
-				end
-			else
-				local notInList = true
-				for i = 0, tableSize, 1 do
-					local prevPoint
+		if numWaypoints > 0 then
+			local closestPoint = nil
+			for i =1, numWaypoints, 1 do
+				local waypoint = G.waypoints[i]
+				local currentDist = myPosition:getDistanceTo(waypoint:GetPosition())
+				
+				local tableSize = table.getn(self.lastWaypoints)
+				
+				--terrible block of code, will fix later
+				if tableSize == 0 then
+					if currentDist < distance then
+						closestPoint = waypoint
+						distance = currentDist
+					end
+				else
+					local notInList = true
+					for i = 0, tableSize, 1 do
+						local prevPoint = self.lastWaypoints[i]
+						
+						if waypoint == prevPoint then
+							notInList = false
+						end
+					end
 					
-					if waypoint == prevPoint then
-						notInList = false
+					if notInList and currentDist < distance then
+						closestPoint = waypoint
+						distance = currentDist
 					end
 				end
-				
-				if notInList and currentDist < distance then
-					closestPoint = waypoint
-					distance = currentDist
-				end
 			end
-		end
+				
+			local numPoints = table.getn(self.lastWaypoints)
+			if numPoints > self.maxPrevPoints then
+				table.remove(self.lastWaypoints, 1)
+			end
 			
-		local numPoints = table.getn(self.lastWaypoints)
-		if numPoints > self.maxPrevPoints then
-			table.remove(self.lastWaypoints, numPoints)
-		end
-		
-		table.insert(self.lastWaypoints, closestPoint) 
-		
-		local path = AI:FindPath(myPosition, closestPoint:GetPosition(), 20)
-		if path ~= nil then
-			local numPoints = table.getn(path)
-			local endPoint = path[numPoints]
-			self.path = path
-			self.pathProgress = 0
-			self.pathLength = AI:GetPathLength(path)
+			-- table.insert(self.lastWaypoints, closestPoint)
+			self.lastWaypoints[#self.lastWaypoints + 1] = closestPoint
+			
+			local path = AI:FindPath(myPosition, closestPoint:GetPosition(), 20)
+			if path ~= nil then
+				local numPoints = table.getn(path)
+				local endPoint = path[numPoints]
+				self.path = path
+				self.pathProgress = 0
+				self.pathLength = AI:GetPathLength(path)
+			end
 		end
 	end
 end
