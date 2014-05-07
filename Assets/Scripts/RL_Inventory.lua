@@ -20,7 +20,7 @@ function OnAfterSceneLoaded(self)
 					currentItem.itemImage:SetVisible(true)
 					currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 					currentItem.itemImage:SetTargetSize(xSize, xSize)
-					currentItem.itemImage:SetPos(i * xSize, G.h * 2 / 3)
+					currentItem.itemImage:SetPos(i * xSize, G.h * 3 / 4)
 				end
 				
 				self.isVisible = true

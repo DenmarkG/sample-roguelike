@@ -13,10 +13,20 @@ function OnAfterSceneLoaded(self)
 	--#todo move these to onExpose once launch ready
 	--fireball variables
 	self.fireballSpeed = 25
-	self.fireballDamage = -25
+	self.fireballDamage = 25
 	self.fireballRange = 500
-	self.fireballManaCost = 10
+	self.fireballManaCost = 15
 	self.fireballParticlePath = "Particles\\RL_Fireball.xml"
+	
+	self.ModifyMana = function (self, amount)
+		self.currentMana = self.currentMana + amount
+		
+		if self.currentMana > self.maxMana then
+			self.currentMana = self.maxMana
+		elseif self.currentMana < 0 then
+			self.currentMana = 0
+		end
+	end
 end
 
 function OnThink(self)
@@ -91,16 +101,6 @@ function CreateNewFireball(owner, direction)
 	
 	--add the new fireball to the array
 	table.insert(owner.spellsInPlay, newFireball)
-end
-
-function ModifyMana(self, amount)
-	self.currentMana = self.currentMana + amount
-	
-	if self.currentMana > self.maxMana then
-		self.currentMana = self.maxMana
-	elseif self.currentMana < 0 then
-		self.currentMana = 0
-	end
 end
 
 function GetSpawnPoint(self)

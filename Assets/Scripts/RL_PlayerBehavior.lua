@@ -281,9 +281,12 @@ end
 function CastSpell(self)
 	StopRotation(self)
 	if self.numSpellsInPlay < self.maxSpellCount then
-		local myDir = -self:GetObjDir_Right()
-		self.CreateFireball(self, myDir)
-		StartCoolDown(self, self.spellCoolDown)
+		if self.currentMana - self.fireballManaCost >= 0 then
+			local myDir = -self:GetObjDir_Right()
+			self.CreateFireball(self, myDir)
+			self:ModifyMana(-self.fireballManaCost)
+			StartCoolDown(self, self.spellCoolDown)
+		end
 	end
 end
 
@@ -303,7 +306,8 @@ function StartCoolDown(self, coolDownTime)
 end
 
 function ShowPlayerStats(self)
-	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_WHITE, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_GREEN, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
 end
 
 function RotateXY(x, y, z, angle)
