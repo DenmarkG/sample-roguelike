@@ -22,6 +22,7 @@ function OnAfterSceneLoaded(self)
 	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
 	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
+	self.map:MapTrigger("RUN", "KEYBOARD", "CT_KB_LSHIFT")
 	--Interaction controls:
 	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
 	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
@@ -33,7 +34,9 @@ function OnAfterSceneLoaded(self)
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
 	--set up the tuning values
-	self.moveSpeed = 180
+	self.moveSpeed = 0
+	self.walkSpeed = 2.5
+	self.runSpeed = 5
 	self.rotSpeed = 90 --positive rotates left
 	self.maxSpellCount = 3
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
@@ -66,9 +69,6 @@ function OnBeforeSceneUnloaded(self)
 end
 
 function OnThink(self)
-	Debug:PrintLine("count: "..table.getn(self.inventory) )
-	Debug:PrintLine("real : "..self.itemCount)
-	
 	-- for i = 1, table.getn(self.inventory), 1 do
 		-- local item = self.inventory[i]
 		-- Debug:PrintLine("item: " .. item.name)
@@ -83,11 +83,19 @@ function OnThink(self)
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		
+		local run = self.map:GetTrigger("RUN") > 0
+		
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
 		
 		if self.currentState ~= self.states.attacking then
 			local magic = self.map:GetTrigger("MAGIC") > 0
 			local melee = self.map:GetTrigger("MELEE") > 0
+			
+			if run then
+				self.moveSpeed = self.runSpeed
+			else
+				self.moveSpeed = self.walkSpeed
+			end
 			
 			if self.timeToNextAttack <= 0 then
 				self.timeToNextAttack = 0
@@ -172,10 +180,13 @@ end
 function NavigatePath(self)
 	if self.currentState == self.states.idle then		
 		self.behaviorComponent:TriggerEvent("MoveStart")
+		
 		self.currentState = self.states.walking
 	end
 	
-	RotateToTarget(self, self.nextPoint)
+	self.behaviorComponent:SetFloatVar("AnimMoveSpeed", self.moveSpeed)
+	
+	
 	
 	--check the distance to the next point
 	local distanceToNext = self:GetPosition():getDistanceTo(self.nextPoint)
@@ -185,6 +196,10 @@ function NavigatePath(self)
 		self.pathProgress = self.pathProgress + (self.lastPoint:getDistanceTo(self.nextPoint) )
 		self.lastPoint = self.nextPoint
 		self.nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
+		
+		if self.nextPoint ~= nil then
+			RotateToTarget(self, self.nextPoint)
+		end
 	end
 	
 	--local myPos = self:GetPosition()
@@ -214,10 +229,13 @@ function UpdateMouse(self, xPos, yPos)
 end
 
 function RotateToTarget(self, target)
-	local deadZone = 20
+	local deadZone = 25
+	
+	--the forward direction was obtained this was because the object was exported facing the wrong direction
+	--normally, you would just use self:GetObjDir() to get the forward direction
 	local myDir = -self:GetObjDir_Right()
-	local myPos = self:GetPosition()
 	local leftDir = self:GetObjDir()
+	local myPos = self:GetPosition()
 	local sign = 1 
 	local targetDir = (target - myPos):getNormalized()
 	local angle = myDir:getAngleBetween(targetDir) -- (90 * sign)
@@ -228,7 +246,7 @@ function RotateToTarget(self, target)
 	end
 	
 	if math.abs(angle) > deadZone then
-		self.behaviorComponent:SetFloatVar("RotationSpeed", self.rotSpeed * sign * angle)
+		self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
 	else
 		-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 		StopRotation(self)

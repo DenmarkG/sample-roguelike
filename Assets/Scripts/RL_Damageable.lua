@@ -8,10 +8,6 @@ function OnAfterSceneLoaded(self)
 	self.currentHealth = 50
 end
 
-function OnThink(self)
-	--Debug:PrintLine(self:GetKey() .. " health: " .. self.currentHealth)
-end
-
 --modifies the current health amount
 --positive numbers will heal the character up to the max health amount
 --negative numbers will hurt the player until 0 and the character is KO'd
@@ -21,7 +17,7 @@ function ModifyCurrentHealth(self, amount)
 	
 	if self.currentHealth > self.maxHealth then
 		self.currentHealth = self.maxHealth
-	elseif self.currentHealth < 0 then
+	elseif self.currentHealth <= 0 then
 		self.currentHealth = 0
 		self.isAlive = false
 	end

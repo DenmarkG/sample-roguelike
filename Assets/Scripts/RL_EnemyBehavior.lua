@@ -78,26 +78,28 @@ function FindPathToPlayer(self)
 	end
 	
 	--if out of attack range, move closer
-	if  distance > self.maxAttackDistance then
-		--if out of range, find path and move closer to player
-		local path = AI:FindPath(myPosition, playerPosition, 20)
-		if path ~= nil then
-			local numPoints = table.getn(path)
-			local endPoint = path[numPoints]
-			self.path = path
-			self.pathProgress = 0
-			self.pathLength = AI:GetPathLength(path)
+	if G.player.isAlive then
+		if  distance > self.maxAttackDistance then
+			--if out of range, find path and move closer to player
+			local path = AI:FindPath(myPosition, playerPosition, 20)
+			if path ~= nil then
+				local numPoints = table.getn(path)
+				local endPoint = path[numPoints]
+				self.path = path
+				self.pathProgress = 0
+				self.pathLength = AI:GetPathLength(path)
+			else
+				Debug:PrintLine("No PathFound")
+			end
+		elseif distance < self.maxAttackDistance and distance > self.minAttackDistance then
+			if self.timeToNextAttack <= 0 then
+				self.timeToNextAttack = 0
+				ClearPath(self)
+				PerformMelee(self)
+			end		
 		else
-			Debug:PrintLine("No PathFound")
-		end
-	elseif distance < self.maxAttackDistance and distance > self.minAttackDistance then
-		if self.timeToNextAttack <= 0 then
-			self.timeToNextAttack = 0
 			ClearPath(self)
-			PerformMelee(self)
-		end		
-	else
-		ClearPath(self)
+		end
 	end
 end
 
@@ -272,7 +274,7 @@ function CheckForAttackHit(self)
 			if result ~= nil and result["HitType"] == "Unknown" then
 				--hitObj.ModifyHealth(hitObj, -self.meleeDamage)
 				G.player:ModifyHealth(-self.meleeDamage)
-				Debug:PrintLine("Player Hit!")
+				--Debug:PrintLine("Player Hit!")
 				break
 			end
 		end

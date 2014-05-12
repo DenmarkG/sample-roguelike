@@ -202,7 +202,7 @@
                     <anyType xsi:type="xsd:string">Viewport.UpAxis</anyType>
                 </Keys>
                 <Values>
-                    <anyType xsi:type="xsd:string">111111101001010000011</anyType>
+                    <anyType xsi:type="xsd:string">1111111110101010000011</anyType>
                     <anyType xsi:type="xsd:string">1101000</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="ArrayOfString" />
@@ -215,14 +215,14 @@
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="xsd:float">1000</anyType>
                     <anyType xsi:type="xsd:float">45</anyType>
-                    <anyType xsi:type="xsd:float">-0.9351555</anyType>
-                    <anyType xsi:type="xsd:float">-1.54692721</anyType>
+                    <anyType xsi:type="xsd:float">-0.9351544</anyType>
+                    <anyType xsi:type="xsd:float">-1.54693222</anyType>
                     <anyType xsi:type="xsd:float">1.18968642</anyType>
                     <anyType xsi:type="xsd:float">0.1</anyType>
                     <anyType xsi:type="xsd:string">RL_Character.hkc</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
-                    <anyType xsi:type="xsd:float">0.0562713146</anyType>
-                    <anyType xsi:type="xsd:float">-0.0318434238</anyType>
+                    <anyType xsi:type="xsd:float">0.05627135</anyType>
+                    <anyType xsi:type="xsd:float">-0.0318431854</anyType>
                     <anyType xsi:type="xsd:float">0.500322759</anyType>
                     <anyType xsi:type="xsd:string">hkTrackingCamera</anyType>
                     <anyType xsi:type="hkRefMakerOfhkCharacter">

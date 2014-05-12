@@ -351,7 +351,9 @@
             <UserControlledPoint>0</UserControlledPoint>
             <ClipDuration>0</ClipDuration>
             <PlaybackSpeedMultiplierVariable>
-                <MangledTargetNames />
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkFloatVariable:AnimMoveSpeed:ParentNodes</string>
+                </MangledTargetNames>
             </PlaybackSpeedMultiplierVariable>
             <CropStartVariable>
                 <MangledTargetNames />
@@ -1345,5 +1347,21 @@
             <UseRelativeToEnd>false</UseRelativeToEnd>
             <UseAcyclic>false</UseAcyclic>
         </hkEventTrigger>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkFloatVariable" name="AnimMoveSpeed" priority="1">
+        <hkFloatVariable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkFloatVariable:AnimMoveSpeed:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkFloatVariable:AnimMoveSpeed:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <VariableType>Float</VariableType>
+            <MinValue>2.5</MinValue>
+            <MaxValue>5</MaxValue>
+            <DefaultValue>2.5</DefaultValue>
+            <Global>false</Global>
+        </hkFloatVariable>
     </HBT_ITEM>
 </HBT>
