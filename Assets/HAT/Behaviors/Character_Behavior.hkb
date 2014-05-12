@@ -371,7 +371,9 @@
                 <MangledTargetNames />
             </ClipDurationVariable>
             <ClipEventTriggers>
-                <MangledTargetNames />
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger02:ParentNodes</string>
+                </MangledTargetNames>
             </ClipEventTriggers>
             <PlaybackSpeedMultiplierCharprop>
                 <MangledTargetNames />
@@ -405,11 +407,12 @@
                 <MangledName>__local__:HavokTools.hkState:RL_Character_Walking.hkt:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>346</X>
-            <Y>304</Y>
+            <X>282</X>
+            <Y>305</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Idle_BasicAnimationConfig.hkt_to_RL_Character_Walking.hkt:StateTo</string>
+                    <string>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:StateTo</string>
                 </MangledTargetNames>
             </TransitionsIn>
             <TransitionsOut>
@@ -653,6 +656,7 @@
                     <string>__local__:HavokTools.hkState:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</string>
                     <string>__local__:HavokTools.hkState:RL_Character_Walking.hkt:ParentNodes</string>
                     <string>__local__:HavokTools.hkState:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkState:WalkingAttack:ParentNodes</string>
                 </MangledTargetNames>
             </States>
             <Transitions>
@@ -662,6 +666,7 @@
                     <string>__local__:HavokTools.hkTransition:RL_Character_Idle_BasicAnimationConfig.hkt_to_RL_Character_Attack_Attack.hkt:ParentNodes</string>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Walking.hkt_to_RL_Character_Attack_Attack.hkt:ParentNodes</string>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Attack_Attack.hkt_to_RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:ParentNodes</string>
                 </MangledTargetNames>
             </Transitions>
             <StartState>
@@ -1023,12 +1028,11 @@
                 <MangledName>__local__:HavokTools.hkState:RL_Character_Attack_Attack.hkt:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>-23</X>
+            <X>-22</X>
             <Y>303</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Idle_BasicAnimationConfig.hkt_to_RL_Character_Attack_Attack.hkt:StateTo</string>
-                    <string>__local__:HavokTools.hkTransition:RL_Character_Walking.hkt_to_RL_Character_Attack_Attack.hkt:StateTo</string>
                 </MangledTargetNames>
             </TransitionsIn>
             <TransitionsOut>
@@ -1363,5 +1367,428 @@
             <DefaultValue>2.5</DefaultValue>
             <Global>false</Global>
         </hkFloatVariable>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkClip" name="RL_Character_Attack_Attack.hkt00" priority="50">
+        <hkClip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <AnimationCharacterProperty>
+                <MangledTargetNames />
+            </AnimationCharacterProperty>
+            <Animation>
+                <MangledTargetNames>
+                    <string>_RL_Character_Attack_Attack_hkt_:HavokTools.hkAnimation:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                </MangledTargetNames>
+            </Animation>
+            <AnimationBundleName>Default_Bundle</AnimationBundleName>
+            <PlaybackMode>MODE_LOOPING</PlaybackMode>
+            <DisableUseAnnotations>false</DisableUseAnnotations>
+            <ShowAnnotations>true</ShowAnnotations>
+            <ContinueMotionAtEnd>false</ContinueMotionAtEnd>
+            <SyncHalfCycleInPingPong>false</SyncHalfCycleInPingPong>
+            <FlagMirror>false</FlagMirror>
+            <ForceDensePose>false</ForceDensePose>
+            <PlaybackSpeedMultiplier>1</PlaybackSpeedMultiplier>
+            <CropStart>0</CropStart>
+            <CropEnd>0</CropEnd>
+            <StartTime>0</StartTime>
+            <UserControlledPoint>0</UserControlledPoint>
+            <ClipDuration>0</ClipDuration>
+            <PlaybackSpeedMultiplierVariable>
+                <MangledTargetNames />
+            </PlaybackSpeedMultiplierVariable>
+            <CropStartVariable>
+                <MangledTargetNames />
+            </CropStartVariable>
+            <CropEndVariable>
+                <MangledTargetNames />
+            </CropEndVariable>
+            <StartTimeVariable>
+                <MangledTargetNames />
+            </StartTimeVariable>
+            <UserControlledPointVariable>
+                <MangledTargetNames />
+            </UserControlledPointVariable>
+            <ClipDurationVariable>
+                <MangledTargetNames />
+            </ClipDurationVariable>
+            <ClipEventTriggers>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger03:ParentNodes</string>
+                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger04:ParentNodes</string>
+                </MangledTargetNames>
+            </ClipEventTriggers>
+            <PlaybackSpeedMultiplierCharprop>
+                <MangledTargetNames />
+            </PlaybackSpeedMultiplierCharprop>
+            <CropStartCharprop>
+                <MangledTargetNames />
+            </CropStartCharprop>
+            <CropEndCharprop>
+                <MangledTargetNames />
+            </CropEndCharprop>
+            <StartTimeCharprop>
+                <MangledTargetNames />
+            </StartTimeCharprop>
+            <UserControlledPointCharprop>
+                <MangledTargetNames />
+            </UserControlledPointCharprop>
+            <ClipDurationCharprop>
+                <MangledTargetNames />
+            </ClipDurationCharprop>
+            <ClipEvents>
+                <MangledTargetNames />
+            </ClipEvents>
+        </hkClip>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkBlend" name="Blend00" priority="50">
+        <hkBlend xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkBlend:Blend00:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkBlend:Blend00:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <FlagParametricBlend>false</FlagParametricBlend>
+            <FlagParametricBlendCyclic>false</FlagParametricBlendCyclic>
+            <MinCyclicBlendParameter>0</MinCyclicBlendParameter>
+            <MaxCyclicBlendParameter>1</MaxCyclicBlendParameter>
+            <BlendParameter>1</BlendParameter>
+            <BlendParameterVariable>
+                <MangledTargetNames />
+            </BlendParameterVariable>
+            <BlendParameterCharacterProperty>
+                <MangledTargetNames />
+            </BlendParameterCharacterProperty>
+            <ChildNodes>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:RL_Character_Walking.hkt:ParentNodes</string>
+                </MangledTargetNames>
+            </ChildNodes>
+            <WeightCharprops>
+                <MangledTargetNames>
+                    <string xsi:nil="true" />
+                    <string xsi:nil="true" />
+                </MangledTargetNames>
+            </WeightCharprops>
+            <BoneWeightCharprops>
+                <MangledTargetNames>
+                    <string xsi:nil="true" />
+                    <string xsi:nil="true" />
+                </MangledTargetNames>
+            </BoneWeightCharprops>
+            <WeightVariables>
+                <MangledTargetNames>
+                    <string xsi:nil="true" />
+                    <string xsi:nil="true" />
+                </MangledTargetNames>
+            </WeightVariables>
+            <WeightConstants>
+                <float>1</float>
+                <float>1</float>
+            </WeightConstants>
+            <UseCustomBoneWeights>
+                <boolean>true</boolean>
+                <boolean>true</boolean>
+            </UseCustomBoneWeights>
+            <CustomBoneWeights>
+                <ArrayOfFloat>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.25</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>1</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                </ArrayOfFloat>
+                <ArrayOfFloat>
+                    <float>1</float>
+                    <float>1</float>
+                    <float>1</float>
+                    <float>1</float>
+                    <float>0.75</float>
+                    <float>0.75</float>
+                    <float>0.75</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0</float>
+                    <float>1</float>
+                    <float>1</float>
+                    <float>1</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0.5</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                </ArrayOfFloat>
+            </CustomBoneWeights>
+            <MotionWeights>
+                <float>0</float>
+                <float>1</float>
+            </MotionWeights>
+            <SyncMasterIndex>-1</SyncMasterIndex>
+            <SyncDurations>true</SyncDurations>
+            <DontDeactivateChildrenWithZeroWeights>false</DontDeactivateChildrenWithZeroWeights>
+            <SmoothGeneratorWeights>false</SmoothGeneratorWeights>
+            <ForceDensePose>false</ForceDensePose>
+            <SubtractLastChild>false</SubtractLastChild>
+        </hkBlend>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkState" name="WalkingAttack" priority="50">
+        <hkState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkState:WalkingAttack:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkState:WalkingAttack:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <X>191</X>
+            <Y>470</Y>
+            <TransitionsIn>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkTransition:RL_Character_Walking.hkt_to_RL_Character_Attack_Attack.hkt:StateTo</string>
+                </MangledTargetNames>
+            </TransitionsIn>
+            <TransitionsOut>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:StateFrom</string>
+                </MangledTargetNames>
+            </TransitionsOut>
+            <ChildNode>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkBlend:Blend00:ParentNodes</string>
+                </MangledTargetNames>
+            </ChildNode>
+            <StateID>4</StateID>
+            <StateProbability>1</StateProbability>
+            <W>100</W>
+            <H>25</H>
+            <NestedTransitionsIn>
+                <MangledTargetNames />
+            </NestedTransitionsIn>
+            <NestedTransitionsOut>
+                <MangledTargetNames />
+            </NestedTransitionsOut>
+            <EnterNotifyEvents>
+                <MangledTargetNames />
+            </EnterNotifyEvents>
+            <ExitNotifyEvents>
+                <MangledTargetNames />
+            </ExitNotifyEvents>
+            <EnterNotifyEventPayloads>
+                <MangledTargetNames />
+            </EnterNotifyEventPayloads>
+            <ExitNotifyEventPayloads>
+                <MangledTargetNames />
+            </ExitNotifyEventPayloads>
+        </hkState>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEvent" name="TestSync" priority="1">
+        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEvent:TestSync:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEvent:TestSync:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <CustomNotes />
+            <Global>false</Global>
+            <Silent>false</Silent>
+            <SyncPoint>true</SyncPoint>
+        </hkEvent>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger02" priority="50">
+        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger02:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger02:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:TestSync:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <EventPayload>
+                <MangledTargetNames />
+            </EventPayload>
+            <Time>0.233333334</Time>
+            <UseRelativeToEnd>false</UseRelativeToEnd>
+            <UseAcyclic>false</UseAcyclic>
+        </hkEventTrigger>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger03" priority="50">
+        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger03:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger03:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:TestSync:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <EventPayload>
+                <MangledTargetNames />
+            </EventPayload>
+            <Time>0.8666667</Time>
+            <UseRelativeToEnd>false</UseRelativeToEnd>
+            <UseAcyclic>false</UseAcyclic>
+        </hkEventTrigger>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkTransition" name="WalkingAttack_to_RL_Character_Walking.hkt" priority="50">
+        <hkTransition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <TransitionEffect>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkCustomTransitionEffect:DefaultBlendingTransitionEffect:ParentNodes</string>
+                </MangledTargetNames>
+            </TransitionEffect>
+            <EffectType>Deprecated</EffectType>
+            <EventMode>Default</EventMode>
+            <SelfTransitionMode>ContinueIfCyclicBlendIfAcyclic</SelfTransitionMode>
+            <Duration>0.1</Duration>
+            <ToStateBeginAtTime>0</ToStateBeginAtTime>
+            <SyncLocalTime>false</SyncLocalTime>
+            <IgnoreFromWorldFromModel>false</IgnoreFromWorldFromModel>
+            <EndMode>None</EndMode>
+            <ChildNode>
+                <MangledTargetNames />
+            </ChildNode>
+            <BlendInDuration>0.1</BlendInDuration>
+            <BlendOutDuration>0.1</BlendOutDuration>
+            <CallbackString />
+            <EnableCallback>false</EnableCallback>
+            <StateFrom>
+                <MangledName>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:StateFrom</MangledName>
+            </StateFrom>
+            <StateTo>
+                <MangledName>__local__:HavokTools.hkTransition:WalkingAttack_to_RL_Character_Walking.hkt:StateTo</MangledName>
+            </StateTo>
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:AttackStop:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <CurvePoint1>0.33</CurvePoint1>
+            <CurvePoint2>0.66</CurvePoint2>
+            <Disabled>false</Disabled>
+            <DoNotInterruptWhilePlaying>false</DoNotInterruptWhilePlaying>
+            <InterruptionPriority>0</InterruptionPriority>
+            <UseFromStateDuringTransition>false</UseFromStateDuringTransition>
+            <TriggerWindowBeginEvent>
+                <MangledTargetNames />
+            </TriggerWindowBeginEvent>
+            <TriggerWindowEndEvent>
+                <MangledTargetNames />
+            </TriggerWindowEndEvent>
+            <InitiateWindowBeginEvent>
+                <MangledTargetNames />
+            </InitiateWindowBeginEvent>
+            <InitiateWindowEndEvent>
+                <MangledTargetNames />
+            </InitiateWindowEndEvent>
+            <TriggerWindowBeginTime>-1</TriggerWindowBeginTime>
+            <TriggerWindowEndTime>-1</TriggerWindowEndTime>
+            <InitiateWindowBeginTime>-1</InitiateWindowBeginTime>
+            <InitiateWindowEndTime>-1</InitiateWindowEndTime>
+            <NestedStateFrom />
+            <NestedStateTo />
+            <IsGlobalWildcard>false</IsGlobalWildcard>
+            <IsLocalWildcard>false</IsLocalWildcard>
+            <DisallowRandomTransition>false</DisallowRandomTransition>
+            <DisallowReturnToPreviousState>false</DisallowReturnToPreviousState>
+            <AllowSelfTransition>false</AllowSelfTransition>
+            <AbutAtEndOfFromState>false</AbutAtEndOfFromState>
+            <Multiple>false</Multiple>
+            <DefaultMultiple>false</DefaultMultiple>
+            <Condition>
+                <MangledTargetNames />
+            </Condition>
+        </hkTransition>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger04" priority="50">
+        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger04:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger04:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:AttackStop:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <EventPayload>
+                <MangledTargetNames />
+            </EventPayload>
+            <Time>1</Time>
+            <UseRelativeToEnd>false</UseRelativeToEnd>
+            <UseAcyclic>false</UseAcyclic>
+        </hkEventTrigger>
     </HBT_ITEM>
 </HBT>

@@ -39,6 +39,7 @@ function GeneratePickupProperties(self)
 	local imagePath = self.healthTexturePath
 	self.item.itemImage = Game:CreateScreenMask(0, 0, "".. imagePath)
 	self.item.itemImage:SetVisible(false)
+	self.item.itemImage:SetZVal(0)
 end
 
 function AddHealth(self, character)

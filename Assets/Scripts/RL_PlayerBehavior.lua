@@ -37,11 +37,14 @@ function OnAfterSceneLoaded(self)
 	self.moveSpeed = 0
 	self.walkSpeed = 2.5
 	self.runSpeed = 5
-	self.rotSpeed = 90 --positive rotates left
 	self.maxSpellCount = 3
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	self.timeToNextAttack = 0 
+	
+	self.attackAngle = 60
+	self.attackRange = 70
+	self.meleeDamage = 10
 	
 	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.validMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
@@ -49,6 +52,7 @@ function OnAfterSceneLoaded(self)
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
+	self.mouseCursor:SetZVal(5)
 	
 	self.goalRadius = 50 --how far the character should stop from a goal point
 	
@@ -57,6 +61,7 @@ function OnAfterSceneLoaded(self)
 	self.states.idle = "idle"
 	self.states.attacking = "attacking"
 	
+	self.prevState = nil
 	self.currentState = self.states.idle
 	
 	self.isAlive = true
@@ -106,30 +111,30 @@ function OnThink(self)
 					PerformMelee(self)
 				end
 			end
-			
-			if self.map:GetTrigger("CLICK") > 0 then
-				local itemUsed = false
-				if self.inventoryIsVisible then
-					itemUsed = self.InventoryItemClicked(self, x, y)
-				end
-				
-				if not itemUsed then
-					UpdateTargetPosition(self, x, y)
-				end
-			end
-			
-			--follow the path if one exists
-			if self.path ~= nil then
-				NavigatePath(self)
-			end
 		else
 			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug
 			local attackStopped = not (self.timeToNextAttack > 0)
 			
 			if attackStopped then
 				-- Debug:PrintLine("AttackStopped!")
-				self.currentState = self.states.idle
+				self.currentState = self.prevState
 			end
+		end
+		
+		if self.map:GetTrigger("CLICK") > 0 then
+			local itemUsed = false
+			if self.inventoryIsVisible then
+				itemUsed = self.InventoryItemClicked(self, x, y)
+			end
+			
+			if not itemUsed then
+				UpdateTargetPosition(self, x, y)
+			end
+		end
+		
+		--follow the path if one exists
+		if self.path ~= nil then
+			NavigatePath(self)
 		end
 		
 		--update the mouse position on screen
@@ -181,12 +186,11 @@ function NavigatePath(self)
 	if self.currentState == self.states.idle then		
 		self.behaviorComponent:TriggerEvent("MoveStart")
 		
+		self.prevState = self.currentState
 		self.currentState = self.states.walking
 	end
 	
 	self.behaviorComponent:SetFloatVar("AnimMoveSpeed", self.moveSpeed)
-	
-	
 	
 	--check the distance to the next point
 	local distanceToNext = self:GetPosition():getDistanceTo(self.nextPoint)
@@ -209,6 +213,7 @@ function NavigatePath(self)
 	if self.pathProgress >= self.pathLength then
 		self.behaviorComponent:TriggerEvent("MoveStop")
 		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+		self.prevState = self.currentState
 		self.currentState = self.states.idle
 		StopRotation(self)
 		ClearPath(self)
@@ -239,16 +244,21 @@ function RotateToTarget(self, target)
 	local sign = 1 
 	local targetDir = (target - myPos):getNormalized()
 	local angle = myDir:getAngleBetween(targetDir) -- (90 * sign)
-		
+	
 	if leftDir:dot(targetDir) < 0 then
 		--Debug:PrintLine("I'm on happy side!")
 		sign = -1
 	end
 	
-	if math.abs(angle) > deadZone then
-		self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
+	local absAngle = math.abs(angle)
+	
+	if absAngle > deadZone then
+		if myDir:dot(targetDir) > 0 then
+			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
+		else
+			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360)
+		end
 	else
-		-- self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 		StopRotation(self)
 	end	
 	
@@ -260,9 +270,8 @@ function RotateToTarget(self, target)
 end
 
 function PerformMelee(self)
-	StopRotation(self)
-	ClearPath(self)
 	self.behaviorComponent:TriggerEvent("AttackStart")
+	self.prevState = self.currentState
 	self.currentState = self.states.attacking
 	CheckForAttackHit(self)
 	StartCoolDown(self, self.meleeCoolDown)
@@ -271,9 +280,6 @@ end
 function CheckForAttackHit(self)
 	--test ray
 	self.numRays = 5
-	self.attackAngle = 60
-	self.attackRange = 70
-	self.meleeDamage = 10
 	local myDir = -self:GetObjDir_Right() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
