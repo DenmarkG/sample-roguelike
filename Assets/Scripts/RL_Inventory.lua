@@ -16,20 +16,20 @@ function OnAfterSceneLoaded(self)
 		if not self.inventoryIsVisible then
 			-- Debug:PrintLine(""..table.getn(self.inventory) )
 			if self.itemCount > 0 then
-				for i = 0, table.getn(self.inventory), 1 do
+				for i = 1, table.getn(self.inventory), 1 do
 					local currentItem = self.inventory[i]
 					-- Debug:PrintAt(10, G.fontSize * i, ""..currentItem.name, Vision.V_RGBA_GREEN, G.fontPath)
 					currentItem.itemImage:SetVisible(true)
 					currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 					currentItem.itemImage:SetTargetSize(self.xSize, self.xSize)
-					currentItem.itemImage:SetPos(i * self.xSize, self.vertStartPos)
+					currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos)
 				end
 				
 				self.inventoryIsVisible = true
 			end
 		else
 			if self.itemCount > 0 then
-				for i = 0, table.getn(self.inventory), 1 do
+				for i = 1, table.getn(self.inventory), 1 do
 					local currentItem = self.inventory[i]
 					currentItem.itemImage:SetVisible(false)
 					-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
@@ -57,14 +57,14 @@ function OnAfterSceneLoaded(self)
 						
 						if xPos >= middle and xPos < middle + self.xSize then
 							local index = math.floor(xPos / self.xSize)
-							local item = self.inventory[index]
+							local item = self.inventory[index + 1]
 							item:UseCallback(self)
 							item.itemImage:SetVisible(false)
 							if self.itemCount == 1 then
 								self.inventory = {}
 								self.itemCount = 0
 							else
-								table.remove(self.inventory, index)
+								table.remove(self.inventory, index + 1)
 								self.ToggleInventory(self)
 								self.itemCount = self.itemCount - 1
 							end
@@ -98,9 +98,9 @@ function AddNewItem(self, newItem)
 
 	if notInInventory and not (self.itemCount >= self.maxItems) then
 		if self.itemCount > 0 then
-			self.inventory[self.itemCount] = newItem
+			self.inventory[self.itemCount + 1] = newItem
 		else
-			self.inventory[0] = newItem
+			self.inventory[1] = newItem
 		end
 		
 		self.itemCount = self.itemCount + 1

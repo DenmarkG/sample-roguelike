@@ -67,11 +67,12 @@ end
 
 function OnThink(self)
 	Debug:PrintLine("count: "..table.getn(self.inventory) )
+	Debug:PrintLine("real : "..self.itemCount)
 	
-	for i = 1, table.getn(self.inventory), 1 do
-		local item = self.inventory[i]
-		Debug:PrintLine("item: " .. item.name)
-	end
+	-- for i = 1, table.getn(self.inventory), 1 do
+		-- local item = self.inventory[i]
+		-- Debug:PrintLine("item: " .. item.name)
+	-- end
 	
 	if not G.gameOver  and self.isAlive then
 	
