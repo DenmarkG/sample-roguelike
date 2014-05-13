@@ -23,9 +23,6 @@ function OnAfterSceneLoaded(self)
 	
 	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
-	
-	--set the gamestate
-	G.gameOver = false
 end
 
 function OnBeforeSceneUnloaded(self)

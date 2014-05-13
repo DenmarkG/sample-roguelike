@@ -40,6 +40,7 @@ models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchD
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	Particles/SmokeSequence_A.dds	sRGB=false
+prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab	
 scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	Textures/Cursor/RL_Cursor_Diffuse_Green.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga	sRGB=false
@@ -68,6 +69,7 @@ textures/potions/rl_healthpotion_diffuse.tga	Textures/Potions/RL_HealthPotion_DI
 textures/potions/rl_manapotion_diffuse.tga	Textures/Potions/RL_ManaPotion_DIFFUSE.tga	sRGB=false
 textures/potions/rl_powerpotion_diffuse.tga	Textures/Potions/RL_PowerPotion_DIFFUSE.tga	sRGB=false
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
+textures/rl_gem_diffuse.tga	Textures/RL_Gem_DIFFUSE.tga	sRGB=false
 textures/rl_lootbag_diffuse.tga	Textures/RL_LootBag_DIFFUSE.tga	sRGB=false
 textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
 textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false

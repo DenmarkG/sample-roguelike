@@ -1,5 +1,5 @@
 <root>
     <Materials override="TRUE">
-        <Material name="RL_FlatGreen" diffuse="..\..\Textures\Green_128.tga" ambient="150,150,150,255" specmul="5" specexp="32" parallaxscale="-0.03" parallaxbias="-0.015" lightmapsize="512,512" lightmapID="0" userflags="0" sortingkey="0" alphathreshold="0.25" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" Lighting="LightGrid" pass="Auto" transparency="opaque" lightmapgran="0" />
+        <Material name="RL_Gem" diffuse="..\..\Textures\RL_Gem_DIFFUSE.tga" specularmap="..\..\Textures\RL_Gem_DIFFUSE.tga" ambient="150,150,150,255" specmul="1" specexp="32" parallaxscale="-0.03" parallaxbias="-0.015" lightmapsize="512,512" lightmapID="0" userflags="0" sortingkey="0" alphathreshold="0.25" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" Lighting="LightGrid" pass="Auto" transparency="opaque" lightmapgran="0" />
     </Materials>
 </root>

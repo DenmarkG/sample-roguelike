@@ -13,6 +13,7 @@ end
 
 function OnExpose(self)
 	self.type = "Health or Power or Mana"
+	self.itemValue = 25
 end
 
 function OnObjectEnter(self, otherObj)
@@ -33,7 +34,7 @@ function Deactivate(self)
 end
 
 function GeneratePickupProperties(self)
-	self.item.value = 25
+	self.item.value = self.itemValue
 	local imagePath = ""
 	
 	if self.item.name == "HealthPotion" then

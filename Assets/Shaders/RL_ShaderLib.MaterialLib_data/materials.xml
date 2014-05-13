@@ -1,0 +1,5 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="Gem" userflags="0" diffuse="\Editor\textures\none.tga" Lighting="Lightmapping" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="16" parallaxscale="-0.03" parallaxbias="-0.015" ambient="0,0,0,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+    </Materials>
+</root>

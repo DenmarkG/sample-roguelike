@@ -1,5 +1,8 @@
 -- new script file
 function OnAfterSceneLoaded(self)
+	self.gemsCollected = 0
+	self.AddGem = AddNewGem
+	
 	self.inventory = {}
 	self.itemCount = 0
 	self.maxItems = 8
@@ -82,6 +85,10 @@ function OnAfterSceneLoaded(self)
 			return false
 		end
 	end
+end
+
+function AddNewGem(self)
+	self.gemsCollected = self.gemsCollected + 1
 end
 
 function AddNewItem(self, newItem)

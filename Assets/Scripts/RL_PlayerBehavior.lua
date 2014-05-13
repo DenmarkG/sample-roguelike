@@ -66,10 +66,7 @@ function OnAfterSceneLoaded(self)
 	
 	self.isAlive = true
 	
-	self.ModifyPower = function(value)
-		self.meleeDamage = self.meleeDamage + value
-		self.fireballDamage =  self.fireballDamage + value
-	end
+	self.ModifyPower = ModifyAttackPower
 end
 
 function OnBeforeSceneUnloaded(self)
@@ -350,8 +347,14 @@ function StartCoolDown(self, coolDownTime)
 end
 
 function ShowPlayerStats(self)
-	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_GREEN, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
+	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.GemGoal, Vision.V_RGBA_GREEN, G.fontPath)
+end
+
+function ModifyAttackPower(self, amount)
+	self.meleeDamage = self.meleeDamage + amount
+	self.fireballDamage =  self.fireballDamage + amount
 end
 
 function RotateXY(x, y, z, angle)

@@ -1,9 +1,9 @@
 <root>
     <Resources Version="1" Count="6" PathType="Project">
         <Resource Manager="Animations" Filename="Models/Props/RL_Gem_MOD.anim" Size="1024" />
-        <Resource Manager="FILE" Filename="Models/Props/RL_Gem_MOD.model_data\materials.xml" OwnerRes="4" Size="482" />
+        <Resource Manager="FILE" Filename="Models/Props/RL_Gem_MOD.model_data\materials.xml" OwnerRes="4" Size="529" />
         <Resource Manager="EffectLibs" Filename="Shaders\BaseShaders.ShaderLib" Size="63088" />
-        <Resource Manager="Textures" Filename="Textures\Green_128.tga" CustomInt="1,64" Size="87380" />
+        <Resource Manager="Textures" Filename="Textures\RL_Gem_DIFFUSE.tga" CustomInt="1,64" Size="1398100" />
         <Resource Manager="Static/Dynamic Meshes" Filename="Models/Props/RL_Gem_MOD.model" CustomInt="1,2" Size="56" />
         <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
     </Resources>

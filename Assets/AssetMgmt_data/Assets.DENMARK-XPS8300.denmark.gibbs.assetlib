@@ -691,8 +691,8 @@
             },
             "File": {
                 "Hash": 592976672,
-                "TimeStamp": 1399937658222248800,
-                "LastEditTime": 1399937683589785300
+                "TimeStamp": 1400009994511457600,
+                "LastEditTime": 1400010035073513400
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -706,16 +706,16 @@
                     "Models/Props/RL_Gem_MOD.model_data/materials.xml",
                     "Shaders/BaseShaders.ShaderLib",
                     "Shaders/vMaterial.ShaderLib",
-                    "Textures/Green_128.tga"
+                    "Textures/RL_Gem_DIFFUSE.tga"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 4214634033,
-                "TimeStamp": 1399937658217248300,
-                "LastEditTime": 1399937807369162000
+                "Hash": 1924204443,
+                "TimeStamp": 1400009994506457100,
+                "LastEditTime": 1400010094377443200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -738,9 +738,9 @@
                 ]
             },
             "File": {
-                "Hash": 2846467123,
-                "TimeStamp": 1399937658224249000,
-                "LastEditTime": 1399937683668793200
+                "Hash": 671146150,
+                "TimeStamp": 1400009994512457700,
+                "LastEditTime": 1400010035035509600
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -970,6 +970,26 @@
                 "Height": 1024,
                 "HasAlpha": true,
                 "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Prefabs/HealthLoot.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3692694996,
+                "TimeStamp": 1400006449933874200,
+                "LastEditTime": 1400006451034874200
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1719,6 +1739,33 @@
                 "Hash": 1612482204,
                 "TimeStamp": 1396304458858450000,
                 "LastEditTime": 1396304977680450000
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/RL_Gem_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2248476326,
+                "TimeStamp": 1400010079330938700,
+                "LastEditTime": 1400010094368442300
             },
             "Texture": {
                 "FileFormat": "TGA",

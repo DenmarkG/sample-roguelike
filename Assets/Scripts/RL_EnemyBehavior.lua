@@ -11,7 +11,7 @@ function OnAfterSceneLoaded(self)
 	end
 		
 	--tuning variables
-	self.moveSpeed = 100 --how fast this character should move when chasing the player	
+	self.moveSpeed = 50 --how fast this character should move when chasing the player	
 	self.rotSpeed = 10
 	self.maxAttackDistance = 90 --how close the NPC should get before attacking
 	self.minAttackDistance = 75

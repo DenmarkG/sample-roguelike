@@ -1,0 +1,41 @@
+<root>
+  <info createdby="vForge version 2014.0.5.1" />
+  <header version="0" name="" description="" category="" convertible="True" autosavebinary="False" relativefilenames="False">
+    <parameter path="LootBag.EntityPropertyString" display="" />
+  </header>
+  <thumbnail type="jpg" size="4461">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Cr8Mp9elYkMhJxV2GU4wTQBtxT9B6VL5+VNZccnA55qXzeD9KAPK/iwpHiK2YkYe1Uj/AL7cf0riq7n4qx7r/TrkMu0wNAV7hlcsT9MSL+R/HhqACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK6jQyI7RYiArgByB3Dcg/lXL10FhKo1C5SNcJgbeegHAH60Abe/PU5qQN71UDelShsjpQBaDYpQc+1VlbinK/r1oAslgOmaQOOh496hL8Ub6ALaMRwasROO1Z6tmrETgEE0Aa0LjOSauxy1kRPnGelXIpKANaOSpPMwOvas9JMCnGXg80AcX49eGe1lkZMzx3EaI2TwpR9wx05Kr+X1rha67xfLu+07CRG7Zx/wAC4rkaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK0tMc/bM568H8qzauWJ+cMfXNAHQh8CpVY7apK3NSh80AWw2KduPUVUV+1P3cUAWA2R604PyKrq/OaN3NAFsNU0b56dKohvzqZH6UAaUMmDircb9Ky43wasRyYoA01l460rzcH6VRMnFNabjmgDmvE4/0eQ+4/mK5Wus8Tc2kh+n8xXJ0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVbs6qVatjhQaANJX96kV/eqavUivxQBdV8VIG4qkknSpBJ60AWt2BSh6rb/AENO38igCyjVKj4FU1apFftQBfSTNTJJx1rPEnSniSgC+ZuOtMebiqbS4qvPdpEpLsAKAG68+/T5PbH8xXL1fv8AUGuFMacR9/eqFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFTRuAAM1DQRmgC4jVIHrPBI6E09ZWB55oA0VenrJzVBZx3yKlWVT0IzQBcDc9afu96qB6eHoAtq/vSh+arK/NKHGKALayY4oM20Ek1nS3aoMDk1SlneU/MePSgDQudSxkRcn1rNkkeRsuSTTKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAHK7DoTUizsOozUNFAFpbhcc1FJOz9OBUVFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//Z</thumbnail>
+  <shape class="EntityShape">
+    <property name="ModelFile" value="Models/Props/RL_Lootbag_MOD.model" />
+    <property name="CustomMaterialSet" value="&lt;None&gt;" />
+    <property name="EntityClass" value="VisBaseEntity_cl" />
+    <property name="ClassDefinitionTemplate" value="" />
+    <property name="EntityPropertyString" value="" />
+    <property name="ScaleX" value="1" />
+    <property name="ScaleY" value="1" />
+    <property name="ScaleZ" value="1" />
+    <property name="UniformScaling" value="1" />
+    <property name="NavMeshUsage" value="ExcludeFromNavMesh" />
+    <property name="VisibleBitmask" value="4294967295" />
+    <property name="NearClipDistance" value="0" />
+    <property name="FarClipDistance" value="0" />
+    <property name="RenderOrderPriority" value="0" />
+    <property name="CastDynamicShadows" value="False" />
+    <property name="CastStaticShadows" value="False" />
+    <property name="LightInfluenceBitmask" value="1" />
+    <property name="AmbientColor" value="0,0,0,255" />
+    <property name="ShowLightgridWidget" value="False" />
+    <property name="SampleOfsX" value="0" />
+    <property name="SampleOfsY" value="0" />
+    <property name="SampleOfsZ" value="0" />
+    <property name="ObjectKey" value="" />
+    <property name="Visible" value="True" />
+    <property name="Position" value="0,0,0" />
+    <property name="Orientation" value="0,0,0" />
+    <property name="Scaling" value="1,1,1" />
+    <property name="TextLabel" value="" />
+    <property name="ShapeName" value="LootBag" />
+    <property name="UserDataString" value="" />
+    <property name="ExportShape" value="True" />
+    <property name="UniqueID" value="16127477955961028615" />
+  </shape>
+</root>

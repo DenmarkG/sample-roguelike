@@ -5,7 +5,7 @@ end
 function OnAfterSceneLoaded(self)
 	self.maxHealth = 100
 	-- self.currentHealth = self.maxHealth
-	self.currentHealth = 50
+	self.currentHealth = 100
 end
 
 --modifies the current health amount
