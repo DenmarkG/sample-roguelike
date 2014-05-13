@@ -151,6 +151,18 @@ function OnThink(self)
 		end
 		
 		-- Debug:PrintLine(""..self.currentState) 
+	else
+		--G.gameOver = true
+		
+		ClearPath(self)
+		StopRotation(self)
+		
+		if self.currentState ~= self.states.idle then
+			self.behaviorComponent:TriggerEvent("MoveStop")
+			
+			self.prevState = self.currentState
+			self.currentState = self.states.idle
+		end
 	end
 	
 	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir_Right() * 50), Vision.V_RGBA_GREEN)
@@ -349,7 +361,7 @@ end
 function ShowPlayerStats(self)
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
-	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.GemGoal, Vision.V_RGBA_GREEN, G.fontPath)
+	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
 end
 
 function ModifyAttackPower(self, amount)

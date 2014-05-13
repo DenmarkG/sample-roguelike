@@ -1859,6 +1859,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/RL_WinScreenMask_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4013844629,
+                "TimeStamp": 1393443650632643900,
+                "LastEditTime": 1400018181424631200
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 32,
+                "Height": 32,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Sky/SkyBox_Basic_Bottom.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -1960,33 +1987,6 @@
                 "FileFormat": "TGA",
                 "Width": 256,
                 "Height": 256,
-                "HasAlpha": false,
-                "sRGB": false
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Textures/walkcycle.jpg": {
-            "AssetType": "Texture",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 1922864757,
-                "TimeStamp": 1396983074157730500,
-                "LastEditTime": 1398096788206570400
-            },
-            "Texture": {
-                "FileFormat": "JPG",
-                "Width": 160,
-                "Height": 76,
                 "HasAlpha": false,
                 "sRGB": false
             },
