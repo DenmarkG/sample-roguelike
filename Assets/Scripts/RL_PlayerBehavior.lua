@@ -65,6 +65,11 @@ function OnAfterSceneLoaded(self)
 	self.currentState = self.states.idle
 	
 	self.isAlive = true
+	
+	self.ModifyPower = function(value)
+		self.meleeDamage = self.meleeDamage + value
+		self.fireballDamage =  self.fireballDamage + value
+	end
 end
 
 function OnBeforeSceneUnloaded(self)

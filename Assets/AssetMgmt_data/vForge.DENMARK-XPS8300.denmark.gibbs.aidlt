@@ -27,6 +27,9 @@ models/enemies/rl_evilcubie_mod.vcolmesh	Models/Enemies/RL_EvilCubie_MOD.vcolmes
 models/props/rl_basiccollectible_mod.anim	Models/Props/RL_BasicCollectible_MOD.anim	
 models/props/rl_basiccollectible_mod.model	Models/Props/RL_BasicCollectible_MOD.model	LODSwitchDistances=
 models/props/rl_basiccollectible_mod.vcolmesh	Models/Props/RL_BasicCollectible_MOD.vcolmesh	
+models/props/rl_gem_mod.anim	Models/Props/RL_Gem_MOD.anim	
+models/props/rl_gem_mod.model	Models/Props/RL_Gem_MOD.model	LODSwitchDistances=
+models/props/rl_gem_mod.vcolmesh	Models/Props/RL_Gem_MOD.vcolmesh	
 models/props/rl_lootbag_mod.anim	Models/Props/RL_Lootbag_MOD.anim	
 models/props/rl_lootbag_mod.model	Models/Props/RL_Lootbag_MOD.model	LODSwitchDistances=
 models/props/rl_lootbag_mod.vcolmesh	Models/Props/RL_Lootbag_MOD.vcolmesh	
@@ -50,6 +53,7 @@ textures/designtextures/flatcolors/red_128.tga	Textures/DesignTextures/FlatColor
 textures/designtextures/flatcolors/white_128.tga	Textures/DesignTextures/FlatColors/White_128.tga	sRGB=false
 textures/designtextures/flatcolors/yellow_128.tga	Textures/DesignTextures/FlatColors/Yellow_128.tga	sRGB=false
 textures/designtextures/texturegrid_blue.tga	Textures/DesignTextures/textureGrid_Blue.tga	sRGB=false
+textures/green_128.tga	Textures/Green_128.tga	sRGB=false
 textures/mobilehud/fps_button_blue.tga	Textures/MobileHud/FPS_Button_Blue.tga	sRGB=false
 textures/mobilehud/fps_button_blue_64.tga	Textures/MobileHud/FPS_Button_Blue_64.tga	sRGB=false
 textures/mobilehud/fps_button_green.tga	Textures/MobileHud/FPS_Button_Green.tga	sRGB=false
@@ -62,6 +66,7 @@ textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=fal
 textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
 textures/potions/rl_healthpotion_diffuse.tga	Textures/Potions/RL_HealthPotion_DIFFUSE.tga	sRGB=false
 textures/potions/rl_manapotion_diffuse.tga	Textures/Potions/RL_ManaPotion_DIFFUSE.tga	sRGB=false
+textures/potions/rl_powerpotion_diffuse.tga	Textures/Potions/RL_PowerPotion_DIFFUSE.tga	sRGB=false
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
 textures/rl_lootbag_diffuse.tga	Textures/RL_LootBag_DIFFUSE.tga	sRGB=false
 textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false

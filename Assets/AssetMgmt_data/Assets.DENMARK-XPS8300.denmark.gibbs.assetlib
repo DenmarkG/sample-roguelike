@@ -678,6 +678,74 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Props/RL_Gem_MOD.anim": {
+            "AssetType": "Animation",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 592976672,
+                "TimeStamp": 1399937658222248800,
+                "LastEditTime": 1399937683589785300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Gem_MOD.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Props/RL_Gem_MOD.model_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/Green_128.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4214634033,
+                "TimeStamp": 1399937658217248300,
+                "LastEditTime": 1399937807369162000
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Gem_MOD.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2846467123,
+                "TimeStamp": 1399937658224249000,
+                "LastEditTime": 1399937683668793200
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Models/Props/RL_Lootbag_MOD.anim": {
             "AssetType": "Animation",
             "Common": {
@@ -1258,6 +1326,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Green_128.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3910983014,
+                "TimeStamp": 1388712532000000000,
+                "LastEditTime": 1399937681405566900
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/MobileHud/FPS_Button_Blue.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -1570,6 +1665,33 @@
                 "Hash": 2473306000,
                 "TimeStamp": 1399405200057745900,
                 "LastEditTime": 1399405611444745900
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/Potions/RL_PowerPotion_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3464517835,
+                "TimeStamp": 1399938473148733300,
+                "LastEditTime": 1399938524597877700
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -1898,6 +2020,11 @@
             "Hash": 0,
             "TimeStamp": 1396305811628451000,
             "LastEditTime": 1396304928847450000
+        },
+        "Models/Props/RL_Gem_MOD.model_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1399937806346059700,
+            "LastEditTime": 1399937681403566700
         },
         "Models/Props/RL_Lootbag_MOD.model_data/materials.xml": {
             "Hash": 0,
