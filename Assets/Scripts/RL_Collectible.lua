@@ -30,7 +30,13 @@ end
 
 function Deactivate(self)
 	self:SetEnabled(false)
-	self:SetVisible(false)
+	
+	for i = 0, self:GetNumChildren(), 1 do
+		local entity = self:GetChild(i)
+		if entity ~= nil then
+			entity:SetVisible(false)
+		end
+	end
 end
 
 function GeneratePickupProperties(self)

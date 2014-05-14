@@ -46,6 +46,7 @@ prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab
 prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab	
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
+scenes/sample-level02_p01.dds	Scenes/sample-level02_P01.dds	sRGB=false
 scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	Textures/Cursor/RL_Cursor_Diffuse_Green.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga	sRGB=false
@@ -84,4 +85,3 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
-scenes/sample-level02_p01.dds	Scenes/sample-level02_P01.dds	sRGB=false

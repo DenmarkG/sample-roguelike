@@ -78,7 +78,7 @@ void RL_GameAppClass::Init()
 {
   // Set filename and paths to our stand alone version.
   // Note: "/Data/Vision/Base" is always added by the sample framework
-  VisAppLoadSettings settings("Scenes/Default.vscene");
+  VisAppLoadSettings settings("Scenes/sample.vscene");
   settings.m_customSearchPaths.Append(":template_root/Assets");
   LoadScene(settings);
 }
@@ -93,9 +93,6 @@ void RL_GameAppClass::AfterSceneLoaded(bool bLoadingSuccessful)
   help.Append("How to use this demo...");
   help.Append("");
   RegisterAppModule(new VHelp(help));
-
-  // Create a mouse controlled camera (set above the ground so that we can see the ground)
-  Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(0.0f, 0.0f, 170.0f));
 
   // Add other initial game code here
   // [...]

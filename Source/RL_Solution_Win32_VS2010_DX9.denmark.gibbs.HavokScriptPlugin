@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KoreStudioSettings version="2.0" enabled="true" attached="true">
+  <Connection connectionType="IP_ADDRESS_TARGET" address="localhost" port="27725" pauseOnConnect="false" supportLegacySingleConnection="false">
+    <History />
+  </Connection>
+  <Scripts FileMappingRules="" />
+  <Debugger stepIntoKoreCLibrary="false" checkForModifiedFiles="true" />
+  <Breakpoints />
+  <Watches />
+  <Language userDefinedItemsLocation="" includeBuiltinLibrarySymbols="true" />
+  <Layout debugWindows="LocalsToolWindow,CallstackToolWindow" generalWindows="" profilerWindowOptions="" />
+</KoreStudioSettings>

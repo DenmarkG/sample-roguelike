@@ -23,6 +23,32 @@ function OnAfterSceneLoaded(self)
 	
 	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
+	
+	if not G.isWindows then
+		--set the values for the texture's position on screen (as a percentage)
+		local xPercent = .2
+		local yPercent = .75
+
+		local xPercent_R = 0.8 --percentage of the screen to align objects to the right
+		x = 64 --the texture size
+		
+		top = (G.h * yPercent) - (x * 1.5)
+		bottom = (G.h * yPercent) + (x * 1.5)
+		left = (G.w * xPercent_R) - (x * 1.5)
+		right = (G.w * xPercent_R) + (x * 1.5)
+		
+		G.greenButton = Game:CreateScreenMask(left + x, bottom - x, "Textures/MobileHud/FPS_Button_Green_64.tga")
+		G.greenButton:SetBlending(Vision.BLEND_ALPHA)
+		G.greenTable = {left + x, bottom - x, right - x, bottom, 150}
+		
+		G.redButton = Game:CreateScreenMask(right - x, top + x, "Textures/MobileHud/FPS_Button_Red_64.tga")
+		G.redButton:SetBlending(Vision.BLEND_ALPHA)
+		G.redTable = {right - x, top + x, right, bottom - x, 150}
+		
+		G.blueButton = Game:CreateScreenMask(left + x, top, "Textures/FPS_MobileHud/FPS_Button_Blue_64.tga")
+		G.blueButton:SetBlending(Vision.BLEND_ALPHA)
+		G.blueTable = {left + x, top, right - x, top + x, 150}
+	end
 end
 
 function OnBeforeSceneUnloaded(self)

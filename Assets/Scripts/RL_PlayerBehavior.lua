@@ -18,18 +18,32 @@ function OnAfterSceneLoaded(self)
 	self.map = Input:CreateMap("PlayerInputMap")
 	
 	--set the controls for the input map
-	--mouse movement controls:
-	self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
-	self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
-	self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
-	self.map:MapTrigger("RUN", "KEYBOARD", "CT_KB_LSHIFT")
-	--Interaction controls:
-	self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
-	self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
-	
-	--GUI Display Controls
-	self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
-	
+	if G.isWindows then		
+		--mouse movement controls:
+		self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
+		self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
+		self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
+		self.map:MapTrigger("RUN", "KEYBOARD", "CT_KB_LSHIFT")
+		--Interaction controls:
+		self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
+		self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
+		
+		--GUI Display Controls
+		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
+	else
+		--{startx, starty, endx, endy}
+		--mouse movement controls:
+		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
+		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
+		self.map:MapTrigger("Y", {0,0,G.w,G.h}, "CT_TOUCH_ABS_Y")
+
+		--Interaction controls:
+		self.map:MapTrigger("MAGIC", G.greenTable, "CT_TOUCH_ANY")
+		self.map:MapTrigger("MELEE", G.redTable, "CT_TOUCH_ANY", {once=true} )
+		
+		--GUI Display Controls
+		self.map:MapTrigger("INVENTORY", G.blueTable, "CT_TOUCH_ANY") --will show the display whilst holding 
+	end
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
@@ -90,7 +104,12 @@ function OnThink(self)
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		
-		local run = self.map:GetTrigger("RUN") > 0
+		local run = false
+		if G.isWindows then
+			run = self.map:GetTrigger("RUN") > 0
+		else
+			run = true
+		end
 		
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
 		

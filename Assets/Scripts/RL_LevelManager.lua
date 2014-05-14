@@ -1,6 +1,10 @@
+G.currentLevel = 0
+
 function OnAfterSceneLoaded(self)
+	G.currentLevel = G.currentLevel + 1
 	G.gemGoal = GetNumberOfGems()
 	G.gameOver = false
+	G.win = false
 	
 	self.waitTime = 5
 	self.timeBeforeReload = 0
@@ -11,8 +15,9 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
-		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
+		if G.gemGoal ~= 0 and G.player.gemsCollected == 3 then --G.gemGoal then
 			WinLevel(self)
+			G.win = true
 		end
 		
 		if not G.player.isAlive then
@@ -31,8 +36,13 @@ function OnThink(self)
 		if self.timeBeforeReload <= 0 then
 			Debug:PrintAt( (G.w / 2.0) - (self.endText2:len() * 8), G.h / 2.0 + 32, "" .. self.endText2, Vision.V_RGBA_WHITE, G.fontPath)
 			
-			if (G.player.map:GetTrigger("MELEE") > 0 or G.player.map:GetTrigger("X") ~= 0) then
-				ResetGame()
+			if G.player.map:GetTrigger("MELEE") > 0 then
+				if G.win then
+					LoadNextLevel()
+					--Debug:PrintLine("Loading!")
+				else
+					LoadFirstLevel()
+				end
 			end
 		end
 	end
@@ -62,12 +72,12 @@ function WinLevel(self)
 	self.endText2 = ""
 	
 	if G.isWindows then
-		self.endText2 = "Press \'MELEE\' To Continue"
+		self.endText2 = "   Press \'MELEE\' To Continue"
 	else
-		self.endText2 = "Touch Screen To Continue "
+		self.endText2 = "   Touch Screen To Continue "
 	end
 	
-	self.endText3 = "Play Again in: "
+	self.endText3 = "    Play Again in: "
 
 	G.gameOver = true
 	G.winMask = Game:CreateScreenMask(0, 0, "Textures/RL_WinScreenMask_DIFFUSE.tga")
@@ -100,6 +110,23 @@ function LoseLevel(self)
 	G.winMask:SetBlending(Vision.BLEND_MULTIPLY)
 	
 	StartTimer(self)
+end
+
+function LoadNextLevel()
+	if G.isWindows then
+		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".pcdx9.vscene")
+	else
+		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".android.vscene")
+	end
+end
+
+function LoadFirstLevel()
+	G.currentLevel = 0
+	if G.isWindows then
+		Application:LoadScene("Scenes/sample.pcdx9.vscene")
+	else
+		Application:LoadScene("Scenes/sample.android.vscene")
+	end
 end
 
 function ResetGame()

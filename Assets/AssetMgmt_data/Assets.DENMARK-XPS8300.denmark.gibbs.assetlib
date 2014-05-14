@@ -19,7 +19,7 @@
             "File": {
                 "Hash": 1068670930,
                 "TimeStamp": 1399397881587566100,
-                "LastEditTime": 1399397882593566100
+                "LastEditTime": 1400094581095756500
             },
             "Texture": {
                 "FileFormat": "DDS",
@@ -29,7 +29,27 @@
                 "sRGB": false
             },
             "Transformations": {
-                "TemplateName": "Default"
+                "pcdx9": {
+                    "None": {
+
+                    }
+                },
+                "ios": {
+                    "TextureTransformationRule": {
+                        "Compression": "Quality",
+                        "Usage": "Undefined",
+                        "RemoveAlphaChannel": false,
+                        "CreateMipMaps": true,
+                        "DownscaleLevel": 0,
+                        "MinimumSize": 0,
+                        "MaximumSize": 0
+                    }
+                },
+                "android": {
+                    "None": {
+
+                    }
+                }
             }
         },
         "Meshes/LevelBlocks/Level_02.vcolmesh": {

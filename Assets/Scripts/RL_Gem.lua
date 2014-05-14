@@ -4,18 +4,6 @@ function OnAfterSceneLoaded(self)
 	self.rotSpeed = .5
 end
 
--- function OnThink(self)
-	-- local step = self.rotSpeed * Timer:GetTimeDiff()
-	
-	-- local objDir = self:GetObjDir()
-	-- local leftDir = self:GetObjDir_Right()
-	-- local zHolder = objDir.z
-	-- objDir:setInterpolate(objDir, leftDir, step)
-	-- objDir.z = zHolder
-	-- self:SetRotationDelta(objDir)
-	-- self:SetDirection(objDir)
--- end
-
 function OnObjectEnter(self, otherObj)
 	if (otherObj:GetKey() == "Player") then
 		otherObj:AddGem()
