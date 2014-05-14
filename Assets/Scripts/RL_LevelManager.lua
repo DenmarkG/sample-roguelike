@@ -11,7 +11,7 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
-		if G.player.gemsCollected == G.gemGoal then
+		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
 			WinLevel(self)
 		end
 		
@@ -42,15 +42,18 @@ function GetNumberOfGems()
 	local gemGoal = 0
 	local gemParent = Game:GetEntity("GemParent")
 	
-	for i = 0, gemParent:GetNumChildren(), 1 do
-		local entity = gemParent:GetChild(i)
-		
-		if entity ~= nil and entity:GetKey() == "Gem" then
-			gemGoal = gemGoal + 1
+	if gemParent ~= nil then
+		for i = 0, gemParent:GetNumChildren(), 1 do
+			local entity = gemParent:GetChild(i)
+			
+			if entity ~= nil and entity:GetKey() == "Gem" then
+				gemGoal = gemGoal + 1
+			end
 		end
+		return gemGoal
+	else
+		return 0
 	end
-	
-	return gemGoal
 end
 
 function WinLevel(self)

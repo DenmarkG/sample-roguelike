@@ -42,13 +42,15 @@ function FindWaypoints(self)
 	G.waypoints = {}
 	local parent = Game:GetEntity("WaypointParent")
 	
-	local numChildren = parent:GetNumChildren()
-	for i = 0, numChildren - 1, 1 do
-		local entity = parent:GetChild(i)
-		
-		if entity ~= nil then
-			if entity:GetKey() == "Waypoint" then 
-				table.insert(G.waypoints, entity)
+	if parent ~= nil then
+		local numChildren = parent:GetNumChildren()
+		for i = 0, numChildren - 1, 1 do
+			local entity = parent:GetChild(i)
+			
+			if entity ~= nil then
+				if entity:GetKey() == "Waypoint" then 
+					table.insert(G.waypoints, entity)
+				end
 			end
 		end
 	end

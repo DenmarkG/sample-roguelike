@@ -32,6 +32,54 @@
                 "TemplateName": "Default"
             }
         },
+        "Meshes/LevelBlocks/Level_02.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 615421383,
+                "TimeStamp": 1400025973118141800,
+                "LastEditTime": 1400026017222551800
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/LevelBlocks/Level_02.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Meshes/LevelBlocks/Level_02.vmesh_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/textureGrid_Blue.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2650868520,
+                "TimeStamp": 1400025973112141200,
+                "LastEditTime": 1400026017225552100
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Meshes/LevelBlocks/Room_02.prefab": {
             "AssetType": "Prefab",
             "Common": {
@@ -990,6 +1038,93 @@
                 "Hash": 3692694996,
                 "TimeStamp": 1400006449933874200,
                 "LastEditTime": 1400006451034874200
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Prefabs/RL_Enemy.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3550100256,
+                "TimeStamp": 1400026565615385600,
+                "LastEditTime": 1400026566649489000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Prefabs/RL_Gem.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1068451331,
+                "TimeStamp": 1400026633767200100,
+                "LastEditTime": 1400026634869310300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Prefabs/RL_Player.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1234977314,
+                "TimeStamp": 1400026418065632100,
+                "LastEditTime": 1400026419167742300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample-level02_P01.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1482279481,
+                "TimeStamp": 1400028786505531800,
+                "LastEditTime": 1400028786687531800
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": true,
+                "sRGB": false
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -2023,6 +2158,11 @@
         }
     },
     "TrackedFiles": {
+        "Meshes/LevelBlocks/Level_02.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1400025973114141400,
+            "LastEditTime": 1400026017221551700
+        },
         "Meshes/LevelBlocks/SM_Room_Type-00.vmesh_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1398885627945729200,

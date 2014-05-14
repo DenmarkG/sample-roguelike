@@ -1,0 +1,79 @@
+<root>
+  <info createdby="vForge version 2014.0.5.1" />
+  <header version="0" name="" description="" category="" convertible="True" autosavebinary="False" relativefilenames="False" />
+  <thumbnail type="jpg" size="4424">/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAEAAQADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACitfwt4b1fxXqy6Z4fsZL29KNJsUhQqjqzMxCqOgySOSB1IFesf8ADNXjH/oJeH/+/wDN/wDGqAPEKK9v/wCGavGP/QS8P/8Af+b/AONVz/in4G+ONAjaVdOj1W3VFZpNNcykEtt2iMgSE9CcKRg5zwcAHmFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXrHwp+Cut+MpIL/VFk0rQd6FpZVKzXEZXdmFSMEEbfnPy/NkbsEUnwW8AReKba+1C5FrIsT+VGJSzeS67GLsgwHyGAALY4fI6V9S+CdXXA0S7uxPe28eY3YBWkQHHQcfLkD6Y9CaALvgrwfongzSY7DQbKOABFWWcqDNcEZO6R8ZY5ZvYZwABxXQUUUAFFFFAHI+M/hz4W8YRT/2zpFububk3sCiO4DBCqt5g5bAxgNleBkHAr48+MXgX/hX/jF9KjuvtVpNCLq2dhhxEzMoV+MbgUIyOCMHjOB9418p/tgaZNF4u0LVGaM29zYtbIoJ3BopCzEjGMYmXHPY9OMgHgVFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfVn7PzQ3Pwqi+zzEywzywTDH3TuLgdPSQHjPX8B6p4a8PQabE97I6m/m+YOTkRjHA7Z9Tz3xmvnP8AZj8SJBcat4cuJdpu9tzaqdoBdQRIAepYrsIHPCMeO/03pcqyaVFHnLQqImyckEAdfcjB/GgDYicSxK4BAYZweo9qdWdpEzs9xCwO2MhlbIxznIx+Gef71aNABRRRQAV8p/te65DeeKNF0aHy2fTrd5pXWUMQ0xX5GX+EhY1bk8iQcDqfqyvz7+JWu/8ACS+Pte1Zbj7TBcXb+RLs2boVO2LjAI+RVHIzxzzmgDmqKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA1fCut3HhzxFp+r2YBmtJRJtOPmXoy8g4yCRnHGa+87W4t5IrW8tZVe1vo1eFlOQ4K7lIPTpn68V+e9fa/wO1j+3fg9o2yWGW8sV+ySpGeYwjlVDD1MYU++aAO0s5Vh1cF5GUSoUCZ4Zuv5gA/rW6CCOK4eG/Nxqi+UcLDkvkYIPIwR2P+FX7jW/s6nMgWgDqqrXF7BAP3kgz6CsHTP7R1iIzMXtbVgNhlRlkb1+Q4IH15znj1sXHhiCeWJ5L29AVgWRWQK/sflzg+xB96APC/2kvimfs0vhDQpJ4Z32nUJkO0eUy5EI4ydwZSxBAx8vO5gPmmvU/2gPh6PA/iWG5tbt7jTtWaWaETOWljZSpdWY/e5cEMeTnnkZPllABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXQS+DPEcekw6omjXlxpktv9qF3ap58KxjOS7plUK7TuViCuOQK5+vQPhJ8S9R8AamVDST6LcMDc2oPIPTzI88BwO3RgMHopUA8/or7oiuPCXjGG01W90vSNVE0QWC7ntUl3Jk/LllyuCW+U4wcjrmuF8U/A7wdqMESaIs+kXChgGjmeUOTjBYSFs49FK5ycnpgA+UaK6n4g+Bda8B6rHZa5FGVmTfBcwEtDMONwViAcqTgggEcHoQTy1ABXV/DbxhrHg7xJDd6IJJzOyxTWQyRdKTwmB/FzwQMg+uSDyldr8J9U0TRPEkmpa7M0bQQsbYeUzqZDxztPBwT1BHJ6ECgD6h1DVGW9W1tEDalfvu2gH5VGBuYewx+NdXoegQWA+03ztcXA+YyS4wvXoOg6/X1zXE+EvL0O3vtf1s5u3QyuW/5ZoOQo+lYWm3ur+P7ePVtd8QPoukTSMLCxsYPMnlAcqWYAMeoweo46CgD3W3uYZlHlSIfYGpq8I1e5fwHcK6a/d38Z5+zXto8Eqq2fmVioDqMYIHIzntiunXXvEaXaQSaPqiTSNtUGElPrvHy4/GgDE/ao8Jya54Jt9atS7XGiuztGOjQybQ5xjOVKoeoAUP14r5Br3v9qqTxJbalolrqV6z6NPbmSOKNgIzOrYfIzliFaPBIx8xx/FXglABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB2Xw58dXnhC8aJw1xpFw2bi2z0PTzE9Gxj2YDB6Aj6F8KeJo9dKy6JexXdrGQzqWw8fJABB+Zc7TjI5xxXyRU9leXNhdJc2NxNbXCZ2ywuUdcjBwRyOCR+NAH3fqn9ieLNNbTtesbe5ibP7udAcEqV3KeqtgnDDBGeCK+cviL8CtT0eSW78Ju2p6aqBvIkcfaVwpLHgBXHy8BfmJYAKcZOH4V+Lmq6eIrfXF/tK1XCiXO2dB8ozno+ACeeSTy1e1+FvHltq1ik9hcrcQlQXhYjzIs54YZ4PB+uMgkUAfI9FfV/jTwt4d8b207zQQw6qyYS9RcSo2FALYI8wAIFw2cAnbtJzXz/468Ban4TnLOftuntkrdwowCjftAkH8DEbTjJHzYDEg4APcPB2rwfEXw6i6hNI9rDCltfQMqo00+1S0nynhM/dxt53egx6N8HvD8Gj2F40pE2o+YYjLnOIVJESj0+QLn3z16181/AHW49P8S3WnTvsXUIhsPrImSB+Rf/JFfS/gi7MWvzQs/wAk0Y2r7g8n9R+VAHV+JtItNX010u4BK8P72FguXRxyCvcE4xx1rThkWWJHU5DDNPrL0aTy5LmzI2+TIQq7s4Xqv6EUAeR/tc2Sz/D3TrtbYSTW2ooDMI8tFG0cgb5v4VLCPPYkL7V8jV9tftKtt+DmtDAO57ccjp+/Q8flXxLQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABUtrcz2k6z2k0sEy52yROVYZGDgjnoaiooA9O8PfE5w0cetxYcYAuoB9Bll/Mkj6Ba9N07xPvSOVJ0mjBzHPC+cEHqCPQjt3r5kq7pWp3el3Als5WTkFkz8r47MO/U/0oA9f8Q+D9NvrldV0KYabfxbHi+zooh3Ip2/IAMEkJlgexJVia9S8Nar5l7p16mzfu2SFCSqn+IAkAkbgOw7cV4NpXii+vrbNvZMJSdhcNiMnA5z1/DnHHrXfeEFm06zn81ptjy+ZDJORtYnkDI4BB7fjjnJAPqWNg6Kw6MMiuZ1iZtO8TW042LDdRbTjqXU8k/gyj8K0/C92L7QrS4Q5R0BU+oIyDWd48EUWlw3kxSNLaZS8rYGxDlep7Fiv6elAHGftJ3KP8INVUHlpIMf8Af1K+Lq+k/wBo/VzfeANOWwWZrA3yb7nBVJD5chVR/eHyk+mQK+bKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDY0bXZNLtZYUhVyxLKxONpIA59eg9K9v8AgZquotBp5luPPtppZDciRs4UBgAB9Qv4H8vnivWfgrMYbW7dBh1lzuz7Lx/OgD7Js1hFsgtkRIsZCoMAflTNRt5Li1ljjKEsvCv03Dkcjpzj16V53oXi54IkWdWUevUVu3fjOBbUtEyl8ZwOtAHmvxgsfEvijwTrAu4IrGy06Np1iZgzOYjuYkrnHyq2PUkcgZr5Rr69+JuvyWfwo1+Utvmng8hhux/rWCMfyYmvkKgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK9i+DlmP7LZhnM77zz6Ej+leQwQyTzJFCheRzgKO9fRPgS0axtrVI7a5ntkjCGaKJnCsMghiBgHj1+oHGQDr/I2L7AVzV+yPc75kcoj5Dr/AAnHqORwf1rpJtRs5rNpLa6hkDDja4Oa8k+J+vyWOkiwtciS7ysr7cgIRyM+p6fTPtQBzfxN8VW+syJp+nl5baCTe07yMwdwCPlBOMDJ579uOvB0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHVeBLOyF5/aWplvJt2AijXnzJOvIHOAOcdD34BFfXPhUi20S3iYbWK7nUnOGPJ/UmvlP4R2kU3ihbm4YCG2XdjPJYn5f5Z/D3r6Ii1AxqDG3y0ASfE1NNs9Dm1QwIt7EuFkRBuZRklSfTGT9a+YfFGpjUYQ7nLls/Q17X481iDULGaG9J+xxoxkAJGRtOenPTPT1r5ohaeRlMuVQDIHqaAJ6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikYhRknAoAvaReyWN4ssLlH6ZH8q9F0/xVdSQhDNjI5xXmVrEJSCTjHIrQhlltz13L6igDs/EGqb9LuULZLxsPzFeb1fv9QMw8oNyeSPaqFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVS1DcrxsW/d9Mehq7SMqupVgGB7EZoAZBfIi9ajn1F5vkt1ZznkgdKX7LBv3eWM+nb8ulTAAAAAADgAUARQRsuXlIaQ8ZHYelTUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/9k=</thumbnail>
+  <shape class="EntityShape">
+    <property name="ModelFile" value="Models/Character/RL_Character_MOD.model" />
+    <property name="CustomMaterialSet" value="&lt;None&gt;" />
+    <property name="EntityClass" value="VisBaseEntity_cl" />
+    <property name="ClassDefinitionTemplate" value="" />
+    <property name="EntityPropertyString" value="" />
+    <property name="ScaleX" value="1" />
+    <property name="ScaleY" value="1" />
+    <property name="ScaleZ" value="1" />
+    <property name="UniformScaling" value="1" />
+    <property name="NavMeshUsage" value="ExcludeFromNavMesh" />
+    <property name="VisibleBitmask" value="4294967295" />
+    <property name="NearClipDistance" value="0" />
+    <property name="FarClipDistance" value="0" />
+    <property name="RenderOrderPriority" value="0" />
+    <property name="CastDynamicShadows" value="False" />
+    <property name="CastStaticShadows" value="False" />
+    <property name="LightInfluenceBitmask" value="1" />
+    <property name="AmbientColor" value="0,0,0,255" />
+    <property name="ShowLightgridWidget" value="False" />
+    <property name="SampleOfsX" value="0" />
+    <property name="SampleOfsY" value="0" />
+    <property name="SampleOfsZ" value="0" />
+    <property name="ObjectKey" value="Player" />
+    <property name="Visible" value="True" />
+    <property name="Position" value="0,0,0" />
+    <property name="Orientation" value="0,0,0" />
+    <property name="Scaling" value="1,1,1" />
+    <property name="TextLabel" value="" />
+    <property name="ShapeName" value="Player" />
+    <property name="UserDataString" value="" />
+    <property name="ExportShape" value="True" />
+    <property name="UniqueID" value="16127477955961028623" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_PlayerBehavior.lua;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_SpellManager.lua;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="VOrbitCamera" paramstring="ComponentID=;Enabled=True;Collides=False;Follow=False;FollowFixed=True;Zoom=True;DepthOfField=False;InitialYaw=-65;InitialPitch=70;MinimumPitch=-89;MaximumPitch=89;CameraDistance=250;MinimalDistance=200;MaximalDistance=350;RelativeLookAtHeight=0.5;CameraSensitivity=200;MoveSmoothness=0.3;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="vHavokBehaviorComponent" paramstring="ComponentID=;m_projectPath=;m_projectName=HAT\092Export\092RL_Character_HAT.hkt;m_characterName=RL_Character.hkt;m_behaviorName=Character_Behavior.hkt;m_enableRagdoll=True;m_useBehaviorWorldFromModel=True;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_Inventory.lua;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_Damageable.lua;" visible="True" serializable="True" editable="True" removable="True" />
+    <shape class="EntityShape">
+      <property name="ModelFile" value="" />
+      <property name="CustomMaterialSet" value="&lt;None&gt;" />
+      <property name="EntityClass" value="VisBaseEntity_cl" />
+      <property name="ClassDefinitionTemplate" value="" />
+      <property name="EntityPropertyString" value="" />
+      <property name="ScaleX" value="1" />
+      <property name="ScaleY" value="1" />
+      <property name="ScaleZ" value="1" />
+      <property name="UniformScaling" value="1" />
+      <property name="NavMeshUsage" value="IncludeInNavMesh" />
+      <property name="VisibleBitmask" value="4294967295" />
+      <property name="NearClipDistance" value="0" />
+      <property name="FarClipDistance" value="0" />
+      <property name="RenderOrderPriority" value="0" />
+      <property name="CastDynamicShadows" value="False" />
+      <property name="CastStaticShadows" value="False" />
+      <property name="LightInfluenceBitmask" value="1" />
+      <property name="AmbientColor" value="0,0,0,255" />
+      <property name="ShowLightgridWidget" value="False" />
+      <property name="SampleOfsX" value="0" />
+      <property name="SampleOfsY" value="0" />
+      <property name="SampleOfsZ" value="0" />
+      <property name="ObjectKey" value="ParticleSpawn" />
+      <property name="Visible" value="True" />
+      <property name="Position" value="-5.335938,-21.12268,35.18997" />
+      <property name="Orientation" value="0,0,0" />
+      <property name="Scaling" value="1,1,1" />
+      <property name="TextLabel" value="" />
+      <property name="ShapeName" value="ParticleSpawn" />
+      <property name="UserDataString" value="" />
+      <property name="ExportShape" value="True" />
+      <property name="UniqueID" value="16127477955961028624" />
+    </shape>
+  </shape>
+</root>
