@@ -1,5 +1,5 @@
 -- new script file
-
+G.currentLevel = 1
 
 function OnBeforeSceneLoaded(self)
 	--get the current platform
@@ -39,15 +39,15 @@ function OnAfterSceneLoaded(self)
 		
 		G.greenButton = Game:CreateScreenMask(left + x, bottom - x, "Textures/MobileHud/FPS_Button_Green_64.tga")
 		G.greenButton:SetBlending(Vision.BLEND_ALPHA)
-		G.greenTable = {left + x, bottom - x, right - x, bottom, 150}
+		G.greenTable = {left + x, bottom - x, right - x, bottom, -150}
 		
 		G.redButton = Game:CreateScreenMask(right - x, top + x, "Textures/MobileHud/FPS_Button_Red_64.tga")
 		G.redButton:SetBlending(Vision.BLEND_ALPHA)
-		G.redTable = {right - x, top + x, right, bottom - x, 150}
+		G.redTable = {right - x, top + x, right, bottom - x, -150}
 		
-		G.blueButton = Game:CreateScreenMask(left + x, top, "Textures/FPS_MobileHud/FPS_Button_Blue_64.tga")
+		G.blueButton = Game:CreateScreenMask(left + x, top, "Textures/MobileHud/FPS_Button_Blue_64.tga")
 		G.blueButton:SetBlending(Vision.BLEND_ALPHA)
-		G.blueTable = {left + x, top, right - x, top + x, 150}
+		G.blueTable = {left + x, top, right - x, top + x, -150}
 	end
 end
 

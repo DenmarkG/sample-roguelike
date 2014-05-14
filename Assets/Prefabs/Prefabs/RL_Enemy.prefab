@@ -34,9 +34,48 @@
     <property name="ShapeName" value="Enemy" />
     <property name="UserDataString" value="" />
     <property name="ExportShape" value="True" />
-    <property name="UniqueID" value="16127477955961028628" />
+    <property name="UniqueID" value="16127477955961028705" />
     <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_Damageable.lua;" visible="True" serializable="True" editable="True" removable="True" />
     <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_EnemyBehavior.lua;" visible="True" serializable="True" editable="True" removable="True" />
     <component class="vHavokCharacterController" paramstring="ComponentID=;m_bEnabled=True;Character_Top=0,0,50;Character_Bottom=0,0,30;Capsule_Radius=30;Debug=False;DebugColor=255,50,50,255;Static_Friction=0;Dynamic_Friction=0.8;Max_Slope=75;Character_Mass=100;Character_Strength=5000;Fly_State=False;Gravity_Scale=1;Jump_Height=1.5;Step_Height=30;Step_Threshold=60;Max_Velocity=1500;Max_Acceleration=4000;PenetrationRecoverySpeed=0.5;" visible="True" serializable="True" editable="True" removable="True" />
+    <shape class="DynLightShape">
+      <property name="LightColor" value="255,237,0,255" />
+      <property name="LightAttenuationCurve" value="Smooth" />
+      <property name="CustomAttenuationCurveTexture" value="\Atten\smooth.dds" />
+      <property name="Multiplier" value="1" />
+      <property name="DistanceFadeEnd" value="0" />
+      <property name="DistanceFadeStart" value="0" />
+      <property name="UseSpecular" value="True" />
+      <property name="LightType" value="Spotlight" />
+      <property name="SpotAngle" value="45" />
+      <property name="ProjectedTexture" value="" />
+      <property name="Radius" value="550" />
+      <property name="Triggered" value="True" />
+      <property name="CastStaticShadows" value="True" />
+      <property name="UsesLightMasks" value="False" />
+      <property name="AnimationCurve" value="" />
+      <property name="AnimationTiming" value="1" />
+      <property name="AnimationPhase" value="0" />
+      <property name="RemoveLightAfterAnimation" value="False" />
+      <property name="WorldInfluenceMask" value="255" />
+      <property name="ObjectInfluenceMask" value="255" />
+      <property name="VisibleBitmask" value="4294967295" />
+      <property name="IsStatic" value="False" />
+      <property name="ExportWhenNotRelevant" value="False" />
+      <property name="PreviewAsDynamicLight" value="True" />
+      <property name="TurnOffAfterLighting" value="True" />
+      <property name="ObjectKey" value="" />
+      <property name="Visible" value="True" />
+      <property name="Position" value="32,0,64" />
+      <property name="Orientation" value="0,15,0" />
+      <property name="Scaling" value="1,1,1" />
+      <property name="TextLabel" value="" />
+      <property name="ShapeName" value="DynamicSpotlight" />
+      <property name="UserDataString" value="" />
+      <property name="ExportShape" value="True" />
+      <property name="UniqueID" value="16127477955961028708" />
+      <linktarget class="LinkTargetTriggerComponent" name="ToggleOn" ID="ToggleOn" />
+      <linktarget class="LinkTargetTriggerComponent" name="ToggleOff" ID="ToggleOff" />
+    </shape>
   </shape>
 </root>

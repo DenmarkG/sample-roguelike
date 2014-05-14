@@ -45,7 +45,7 @@ void RL_GameAppClass::SetupAppConfig(VisAppConfig_cl& config)
   config.m_videoConfig.m_iYPos = 50;   // Set the Window position Y if not in fullscreen.
 
   // Name to be displayed in the windows title bar.
-  config.m_videoConfig.m_szWindowTitle = "StandAlone Project Template";
+  config.m_videoConfig.m_szWindowTitle = "Roguelike Sample";
 
   config.m_videoConfig.m_bWaitVRetrace = true;
 

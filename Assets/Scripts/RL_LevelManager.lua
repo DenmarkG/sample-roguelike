@@ -1,5 +1,3 @@
-G.currentLevel = 0
-
 function OnAfterSceneLoaded(self)
 	G.currentLevel = G.currentLevel + 1
 	G.gemGoal = GetNumberOfGems()
@@ -15,7 +13,7 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
-		if G.gemGoal ~= 0 and G.player.gemsCollected == 3 then --G.gemGoal then
+		if G.gemGoal ~= 0 and G.player.gemsCollected == 1 then --G.gemGoal then
 			WinLevel(self)
 			G.win = true
 		end
@@ -36,10 +34,16 @@ function OnThink(self)
 		if self.timeBeforeReload <= 0 then
 			Debug:PrintAt( (G.w / 2.0) - (self.endText2:len() * 8), G.h / 2.0 + 32, "" .. self.endText2, Vision.V_RGBA_WHITE, G.fontPath)
 			
-			if G.player.map:GetTrigger("MELEE") > 0 then
+			local continue = false
+			if G.isWindows then
+				continue = G.player.map:GetTrigger("MELEE") > 0
+			else
+				continue = G.player.map:GetTrigger("CLICK") > 0
+			end
+			
+			if continue then
 				if G.win then
 					LoadNextLevel()
-					--Debug:PrintLine("Loading!")
 				else
 					LoadFirstLevel()
 				end
@@ -113,6 +117,8 @@ function LoseLevel(self)
 end
 
 function LoadNextLevel()
+	-- Application:LoadScene("Scenes/sample-level02.pcdx9.vscene")
+	
 	if G.isWindows then
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".pcdx9.vscene")
 	else

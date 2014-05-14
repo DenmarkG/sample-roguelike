@@ -15,8 +15,13 @@ function OnAfterSceneLoaded(self)
 	self.rotSpeed = 10
 	self.maxAttackDistance = 90 --how close the NPC should get before attacking
 	self.minAttackDistance = 75
-	self.sightRange = 700 --how far the enemy can see a player
+	self.sightRange = 550 --how far the enemy can see a player
 	self.viewingAngle = 90 --the angle that the NPC can see within
+	
+	self.numRays = 5
+	self.attackAngle = 60
+	self.attackRange = 70
+	self.meleeDamage = 10
 	
 	self.eyeHeight = 50
 	
@@ -56,6 +61,8 @@ function OnThink(self)
 			-- local rEnd = (self:GetObjDir() * 100) + start
 			-- Debug.Draw:Line(start, rEnd, color)
 		end
+		
+		ShowViewAngle(self)
 	end
 end
 
@@ -241,10 +248,6 @@ function PerformMelee(self)
 end
 
 function CheckForAttackHit(self)
-	self.numRays = 5
-	self.attackAngle = 60
-	self.attackRange = 70
-	self.meleeDamage = 10
 	local myDir = self:GetObjDir() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
@@ -267,7 +270,7 @@ function CheckForAttackHit(self)
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 		
 		
-		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_RED)
+		--Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_RED)
 		
 		if hit == true then
 			--check to see if a target was hit
@@ -278,6 +281,28 @@ function CheckForAttackHit(self)
 				break
 			end
 		end
+	end
+end
+
+function ShowViewAngle(self)
+	local myDir = self:GetObjDir()
+	local myPos = self:GetPosition()
+	myPos.z = myPos.z + 25
+	
+	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
+		--calculate the angle to cast a ray in relation to the current direction
+		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
+		
+		--convert the current angle to raidans
+		currentAngle = currentAngle * (math.pi / 180)
+		
+		--rotate the forward direction based on the angle just calculated
+		local newDir = RotateXY(myDir.x, myDir.y, myDir.z, currentAngle)
+		
+		local rayStart = myPos
+		local rayEnd = myPos + (newDir * self.attackRange)
+		
+		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_YELLOW)
 	end
 end
 

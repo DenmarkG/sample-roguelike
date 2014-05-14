@@ -45,7 +45,7 @@ void MyGameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
       // [...]
       if (m_bPlayingTheGame)
       {
-        Vision::Message.Print(1, 200, 100, "The game is running");
+        //Vision::Message.Print(1, 200, 100, "The game is running");
       }
       return;
   }
@@ -92,7 +92,7 @@ void MyGameManager::SetPlayTheGame(bool bStatus)
   if (m_bPlayingTheGame)
   {
      // Play the game mode is started
-     Vision::Message.Add(1, "Play the game mode has been started");
+     //Vision::Message.Add(1, "Play the game mode has been started");
   } 
   else
   {
