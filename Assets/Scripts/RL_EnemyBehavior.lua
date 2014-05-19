@@ -33,10 +33,11 @@ function OnAfterSceneLoaded(self)
 	self.lastWaypoints = {}
 	self.maxPrevPoints = 3
 	
+	self.Die = EnemyDeath
 end
 
 function OnThink(self)
-	if self.isAlive then
+	if not G.gameOver and self.isAlive then
 		self.dt = Timer:GetTimeDiff()
 
 		if self.timeToNextAttack > 0 then
@@ -164,7 +165,7 @@ function LookForPlayer(self)
 	local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 	
 	local color = Vision.V_RGBA_BLUE
-	Debug.Draw:Line(rayStart, rayEnd, color)
+	--Debug.Draw:Line(rayStart, rayEnd, color)
 	
 	if hit == true then
 		-- check to see if a target was hit
@@ -284,14 +285,21 @@ function CheckForAttackHit(self)
 	end
 end
 
+function EnemyDeath(self)
+	--self:SetVisible(false)
+	--deactivate character controller
+end
+
 function ShowViewAngle(self)
+	-- local numRays = self.numRays
+	local numRays = 10
 	local myDir = self:GetObjDir()
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
 	
-	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
+	for i = -math.floor(numRays / 2), math.floor(numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
-		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
+		local currentAngle = ( (self.attackAngle / (numRays - 1) ) * i) 
 		
 		--convert the current angle to raidans
 		currentAngle = currentAngle * (math.pi / 180)
@@ -300,7 +308,7 @@ function ShowViewAngle(self)
 		local newDir = RotateXY(myDir.x, myDir.y, myDir.z, currentAngle)
 		
 		local rayStart = myPos
-		local rayEnd = myPos + (newDir * self.attackRange)
+		local rayEnd = myPos + (newDir * self.sightRange)
 		
 		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_YELLOW)
 	end

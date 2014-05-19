@@ -85,3 +85,15 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
+models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
+models/props/rl_pillar.vcolmesh	Models/Props/RL_Pillar.vcolmesh	
+textures/rl_pillar_diffuse.tga	Textures/RL_Pillar_DIFFUSE.tga	sRGB=false
+scenes/sample_p02.dds	Scenes/sample_P02.dds	sRGB=false
+scenes/sample_p03.dds	Scenes/sample_P03.dds	sRGB=false
+scenes/sample_p04.dds	Scenes/sample_P04.dds	sRGB=false
+scenes/sample_p05.dds	Scenes/sample_P05.dds	sRGB=false
+scenes/sample_p06.dds	Scenes/sample_P06.dds	sRGB=false
+scenes/sample_p07.dds	Scenes/sample_P07.dds	sRGB=false
+scenes/sample_p08.dds	Scenes/sample_P08.dds	sRGB=false
+scenes/sample_p09.dds	Scenes/sample_P09.dds	sRGB=false
+scenes/sample_p10.dds	Scenes/sample_P10.dds	sRGB=false

@@ -81,6 +81,7 @@ function OnAfterSceneLoaded(self)
 	self.isAlive = true
 	
 	self.ModifyPower = ModifyAttackPower
+	self.Die = PlayerDeath
 end
 
 function OnBeforeSceneUnloaded(self)
@@ -360,6 +361,12 @@ function CastSpell(self)
 			StartCoolDown(self, self.spellCoolDown)
 		end
 	end
+end
+
+function PlayerDeath(self)
+	G.gameOver = true
+	local manager = Game:GetEntity("LevelManager")
+	G.Lose(manager)
 end
 
 function ClearPath(self)

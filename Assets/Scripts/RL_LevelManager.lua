@@ -13,7 +13,7 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
-		if G.gemGoal ~= 0 and G.player.gemsCollected == 1 then --G.gemGoal then
+		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
 			WinLevel(self)
 			G.win = true
 		end

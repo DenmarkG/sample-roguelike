@@ -20,5 +20,6 @@ function ModifyCurrentHealth(self, amount)
 	elseif self.currentHealth <= 0 then
 		self.currentHealth = 0
 		self.isAlive = false
+		self.Die(self)
 	end
 end

@@ -928,6 +928,54 @@
                 "TemplateName": "Default"
             }
         },
+        "Models/Props/RL_Pillar.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2471869866,
+                "TimeStamp": 1400529027134546300,
+                "LastEditTime": 1400529168039546300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Props/RL_Pillar.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Models/Props/RL_Pillar.vmesh_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/RL_Pillar_occlusion.tga"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 27328047,
+                "TimeStamp": 1400529027129546300,
+                "LastEditTime": 1400529837169984300
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Models/Props/RL_Waypoint_MOD.anim": {
             "AssetType": "Animation",
             "Common": {
@@ -1162,13 +1210,256 @@
                 ]
             },
             "File": {
-                "Hash": 2702192338,
-                "TimeStamp": 1399317322541951800,
-                "LastEditTime": 1399317322718969500
+                "Hash": 1621054101,
+                "TimeStamp": 1400530129191461600,
+                "LastEditTime": 1400530132600802500
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 512,
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P02.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 133378561,
+                "TimeStamp": 1400530129527495200,
+                "LastEditTime": 1400530134852027600
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P03.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 812994494,
+                "TimeStamp": 1400530129874529900,
+                "LastEditTime": 1400530134989041300
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P04.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 618208007,
+                "TimeStamp": 1400530130225565000,
+                "LastEditTime": 1400530135121054500
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P05.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2631894721,
+                "TimeStamp": 1400530130577600200,
+                "LastEditTime": 1400530135253067700
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P06.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1915235233,
+                "TimeStamp": 1400530130925635000,
+                "LastEditTime": 1400530135385080900
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P07.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3552165358,
+                "TimeStamp": 1400530131274669900,
+                "LastEditTime": 1400530135521094500
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P08.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2857233620,
+                "TimeStamp": 1400530131620704500,
+                "LastEditTime": 1400530135656108000
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P09.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2009608263,
+                "TimeStamp": 1400530131968739300,
+                "LastEditTime": 1400530135791121500
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Scenes/sample_P10.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3880292149,
+                "TimeStamp": 1400530132152757700,
+                "LastEditTime": 1400530135871129500
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 1024,
                 "Height": 512,
                 "HasAlpha": true,
                 "sRGB": false
@@ -1960,6 +2251,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/RL_Pillar_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2814921174,
+                "TimeStamp": 1400529803890329700,
+                "LastEditTime": 1400529837143979100
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/RL_Player_Diffuse.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -2238,6 +2556,11 @@
             "TimeStamp": 1399333223565168700,
             "LastEditTime": 1399332890240168700
         },
+        "Models/Props/RL_Pillar.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1400529027131546300,
+            "LastEditTime": 1400529165729546300
+        },
         "Models/Props/RL_Waypoint_MOD.model_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1399414993208581200,
@@ -2252,6 +2575,11 @@
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1396304969489450000
+        },
+        "Textures/RL_Pillar_occlusion.tga": {
+            "Hash": 0,
+            "TimeStamp": 0,
+            "LastEditTime": 1400529837201990700
         }
     }
 }
