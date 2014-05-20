@@ -1,0 +1,8 @@
+<root>
+    <Resources Version="1" Count="4" PathType="Project">
+        <Resource Manager="FILE" Filename="Models/Props/RL_Pillar.vmesh_data\materials.xml" OwnerRes="3" Size="485" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="Textures" Filename="Textures\RL_Pillar_DIFFUSE.tga" CustomInt="1,64" Size="1398100" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Props/RL_Pillar.vmesh" CustomInt="1,1" Size="56" />
+    </Resources>
+</root>

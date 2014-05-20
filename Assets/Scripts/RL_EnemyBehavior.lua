@@ -292,7 +292,7 @@ end
 
 function ShowViewAngle(self)
 	-- local numRays = self.numRays
-	local numRays = 10
+	local numRays = 3
 	local myDir = self:GetObjDir()
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25

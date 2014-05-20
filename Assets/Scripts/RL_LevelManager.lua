@@ -1,5 +1,8 @@
 function OnAfterSceneLoaded(self)
-	G.currentLevel = G.currentLevel + 1
+	if G.currentLevel ~= 1 then
+		LoadData(self, G.player)
+	end
+	
 	G.gemGoal = GetNumberOfGems()
 	G.gameOver = false
 	G.win = false
@@ -13,7 +16,7 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
-		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
+		if G.gemGoal ~= 0 and G.player.gemsCollected == 1 then-- G.gemGoal then
 			WinLevel(self)
 			G.win = true
 		end
@@ -43,6 +46,9 @@ function OnThink(self)
 			
 			if continue then
 				if G.win then
+					--save the data before loading a new level
+					SaveData(self, G.player)
+					
 					LoadNextLevel()
 				else
 					LoadFirstLevel()
@@ -117,7 +123,7 @@ function LoseLevel(self)
 end
 
 function LoadNextLevel()
-	-- Application:LoadScene("Scenes/sample-level02.pcdx9.vscene")
+	G.currentLevel = G.currentLevel + 1
 	
 	if G.isWindows then
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".pcdx9.vscene")
@@ -133,6 +139,37 @@ function LoadFirstLevel()
 	else
 		Application:LoadScene("Scenes/sample.android.vscene")
 	end
+end
+
+function LoadData(self, player)
+	PersistentData:Load("PlayerStats")
+	
+	--player stats:
+	player.currentHealth = PersistentData:GetNumber("PlayerStats", "health", 17)--defaulting to 17 to show somehting went wrongs
+	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
+	player.meleeDamage = PersistentData:GetNumber("PlayerStats", "attack", 7)
+	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
+	player.itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 7)
+	
+	--player inventory
+	-- PersistentData:Load("PlayerInventory")
+	-- for i = 0, player.numItems, 1 do
+		-- --load inventory items
+	-- end
+end
+
+function SaveData(self, player)
+	--player stats:
+	PersistentData:SetNumber("PlayerStats", "health", player.currentHealth)
+	PersistentData:SetNumber("PlayerStats", "mana", player.currentMana)
+	PersistentData:SetNumber("PlayerStats", "attack", player.meleeDamage)
+	PersistentData:SetNumber("PlayerStats", "magic", player.fireballDamage)
+	
+	--player inventory
+	PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
+	
+	--Output all files
+	local alsoSaved = PersistentData:SaveAll()
 end
 
 function ResetGame()

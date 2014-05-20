@@ -37,6 +37,8 @@ models/props/rl_lootbag_mod.model	Models/Props/RL_Lootbag_MOD.model	LODSwitchDis
 models/props/rl_lootbag_mod.vcolmesh	Models/Props/RL_Lootbag_MOD.vcolmesh	
 models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	
 models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
+models/props/rl_pillar.vcolmesh	Models/Props/RL_Pillar.vcolmesh	
+models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
@@ -48,6 +50,15 @@ prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
 scenes/sample-level02_p01.dds	Scenes/sample-level02_P01.dds	sRGB=false
 scenes/sample_p01.dds	Scenes/sample_P01.dds	sRGB=false
+scenes/sample_p02.dds	Scenes/sample_P02.dds	sRGB=false
+scenes/sample_p03.dds	Scenes/sample_P03.dds	sRGB=false
+scenes/sample_p04.dds	Scenes/sample_P04.dds	sRGB=false
+scenes/sample_p05.dds	Scenes/sample_P05.dds	sRGB=false
+scenes/sample_p06.dds	Scenes/sample_P06.dds	sRGB=false
+scenes/sample_p07.dds	Scenes/sample_P07.dds	sRGB=false
+scenes/sample_p08.dds	Scenes/sample_P08.dds	sRGB=false
+scenes/sample_p09.dds	Scenes/sample_P09.dds	sRGB=false
+scenes/sample_p10.dds	Scenes/sample_P10.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	Textures/Cursor/RL_Cursor_Diffuse_Green.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga	sRGB=false
 textures/cursor/rl_cursor_diffuse_red.tga	Textures/Cursor/RL_Cursor_Diffuse_Red.tga	sRGB=false
@@ -77,6 +88,7 @@ textures/potions/rl_powerpotion_diffuse.tga	Textures/Potions/RL_PowerPotion_DIFF
 textures/props/rl_basiccollectible_diffuse.tga	Textures/Props/RL_BasicCollectible_DIFFUSE.tga	sRGB=false
 textures/rl_gem_diffuse.tga	Textures/RL_Gem_DIFFUSE.tga	sRGB=false
 textures/rl_lootbag_diffuse.tga	Textures/RL_LootBag_DIFFUSE.tga	sRGB=false
+textures/rl_pillar_diffuse.tga	Textures/RL_Pillar_DIFFUSE.tga	sRGB=false
 textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
 textures/rl_sword_diffuse.tga	Textures/RL_Sword_Diffuse.tga	sRGB=false
 textures/rl_winscreenmask_diffuse.tga	Textures/RL_WinScreenMask_DIFFUSE.tga	sRGB=false
@@ -85,15 +97,3 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
-models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
-models/props/rl_pillar.vcolmesh	Models/Props/RL_Pillar.vcolmesh	
-textures/rl_pillar_diffuse.tga	Textures/RL_Pillar_DIFFUSE.tga	sRGB=false
-scenes/sample_p02.dds	Scenes/sample_P02.dds	sRGB=false
-scenes/sample_p03.dds	Scenes/sample_P03.dds	sRGB=false
-scenes/sample_p04.dds	Scenes/sample_P04.dds	sRGB=false
-scenes/sample_p05.dds	Scenes/sample_P05.dds	sRGB=false
-scenes/sample_p06.dds	Scenes/sample_P06.dds	sRGB=false
-scenes/sample_p07.dds	Scenes/sample_P07.dds	sRGB=false
-scenes/sample_p08.dds	Scenes/sample_P08.dds	sRGB=false
-scenes/sample_p09.dds	Scenes/sample_P09.dds	sRGB=false
-scenes/sample_p10.dds	Scenes/sample_P10.dds	sRGB=false

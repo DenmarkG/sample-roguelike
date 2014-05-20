@@ -13,7 +13,6 @@ function OnAfterSceneLoaded(self)
 	--#todo move these to onExpose once launch ready
 	--fireball variables
 	self.fireballSpeed = 25
-	self.fireballDamage = 25
 	self.fireballRange = 500
 	self.fireballManaCost = 15
 	self.fireballParticlePath = "Particles\\RL_Fireball.xml"

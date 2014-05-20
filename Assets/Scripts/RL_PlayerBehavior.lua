@@ -52,6 +52,7 @@ function OnAfterSceneLoaded(self)
 	self.walkSpeed = 2.5
 	self.runSpeed = 5
 	self.maxSpellCount = 3
+	self.fireballDamage = 25
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	self.timeToNextAttack = 0 
@@ -105,12 +106,7 @@ function OnThink(self)
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		
-		local run = false
-		if G.isWindows then
-			run = self.map:GetTrigger("RUN") > 0
-		else
-			run = true
-		end
+		local run = self.map:GetTrigger("RUN") > 0
 		
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
 		
