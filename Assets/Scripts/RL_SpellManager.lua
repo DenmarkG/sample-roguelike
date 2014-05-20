@@ -8,6 +8,7 @@ function OnAfterSceneLoaded(self)
 	self.numSpellsInPlay = 0
 	
 	self.maxMana = 100
+	
 	self.currentMana = self.maxMana
 	
 	--#todo move these to onExpose once launch ready

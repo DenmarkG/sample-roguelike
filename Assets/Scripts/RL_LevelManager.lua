@@ -1,8 +1,4 @@
 function OnAfterSceneLoaded(self)
-	if G.currentLevel ~= 1 then
-		LoadData(self, G.player)
-	end
-	
 	G.gemGoal = GetNumberOfGems()
 	G.gameOver = false
 	G.win = false
@@ -47,7 +43,7 @@ function OnThink(self)
 			if continue then
 				if G.win then
 					--save the data before loading a new level
-					SaveData(self, G.player)
+					--G.player:SaveData()
 					
 					LoadNextLevel()
 				else
@@ -144,24 +140,11 @@ end
 function LoadData(self, player)
 	PersistentData:Load("PlayerStats")
 	
-	--player stats:
+	-- player stats:
 	player.currentHealth = PersistentData:GetNumber("PlayerStats", "health", 17)--defaulting to 17 to show somehting went wrongs
 	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
 	player.meleeDamage = PersistentData:GetNumber("PlayerStats", "attack", 7)
 	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
-	
-	--player inventory
-	local itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 7)
-	for i = 1, itemCount, 1 do 
-		local localName = "item"..i
-		local item = {}
-		item.name = PersistentData:GetString("Items", localName..".name", "HealthPotion")
-		item.imagePath = PersistentData:GetString("Items", localName..".imagePath", "Textures/Potions/RL_HealthPotion_DIFFUSE.tga")
-		item.value = PersistentData:GetString("Items", localName..".value", 7)
-		if player ~= nil then
-			player.ReloadItem(player, item)
-		end
-	end
 end
 
 function SaveData(self, player)
@@ -170,17 +153,6 @@ function SaveData(self, player)
 	PersistentData:SetNumber("PlayerStats", "mana", player.currentMana)
 	PersistentData:SetNumber("PlayerStats", "attack", player.meleeDamage)
 	PersistentData:SetNumber("PlayerStats", "magic", player.fireballDamage)
-	
-	--player inventory
-	PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
-	for i = 1, player.itemCount, 1 do 
-		local localName = "item"..i
-		local item = player.inventory[i]
-		PersistentData:SetString("Items", localName..".name", item.name)
-		PersistentData:SetString("Items", localName..".imagePath", item.imagePath)
-		PersistentData:SetString("Items", localName..".value", item.value)
-	end
-	
 	
 	--Output all files
 	local alsoSaved = PersistentData:SaveAll()

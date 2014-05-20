@@ -1,4 +1,3 @@
--- new script file
 function OnAfterSceneLoaded(self)
 	
 	--grab the behavior component
@@ -36,6 +35,7 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
 		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
 		self.map:MapTrigger("Y", {0,0,G.w,G.h}, "CT_TOUCH_ABS_Y")
+		self.map:MapTrigger("RUN", {0,0,G.w,G.h}, "CT_TOUCH_TRIPLE_TAP ")
 
 		--Interaction controls:
 		self.map:MapTrigger("MAGIC", G.greenTable, "CT_TOUCH_ANY")
@@ -48,23 +48,24 @@ function OnAfterSceneLoaded(self)
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
 	--set up the tuning values
+	self.fireballDamage = 25
+	self.meleeDamage = 10
+	
 	self.moveSpeed = 0
 	self.walkSpeed = 2.5
 	self.runSpeed = 5
 	self.maxSpellCount = 3
-	self.fireballDamage = 25
+	
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	self.timeToNextAttack = 0 
 	
 	self.attackAngle = 60
 	self.attackRange = 70
-	self.meleeDamage = 10
 	
-	self.invalidMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
-	self.validMouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	
-	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Red_32.tga")
+	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
 	self.mouseCursor:SetZVal(5)
@@ -169,7 +170,7 @@ function OnThink(self)
 		-- Debug:PrintLine(""..self.currentState) 
 	else
 		--G.gameOver = true
-		
+		self.mouseCursor:SetVisible(false)
 		ClearPath(self)
 		StopRotation(self)
 		

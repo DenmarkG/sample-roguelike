@@ -1,5 +1,5 @@
 -- new script file
-G.currentLevel = 1
+G.currentLevel = 2
 
 function OnBeforeSceneLoaded(self)
 	--get the current platform
@@ -9,6 +9,8 @@ function OnBeforeSceneLoaded(self)
 	G.fontPath = "Fonts/Harrington.fnt"
 	G.fontSize = 32
 	
+	--get the screen size
+	G.w, G.h = Screen:GetViewportSize()
 	--Room0 = "Meshes/LevelBlocks/SM_Room_Type-02.vmesh"
 	
 	--RoomSize = 768
@@ -18,8 +20,7 @@ end
 function OnAfterSceneLoaded(self)
 	FindWaypoints(self)
 	
-	--get the screen size
-	G.w, G.h = Screen:GetViewportSize()
+	Debug:Enable(true)
 	
 	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
