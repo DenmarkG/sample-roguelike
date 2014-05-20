@@ -1,5 +1,5 @@
 -- new script file
-function OnAfterSceneLoaded(self)
+function OnCreate(self)
 	self.gemsCollected = 0
 	self.AddGem = AddNewGem
 	
@@ -15,7 +15,28 @@ function OnAfterSceneLoaded(self)
 	
 	self.inventoryIsVisible = false
 	
-	self.ToggleInventory = function(self)
+	self.ToggleInventory = InventoryToggled
+	self.InventoryItemClicked = ItemClicked
+	self.ReloadItem = ReloadExistingItem
+end
+
+function ReloadExistingItem(self, item)
+	
+	if item.name == "HealthPotion" then
+		item.UseCallback = AddHealth
+	elseif item.name == "ManaPotion" then
+		item.UseCallback = AddMana
+	else
+		item.UseCallback = AddPower
+	end
+	
+	item.itemImage = Game:CreateScreenMask(0, 0, "".. item.imagePath)
+	item.itemImage:SetVisible(false)
+	item.itemImage:SetZVal(0)
+	self:AddItem(item)
+end
+
+function InventoryToggled(self)
 		if not self.inventoryIsVisible then
 			-- Debug:PrintLine(""..table.getn(self.inventory) )
 			if self.itemCount > 0 then
@@ -42,8 +63,8 @@ function OnAfterSceneLoaded(self)
 			end
 		end
 	end
-	
-	self.InventoryItemClicked = function(self, xPos, yPos)
+
+function ItemClicked(self, xPos, yPos)
 		if self.inventoryIsVisible then
 			local yUpperBound = self.vertStartPos + self.xSize
 			local ylowerBound = self.vertStartPos 
@@ -85,7 +106,6 @@ function OnAfterSceneLoaded(self)
 			return false
 		end
 	end
-end
 
 function AddNewGem(self)
 	self.gemsCollected = self.gemsCollected + 1
@@ -112,4 +132,16 @@ function AddNewItem(self, newItem)
 		
 		self.itemCount = self.itemCount + 1
 	end
+end
+
+function AddHealth(self, character)
+	character:ModifyHealth(self.value)
+end
+
+function AddMana(self, character)
+	character:ModifyMana(self.value)
+end
+
+function AddPower(self, character)
+	character:ModifyPower(self.value)
 end

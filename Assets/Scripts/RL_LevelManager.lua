@@ -149,13 +149,19 @@ function LoadData(self, player)
 	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
 	player.meleeDamage = PersistentData:GetNumber("PlayerStats", "attack", 7)
 	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
-	player.itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 7)
 	
 	--player inventory
-	-- PersistentData:Load("PlayerInventory")
-	-- for i = 0, player.numItems, 1 do
-		-- --load inventory items
-	-- end
+	local itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 7)
+	for i = 1, itemCount, 1 do 
+		local localName = "item"..i
+		local item = {}
+		item.name = PersistentData:GetString("Items", localName..".name", "HealthPotion")
+		item.imagePath = PersistentData:GetString("Items", localName..".imagePath", "Textures/Potions/RL_HealthPotion_DIFFUSE.tga")
+		item.value = PersistentData:GetString("Items", localName..".value", 7)
+		if player ~= nil then
+			player.ReloadItem(player, item)
+		end
+	end
 end
 
 function SaveData(self, player)
@@ -167,6 +173,14 @@ function SaveData(self, player)
 	
 	--player inventory
 	PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
+	for i = 1, player.itemCount, 1 do 
+		local localName = "item"..i
+		local item = player.inventory[i]
+		PersistentData:SetString("Items", localName..".name", item.name)
+		PersistentData:SetString("Items", localName..".imagePath", item.imagePath)
+		PersistentData:SetString("Items", localName..".value", item.value)
+	end
+	
 	
 	--Output all files
 	local alsoSaved = PersistentData:SaveAll()

@@ -55,6 +55,7 @@ function GeneratePickupProperties(self)
 	end
 	
 	--for drawing the inventory item on screen
+	self.item.imagePath = imagePath
 	self.item.itemImage = Game:CreateScreenMask(0, 0, "".. imagePath)
 	self.item.itemImage:SetVisible(false)
 	self.item.itemImage:SetZVal(0)
