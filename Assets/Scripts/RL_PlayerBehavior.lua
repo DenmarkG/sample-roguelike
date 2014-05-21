@@ -1,17 +1,18 @@
+--[[
+Player Behavior Scripts
+-Handles all input and control for the player including:
+	-swtiching between animations
+	-player attack, walk, run, etc
+	-Player Pathfiding
+-Handles all mouse control and input
+]]--
 function OnAfterSceneLoaded(self)
-	
+
 	--grab the behavior component
 	self.behaviorComponent = self:GetComponentOfType("vHavokBehaviorComponent")
 	if self.behaviorComponent == nil then
 		self.behaviorComponent = self:AddComponentOfType("vHavokBehaviorComponent")
 	end
-	
-	-- self.characterController = self.behaviorComponent:GetComponentOfType("vHavokCharacterController")
-	-- if self.characterController == nil then
-		-- self.characterController = self:AddComponentOfType("vHavokCharacterController")
-	-- end
-	
-	--self.characterController:SetCollisionInfo(1,0,0,0)
 	
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
@@ -23,6 +24,7 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 		self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
 		self.map:MapTrigger("RUN", "KEYBOARD", "CT_KB_LSHIFT")
+		
 		--Interaction controls:
 		self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
 		self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
@@ -30,7 +32,6 @@ function OnAfterSceneLoaded(self)
 		--GUI Display Controls
 		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
 	else
-		--{startx, starty, endx, endy}
 		--mouse movement controls:
 		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
 		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
@@ -44,28 +45,31 @@ function OnAfterSceneLoaded(self)
 		--GUI Display Controls
 		self.map:MapTrigger("INVENTORY", G.blueTable, "CT_TOUCH_ANY") --will show the display whilst holding 
 	end
+	
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
-	--set up the tuning values
-	self.fireballDamage = 25
+	--setting up the tuning values:
+	--Melee attack tunining
 	self.meleeDamage = 10
+	self.attackAngle = 60
+	self.attackRange = 70
 	
-	self.moveSpeed = 0
-	self.walkSpeed = 2.5
-	self.runSpeed = 5
+	--Magic attack tuning
+	self.fireballDamage = 25
 	self.maxSpellCount = 3
-	
 	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
 	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
 	self.timeToNextAttack = 0 
 	
-	self.attackAngle = 60
-	self.attackRange = 70
+	--locomotion values
+	self.moveSpeed = 0
+	self.walkSpeed = 2.5
+	self.runSpeed = 5
 	
-	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	--variables for the mouse cursor and click particle
 	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
-	
+	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
@@ -73,16 +77,18 @@ function OnAfterSceneLoaded(self)
 	
 	self.goalRadius = 50 --how far the character should stop from a goal point
 	
+	--the player states, for switching between animations/actions
 	self.states = {}
 	self.states.walking = "walking"
 	self.states.idle = "idle"
 	self.states.attacking = "attacking"
-	
 	self.prevState = nil
 	self.currentState = self.states.idle
 	
+	--bool to tell the game if the player is still alive
 	self.isAlive = true
 	
+	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
 end
@@ -94,37 +100,38 @@ function OnBeforeSceneUnloaded(self)
 end
 
 function OnThink(self)
-	-- for i = 1, table.getn(self.inventory), 1 do
-		-- local item = self.inventory[i]
-		-- Debug:PrintLine("item: " .. item.name)
-	-- end
-	
+	--this should only run if the level/game is not over, and the player is still alive
 	if not G.gameOver  and self.isAlive then
-	
+		
+		--cool down any active timers
 		if self.timeToNextAttack > 0 then
 			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
 		end
 		
+		--cash the non-combat input controls
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
-		
 		local run = self.map:GetTrigger("RUN") > 0
-		
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
 		
 		if self.currentState ~= self.states.attacking then
+			--if the player is not currently attacking:
+			--cache the combat controls
 			local magic = self.map:GetTrigger("MAGIC") > 0
 			local melee = self.map:GetTrigger("MELEE") > 0
 			
+			--set the move speed
 			if run then
 				self.moveSpeed = self.runSpeed
 			else
 				self.moveSpeed = self.walkSpeed
 			end
 			
+			--the current attck cool down
 			if self.timeToNextAttack <= 0 then
 				self.timeToNextAttack = 0
-							
+				
+				--if the timer is ready, and an attack trigger has been called, perform an attack
 				if magic then
 					CastSpell(self)
 				elseif melee then
@@ -132,21 +139,25 @@ function OnThink(self)
 				end
 			end
 		else
-			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug
+			--if the player is attacking:
+			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug; fixed in 2014.1.0
 			local attackStopped = not (self.timeToNextAttack > 0)
 			
+			--if the timer is less than or equal to 0, stop the attack
 			if attackStopped then
-				-- Debug:PrintLine("AttackStopped!")
 				self.currentState = self.prevState
 			end
 		end
 		
+		--check to see if the player clicked the mouse
 		if self.map:GetTrigger("CLICK") > 0 then
+			--if the mouse was clicked, and the inventory is visble, check for an item selection
 			local itemUsed = false
 			if self.inventoryIsVisible then
 				itemUsed = self.InventoryItemClicked(self, x, y)
 			end
 			
+			--if an itema was not selected, set the new position to move to based on mouse position
 			if not itemUsed then
 				UpdateTargetPosition(self, x, y)
 			end
@@ -170,7 +181,7 @@ function OnThink(self)
 		
 		-- Debug:PrintLine(""..self.currentState) 
 	else
-		--G.gameOver = true
+		--when the game is over, or the player's health reaches zero, stop movment, and clear the AI Path
 		self.mouseCursor:SetVisible(false)
 		ClearPath(self)
 		StopRotation(self)
@@ -183,21 +194,29 @@ function OnThink(self)
 		end
 	end
 	
+	--INSIDER ONLY
+	--showing the difference between vectors and their representations
 	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir_Right() * 50), Vision.V_RGBA_GREEN)
 	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir() * 50), Vision.V_RGBA_RED)
 end
 
 
 function UpdateTargetPosition(self, mouseX, mouseY)
+	--get a point on the navmesh based on the mouse position
 	local goal = AI:PickPoint(mouseX, mouseY)
 	
 	if goal ~= nil then
+		--spawn the particle if that point is not nil
 		local particlePos =  Vision.hkvVec3(goal.x, goal.y, goal.z + .1)
 		Game:CreateEffect(particlePos, self.clickParticlePath)
 		
+		--set the start point for the path
 		local start = self:GetPosition()
+		--create the path based ont the start and goal points
 		local path = AI:FindPath(start, goal, 20.0, -1)
+		
 		if path ~= nil then
+			--if a path exists:
 			local numPoints = table.getn(path)
 			local endPoint = path[numPoints]
 			self.path = path

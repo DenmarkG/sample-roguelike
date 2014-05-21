@@ -1,4 +1,8 @@
--- new script file
+--[[
+Scene Manager
+-managaes global variables for entites, screen information, and Touch Areas for mobile
+-finds and stores locations of all waypoints for enemy AI
+]]--
 G.currentLevel = 1
 
 function OnBeforeSceneLoaded(self)
@@ -11,15 +15,10 @@ function OnBeforeSceneLoaded(self)
 	
 	--get the screen size
 	G.w, G.h = Screen:GetViewportSize()
-	--Room0 = "Meshes/LevelBlocks/SM_Room_Type-02.vmesh"
-	
-	--RoomSize = 768
-	--GenerateRooms(self)
 end
 
 function OnAfterSceneLoaded(self)
 	FindWaypoints(self)
-	
 	Debug:Enable(true)
 	
 	--cache the player for easy access
@@ -57,14 +56,6 @@ function OnBeforeSceneUnloaded(self)
 	--delete the screen masks
 	Game:DeleteAllUnrefScreenMasks()
 end
-
--- function GenerateRooms(self)
-	-- Debug:PrintLine("Rooms Generated")
-	-- Game:CreateEntity(Vision.hkvVec3(0,0,0), "VisBaseEntity_cl", Room0, "StartRoom")
-	-- Game:InstantiatePrefab(Vision.hkvVec3(0,0,0), Room0)
-	-- local mesh = Game:CreateStaticMeshInstance(Vision.hkvVec3(0,0,0), Room0, true, "StartRoom")
-	-- mesh:SetVisibleBitmask(Vision.VBitmask("0xFF") )
--- end
 
 function FindWaypoints(self)
 	G.waypoints = {}
