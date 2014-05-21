@@ -1,3 +1,8 @@
+function OnCreate(self)
+	self.testCount = 0
+	self.AddTwo = AddTwoMore
+end
+
 function OnAfterSceneLoaded(self)
 	self.inventory = {}
 	self.maxItems = 8
@@ -18,33 +23,38 @@ function OnAfterSceneLoaded(self)
 	-- self.ReloadItem = ReloadExistingItem
 end
 
+function AddTwoMore(self)
+	self.testCount = self.testCount + 2
+	Debug:PrintLine(""..self.testCount)
+end
+
 function InventoryToggled(self)
-		if not self.inventoryIsVisible then
-			-- Debug:PrintLine(""..table.getn(self.inventory) )
-			if self.itemCount > 0 then
-				for i = 1, table.getn(self.inventory), 1 do
-					local currentItem = self.inventory[i]
-					-- Debug:PrintAt(10, G.fontSize * i, ""..currentItem.name, Vision.V_RGBA_GREEN, G.fontPath)
-					currentItem.itemImage:SetVisible(true)
-					currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
-					currentItem.itemImage:SetTargetSize(self.xSize, self.xSize)
-					currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos)
-				end
-				
-				self.inventoryIsVisible = true
+	if not self.inventoryIsVisible then
+		-- Debug:PrintLine(""..table.getn(self.inventory) )
+		if self.itemCount > 0 then
+			for i = 1, table.getn(self.inventory), 1 do
+				local currentItem = self.inventory[i]
+				-- Debug:PrintAt(10, G.fontSize * i, ""..currentItem.name, Vision.V_RGBA_GREEN, G.fontPath)
+				currentItem.itemImage:SetVisible(true)
+				currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
+				currentItem.itemImage:SetTargetSize(self.xSize, self.xSize)
+				currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos)
 			end
-		else
-			if self.itemCount > 0 then
-				for i = 1, table.getn(self.inventory), 1 do
-					local currentItem = self.inventory[i]
-					currentItem.itemImage:SetVisible(false)
-					-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
-				end
-				
-				self.inventoryIsVisible = false
+			
+			self.inventoryIsVisible = true
+		end
+	else
+		if self.itemCount > 0 then
+			for i = 1, table.getn(self.inventory), 1 do
+				local currentItem = self.inventory[i]
+				currentItem.itemImage:SetVisible(false)
+				-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 			end
+			
+			self.inventoryIsVisible = false
 		end
 	end
+end
 
 function ItemClicked(self, xPos, yPos)
 		if self.inventoryIsVisible then
@@ -124,13 +134,13 @@ function AddNewItem(self, newItem)
 			Debug:PrintLine("item added")
 		else
 			self.inventory[1] = newItem
-			Debug:PrintLine("item added")
+			-- Debug:PrintLine("item added")
 		end
 		
 		self.itemCount = self.itemCount + 1
 	end
 	
-	Debug:PrintLine(""..self.itemCount)
+	-- Debug:PrintLine(""..self.itemCount)
 end
 
 function AddHealth(self, character)

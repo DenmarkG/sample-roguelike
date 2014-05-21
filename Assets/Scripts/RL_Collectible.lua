@@ -23,14 +23,14 @@ function OnObjectEnter(self, otherObj)
 			if otherObj == nil then
 				Debug:PrintLine("other is Nil!")
 			else
-				Debug:PrintLine("calling add item")
+				-- Debug:PrintLine("calling add item")
 				otherObj:AddItem(self.item)
 			end
 			
 		end
 		
 		Deactivate(self)
-		Debug:PrintLine("Triggered") --> yay this works
+		--Debug:PrintLine("Triggered") --> yay this works
 	end
 end
 

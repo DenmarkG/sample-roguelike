@@ -8,6 +8,8 @@ function OnAfterSceneLoaded(self)
 	
 	G.Lose = LoseLevel
 	G.Win = WinLevel
+	
+	G.player:AddTwo()
 end
 
 function OnThink(self)
@@ -43,8 +45,7 @@ function OnThink(self)
 			if continue then
 				if G.win then
 					--save the data before loading a new level
-					--G.player:SaveData()
-					
+					SaveData(G.player)
 					LoadNextLevel()
 				else
 					LoadFirstLevel()
@@ -137,7 +138,8 @@ function LoadFirstLevel()
 	end
 end
 
-function LoadData(self, player)
+function LoadData(player)
+	--load the existing data
 	PersistentData:Load("PlayerStats")
 	
 	-- player stats:
@@ -147,7 +149,7 @@ function LoadData(self, player)
 	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
 end
 
-function SaveData(self, player)
+function SaveData(player)
 	--player stats:
 	PersistentData:SetNumber("PlayerStats", "health", player.currentHealth)
 	PersistentData:SetNumber("PlayerStats", "mana", player.currentMana)
