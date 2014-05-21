@@ -9,7 +9,9 @@ function OnAfterSceneLoaded(self)
 	G.Lose = LoseLevel
 	G.Win = WinLevel
 	
-	G.player:AddTwo()
+	if G.currentLevel > 1 then
+		LoadData(G.player)
+	end
 end
 
 function OnThink(self)
@@ -45,9 +47,9 @@ function OnThink(self)
 			if continue then
 				if G.win then
 					--save the data before loading a new level
-					--SaveData(G.player)
+					SaveData(G.player)
 					LoadNextLevel()
-					Debug:PrintLine("Level "..G.currentLevel.." Loaded")
+					-- Debug:PrintLine("Level "..G.currentLevel.." Loaded")
 				else
 					LoadFirstLevel()
 				end
@@ -124,7 +126,6 @@ function LoadNextLevel()
 	G.currentLevel = G.currentLevel + 1
 	
 	if G.isWindows then
-		Debug:PrintLine("Loading...")
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".pcdx9.vscene")
 	else
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".android.vscene")
@@ -149,6 +150,26 @@ function LoadData(player)
 	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
 	player.meleeDamage = PersistentData:GetNumber("PlayerStats", "attack", 7)
 	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
+	
+	-- player inventory
+	local itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 0)
+	if itemCount ~= 0 then
+		-- Debug:PrintLine("itemCount = "..itemCount)
+		for i = 1, itemCount, 1 do 
+			local localName = "item"..i
+			local item = {}
+			item.name = PersistentData:GetString("Items", localName..".name", "HealthPotion")
+			item.imagePath = PersistentData:GetString("Items", localName..".imagePath", "Textures/Potions/RL_HealthPotion_DIFFUSE.tga")
+			item.value = PersistentData:GetString("Items", localName..".value", 7)
+			if player.ReloadItem == nil then
+				Debug:PrintLine("Reload func is nil")
+			end
+			
+			player:ReloadItem(item)
+		end
+	end
+	
+	Debug:PrintLine("Player Items Loaded")
 end
 
 function SaveData(player)
@@ -158,8 +179,22 @@ function SaveData(player)
 	PersistentData:SetNumber("PlayerStats", "attack", player.meleeDamage)
 	PersistentData:SetNumber("PlayerStats", "magic", player.fireballDamage)
 	
+	--player inventory
+	if player.itemCount == nil or player.itemCount == 0 then
+		PersistentData:SetNumber("PlayerStats", "itemCount", 0)
+	else
+		PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
+		for i = 1, player.itemCount, 1 do 
+			local localName = "item"..i
+			local item = player.inventory[i]
+			PersistentData:SetString("Items", localName..".name", item.name)
+			PersistentData:SetString("Items", localName..".imagePath", item.imagePath)
+			PersistentData:SetString("Items", localName..".value", item.value)
+		end
+	end
+	
 	--Output all files
-	local alsoSaved = PersistentData:SaveAll()
+	PersistentData:SaveAll()
 end
 
 function ResetGame()

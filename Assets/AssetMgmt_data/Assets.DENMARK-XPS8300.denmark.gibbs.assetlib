@@ -1044,6 +1044,81 @@
                 "TemplateName": "Default"
             }
         },
+        "Particles/FlareGroup.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4083271668,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1400699600719677300
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 256,
+                "Height": 256,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/HaloRing_06.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 2339191129,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1400699600730678400
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 256,
+                "Height": 256,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/RL_ClickParticle.vpfx": {
+            "AssetType": "Particle",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/FlareGroup.dds",
+                    "Particles/HaloRing_06.dds"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1874152380,
+                "TimeStamp": 1400701080906695300,
+                "LastEditTime": 1400701081906795300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Particles/RL_Fireball.vpfx": {
             "AssetType": "Particle",
             "Common": {

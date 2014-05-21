@@ -1,31 +1,48 @@
 function OnCreate(self)
 	self.testCount = 0
-	self.AddTwo = AddTwoMore
+	self.ReloadItem = ReloadExistingItem
 end
 
 function OnAfterSceneLoaded(self)
-	self.inventory = {}
-	self.maxItems = 8
-	self.itemCount = 0
+	if self.inventory == nil then
+		self.inventory = {}
+		self.maxItems = 8
+		self.itemCount = 0
+	end	
 	
 	self.gemsCollected = 0
 	self.inventoryIsVisible = false
 	
-	self.xSize = G.w / self.maxItems
-	
 	--positioning varibles for display
+	self.xSize = G.w / self.maxItems
 	self.vertStartPos = G.h * 3 / 4
 
 	self.AddItem = AddNewItem
 	self.AddGem = AddNewGem
 	self.ToggleInventory = InventoryToggled
 	self.InventoryItemClicked = ItemClicked
-	-- self.ReloadItem = ReloadExistingItem
 end
 
-function AddTwoMore(self)
-	self.testCount = self.testCount + 2
-	Debug:PrintLine(""..self.testCount)
+function ReloadExistingItem(self, item)
+	if self.inventory == nil then
+		Debug:PrintLine("Inventory not nil anymore")
+		self.inventory = {}
+		self.maxItems = 8
+		self.itemCount = 0
+	end	
+	
+	if item.name == "HealthPotion" then
+		item.UseCallback = AddHealth
+	elseif item.name == "ManaPotion" then
+		item.UseCallback = AddMana
+	else
+		item.UseCallback = AddPower
+	end
+	
+	item.itemImage = Game:CreateScreenMask(0, 0, "".. item.imagePath)
+	item.itemImage:SetVisible(false)
+	item.itemImage:SetZVal(0)
+	AddNewItem(self, item)
 end
 
 function InventoryToggled(self)
@@ -104,11 +121,11 @@ function AddNewGem(self)
 end
 
 function AddNewItem(self, newItem)
-	-- Debug:PrintLine("Add Item called")
+	Debug:PrintLine("Add Item called")
 	-- Debug:PrintLine(""..self.maxItems)
 	
 	if self.inventory == nil then
-		-- Debug:PrintLine("self.inventory == nil")
+		Debug:PrintLine("self.inventory == nil")
 		self.inventory = {}
 		self.maxItems = 8
 		self.itemCount = 0
@@ -116,7 +133,7 @@ function AddNewItem(self, newItem)
 	
 	local notInInventory = true
 	if self.itemCount > 0 then
-		-- Debug:PrintLine("self.itemCount > 0")
+		Debug:PrintLine("self.itemCount > 0")
 		for i = 0, table.getn(self.inventory), 1 do
 			local item = self.inventory[i]
 			if newItem == item then
@@ -126,15 +143,15 @@ function AddNewItem(self, newItem)
 	end
 
 	if notInInventory and not (self.itemCount >= self.maxItems) then
-		-- Debug:PrintLine("notInInventory and not (self.itemCount >= self.maxItems)")
+		Debug:PrintLine("notInInventory and not (self.itemCount >= self.maxItems)")
 		-- Debug:PrintLine("inside!")
 		
 		if self.itemCount > 0 then
 			self.inventory[self.itemCount + 1] = newItem
-			Debug:PrintLine("item added")
+			Debug:PrintLine(""..newItem.name.." added")
 		else
 			self.inventory[1] = newItem
-			-- Debug:PrintLine("item added")
+			Debug:PrintLine(""..newItem.name.." added")
 		end
 		
 		self.itemCount = self.itemCount + 1

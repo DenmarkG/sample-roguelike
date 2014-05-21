@@ -97,3 +97,6 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
+particles/rl_clickparticle.vpfx	Particles/RL_ClickParticle.vpfx	
+particles/flaregroup.dds	Particles/FlareGroup.dds	sRGB=false
+particles/haloring_06.dds	Particles/HaloRing_06.dds	sRGB=false

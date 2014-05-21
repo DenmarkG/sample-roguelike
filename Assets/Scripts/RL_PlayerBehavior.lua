@@ -64,6 +64,7 @@ function OnAfterSceneLoaded(self)
 	self.attackRange = 70
 	
 	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
 	
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
@@ -191,24 +192,27 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 	local goal = AI:PickPoint(mouseX, mouseY)
 	
 	if goal ~= nil then
+		local particlePos =  Vision.hkvVec3(goal.x, goal.y, goal.z + .1)
+		Game:CreateEffect(particlePos, self.clickParticlePath)
+		
 		local start = self:GetPosition()
 		local path = AI:FindPath(start, goal, 20.0, -1)
 		if path ~= nil then
-		local numPoints = table.getn(path)
-		local endPoint = path[numPoints]
-		self.path = path
-		self.pathProgress = 0
-		self.pathLength = AI:GetPathLength(path)
-		-- Debug:PrintLine("length: "..self.pathLength)
-		self.goalPoint = goal
-		self.lastPoint = start
-		
-		--[[
-		To get the initial point, we won't use the start point here (a path progress of 0), 
-		otherwise the character may walk in circles.
-		Instead, we use a value further along the path to give the character plenty of room to turn and walk
-		--]]
-		self.nextPoint = AI:GetPointOnPath(self.path, 0.1)
+			local numPoints = table.getn(path)
+			local endPoint = path[numPoints]
+			self.path = path
+			self.pathProgress = 0
+			self.pathLength = AI:GetPathLength(path)
+			-- Debug:PrintLine("length: "..self.pathLength)
+			self.goalPoint = goal
+			self.lastPoint = start
+			
+			--[[
+			To get the initial point, we won't use the start point here (a path progress of 0), 
+			otherwise the character may walk in circles.
+			Instead, we use a value further along the path to give the character plenty of room to turn and walk
+			--]]
+			self.nextPoint = AI:GetPointOnPath(self.path, 0.1)
 		end
 	end
 end

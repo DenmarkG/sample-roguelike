@@ -1,0 +1,8 @@
+{
+	"item1.name":	"HealthPotion",
+	"item1.imagePath":	"Textures/Potions/RL_HealthPotion_DIFFUSE.tga",
+	"item1.value":	"25",
+	"item2.name":	"ManaPotion",
+	"item2.imagePath":	"Textures/Potions/RL_ManaPotion_DIFFUSE.tga",
+	"item2.value":	"25"
+}
