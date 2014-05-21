@@ -42,6 +42,9 @@ models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
+particles/flaregroup.dds	AssetMgmt_data/transformed/flaregrouph6sg7zjclgdtc.dds	sRGB=false
+particles/haloring_06.dds	AssetMgmt_data/transformed/haloring_068qw9tc4clgdtc.dds	sRGB=false
+particles/rl_clickparticle.vpfx	Particles/RL_ClickParticle.vpfx	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	AssetMgmt_data/transformed/smokesequence_a1hnnds4clgdtc.dds	sRGB=false
 prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab	

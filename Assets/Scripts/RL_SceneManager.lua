@@ -1,7 +1,7 @@
 -- new script file
+G.currentLevel = 1
+
 function OnBeforeSceneLoaded(self)
-	G.currentLevel = 1
-	
 	--get the current platform
 	G.isWindows = (Application:GetPlatformName() == "WIN32DX9" or Application:GetPlatformName() == "WIN32DX11")
 	
@@ -24,6 +24,7 @@ function OnAfterSceneLoaded(self)
 	
 	--cache the player for easy access
 	G.player = Game:GetEntity("Player")
+	G.levelManager = Game:GetEntity("LevelManager")
 	
 	if not G.isWindows then
 		--set the values for the texture's position on screen (as a percentage)

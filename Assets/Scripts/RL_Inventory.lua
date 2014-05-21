@@ -1,9 +1,12 @@
 function OnCreate(self)
 	self.testCount = 0
-	self.ReloadItem = ReloadExistingItem
 end
 
 function OnAfterSceneLoaded(self)
+	if G.currentLevel > 1 then
+		LoadItems(self)
+	end
+	
 	if self.inventory == nil then
 		self.inventory = {}
 		self.maxItems = 8
@@ -21,28 +24,8 @@ function OnAfterSceneLoaded(self)
 	self.AddGem = AddNewGem
 	self.ToggleInventory = InventoryToggled
 	self.InventoryItemClicked = ItemClicked
-end
-
-function ReloadExistingItem(self, item)
-	if self.inventory == nil then
-		Debug:PrintLine("Inventory not nil anymore")
-		self.inventory = {}
-		self.maxItems = 8
-		self.itemCount = 0
-	end	
-	
-	if item.name == "HealthPotion" then
-		item.UseCallback = AddHealth
-	elseif item.name == "ManaPotion" then
-		item.UseCallback = AddMana
-	else
-		item.UseCallback = AddPower
-	end
-	
-	item.itemImage = Game:CreateScreenMask(0, 0, "".. item.imagePath)
-	item.itemImage:SetVisible(false)
-	item.itemImage:SetZVal(0)
-	AddNewItem(self, item)
+	self.SaveInventory = SaveItems
+	self.LoadInventory = LoadItems
 end
 
 function InventoryToggled(self)
@@ -121,11 +104,11 @@ function AddNewGem(self)
 end
 
 function AddNewItem(self, newItem)
-	Debug:PrintLine("Add Item called")
+	-- Debug:PrintLine("Add Item called")
 	-- Debug:PrintLine(""..self.maxItems)
 	
 	if self.inventory == nil then
-		Debug:PrintLine("self.inventory == nil")
+		-- Debug:PrintLine("self.inventory == nil")
 		self.inventory = {}
 		self.maxItems = 8
 		self.itemCount = 0
@@ -133,7 +116,7 @@ function AddNewItem(self, newItem)
 	
 	local notInInventory = true
 	if self.itemCount > 0 then
-		Debug:PrintLine("self.itemCount > 0")
+		-- Debug:PrintLine("self.itemCount > 0")
 		for i = 0, table.getn(self.inventory), 1 do
 			local item = self.inventory[i]
 			if newItem == item then
@@ -143,21 +126,77 @@ function AddNewItem(self, newItem)
 	end
 
 	if notInInventory and not (self.itemCount >= self.maxItems) then
-		Debug:PrintLine("notInInventory and not (self.itemCount >= self.maxItems)")
+		-- Debug:PrintLine("notInInventory and not (self.itemCount >= self.maxItems)")
 		-- Debug:PrintLine("inside!")
 		
 		if self.itemCount > 0 then
 			self.inventory[self.itemCount + 1] = newItem
-			Debug:PrintLine(""..newItem.name.." added")
+			Debug:PrintLine(""..newItem.name.." "..newItem.value)
 		else
 			self.inventory[1] = newItem
-			Debug:PrintLine(""..newItem.name.." added")
+			Debug:PrintLine(""..newItem.name.." "..newItem.value)
 		end
 		
 		self.itemCount = self.itemCount + 1
 	end
 	
 	-- Debug:PrintLine(""..self.itemCount)
+end
+
+
+function SaveItems(self)
+	--player inventory
+	if player.itemCount == nil or player.itemCount == 0 then
+		PersistentData:SetNumber("PlayerStats", "itemCount", 0)
+	else
+		PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
+		for i = 1, player.itemCount, 1 do 
+			local localName = "item"..i
+			local item = player.inventory[i]
+			PersistentData:SetString("Items", localName..".name", item.name)
+			PersistentData:SetString("Items", localName..".imagePath", item.imagePath)
+			PersistentData:SetString("Items", localName..".value", item.value)
+		end
+	end
+end
+
+function LoadItems(self)
+	-- player inventory
+	local itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 0)
+	if itemCount ~= 0 then
+		-- Debug:PrintLine("itemCount = "..itemCount)
+		for i = 1, itemCount, 1 do 
+			local localName = "item"..i
+			local item = {}
+			item.name = PersistentData:GetString("Items", localName..".name", "HealthPotion")
+			item.imagePath = PersistentData:GetString("Items", localName..".imagePath", "Textures/Potions/RL_HealthPotion_DIFFUSE.tga")
+			item.value = PersistentData:GetString("Items", localName..".value", 7)
+			-- Debug:PrintLine("Reload func is not nil")
+			ReloadExistingItem(self, item)
+		end
+	end
+end
+
+function ReloadExistingItem(self, item)
+	if self.inventory == nil then
+		Debug:PrintLine("Inventory not nil anymore")
+		self.inventory = {}
+		self.maxItems = 8
+		self.itemCount = 0
+	end	
+	
+	if item.name == "HealthPotion" then
+		item.UseCallback = AddHealth
+	elseif item.name == "ManaPotion" then
+		item.UseCallback = AddMana
+	else
+		item.UseCallback = AddPower
+	end
+	
+	item.itemImage = Game:CreateScreenMask(0, 0, "".. item.imagePath)
+	item.itemImage:SetVisible(false)
+	item.itemImage:SetZVal(0)
+	AddNewItem(self, item)
 end
 
 function AddHealth(self, character)
