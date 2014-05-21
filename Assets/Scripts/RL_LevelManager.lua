@@ -45,8 +45,9 @@ function OnThink(self)
 			if continue then
 				if G.win then
 					--save the data before loading a new level
-					SaveData(G.player)
+					--SaveData(G.player)
 					LoadNextLevel()
+					Debug:PrintLine("Level "..G.currentLevel.." Loaded")
 				else
 					LoadFirstLevel()
 				end
@@ -123,6 +124,7 @@ function LoadNextLevel()
 	G.currentLevel = G.currentLevel + 1
 	
 	if G.isWindows then
+		Debug:PrintLine("Loading...")
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".pcdx9.vscene")
 	else
 		Application:LoadScene("Scenes/sample-level0"..G.currentLevel..".android.vscene")

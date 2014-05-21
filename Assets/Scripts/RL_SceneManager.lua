@@ -1,5 +1,5 @@
 -- new script file
-G.currentLevel = 2
+G.currentLevel = 1
 
 function OnBeforeSceneLoaded(self)
 	--get the current platform
