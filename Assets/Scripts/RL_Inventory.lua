@@ -143,7 +143,6 @@ function AddNewItem(self, newItem)
 	-- Debug:PrintLine(""..self.itemCount)
 end
 
-
 function SaveItems(self)
 	--player inventory
 	if player.itemCount == nil or player.itemCount == 0 then

@@ -6,8 +6,7 @@ Player Behavior Scripts
 	-Player Pathfiding
 -Handles all mouse control and input
 ]]--
-function OnAfterSceneLoaded(self)
-
+function OnAfterSceneLoaded(self)	
 	--grab the behavior component
 	self.behaviorComponent = self:GetComponentOfType("vHavokBehaviorComponent")
 	if self.behaviorComponent == nil then
@@ -36,14 +35,14 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
 		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
 		self.map:MapTrigger("Y", {0,0,G.w,G.h}, "CT_TOUCH_ABS_Y")
-		self.map:MapTrigger("RUN", {0,0,G.w,G.h}, "CT_TOUCH_TRIPLE_TAP ")
+		self.map:MapTrigger("RUN", G.yellowTable, "CT_TOUCH_ANY")
 
 		--Interaction controls:
-		self.map:MapTrigger("MAGIC", G.greenTable, "CT_TOUCH_ANY")
+		self.map:MapTrigger("MAGIC", G.greenTable, "CT_TOUCH_ANY", {once=true} )
 		self.map:MapTrigger("MELEE", G.redTable, "CT_TOUCH_ANY", {once=true} )
 		
 		--GUI Display Controls
-		self.map:MapTrigger("INVENTORY", G.blueTable, "CT_TOUCH_ANY") --will show the display whilst holding 
+		self.map:MapTrigger("INVENTORY", G.blueTable, "CT_TOUCH_ANY", {once=true} ) --will show the display whilst holding 
 	end
 	
 	--establish a zero Vector
@@ -67,14 +66,16 @@ function OnAfterSceneLoaded(self)
 	self.walkSpeed = 2.5
 	self.runSpeed = 5
 	
-	--variables for the mouse cursor and click particle
-	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
+	--variables for the mouse cursor
 	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
 	self.mouseCursor:SetZVal(5)
-	
+	--variables for keeping track of click location and times for particle
+	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
+	self.lastClickTime = 0
+	self.clickCoolDown = .25
 	self.goalRadius = 50 --how far the character should stop from a goal point
 	
 	--the player states, for switching between animations/actions
@@ -106,6 +107,10 @@ function OnThink(self)
 		--cool down any active timers
 		if self.timeToNextAttack > 0 then
 			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
+		end
+		
+		if self.lastClickTime > 0 then
+			self.lastClickTime = self.lastClickTime - Timer:GetTimeDiff()
 		end
 		
 		--cash the non-combat input controls
@@ -194,7 +199,7 @@ function OnThink(self)
 		end
 	end
 	
-	--INSIDER ONLY
+	--INSIDER ONLY, REMOVE BEFORE FINAL RELEASE
 	--showing the difference between vectors and their representations
 	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir_Right() * 50), Vision.V_RGBA_GREEN)
 	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir() * 50), Vision.V_RGBA_RED)
@@ -208,7 +213,10 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 	if goal ~= nil then
 		--spawn the particle if that point is not nil
 		local particlePos =  Vision.hkvVec3(goal.x, goal.y, goal.z + .1)
-		Game:CreateEffect(particlePos, self.clickParticlePath)
+		if self.lastClickTime <= 0 then
+			Game:CreateEffect(particlePos, self.clickParticlePath)
+			self.lastClickTime = self.clickCoolDown
+		end
 		
 		--set the start point for the path
 		local start = self:GetPosition()
@@ -284,7 +292,15 @@ function UpdateMouse(self, xPos, yPos)
 		yPos = G.h - self.cursorSizeY 
 	end
 	
-	self.mouseCursor:SetPos(xPos, yPos)
+	if xPos ~= 0 then
+		self.lastX = xPos
+	end
+	
+	if yPos ~= 0 then
+		self.lastY = yPos
+	end
+	
+	self.mouseCursor:SetPos(self.lastX, self.lastY)
 end
 
 function RotateToTarget(self, target)

@@ -2,6 +2,7 @@
 Scene Manager
 -managaes global variables for entites, screen information, and Touch Areas for mobile
 -finds and stores locations of all waypoints for enemy AI
+-keeps track of current level
 ]]--
 G.currentLevel = 1
 
@@ -45,6 +46,10 @@ function OnAfterSceneLoaded(self)
 		G.redButton = Game:CreateScreenMask(right - x, top + x, "Textures/MobileHud/FPS_Button_Red_64.tga")
 		G.redButton:SetBlending(Vision.BLEND_ALPHA)
 		G.redTable = {right - x, top + x, right, bottom - x, -150}
+		
+		G.yellowButton = Game:CreateScreenMask(left, top + x, "Textures/MobileHud/FPS_Button_Yellow_64.tga")
+		G.yellowButton:SetBlending(Vision.BLEND_ALPHA)
+		G.yellowTable = {left, top + x, left + x, bottom - x, -150}
 		
 		G.blueButton = Game:CreateScreenMask(left + x, top, "Textures/MobileHud/FPS_Button_Blue_64.tga")
 		G.blueButton:SetBlending(Vision.BLEND_ALPHA)

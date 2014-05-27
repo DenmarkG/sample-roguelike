@@ -1,9 +1,6 @@
 ﻿-- new script file
 function OnAfterSceneLoaded(self)
-	-- self.rigidBody = self:GetComponentOfType("vHavokRigidBody")
-	-- if self.rigidBody == nil then
-		-- self.rigidBody = self:AddComponentOfType("vHavokRigidBody")
-	-- end
+	Debug:Enable(true)
 	
 	self.characterController = self:GetComponentOfType("vHavokCharacterController")
 	if self.characterController == nil then
@@ -45,6 +42,7 @@ function OnThink(self)
 		end
 
 		if not G.gameOver and G.player ~= nil then
+			LookForPlayer(self)
 			if LookForPlayer(self) then
 				FindPathToPlayer(self)
 			else
@@ -55,12 +53,6 @@ function OnThink(self)
 			if self.path ~= nil then
 				NavigatePath(self)
 			end
-			
-			--debugging ray
-			-- local color = Vision.V_RGBA_RED
-			-- local start = self:GetPosition()
-			-- local rEnd = (self:GetObjDir() * 100) + start
-			-- Debug.Draw:Line(start, rEnd, color)
 		end
 		
 		ShowViewAngle(self)
@@ -70,20 +62,15 @@ end
 function FindPathToPlayer(self)
 	local playerPosition = Vision.hkvVec3(0,0,0)
 	local myPosition = self:GetPosition()
-	local distance = 0
+	local distance = math.huge
 	
 	if LookForPlayer(self) then
-		--get the this and the player's position
-		playerPosition = G.player:GetPosition()
-		
-		--get the distance to the player
-		distance = myPosition:getDistanceTo(playerPosition)
+		playerPosition = G.player:GetPosition()		
 	else
 		playerPosition = self.lastPlayerLocation
-
-		--get the distance to the player's last location 
-		distance = myPosition:getDistanceTo(playerPosition)
 	end
+	
+	distance = myPosition:getDistanceTo(playerPosition)
 	
 	--if out of attack range, move closer
 	if G.player.isAlive then
@@ -109,80 +96,6 @@ function FindPathToPlayer(self)
 			ClearPath(self)
 		end
 	end
-end
-
-function NavigatePath(self)
-	if self.path then
-		self.pathProgress = self.pathProgress + self.dt * self.moveSpeed
-
-		if self.pathProgress > self.pathLength then
-			self.pathProgress = self.pathLength
-		end
-		
-		if self.pathProgress == self.pathLength then
-			self.path = nil
-			
-			if LookForPlayer(self) then
-				FindPathToPlayer(self)
-			else
-				FindNextWaypoint(self)
-			end
-		else
-			local point = AI:GetPointOnPath(self.path, self.pathProgress)
-			local dir = point - self:GetPosition()
-			dir:normalize()
-			
-			--turn to face the player
-			UpdateRotation(self, dir)
-			dir = dir * self.moveSpeed * .1
-			
-			--test for crash when dir is wrong
-			self:SetMotionDeltaWorldSpace(dir)
-			-- self:SetPosition(point)
-		end
-	end
-end
-
-function ClearPath(self)
-	self.path = nil
-	self.pathProgress = 0
-	self.pathLength = 0
-end
-
---[[
-returns true if the player is in range, unblocked, and within the view angle false otherwise
---]]
-function LookForPlayer(self)
-	--always cast a ray toward the player, if the angle > viewing angle ? false : True
-	local rayStart = self:GetPosition()
-	rayStart.z = rayStart.z  + self.eyeHeight
-	
-	local dir = (G.player:GetPosition() - self:GetPosition() )
-	dir:normalize()
-	local rayEnd = (dir * self.sightRange) + rayStart
-	
-	local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
-	local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
-	
-	local color = Vision.V_RGBA_BLUE
-	--Debug.Draw:Line(rayStart, rayEnd, color)
-	
-	if hit == true then
-		-- check to see if a target was hit
-		if result ~= nil then
-			-- Debug:PrintLine(""..result["HitType"] )
-			if (result["HitType"] == "Unknown") then
-				local angle = self:GetObjDir():getAngleBetween(G.player:GetPosition() -  self:GetPosition() )
-				if (angle < self.viewingAngle) and
-					(angle > -self.viewingAngle) then
-					self.lastPlayerLocation = result["ImpactPoint"]
-					return true
-				end
-			end
-		end
-	end
-	
-	return false
 end
 
 function FindNextWaypoint(self)
@@ -243,16 +156,91 @@ function FindNextWaypoint(self)
 	end
 end
 
+function NavigatePath(self)
+	if self.path then
+		self.pathProgress = self.pathProgress + self.dt * self.moveSpeed
+
+		if self.pathProgress > self.pathLength then
+			self.pathProgress = self.pathLength
+		end
+		
+		if self.pathProgress == self.pathLength then
+			self.path = nil
+			
+			if LookForPlayer(self) then
+				FindPathToPlayer(self)
+			else
+				FindNextWaypoint(self)
+			end
+		else
+			local point = AI:GetPointOnPath(self.path, self.pathProgress)
+			local dir = point - self:GetPosition()
+			dir:normalize()
+			
+			--turn to face the player
+			UpdateRotation(self, dir)
+			dir = dir * self.moveSpeed * .1
+			
+			--test for crash when dir is wrong
+			self:SetMotionDeltaWorldSpace(dir)
+		end
+	end
+end
+
+--[[
+returns true if the player is in range, unblocked, and within the view angle false otherwise
+--]]
+function LookForPlayer(self)
+	--always cast a ray toward the player, if the angle > viewing angle ? false : True
+	local rayStart = self:GetPosition()
+	rayStart.z = rayStart.z  + self.eyeHeight
+	
+	local dir = (G.player:GetPosition() - self:GetPosition() )
+	dir:normalize()
+	local rayEnd = (dir * self.sightRange) + rayStart
+	
+	local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
+	local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
+	
+	local color = Vision.V_RGBA_BLUE
+	Debug.Draw:Line(rayStart, rayEnd, color)
+	
+	if hit == true then
+		-- check to see if a target was hit
+		if result ~= nil then
+			-- Debug:PrintLine(""..result["HitType"] )
+			if (result["HitType"] == "Unknown") then
+				local angle = self:GetObjDir():getAngleBetween(G.player:GetPosition() -  self:GetPosition() )
+				if (angle < self.viewingAngle) and
+					(angle > -self.viewingAngle) then
+					self.lastPlayerLocation = result["ImpactPoint"]
+					return true
+				end
+			end
+		end
+	end
+	
+	return false
+end
+
+function ClearPath(self)
+	self.path = nil
+	self.pathProgress = 0
+	self.pathLength = 0
+end
+
 function PerformMelee(self)
+	-- Debug:PrintLine("Attacking")
 	CheckForAttackHit(self)
+	
 	StartCoolDown(self, self.meleeCoolDown)
 end
 
 function CheckForAttackHit(self)
+	-- Debug:PrintLine("Attack Started")
 	local myDir = self:GetObjDir() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
-	
 	
 	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
@@ -271,14 +259,13 @@ function CheckForAttackHit(self)
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 		
 		
-		--Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_RED)
+		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_RED)
 		
 		if hit == true then
 			--check to see if a target was hit
 			if result ~= nil and result["HitType"] == "Unknown" then
-				--hitObj.ModifyHealth(hitObj, -self.meleeDamage)
 				G.player:ModifyHealth(-self.meleeDamage)
-				--Debug:PrintLine("Player Hit!")
+				-- Debug:PrintLine("Attack hit!")
 				break
 			end
 		end
