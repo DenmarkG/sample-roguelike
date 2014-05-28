@@ -1,25 +1,38 @@
-function OnCreate(self)
-	self.testCount = 0
-end
+--[[
+Author: Denmark Gibbs
+This script handles:
+	-the management of the player's inventory
+	-display of the items when the "INVENTORY" Trigger is activated by the player
+	-selection of an item when the display is visible
+	-loading of previously saved items
+
+This should be attached to the player
+--]]
 
 function OnAfterSceneLoaded(self)
+	--loads items if the level is greater than 1
 	if G.currentLevel > 1 then
 		LoadItems(self)
 	end
 	
+	--set up the inventory if it has not be created already
 	if self.inventory == nil then
 		self.inventory = {}
 		self.maxItems = 8
 		self.itemCount = 0
 	end	
 	
+	--the player's collected gem count
 	self.gemsCollected = 0
+	
+	--tells whether or not the inventory display is curretnly visible
 	self.inventoryIsVisible = false
 	
 	--positioning varibles for display
 	self.xSize = G.w / self.maxItems
 	self.vertStartPos = G.h * 3 / 4
-
+	
+	--functios to be used by other scripts
 	self.AddItem = AddNewItem
 	self.AddGem = AddNewGem
 	self.ToggleInventory = InventoryToggled

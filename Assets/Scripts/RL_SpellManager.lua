@@ -1,4 +1,12 @@
-﻿--this script is used to manage the creation, updating, and destruction of all spells currently in play
+﻿--[[
+Author: Denmark Gibbs
+This script handles:
+	--management of the creation, updating, and destruction of all spells currently in play
+	
+Should be attached to any character (player or enemy) that can perform spells
+]]--
+
+--this script is used to 
 function OnCreate(self)
 	self.CreateFireball = CreateNewFireball
 end

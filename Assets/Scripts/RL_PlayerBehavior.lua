@@ -1,10 +1,14 @@
 --[[
-Player Behavior Scripts
--Handles all input and control for the player including:
+Author: Denmark Gibbs
+This script handles:
+	-all input and control for the player
 	-swtiching between animations
 	-player attack, walk, run, etc
 	-Player Pathfiding
--Handles all mouse control and input
+	-all mouse control and input
+	
+This should be attached to the player.
+The player must also have a behavior component attached
 ]]--
 function OnAfterSceneLoaded(self)	
 	--grab the behavior component
@@ -245,13 +249,16 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 end
 
 function NavigatePath(self)
+	--if the character is not currently moving, he should start now
 	if self.currentState == self.states.idle then		
 		self.behaviorComponent:TriggerEvent("MoveStart")
 		
+		--update the previous state
 		self.prevState = self.currentState
 		self.currentState = self.states.walking
 	end
 	
+	--update the animation playback speed for walking/running based on moveSpeed variable 
 	self.behaviorComponent:SetFloatVar("AnimMoveSpeed", self.moveSpeed)
 	
 	--check the distance to the next point
@@ -268,9 +275,6 @@ function NavigatePath(self)
 		end
 	end
 	
-	--local myPos = self:GetPosition()
-	--Debug.Draw:Line(myPos, self.nextPoint, Vision.V_RGBA_RED)
-	
 	--if the end of the path has been reached, reset the variables
 	if self.pathProgress >= self.pathLength then
 		self.behaviorComponent:TriggerEvent("MoveStop")
@@ -283,45 +287,59 @@ function NavigatePath(self)
 end
 
 function UpdateMouse(self, xPos, yPos)
-	--clamp the mouse to the screen space
+	--clamp the mouse x position to the screen space
 	if xPos > G.w - self.cursorSizeX then
 		xPos = G.w - self.cursorSizeX
 	end
 	
+	--clamp the mouse y position to the screen space
 	if yPos > G.h - self.cursorSizeY then
 		yPos = G.h - self.cursorSizeY 
 	end
 	
+	--set the last x position
 	if xPos ~= 0 then
 		self.lastX = xPos
 	end
 	
+	--set the last y position
 	if yPos ~= 0 then
 		self.lastY = yPos
 	end
 	
+	--set the cursor's position on screen
 	self.mouseCursor:SetPos(self.lastX, self.lastY)
 end
 
 function RotateToTarget(self, target)
+	--establish a deadZone
 	local deadZone = 25
 	
+	----------------------------------------------------------------
+	--[[ 
+	IMPORTANT NOTE:
 	--the forward direction was obtained this was because the object was exported facing the wrong direction
-	--normally, you would just use self:GetObjDir() to get the forward direction
+	normally, you would just use self:GetObjDir() to get the forward direction
+	--]]
 	local myDir = -self:GetObjDir_Right()
 	local leftDir = self:GetObjDir()
+	----------------------------------------------------------------
+	
+	--cache the variables to be used to determine which way the player should turn
 	local myPos = self:GetPosition()
 	local sign = 1 
 	local targetDir = (target - myPos):getNormalized()
-	local angle = myDir:getAngleBetween(targetDir) -- (90 * sign)
+	local angle = myDir:getAngleBetween(targetDir)
 	
+	--get the sign of the angle between the current direction and the target direction
 	if leftDir:dot(targetDir) < 0 then
-		--Debug:PrintLine("I'm on happy side!")
 		sign = -1
 	end
 	
+	--cache the absolute value of the angle between the two directions
 	local absAngle = math.abs(angle)
 	
+	--if the angle is greater than the deadzone, rotate the player, otherwise stop rotating
 	if absAngle > deadZone then
 		if myDir:dot(targetDir) > 0 then
 			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
@@ -331,29 +349,34 @@ function RotateToTarget(self, target)
 	else
 		StopRotation(self)
 	end	
-	
-	--Debug.Draw:Line(myPos, myPos + myDir * 150, Vision.V_RGBA_RED)
-	--Debug.Draw:Line(myPos, myPos + leftDir * 150, Vision.V_RGBA_BLUE)
-	--Debug.Draw:Line(myPos, target, Vision.V_RGBA_GREEN)
-	
-	--Debug:PrintLine("angle: " .. angle)
 end
 
+--actions that are performed each time a melee attack is executed
 function PerformMelee(self)
+	--begin the attack animation
 	self.behaviorComponent:TriggerEvent("AttackStart")
+	
+	--set the state to attacking
 	self.prevState = self.currentState
 	self.currentState = self.states.attacking
+	
+	--check to see if the attack hits and do damage
 	CheckForAttackHit(self)
+	
+	--start the timer to the next attack
 	StartCoolDown(self, self.meleeCoolDown)
 end
 
+
+--[[
+This function checks for an attack hit by casting a series of rays within a specified angle.
+If any one of those rays hit an enemy, the loop is broken and damage is done to the enemy
+--]]
 function CheckForAttackHit(self)
-	--test ray
 	self.numRays = 5
 	local myDir = -self:GetObjDir_Right() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
-	
 	
 	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
@@ -364,15 +387,13 @@ function CheckForAttackHit(self)
 		--rotate the forward direction based on the angle just calculated
 		local newDir = RotateXY(myDir.x, myDir.y, myDir.z, currentAngle)
 		
+		--establish the starting point for the ray
 		local rayStart = myPos
 		local rayEnd = myPos + (newDir * self.attackRange)
 		
 		--get the collision info
 		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
-		
-		
-		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_GREEN)
 		
 		if hit == true then
 			--check to see if a target was hit
@@ -388,49 +409,66 @@ function CheckForAttackHit(self)
 end
 
 function CastSpell(self)
+	--stop any current player rotation
 	StopRotation(self)
+	
 	if self.numSpellsInPlay < self.maxSpellCount then
 		if self.currentMana - self.fireballManaCost >= 0 then
+			--set the direction to cast the spell
 			local myDir = -self:GetObjDir_Right()
+			
+			--create the fireball spell
 			self.CreateFireball(self, myDir)
+			
+			--update the current mana
 			self:ModifyMana(-self.fireballManaCost)
+			
+			--start the cool down timer
 			StartCoolDown(self, self.spellCoolDown)
 		end
 	end
 end
 
+--actions to complete when the player's health reaches zero
 function PlayerDeath(self)
+	--end the game when the player dies
 	G.gameOver = true
 	local manager = Game:GetEntity("LevelManager")
 	G.Lose(manager)
 end
 
+--function for resetting the player's AI path
 function ClearPath(self)
 	self.lastPoint = nil
 	self.nextPoint = nil
 	self.path = nil
 end
 
+--stops the rotation of the player
 function StopRotation(self)
 	self:ResetRotationDelta()
 	self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 end
 
+--Begins the attack cool down after a spell or melee
 function StartCoolDown(self, coolDownTime)
 	self.timeToNextAttack = coolDownTime
 end
 
+--HUD for the player's health, mana, and gem count
 function ShowPlayerStats(self)
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
 	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
 end
 
+--function for increasing/decreasing the player's attack power
 function ModifyAttackPower(self, amount)
 	self.meleeDamage = self.meleeDamage + amount
 	self.fireballDamage =  self.fireballDamage + amount
 end
 
+--function to be used by the attack, rotates a vector about the z axis
 function RotateXY(x, y, z, angle)
 	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
 	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )

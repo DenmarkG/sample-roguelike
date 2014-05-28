@@ -1,8 +1,19 @@
+--[[
+Author: Denmark Gibbs
+This script handles:
+	--saving and loading of the Player's persistent data
+	--player winning and losing
+	--scene loading
+	
+Should be attached to a Level Manager entity in the scene
+]]--
+
 function OnAfterSceneLoaded(self)
 	G.gemGoal = GetNumberOfGems()
 	G.gameOver = false
 	G.win = false
 	
+	--variables for re/loading a scene
 	self.waitTime = 5
 	self.timeBeforeReload = 0
 	
@@ -134,7 +145,7 @@ function LoadNextLevel()
 end
 
 function LoadFirstLevel()
-	G.currentLevel = 0
+	G.currentLevel = 1
 	if G.isWindows then
 		Application:LoadScene("Scenes/sample.pcdx9.vscene")
 	else

@@ -1,13 +1,25 @@
--- new script file
+--[[
+Author: Denmark Gibbs
+This script:
+	-sets up each item's properties and functions based on the name established in the OnExpose function
+	
+This should be attached to the trigger of a collectible. The model file associated with the collectible 
+should be a child of the trigger this is attached to
+--]]
 
 function OnAfterSceneLoaded(self)
+	--the representation of the item itself is a table
 	self.item = {}
+	
+	--appending to the name from OnExpose
 	self.item.name = ""..self.type.."Potion"
 	
+	--create the texture path for each potion type
 	self.healthTexturePath = "Textures/Potions/RL_HealthPotion_DIFFUSE.tga"
 	self.manaTexturePath = "Textures/Potions/RL_ManaPotion_DIFFUSE.tga"
 	self.powerTexturePath = "Textures/Potions/RL_PowerPotion_DIFFUSE.tga"
 	
+	--sets the item properties based on name
 	GeneratePickupProperties(self)
 end
 
@@ -17,30 +29,27 @@ function OnExpose(self)
 end
 
 function OnObjectEnter(self, otherObj)
+	--if hte object that enters the trigger is the player, add this item to the player's inventory
 	if otherObj:GetKey() == "Player" then
 		if self.item ~= nil then
-			-- Debug:PrintLine("Not Nil!")
-			if otherObj == nil then
-				Debug:PrintLine("other is Nil!")
-			else
-				-- Debug:PrintLine("calling add item")
-				otherObj:AddItem(self.item)
-			end
-			
+			otherObj:AddItem(self.item)
 		end
 		
+		--remove the item from the scene
 		Deactivate(self)
-		--Debug:PrintLine("Triggered") --> yay this works
 	end
 end
 
 function OnBeforeSceneUnloaded(self)
+	--delete the screen masks
 	Game:DeleteAllUnrefScreenMasks()
 end
 
 function Deactivate(self)
+	--deactivate the trigger
 	self:SetEnabled(false)
-	
+
+	--hide the item
 	for i = 0, self:GetNumChildren(), 1 do
 		local entity = self:GetChild(i)
 		if entity ~= nil then
@@ -53,6 +62,7 @@ function GeneratePickupProperties(self)
 	self.item.value = self.itemValue
 	local imagePath = ""
 	
+	--set the functions and images for the item based on it's name
 	if self.item.name == "HealthPotion" then
 		self.item.UseCallback = AddHealth
 		imagePath = self.healthTexturePath
@@ -64,7 +74,7 @@ function GeneratePickupProperties(self)
 		imagePath = self.powerTexturePath
 	end
 	
-	--for drawing the inventory item on screen
+	--set the variables for drawing the inventory item on screen
 	self.item.imagePath = imagePath
 	self.item.itemImage = Game:CreateScreenMask(0, 0, "".. imagePath)
 	self.item.itemImage:SetVisible(false)

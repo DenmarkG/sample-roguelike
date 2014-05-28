@@ -1,12 +1,35 @@
-﻿-- new script file
+﻿--[[
+Author: Denmark Gibbs
+This script handles:
+	--all enemy AI and pathfinding logic
+	--enemy death
+	--enemy movement
+	
+This should be attached to the enemy/enemies.
+The enemy must have a character controller attached
+]]--
+
 function OnAfterSceneLoaded(self)
 	Debug:Enable(true)
 	
+	--get the character controller attached to this entity
 	self.characterController = self:GetComponentOfType("vHavokCharacterController")
 	if self.characterController == nil then
 		self.characterController = self:AddComponentOfType("vHavokCharacterController")
 	end
-		
+	
+	self.isAlive = true
+	self.timeToNextAttack = 0
+	
+	--variable for keeping track of previous waypoints so the enemy doesn't bounce back and forth
+	self.lastWaypoints = {}
+	self.maxPrevPoints = 3
+	
+	--function to be called by other scripts when the enemy's health reaches 0
+	self.Die = EnemyDeath
+end
+
+function OnExpose(self)
 	--tuning variables
 	self.moveSpeed = 50 --how fast this character should move when chasing the player	
 	self.rotSpeed = 10
@@ -15,37 +38,38 @@ function OnAfterSceneLoaded(self)
 	self.sightRange = 550 --how far the enemy can see a player
 	self.viewingAngle = 90 --the angle that the NPC can see within
 	
+	--variables to be used for attacking
 	self.numRays = 5
 	self.attackAngle = 60
 	self.attackRange = 70
 	self.meleeDamage = 10
 	
+	--how high from the ground the enemy will cast a ray to check for the player
 	self.eyeHeight = 50
 	
+	--how long to cool down after an attack
 	self.meleeCoolDown = 1.5
-	self.timeToNextAttack = 0
-	
-	self.isAlive = true
-	
-	self.lastWaypoints = {}
-	self.maxPrevPoints = 3
-	
-	self.Die = EnemyDeath
 end
 
 function OnThink(self)
 	if not G.gameOver and self.isAlive then
+		--get the delta time since last frame
 		self.dt = Timer:GetTimeDiff()
-
+	
+		--update the attack cool down timer
 		if self.timeToNextAttack > 0 then
-			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
+			self.timeToNextAttack = self.timeToNextAttack - self.dt
 		end
-
-		if not G.gameOver and G.player ~= nil then
+		
+		--
+		if G.player ~= nil then
+			--check to see if the player can be seen 
 			LookForPlayer(self)
 			if LookForPlayer(self) then
+				--if so, navigate to that location
 				FindPathToPlayer(self)
 			else
+				--if not, navigate to the next waypoint
 				FindNextWaypoint(self)
 			end
 			
@@ -55,26 +79,30 @@ function OnThink(self)
 			end
 		end
 		
+		--Show the enemy's FOV
 		ShowViewAngle(self)
 	end
 end
 
 function FindPathToPlayer(self)
+	--create variables for the player's position, this current position, and distance. these will change
 	local playerPosition = Vision.hkvVec3(0,0,0)
 	local myPosition = self:GetPosition()
 	local distance = math.huge
 	
+	--if the player is still in view, go to that position, go to the last known place otherwise
 	if LookForPlayer(self) then
 		playerPosition = G.player:GetPosition()		
 	else
 		playerPosition = self.lastPlayerLocation
 	end
 	
+	--get the distance to the player's last position
 	distance = myPosition:getDistanceTo(playerPosition)
 	
-	--if out of attack range, move closer
+	--finding a path
 	if G.player.isAlive then
-		if  distance > self.maxAttackDistance then
+		if  (distance > self.maxAttackDistance) or (distance < self.minAttackDistance) then
 			--if out of range, find path and move closer to player
 			local path = AI:FindPath(myPosition, playerPosition, 20)
 			if path ~= nil then
@@ -87,6 +115,7 @@ function FindPathToPlayer(self)
 				Debug:PrintLine("No PathFound")
 			end
 		elseif distance < self.maxAttackDistance and distance > self.minAttackDistance then
+			--if in range, attack if possible
 			if self.timeToNextAttack <= 0 then
 				self.timeToNextAttack = 0
 				ClearPath(self)
@@ -100,27 +129,38 @@ end
 
 function FindNextWaypoint(self)
 	if self.path == nil then
+		--cache the current position
 		local myPosition = self:GetPosition()
+		
+		--set the distance to infinity, so that the first waypoint is added
 		local distance = math.huge
-			
+		
+		--get the total number of waypoints
 		local numWaypoints = table.getn(G.waypoints)
+		
+		--find the number of previous waypoints	
+		local tableSize = table.getn(self.lastWaypoints)
 			
 		if numWaypoints > 0 then
 			local closestPoint = nil
+			
+			--iterate through the points to find the closest one
 			for i =1, numWaypoints, 1 do
+				--store the current waypoint
 				local waypoint = G.waypoints[i]
+				
+				--get the distance to the current waypoint
 				local currentDist = myPosition:getDistanceTo(waypoint:GetPosition())
 				
-				local tableSize = table.getn(self.lastWaypoints)
-				
-				--terrible block of code, will fix later
 				if tableSize == 0 then
+					--if there are no previous points, go to the closest one
 					if currentDist < distance then
 						closestPoint = waypoint
 						distance = currentDist
 					end
 				else
 					local notInList = true
+					--check to see if the current waypoint has already been visited
 					for i = 0, tableSize, 1 do
 						local prevPoint = self.lastWaypoints[i]
 						
@@ -129,21 +169,25 @@ function FindNextWaypoint(self)
 						end
 					end
 					
+					--if the waypoint is not in the table, and it is closer than the current closest,
+					--set this as the closest point and update the distance
 					if notInList and currentDist < distance then
 						closestPoint = waypoint
 						distance = currentDist
 					end
 				end
 			end
-				
+			
+			--if the table is full, remove the oldest point
 			local numPoints = table.getn(self.lastWaypoints)
 			if numPoints > self.maxPrevPoints then
 				table.remove(self.lastWaypoints, 1)
 			end
 			
-			-- table.insert(self.lastWaypoints, closestPoint)
+			--insert the current waypoint to the list of previous points
 			self.lastWaypoints[#self.lastWaypoints + 1] = closestPoint
 			
+			--find the path to the selected point
 			local path = AI:FindPath(myPosition, closestPoint:GetPosition(), 20)
 			if path ~= nil then
 				local numPoints = table.getn(path)
@@ -158,21 +202,26 @@ end
 
 function NavigatePath(self)
 	if self.path then
+		--update the progress along the path
 		self.pathProgress = self.pathProgress + self.dt * self.moveSpeed
-
+		
+		--don't go past the end of the path
 		if self.pathProgress > self.pathLength then
 			self.pathProgress = self.pathLength
 		end
 		
+		--clear the path if the end has been reached
 		if self.pathProgress == self.pathLength then
 			self.path = nil
 			
+			--check again to see if the player is in sight
 			if LookForPlayer(self) then
 				FindPathToPlayer(self)
 			else
 				FindNextWaypoint(self)
 			end
 		else
+			--find and normalize the directtion to the current point on the path
 			local point = AI:GetPointOnPath(self.path, self.pathProgress)
 			local dir = point - self:GetPosition()
 			dir:normalize()
@@ -188,15 +237,18 @@ function NavigatePath(self)
 end
 
 --[[
-returns true if the player is in range, unblocked, and within the view angle false otherwise
+returns true if the player is in range, unblocked, and within the view angle 
+otherwise returns false
 --]]
 function LookForPlayer(self)
-	--always cast a ray toward the player, if the angle > viewing angle ? false : True
+	--cast a ray toward the player, if the angle > viewing angle then the player is in sight
 	local rayStart = self:GetPosition()
 	rayStart.z = rayStart.z  + self.eyeHeight
 	
 	local dir = (G.player:GetPosition() - self:GetPosition() )
 	dir:normalize()
+	
+	--the ray ends at the sight range of the enemy
 	local rayEnd = (dir * self.sightRange) + rayStart
 	
 	local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
@@ -223,19 +275,23 @@ function LookForPlayer(self)
 	return false
 end
 
+--Clears the Ai Path
 function ClearPath(self)
 	self.path = nil
 	self.pathProgress = 0
 	self.pathLength = 0
 end
 
+--called when performing a melee attack
 function PerformMelee(self)
-	-- Debug:PrintLine("Attacking")
-	CheckForAttackHit(self)
-	
+	CheckForAttackHit(self)	
 	StartCoolDown(self, self.meleeCoolDown)
 end
 
+--[[
+This function checks for an attack hit by casting a series of rays within a specified angle.
+If any one of those rays hit the player, the loop is broken and damage is done
+--]]
 function CheckForAttackHit(self)
 	-- Debug:PrintLine("Attack Started")
 	local myDir = self:GetObjDir() --(angle/self.numRays - 1)
@@ -272,14 +328,16 @@ function CheckForAttackHit(self)
 	end
 end
 
+--function to be called when the enemy's health reaches zero
 function EnemyDeath(self)
 	--self:SetVisible(false)
 	--deactivate character controller
 end
 
+--displays the FOV of the enemy, so theplayer knows what the enemy can 'see'
 function ShowViewAngle(self)
 	-- local numRays = self.numRays
-	local numRays = 3
+	local numRays = 7
 	local myDir = self:GetObjDir()
 	local myPos = self:GetPosition()
 	myPos.z = myPos.z + 25
@@ -301,20 +359,22 @@ function ShowViewAngle(self)
 	end
 end
 
+--Roatates the enemy toward the desired direction
 function UpdateRotation(self, dir)
 	local step = self.rotSpeed * Timer:GetTimeDiff()
 	local objDir = self:GetObjDir()
 	local zHolder = objDir.z
 	objDir:setInterpolate(objDir, dir, step)
 	objDir.z = zHolder
-	-- self:SetRotationDelta(objDir)
 	self:SetDirection(objDir)
 end
 
+--begins the attack cool down
 function StartCoolDown(self, coolDownTime)
 	self.timeToNextAttack = coolDownTime
 end
 
+--function to be used by the attack, rotates a vector about the z axis
 function RotateXY(x, y, z, angle)
 	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
 	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )
