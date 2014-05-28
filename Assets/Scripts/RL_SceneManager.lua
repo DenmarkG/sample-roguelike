@@ -8,6 +8,7 @@ This Script:
 This should be attached to the Main Layer of each scene
 ]]--
 G.currentLevel = 1
+G.maxLevelCount = 2
 
 function OnBeforeSceneLoaded(self)
 	--get the current platform

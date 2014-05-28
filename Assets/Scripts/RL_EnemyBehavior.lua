@@ -25,6 +25,8 @@ function OnAfterSceneLoaded(self)
 	self.lastWaypoints = {}
 	self.maxPrevPoints = 3
 	
+	self.deathParticlePath = "Particles\\RL_EnemyDeathFlame.xml"
+	
 	--function to be called by other scripts when the enemy's health reaches 0
 	self.Die = EnemyDeath
 end
@@ -314,14 +316,11 @@ function CheckForAttackHit(self)
 		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 		
-		
-		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_RED)
-		
 		if hit == true then
 			--check to see if a target was hit
+			--note that the Character Controller from HAT cannot be detected by raycast, this is fixed in a later release
 			if result ~= nil and result["HitType"] == "Unknown" then
 				G.player:ModifyHealth(-self.meleeDamage)
-				-- Debug:PrintLine("Attack hit!")
 				break
 			end
 		end
@@ -330,8 +329,13 @@ end
 
 --function to be called when the enemy's health reaches zero
 function EnemyDeath(self)
-	--self:SetVisible(false)
+	--play the death particle
+	Game:CreateEffect(self:GetPosition(), self.deathParticlePath)
+	
+	--hide the enemy
+	self:SetVisible(false)
 	--deactivate character controller
+	self.characterController:SetEnabled(false)
 end
 
 --displays the FOV of the enemy, so theplayer knows what the enemy can 'see'

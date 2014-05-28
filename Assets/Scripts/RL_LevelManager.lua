@@ -64,7 +64,7 @@ function OnThink(self)
 			
 			--load the next level or reload the first depending on the win condition
 			if continue then
-				if G.win then
+				if G.win and G.currentLevel ~= G.maxLevelCount then
 					--save the data before loading a new level
 					SaveData(G.player)
 					G.player:SaveInventory()
@@ -138,6 +138,9 @@ function LoseLevel(self)
 	G.winMask = Game:CreateScreenMask(0, 0, "Textures/RL_WinScreenMask_DIFFUSE.tga")
 	G.winMask:SetTargetSize(G.w, G.h)
 	G.winMask:SetBlending(Vision.BLEND_MULTIPLY)
+	
+	--empty the player's inventory
+	G.player:Clear()
 	
 	StartTimer(self)
 end

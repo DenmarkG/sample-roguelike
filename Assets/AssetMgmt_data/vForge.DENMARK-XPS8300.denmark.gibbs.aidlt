@@ -100,3 +100,6 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
+particles/rl_enemydeathflame.vpfx	Particles/RL_EnemyDeathFlame.vpfx	
+particles/effect_cone.model	Particles/Effect_Cone.model	LODSwitchDistances=
+particles/light.dds	Particles/Light.dds	sRGB=false

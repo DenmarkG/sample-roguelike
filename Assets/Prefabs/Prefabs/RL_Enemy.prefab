@@ -34,48 +34,9 @@
     <property name="ShapeName" value="Enemy" />
     <property name="UserDataString" value="" />
     <property name="ExportShape" value="True" />
-    <property name="UniqueID" value="16127477955961028705" />
-    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_Damageable.lua;" visible="True" serializable="True" editable="True" removable="True" />
-    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_EnemyBehavior.lua;" visible="True" serializable="True" editable="True" removable="True" />
-    <component class="vHavokCharacterController" paramstring="ComponentID=;m_bEnabled=True;Character_Top=0,0,50;Character_Bottom=0,0,30;Capsule_Radius=30;Debug=False;DebugColor=255,50,50,255;Static_Friction=0;Dynamic_Friction=0.8;Max_Slope=75;Character_Mass=100;Character_Strength=5000;Fly_State=False;Gravity_Scale=1;Jump_Height=1.5;Step_Height=30;Step_Threshold=60;Max_Velocity=1500;Max_Acceleration=4000;PenetrationRecoverySpeed=0.5;" visible="True" serializable="True" editable="True" removable="True" />
-    <shape class="DynLightShape">
-      <property name="LightColor" value="255,237,0,255" />
-      <property name="LightAttenuationCurve" value="Smooth" />
-      <property name="CustomAttenuationCurveTexture" value="\Atten\smooth.dds" />
-      <property name="Multiplier" value="1" />
-      <property name="DistanceFadeEnd" value="0" />
-      <property name="DistanceFadeStart" value="0" />
-      <property name="UseSpecular" value="True" />
-      <property name="LightType" value="Spotlight" />
-      <property name="SpotAngle" value="45" />
-      <property name="ProjectedTexture" value="" />
-      <property name="Radius" value="550" />
-      <property name="Triggered" value="True" />
-      <property name="CastStaticShadows" value="True" />
-      <property name="UsesLightMasks" value="False" />
-      <property name="AnimationCurve" value="" />
-      <property name="AnimationTiming" value="1" />
-      <property name="AnimationPhase" value="0" />
-      <property name="RemoveLightAfterAnimation" value="False" />
-      <property name="WorldInfluenceMask" value="255" />
-      <property name="ObjectInfluenceMask" value="255" />
-      <property name="VisibleBitmask" value="4294967295" />
-      <property name="IsStatic" value="False" />
-      <property name="ExportWhenNotRelevant" value="False" />
-      <property name="PreviewAsDynamicLight" value="True" />
-      <property name="TurnOffAfterLighting" value="True" />
-      <property name="ObjectKey" value="" />
-      <property name="Visible" value="True" />
-      <property name="Position" value="32,0,64" />
-      <property name="Orientation" value="0,15,0" />
-      <property name="Scaling" value="1,1,1" />
-      <property name="TextLabel" value="" />
-      <property name="ShapeName" value="DynamicSpotlight" />
-      <property name="UserDataString" value="" />
-      <property name="ExportShape" value="True" />
-      <property name="UniqueID" value="16127477955961028708" />
-      <linktarget class="LinkTargetTriggerComponent" name="ToggleOn" ID="ToggleOn" />
-      <linktarget class="LinkTargetTriggerComponent" name="ToggleOff" ID="ToggleOff" />
-    </shape>
+    <property name="UniqueID" value="16127477955961028727" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_Damageable.lua;maxHealth=100;cursorSizeX=32;AddGem=;states=;attackRange=70;clickCoolDown=0.25;inventory=;spellCoolDown=0.75;lastX=588;cursorSizeY=32;gemsCollected=3;attackAngle=60;fireballRange=500;SaveInventory=;fireballManaCost=15;vertStartPos=729;prevState=&quot;idle&quot;;ModifyPower=;isAlive=true;fireballSpeed=25;ToggleInventory=;meleeCoolDown=0.5;currentMana=100;clickParticlePath=&quot;Particles\092RL_ClickParticle.xml&quot;;moveSpeed=2.5;maxItems=8;Clear=;currentHealth=80;numRays=5;pathProgress=161.834;InventoryItemClicked=;lastY=471;goalRadius=50;spellsInPlay=;timeToNextAttack=0;walkSpeed=2.5;Die=;inventoryIsVisible=false;itemCount=0;numSpellsInPlay=0;currentState=&quot;idle&quot;;runSpeed=5;maxSpellCount=3;LoadInventory=;zeroVector=Vision.hkvVec3(0,0,0);fireballDamage=25;meleeDamage=10;lastClickTime=-0.0306284;ModifyMana=;ModifyHealth=;fireballParticlePath=&quot;ParticlesRL_Fireball.xml&quot;;maxMana=100;goalPoint=Vision.hkvVec3(1220,-793,0);AddItem=;xSize=123.75;pathLength=160.932;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="VScriptComponent" paramstring="ComponentID=;ScriptFile=Scripts\092RL_EnemyBehavior.lua;sightRange=550;meleeCoolDown=1.5;maxAttackDistance=90;numRays=5;attackRange=70;moveSpeed=50;eyeHeight=50;meleeDamage=10;attackAngle=60;viewingAngle=90;minAttackDistance=75;rotSpeed=10;maxHealth=100;cursorSizeX=32;AddGem=;states=;clickCoolDown=0.25;inventory=;spellCoolDown=0.75;lastX=588;cursorSizeY=32;gemsCollected=3;fireballRange=500;SaveInventory=;fireballManaCost=15;vertStartPos=729;prevState=&quot;idle&quot;;ModifyPower=;isAlive=true;fireballSpeed=25;ToggleInventory=;currentMana=100;clickParticlePath=&quot;Particles\092RL_ClickParticle.xml&quot;;maxItems=8;Clear=;currentHealth=80;pathProgress=161.834;InventoryItemClicked=;lastY=471;goalRadius=50;spellsInPlay=;timeToNextAttack=0;walkSpeed=2.5;Die=;inventoryIsVisible=false;itemCount=0;numSpellsInPlay=0;currentState=&quot;idle&quot;;runSpeed=5;maxSpellCount=3;LoadInventory=;zeroVector=Vision.hkvVec3(0,0,0);fireballDamage=25;lastClickTime=-0.0306284;ModifyMana=;ModifyHealth=;fireballParticlePath=&quot;ParticlesRL_Fireball.xml&quot;;maxMana=100;goalPoint=Vision.hkvVec3(1220,-793,0);AddItem=;xSize=123.75;pathLength=160.932;" visible="True" serializable="True" editable="True" removable="True" />
+    <component class="vHavokCharacterController" paramstring="ComponentID=;m_bEnabled=True;Character_Top=0,0,50;Character_Bottom=0,0,30;Capsule_Radius=30;Debug=False;DebugColor=255,50,50,255;Static_Friction=0;Dynamic_Friction=0.8;Max_Slope=15;Character_Mass=100;Character_Strength=5000;Fly_State=False;Gravity_Scale=1;Jump_Height=1.5;Step_Height=30;Step_Threshold=60;Max_Velocity=1500;Max_Acceleration=4000;PenetrationRecoverySpeed=0.5;" visible="True" serializable="True" editable="True" removable="True" />
   </shape>
 </root>

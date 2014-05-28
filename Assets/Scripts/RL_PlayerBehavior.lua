@@ -308,7 +308,9 @@ function UpdateMouse(self, xPos, yPos)
 	end
 	
 	--set the cursor's position on screen
-	self.mouseCursor:SetPos(self.lastX, self.lastY)
+	if self.lastY ~= nil and self.lastX ~= nil then
+		self.mouseCursor:SetPos(self.lastX, self.lastY)
+	end
 end
 
 function RotateToTarget(self, target)
@@ -318,7 +320,7 @@ function RotateToTarget(self, target)
 	----------------------------------------------------------------
 	--[[ 
 	IMPORTANT NOTE:
-	--the forward direction was obtained this was because the object was exported facing the wrong direction
+	The forward direction was obtained this was because the object was exported facing the wrong direction
 	normally, you would just use self:GetObjDir() to get the forward direction
 	--]]
 	local myDir = -self:GetObjDir_Right()
@@ -353,11 +355,17 @@ end
 
 --actions that are performed each time a melee attack is executed
 function PerformMelee(self)
+	--clear the path, stop movement and rotation
+	ClearPath(self)
+	StopRotation(self)
+	
+	--set the previous state to the current state
+	self.prevState = self.currentState
+	
 	--begin the attack animation
 	self.behaviorComponent:TriggerEvent("AttackStart")
 	
 	--set the state to attacking
-	self.prevState = self.currentState
 	self.currentState = self.states.attacking
 	
 	--check to see if the attack hits and do damage
@@ -366,7 +374,6 @@ function PerformMelee(self)
 	--start the timer to the next attack
 	StartCoolDown(self, self.meleeCoolDown)
 end
-
 
 --[[
 This function checks for an attack hit by casting a series of rays within a specified angle.
@@ -431,6 +438,9 @@ end
 
 --actions to complete when the player's health reaches zero
 function PlayerDeath(self)
+	--hide the character
+	self:SetVisible(false)
+	
 	--end the game when the player dies
 	G.gameOver = true
 	local manager = Game:GetEntity("LevelManager")

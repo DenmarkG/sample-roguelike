@@ -6,18 +6,15 @@ This script handles:
 Should be attached to any character (player or enemy) that can perform spells
 ]]--
 
---this script is used to 
-function OnCreate(self)
-	--function to be used by other scripts to create fireballs
-	self.CreateFireball = CreateNewFireball
-end
-
 function OnAfterSceneLoaded(self)
 	--keeps track of all spells currently active in the scene
 	self.spellsInPlay = {}
 	self.numSpellsInPlay = 0
 
 	self.currentMana = self.maxMana
+	
+	--function to be used by other scripts to create fireballs
+	self.CreateFireball = CreateNewFireball
 	
 	self.ModifyMana = function (self, amount)
 		self.currentMana = self.currentMana + amount

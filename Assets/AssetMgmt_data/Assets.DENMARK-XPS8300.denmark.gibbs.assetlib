@@ -1044,6 +1044,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Particles/Effect_Cone.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/Textures/Light.dds",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1099973093,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1401312098496318000
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Particles/FlareGroup.dds": {
             "AssetType": "Texture",
             "Common": {
@@ -1098,6 +1125,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Particles/Light.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4176738239,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1401312098563324700
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 512,
+                "Height": 512,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Particles/RL_ClickParticle.vpfx": {
             "AssetType": "Particle",
             "Common": {
@@ -1114,6 +1168,28 @@
                 "Hash": 1874152380,
                 "TimeStamp": 1400701080906695300,
                 "LastEditTime": 1400701081906795300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/RL_EnemyDeathFlame.vpfx": {
+            "AssetType": "Particle",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/FlareGroup.dds",
+                    "Particles/HaloRing_06.dds",
+                    "Particles/Light.dds"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1635307626,
+                "TimeStamp": 1401312477694234000,
+                "LastEditTime": 1401313107986256900
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1198,9 +1274,9 @@
                 ]
             },
             "File": {
-                "Hash": 1454771287,
-                "TimeStamp": 1400105623278701900,
-                "LastEditTime": 1400105624310701900
+                "Hash": 1174263128,
+                "TimeStamp": 1401313130091467200,
+                "LastEditTime": 1401313131093567400
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -2645,6 +2721,11 @@
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1395862584740002600
+        },
+        "Particles/Textures/Light.dds": {
+            "Hash": 0,
+            "TimeStamp": 0,
+            "LastEditTime": 1401312098553323700
         },
         "Textures/RL_BasicCollectible_DIFFUSE.tga": {
             "Hash": 0,

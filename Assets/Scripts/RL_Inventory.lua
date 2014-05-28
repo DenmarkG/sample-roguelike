@@ -39,6 +39,7 @@ function OnAfterSceneLoaded(self)
 	self.InventoryItemClicked = ItemClicked
 	self.SaveInventory = SaveItems
 	self.LoadInventory = LoadItems
+	self.Clear = ClearInventory
 end
 
 function InventoryToggled(self)
@@ -186,6 +187,17 @@ function LoadItems(self)
 			-- Debug:PrintLine("Reload func is not nil")
 			ReloadExistingItem(self, item)
 		end
+	end
+end
+
+function ClearInventory(self)
+	if player.itemCount ~= nil and player.itemCount ~= 0 then
+		for i = 1, player.itemCount, 1 do 
+			table.remove(self.inventory, i)
+		end
+		
+		self.inventory = {}
+		self.itemCount = 0
 	end
 end
 
