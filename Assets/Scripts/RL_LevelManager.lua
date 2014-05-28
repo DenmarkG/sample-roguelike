@@ -9,6 +9,7 @@ Should be attached to a Level Manager entity in the scene
 ]]--
 
 function OnAfterSceneLoaded(self)
+	--set the Gem goal for the player to collect
 	G.gemGoal = GetNumberOfGems()
 	G.gameOver = false
 	G.win = false
@@ -20,6 +21,7 @@ function OnAfterSceneLoaded(self)
 	G.Lose = LoseLevel
 	G.Win = WinLevel
 	
+	--Load player data if not the first level
 	if (G.currentLevel > 1) then
 		LoadData(G.player)
 	end
@@ -27,17 +29,21 @@ end
 
 function OnThink(self)
 	if not G.gameOver then
+		--check to see if the player has won...
 		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
 			WinLevel(self)
 			G.win = true
 		end
 		
+		--or lost
 		if not G.player.isAlive then
 			LoseLevel(self)
 		end
 	else
+		--when the game is over show the player what's going on
 		Debug:PrintAt( (G.w / 2.0) - (self.endText1:len() * 8), G.h / 2.0, "" .. self.endText1, Vision.V_RGBA_WHITE, G.fontPath)
 		
+		--count down until the player can proceed
 		if self.timeBeforeReload > 0 then
 			self.timeBeforeReload = self.timeBeforeReload - Timer:GetTimeDiff()
 			Debug:PrintAt( (G.w / 2.0) - ((self.endText3:len() + 1) * 8), G.h / 2.0 + 32, "" .. self.endText3 .. math.ceil(self.timeBeforeReload), Vision.V_RGBA_WHITE, G.fontPath)
@@ -45,6 +51,7 @@ function OnThink(self)
 			self.timeBeforeReload = 0
 		end
 		
+		--allow the player to proceed by tapping the screen or clicking
 		if self.timeBeforeReload <= 0 then
 			Debug:PrintAt( (G.w / 2.0) - (self.endText2:len() * 8), G.h / 2.0 + 32, "" .. self.endText2, Vision.V_RGBA_WHITE, G.fontPath)
 			
@@ -55,13 +62,13 @@ function OnThink(self)
 				continue = G.player.map:GetTrigger("CLICK") > 0
 			end
 			
+			--load the next level or reload the first depending on the win condition
 			if continue then
 				if G.win then
 					--save the data before loading a new level
 					SaveData(G.player)
 					G.player:SaveInventory()
 					LoadNextLevel()
-					-- Debug:PrintLine("Level "..G.currentLevel.." Loaded")
 				else
 					LoadFirstLevel()
 				end
@@ -70,6 +77,7 @@ function OnThink(self)
 	end
 end
 
+--finds the total number of Gems in the scene
 function GetNumberOfGems()
 	local gemGoal = 0
 	local gemParent = Game:GetEntity("GemParent")
@@ -164,8 +172,6 @@ function LoadData(player)
 	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
 	player.meleeDamage = PersistentData:GetNumber("PlayerStats", "attack", 7)
 	player.fireballDamage = PersistentData:GetNumber("PlayerStats", "magic", 7)
-	
-	-- Debug:PrintLine("Player Items Loaded")
 end
 
 function SaveData(player)
@@ -177,8 +183,4 @@ function SaveData(player)
 
 	--Output all files
 	PersistentData:SaveAll()
-end
-
-function ResetGame()
-	--load new level here
 end
