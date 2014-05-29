@@ -52,23 +52,12 @@ function OnAfterSceneLoaded(self)
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
-	--setting up the tuning values:
-	--Melee attack tunining
-	self.meleeDamage = 10
-	self.attackAngle = 60
-	self.attackRange = 70
-	
-	--Magic attack tuning
-	self.fireballDamage = 25
-	self.maxSpellCount = 3
-	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
-	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
+	--variable to be used for attack cool downs
 	self.timeToNextAttack = 0 
 	
-	--locomotion values
-	self.moveSpeed = 0
-	self.walkSpeed = 2.5
-	self.runSpeed = 5
+	--setting the sound paths
+	self.deathSoundPath = "Sounds/RL_CharacterDeath.wav"
+	self.swordHitSoundPath = "Sounds/RL_SwordHitSound.wav"
 	
 	--variables for the mouse cursor
 	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
@@ -96,6 +85,25 @@ function OnAfterSceneLoaded(self)
 	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
+end
+
+function OnExpose(self)
+	--setting up the tuning values:
+	--Melee attack tunining
+	self.meleeDamage = 10
+	self.attackAngle = 60
+	self.attackRange = 70
+
+	--Magic attack tuning
+	self.fireballDamage = 25
+	self.maxSpellCount = 3
+	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
+	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
+	
+	--locomotion values
+	self.moveSpeed = 0
+	self.walkSpeed = 2.5
+	self.runSpeed = 5
 end
 
 function OnBeforeSceneUnloaded(self)
@@ -315,7 +323,7 @@ end
 
 function RotateToTarget(self, target)
 	--establish a deadZone
-	local deadZone = 25
+	local deadZone = 5
 	
 	----------------------------------------------------------------
 	--[[ 
@@ -344,7 +352,13 @@ function RotateToTarget(self, target)
 	--if the angle is greater than the deadzone, rotate the player, otherwise stop rotating
 	if absAngle > deadZone then
 		if myDir:dot(targetDir) > 0 then
-			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
+			if absAngle > 45  and absAngle < 90 then
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 90)
+			elseif absAngle >= 90 and absAngle < 180 then
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 180)
+			else
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
+			end
 		else
 			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360)
 		end
@@ -407,7 +421,16 @@ function CheckForAttackHit(self)
 			if result ~= nil and result["HitType"] == "Entity" then
 				local hitObj = result["HitObject"]
 				if hitObj:GetKey() == "Enemy" then
+					--play the hit sound
+					local hitSound = Fmod:CreateSound(result[ImpactPoint], self.swordHitSoundPath, false)
+					if hitSound ~= nil then
+						hitSound:Play()
+					end
+					
+					--damage the enmy
 					hitObj.ModifyHealth(hitObj, -self.meleeDamage)
+					
+					--break this loop to avoid hitting the same enemy twice
 					break
 				end
 			end
@@ -438,6 +461,12 @@ end
 
 --actions to complete when the player's health reaches zero
 function PlayerDeath(self)
+	--play the death sound
+	local deathSound = Fmod:CreateSound(self:GetPosition(), self.deathSoundPath, false)
+	if deathSound ~= nil then
+		deathSound:Play()
+	end
+	
 	--hide the character
 	self:SetVisible(false)
 	

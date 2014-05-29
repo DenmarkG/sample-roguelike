@@ -83,12 +83,24 @@ end
 
 function AddHealth(self, character)
 	character:ModifyHealth(self.value)
+	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
+	if useSound ~= nil then
+		useSound:Play()
+	end
 end
 
 function AddMana(self, character)
 	character:ModifyMana(self.value)
+	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
+	if useSound ~= nil then
+		useSound:Play()
+	end
 end
 
 function AddPower(self, character)
 	character:ModifyPower(self.value)
+	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
+	if useSound ~= nil then
+		useSound:Play()
+	end
 end

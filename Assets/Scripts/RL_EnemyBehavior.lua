@@ -25,6 +25,11 @@ function OnAfterSceneLoaded(self)
 	self.lastWaypoints = {}
 	self.maxPrevPoints = 3
 	
+	--set up the sounds
+	self.deathSoundPath = "Sounds/RL_CharacterDeath.wav"
+	self.meleeHitSoundPath = "Sounds/RL_SwordHitSound.wav"
+	
+	--the particle that will spawn when the enemy dies
 	self.deathParticlePath = "Particles\\RL_EnemyDeathFlame.xml"
 	
 	--function to be called by other scripts when the enemy's health reaches 0
@@ -36,15 +41,15 @@ function OnExpose(self)
 	self.moveSpeed = 50 --how fast this character should move when chasing the player	
 	self.rotSpeed = 10
 	self.maxAttackDistance = 90 --how close the NPC should get before attacking
-	self.minAttackDistance = 75
+	self.minAttackDistance = 0
 	self.sightRange = 550 --how far the enemy can see a player
-	self.viewingAngle = 90 --the angle that the NPC can see within
+	self.viewingAngle = 120 --the angle that the NPC can see within
 	
 	--variables to be used for attacking
 	self.numRays = 5
 	self.attackAngle = 60
 	self.attackRange = 70
-	self.meleeDamage = 10
+	self.meleeDamage = 5
 	
 	--how high from the ground the enemy will cast a ray to check for the player
 	self.eyeHeight = 50
@@ -101,7 +106,7 @@ function FindPathToPlayer(self)
 	
 	--get the distance to the player's last position
 	distance = myPosition:getDistanceTo(playerPosition)
-	
+
 	--finding a path
 	if G.player.isAlive then
 		if  (distance > self.maxAttackDistance) or (distance < self.minAttackDistance) then
@@ -264,9 +269,10 @@ function LookForPlayer(self)
 		if result ~= nil then
 			-- Debug:PrintLine(""..result["HitType"] )
 			if (result["HitType"] == "Unknown") then
+				--check to see if the player is in the enemies sight angle
 				local angle = self:GetObjDir():getAngleBetween(G.player:GetPosition() -  self:GetPosition() )
-				if (angle < self.viewingAngle) and
-					(angle > -self.viewingAngle) then
+				if (angle < self.viewingAngle / 2 ) and
+					(angle > -self.viewingAngle / 2) then
 					self.lastPlayerLocation = result["ImpactPoint"]
 					return true
 				end
@@ -303,6 +309,7 @@ function CheckForAttackHit(self)
 	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
 		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
+		
 		--convert the current angle to raidans
 		currentAngle = currentAngle * (math.pi / 180)
 		
@@ -320,7 +327,16 @@ function CheckForAttackHit(self)
 			--check to see if a target was hit
 			--note that the Character Controller from HAT cannot be detected by raycast, this is fixed in a later release
 			if result ~= nil and result["HitType"] == "Unknown" then
+				--damage the player
 				G.player:ModifyHealth(-self.meleeDamage)
+				
+				--play the hit sound
+				local hitSound = Fmod:CreateSound(result[ImpactPoint], self.meleeHitSoundPath, false)
+				if hitSound ~= nil then
+					hitSound:Play()
+				end
+				
+				--break the loop to avoid hitting the player twice
 				break
 			end
 		end
@@ -329,6 +345,12 @@ end
 
 --function to be called when the enemy's health reaches zero
 function EnemyDeath(self)
+	--play the death sound
+	local deathSound = Fmod:CreateSound(self:GetPosition(), self.deathSoundPath, false)
+	if deathSound ~= nil then
+		deathSound:Play()
+	end
+	
 	--play the death particle
 	Game:CreateEffect(self:GetPosition(), self.deathParticlePath)
 	
@@ -359,6 +381,7 @@ function ShowViewAngle(self)
 		local rayStart = myPos
 		local rayEnd = myPos + (newDir * self.sightRange)
 		
+		--Draw what the enemiy can "see"
 		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_YELLOW)
 	end
 end

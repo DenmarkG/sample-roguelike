@@ -10,11 +10,19 @@ function OnAfterSceneLoaded(self)
 	--keeps track of all spells currently active in the scene
 	self.spellsInPlay = {}
 	self.numSpellsInPlay = 0
-
+	
+	--set the current Mana to the max mana
 	self.currentMana = self.maxMana
+	
+	--save the sound path
+	self.spellLaunchSoundPath = "Sounds/RL_SpellLauchSound.wav"
+	self.spellHitSoundPath = "RL_SpellHitSound.wav"
 	
 	--function to be used by other scripts to create fireballs
 	self.CreateFireball = CreateNewFireball
+	
+	--save the particle path
+	self.fireballParticlePath = "Particles\\RL_Fireball.xml"
 	
 	self.ModifyMana = function (self, amount)
 		self.currentMana = self.currentMana + amount
@@ -35,7 +43,6 @@ function OnExpose(self)
 	self.fireballSpeed = 25
 	self.fireballRange = 500
 	self.fireballManaCost = 15
-	self.fireballParticlePath = "Particles\\RL_Fireball.xml"
 end
 
 function OnThink(self)
@@ -77,12 +84,25 @@ function CreateNewFireball(owner, direction)
 	newFireball.particle:SetDirection(newFireball.dir)
 	newFireball.particle:SetKey("Particle")
 	
+	--play the sound
+	local launchSound = Fmod:CreateSound(spawnPoint, owner.spellLaunchSoundPath, false)
+	if launchSound ~= nil then
+		launchSound:Play()
+	end
+	
 	--create the hit callback; the actions that should be done when the fireball hits something
-	newFireball.HitCallBack = function(fireball, hitObj)
-		local other = hitObj
+	newFireball.HitCallBack = function(fireball, result)
+		local hitObj = result["HitObject"]
 		local hitKey = hitObj:GetKey()
-		if other ~= nil and hitKey == "Enemy" then
+		if hitObj ~= nil and hitKey == "Enemy" then
+			--deal damage to the entity
 			hitObj:ModifyHealth(fireball.damage)
+			
+			--play the hit sound
+			local hitSound = Fmod:CreateSound(result[ImpactPoint], owner.spellHitSoundPath, false)
+			if hitSound ~= nil then
+				hitSound:Play()
+			end
 		end
 	end
 	
@@ -102,8 +122,7 @@ function CreateNewFireball(owner, direction)
 			if hit == true then
 				if result ~= nil then
 					if result["HitType"] == "Entity" then
-						local hitObj = result["HitObject"]
-						fireball:HitCallBack(hitObj)
+						fireball:HitCallBack(result)
 					end
 				end
 				hitObject = true
