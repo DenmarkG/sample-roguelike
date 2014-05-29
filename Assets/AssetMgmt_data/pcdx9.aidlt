@@ -42,9 +42,12 @@ models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
+particles/effect_cone.model	Particles/Effect_Cone.model	LODSwitchDistances=
 particles/flaregroup.dds	AssetMgmt_data/transformed/flaregrouph6sg7zjclgdtc.dds	sRGB=false
 particles/haloring_06.dds	AssetMgmt_data/transformed/haloring_068qw9tc4clgdtc.dds	sRGB=false
+particles/light.dds	AssetMgmt_data/transformed/lighthkx#rrxclgdtc.dds	sRGB=false
 particles/rl_clickparticle.vpfx	Particles/RL_ClickParticle.vpfx	
+particles/rl_enemydeathflame.vpfx	Particles/RL_EnemyDeathFlame.vpfx	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	AssetMgmt_data/transformed/smokesequence_a1hnnds4clgdtc.dds	sRGB=false
 prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab	
@@ -52,16 +55,16 @@ prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
 scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p015jqgb74clgdtc.dds	sRGB=false
-scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p014b55g7nclgdtc.dds	sRGB=false
-scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p024y0j32sclgdtc.dds	sRGB=false
-scenes/sample_p03.dds	AssetMgmt_data/transformed/sample_p035gz0lr8clgdtc.dds	sRGB=false
-scenes/sample_p04.dds	AssetMgmt_data/transformed/sample_p045x5v8w4clgdtc.dds	sRGB=false
-scenes/sample_p05.dds	AssetMgmt_data/transformed/sample_p05cm8dskjclgdtc.dds	sRGB=false
-scenes/sample_p06.dds	AssetMgmt_data/transformed/sample_p066y#pn9xclgdtc.dds	sRGB=false
-scenes/sample_p07.dds	AssetMgmt_data/transformed/sample_p075#ndqy8clgdtc.dds	sRGB=false
-scenes/sample_p08.dds	AssetMgmt_data/transformed/sample_p08c21nkf8clgdtc.dds	sRGB=false
-scenes/sample_p09.dds	AssetMgmt_data/transformed/sample_p0967nj19xclgdtc.dds	sRGB=false
-scenes/sample_p10.dds	AssetMgmt_data/transformed/sample_p107qw2z8nclgdtc.dds	sRGB=false
+scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.dds	sRGB=false
+scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.dds	sRGB=false
+scenes/sample_p03.dds	AssetMgmt_data/transformed/sample_p03dfq50hnclgdtc.dds	sRGB=false
+scenes/sample_p04.dds	AssetMgmt_data/transformed/sample_p04bgfm9g8clgdtc.dds	sRGB=false
+scenes/sample_p05.dds	AssetMgmt_data/transformed/sample_p052l3gc0dclgdtc.dds	sRGB=false
+scenes/sample_p06.dds	AssetMgmt_data/transformed/sample_p069r#ph84clgdtc.dds	sRGB=false
+scenes/sample_p07.dds	AssetMgmt_data/transformed/sample_p07dsxy40sclgdtc.dds	sRGB=false
+scenes/sample_p08.dds	AssetMgmt_data/transformed/sample_p08bnpggfnclgdtc.dds	sRGB=false
+scenes/sample_p09.dds	AssetMgmt_data/transformed/sample_p090sjbq#jclgdtc.dds	sRGB=false
+scenes/sample_p10.dds	AssetMgmt_data/transformed/sample_p1043kmphnclgdtc.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_greeng#4s344clgdtc.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_green4sj5dfxclgdtc.dds	sRGB=false
 textures/cursor/rl_cursor_diffuse_red.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_red2l54884clgdtc.dds	sRGB=false
