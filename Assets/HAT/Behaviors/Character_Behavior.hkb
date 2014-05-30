@@ -921,8 +921,8 @@
             </ParentNodes>
             <Notes />
             <VariableType>Float</VariableType>
-            <MinValue>-360</MinValue>
-            <MaxValue>360</MaxValue>
+            <MinValue>-720</MinValue>
+            <MaxValue>720</MaxValue>
             <DefaultValue>0</DefaultValue>
             <Global>false</Global>
         </hkFloatVariable>

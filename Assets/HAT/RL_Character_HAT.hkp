@@ -149,6 +149,10 @@
                     <anyType xsi:type="xsd:string">DataStore.ActiveTerrains</anyType>
                     <anyType xsi:type="xsd:string">DataStore.CurrentCharacter</anyType>
                     <anyType xsi:type="xsd:string">Gamepad.DeadZone</anyType>
+                    <anyType xsi:type="xsd:string">Gameview.Application</anyType>
+                    <anyType xsi:type="xsd:string">Gameview.CommandString</anyType>
+                    <anyType xsi:type="xsd:string">Gameview.ExportToGameviewDirectoryPriorToLaunching</anyType>
+                    <anyType xsi:type="xsd:string">Gameview.WorkingDirectory</anyType>
                     <anyType xsi:type="xsd:string">General.AutoCreateEvents</anyType>
                     <anyType xsi:type="xsd:string">General.CustomNodeFileFilter</anyType>
                     <anyType xsi:type="xsd:string">General.CustomNodeLastDirectory</anyType>
@@ -215,15 +219,15 @@
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="xsd:float">1000</anyType>
                     <anyType xsi:type="xsd:float">45</anyType>
-                    <anyType xsi:type="xsd:float">0.397597969</anyType>
-                    <anyType xsi:type="xsd:float">-1.53081894</anyType>
-                    <anyType xsi:type="xsd:float">0.76090616</anyType>
+                    <anyType xsi:type="xsd:float">0.0282422</anyType>
+                    <anyType xsi:type="xsd:float">-0.885988951</anyType>
+                    <anyType xsi:type="xsd:float">0.564516366</anyType>
                     <anyType xsi:type="xsd:float">0.1</anyType>
                     <anyType xsi:type="xsd:string">RL_Character.hkc</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
-                    <anyType xsi:type="xsd:float">-0.040800415</anyType>
-                    <anyType xsi:type="xsd:float">-0.0377006531</anyType>
-                    <anyType xsi:type="xsd:float">0.159482956</anyType>
+                    <anyType xsi:type="xsd:float">-0.0684527755</anyType>
+                    <anyType xsi:type="xsd:float">-0.0531555861</anyType>
+                    <anyType xsi:type="xsd:float">0.301654875</anyType>
                     <anyType xsi:type="xsd:string">hkTrackingCamera</anyType>
                     <anyType xsi:type="hkRefMakerOfhkCharacter">
                         <MangledTargetNames />
@@ -237,6 +241,10 @@
                         </MangledTargetNames>
                     </anyType>
                     <anyType xsi:type="xsd:float">0.125</anyType>
+                    <anyType xsi:type="xsd:string" />
+                    <anyType xsi:type="xsd:string" />
+                    <anyType xsi:type="xsd:boolean">true</anyType>
+                    <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:boolean">false</anyType>
                     <anyType xsi:type="xsd:string">All files (*.*)|*.*</anyType>
                     <anyType xsi:nil="true" />

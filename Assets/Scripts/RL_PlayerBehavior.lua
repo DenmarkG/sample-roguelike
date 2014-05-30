@@ -36,7 +36,7 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
 	else
 		--mouse movement controls:
-		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
+		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY", {onceperframe=true, onpress=true} )
 		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
 		self.map:MapTrigger("Y", {0,0,G.w,G.h}, "CT_TOUCH_ABS_Y")
 		self.map:MapTrigger("RUN", G.yellowTable, "CT_TOUCH_ANY")
@@ -65,11 +65,12 @@ function OnAfterSceneLoaded(self)
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
 	self.mouseCursor:SetZVal(5)
+	
 	--variables for keeping track of click location and times for particle
 	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
 	self.lastClickTime = 0
 	self.clickCoolDown = .25
-	self.goalRadius = 50 --how far the character should stop from a goal point
+	self.goalRadius = 75 --how far the character should stop from a goal point
 	
 	--the player states, for switching between animations/actions
 	self.states = {}
@@ -81,6 +82,8 @@ function OnAfterSceneLoaded(self)
 	
 	--bool to tell the game if the player is still alive
 	self.isAlive = true
+	
+	self.aimedAtTarget = true
 	
 	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
@@ -154,7 +157,7 @@ function OnThink(self)
 				elseif melee then
 					PerformMelee(self)
 				end
-			end
+			end		
 		else
 			--if the player is attacking:
 			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug; fixed in 2014.1.0
@@ -183,6 +186,10 @@ function OnThink(self)
 		--follow the path if one exists
 		if self.path ~= nil then
 			NavigatePath(self)
+		end
+		
+		if self.rotationTarget ~= nil then
+			RotateToTarget(self, self.rotationTarget)
 		end
 		
 		--update the mouse position on screen
@@ -257,7 +264,7 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 end
 
 function NavigatePath(self)
-	--if the character is not currently moving, he should start now
+	-- --if the character is not currently moving, he should start now
 	if self.currentState == self.states.idle then		
 		self.behaviorComponent:TriggerEvent("MoveStart")
 		
@@ -277,10 +284,7 @@ function NavigatePath(self)
 		self.pathProgress = self.pathProgress + (self.lastPoint:getDistanceTo(self.nextPoint) )
 		self.lastPoint = self.nextPoint
 		self.nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
-		
-		if self.nextPoint ~= nil then
-			RotateToTarget(self, self.nextPoint)
-		end
+		self.rotationTarget = self.nextPoint
 	end
 	
 	--if the end of the path has been reached, reset the variables
@@ -289,9 +293,77 @@ function NavigatePath(self)
 		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 		self.prevState = self.currentState
 		self.currentState = self.states.idle
-		StopRotation(self)
+		
+		--if the player reaches the end, but is not aimed properly, keep rotating
+		if self.aimedAtTarget == false then
+			self.rotationTarget = self.goalPoint
+		end
+		
+		--remove the references to the path
 		ClearPath(self)
 	end
+end
+
+function RotateToTarget(self, target)
+	--establish a deadZone
+	local deadZone = 5
+	
+	--remove the z component since we only want the calculate the angle in 2 dimensions
+	target.z = 0
+	
+	----------------------------------------------------------------
+	--[[ 
+	IMPORTANT NOTE:
+	The forward direction was obtained this was because the object was exported facing the wrong direction
+	normally, you would just use self:GetObjDir() to get the forward direction
+	--]]
+	local myDir = -self:GetObjDir_Right()
+	local leftDir = self:GetObjDir()
+	----------------------------------------------------------------
+	
+	--cache the variables to be used to determine which way the player should turn
+	local myPos = self:GetPosition()
+	myPos.z = 0 --again, remove the z component
+	local sign = 1 
+	local targetDir = (target - myPos):getNormalized()
+	local angle = myDir:getAngleBetween(targetDir)
+	
+	--get the sign of the angle between the current direction and the target direction
+	if leftDir:dot(targetDir) < 0 then
+		sign = -1
+	end
+	
+	--cache the absolute value of the angle between the two directions
+	local absAngle = math.abs(angle)
+	
+	--if the angle is greater than the deadzone, rotate the player, otherwise stop rotating
+	if absAngle > deadZone then
+		self.aimedAtTarget = false
+		
+		--the speed of roation is based on the angle; greater angle, greater speed
+		if myDir:dot(targetDir) > 0 then
+			if absAngle < 45 then
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 180 )
+			elseif absAngle < 90 then
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360 )
+				
+			elseif absAngle < 180 then
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720 )
+			end
+		else
+			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720)
+		end
+	else
+		self.aimedAtTarget = true
+		StopRotation(self)
+	end
+end
+
+--stops the rotation of the player
+function StopRotation(self)
+	self:ResetRotationDelta()
+	self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+	self.rotationTarget = nil
 end
 
 function UpdateMouse(self, xPos, yPos)
@@ -321,50 +393,8 @@ function UpdateMouse(self, xPos, yPos)
 	end
 end
 
-function RotateToTarget(self, target)
-	--establish a deadZone
-	local deadZone = 5
-	
-	----------------------------------------------------------------
-	--[[ 
-	IMPORTANT NOTE:
-	The forward direction was obtained this was because the object was exported facing the wrong direction
-	normally, you would just use self:GetObjDir() to get the forward direction
-	--]]
-	local myDir = -self:GetObjDir_Right()
-	local leftDir = self:GetObjDir()
-	----------------------------------------------------------------
-	
-	--cache the variables to be used to determine which way the player should turn
-	local myPos = self:GetPosition()
-	local sign = 1 
-	local targetDir = (target - myPos):getNormalized()
-	local angle = myDir:getAngleBetween(targetDir)
-	
-	--get the sign of the angle between the current direction and the target direction
-	if leftDir:dot(targetDir) < 0 then
-		sign = -1
-	end
-	
-	--cache the absolute value of the angle between the two directions
-	local absAngle = math.abs(angle)
-	
-	--if the angle is greater than the deadzone, rotate the player, otherwise stop rotating
-	if absAngle > deadZone then
-		if myDir:dot(targetDir) > 0 then
-			if absAngle > 45  and absAngle < 90 then
-				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 90)
-			elseif absAngle >= 90 and absAngle < 180 then
-				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 180)
-			else
-				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * angle)
-			end
-		else
-			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360)
-		end
-	else
-		StopRotation(self)
-	end	
+function CheckDistanceToTarget(self, target)
+	--
 end
 
 --actions that are performed each time a melee attack is executed
@@ -481,12 +511,6 @@ function ClearPath(self)
 	self.lastPoint = nil
 	self.nextPoint = nil
 	self.path = nil
-end
-
---stops the rotation of the player
-function StopRotation(self)
-	self:ResetRotationDelta()
-	self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 end
 
 --Begins the attack cool down after a spell or melee
