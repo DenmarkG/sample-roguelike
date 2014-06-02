@@ -145,10 +145,10 @@ function AddNewItem(self, newItem)
 		
 		if self.itemCount > 0 then
 			self.inventory[self.itemCount + 1] = newItem
-			Debug:PrintLine(""..newItem.name.." "..newItem.value)
+			--Debug:PrintLine(""..newItem.name.." "..newItem.value)
 		else
 			self.inventory[1] = newItem
-			Debug:PrintLine(""..newItem.name.." "..newItem.value)
+			--Debug:PrintLine(""..newItem.name.." "..newItem.value)
 		end
 		
 		self.itemCount = self.itemCount + 1

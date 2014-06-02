@@ -42,23 +42,29 @@ models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
+particles/effect_cone.model	Particles/Effect_Cone.model	LODSwitchDistances=
+particles/flaregroup.dds	AssetMgmt_data/transformed/flaregrouph6sg7zjclgdtc.pvr	sRGB=false
+particles/haloring_06.dds	AssetMgmt_data/transformed/haloring_068qw9tc4clgdtc.pvr	sRGB=false
+particles/light.dds	AssetMgmt_data/transformed/lighthkx#rrxclgdtc.pvr	sRGB=false
+particles/rl_clickparticle.vpfx	Particles/RL_ClickParticle.vpfx	
+particles/rl_enemydeathflame.vpfx	Particles/RL_EnemyDeathFlame.vpfx	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	AssetMgmt_data/transformed/smokesequence_a1hnnds4clgdtc.pvr	sRGB=false
 prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab	
 prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab	
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
-scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p015jqgb74clgdtc.pvr	sRGB=false
-scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p0127bkv6jclgdtc.pvr	sRGB=false
-scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p027qmqdb8clgdtc.pvr	sRGB=false
-scenes/sample_p03.dds	AssetMgmt_data/transformed/sample_p032f#6bynclgdtc.pvr	sRGB=false
-scenes/sample_p04.dds	AssetMgmt_data/transformed/sample_p047mdqn7jclgdtc.pvr	sRGB=false
-scenes/sample_p05.dds	AssetMgmt_data/transformed/sample_p05fw8xcsjclgdtc.pvr	sRGB=false
-scenes/sample_p06.dds	AssetMgmt_data/transformed/sample_p06bqw45b4clgdtc.pvr	sRGB=false
-scenes/sample_p07.dds	AssetMgmt_data/transformed/sample_p079f32szxclgdtc.pvr	sRGB=false
-scenes/sample_p08.dds	AssetMgmt_data/transformed/sample_p08h9gtckjclgdtc.pvr	sRGB=false
-scenes/sample_p09.dds	AssetMgmt_data/transformed/sample_p09hh1vd1sclgdtc.pvr	sRGB=false
-scenes/sample_p10.dds	AssetMgmt_data/transformed/sample_p10gf21mzdclgdtc.pvr	sRGB=false
+scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.pvr	sRGB=false
+scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.pvr	sRGB=false
+scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.pvr	sRGB=false
+scenes/sample_p03.dds	AssetMgmt_data/transformed/sample_p03dfq50hnclgdtc.pvr	sRGB=false
+scenes/sample_p04.dds	AssetMgmt_data/transformed/sample_p04bgfm9g8clgdtc.pvr	sRGB=false
+scenes/sample_p05.dds	AssetMgmt_data/transformed/sample_p052l3gc0dclgdtc.pvr	sRGB=false
+scenes/sample_p06.dds	AssetMgmt_data/transformed/sample_p069r#ph84clgdtc.pvr	sRGB=false
+scenes/sample_p07.dds	AssetMgmt_data/transformed/sample_p07dsxy40sclgdtc.pvr	sRGB=false
+scenes/sample_p08.dds	AssetMgmt_data/transformed/sample_p08bnpggfnclgdtc.pvr	sRGB=false
+scenes/sample_p09.dds	AssetMgmt_data/transformed/sample_p090sjbq#jclgdtc.pvr	sRGB=false
+scenes/sample_p10.dds	AssetMgmt_data/transformed/sample_p1043kmphnclgdtc.pvr	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_greeng#4s344clgdtc.pvr	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_green4sj5dfxclgdtc.pvr	sRGB=false
 textures/cursor/rl_cursor_diffuse_red.tga	AssetMgmt_data/transformed/rl_cursor_diffuse_red2l54884clgdtc.pvr	sRGB=false
@@ -72,6 +78,8 @@ textures/designtextures/flatcolors/white_128.tga	AssetMgmt_data/transformed/whit
 textures/designtextures/flatcolors/yellow_128.tga	AssetMgmt_data/transformed/yellow_128f71r3rxclgdtc.pvr	sRGB=false
 textures/designtextures/texturegrid_blue.tga	AssetMgmt_data/transformed/texturegrid_blue7145v88clgdtc.pvr	sRGB=false
 textures/green_128.tga	AssetMgmt_data/transformed/green_128gl76ydsclgdtc.pvr	sRGB=false
+textures/helpbuttons/rl_helpbutton_pc.tga	AssetMgmt_data/transformed/rl_helpbutton_pchtyr9f8clgdtc.pvr	sRGB=false
+textures/helpbuttons/rl_helpbutton_touch.tga	AssetMgmt_data/transformed/rl_helpbutton_touch55d5320clgdtc.pvr	sRGB=false
 textures/mobilehud/fps_button_blue.tga	AssetMgmt_data/transformed/fps_button_bluehc8zbwjclgdtc.pvr	sRGB=false
 textures/mobilehud/fps_button_blue_64.tga	AssetMgmt_data/transformed/fps_button_blue_645yn16zjclgdtc.pvr	sRGB=false
 textures/mobilehud/fps_button_green.tga	AssetMgmt_data/transformed/fps_button_green6jsf5qnclgdtc.pvr	sRGB=false

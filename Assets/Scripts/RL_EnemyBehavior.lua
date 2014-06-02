@@ -261,8 +261,8 @@ function LookForPlayer(self)
 	local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 	local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 	
-	local color = Vision.V_RGBA_BLUE
-	Debug.Draw:Line(rayStart, rayEnd, color)
+	-- local color = Vision.V_RGBA_BLUE
+	-- Debug.Draw:Line(rayStart, rayEnd, color)
 	
 	if hit == true then
 		-- check to see if a target was hit

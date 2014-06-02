@@ -78,6 +78,8 @@ textures/designtextures/flatcolors/white_128.tga	Textures/DesignTextures/FlatCol
 textures/designtextures/flatcolors/yellow_128.tga	Textures/DesignTextures/FlatColors/Yellow_128.tga	sRGB=false
 textures/designtextures/texturegrid_blue.tga	Textures/DesignTextures/textureGrid_Blue.tga	sRGB=false
 textures/green_128.tga	Textures/Green_128.tga	sRGB=false
+textures/helpbuttons/rl_helpbutton_pc.tga	Textures/HelpButtons/RL_HelpButton_PC.tga	sRGB=false
+textures/helpbuttons/rl_helpbutton_touch.tga	Textures/HelpButtons/RL_HelpButton_Touch.tga	sRGB=false
 textures/mobilehud/fps_button_blue.tga	Textures/MobileHud/FPS_Button_Blue.tga	sRGB=false
 textures/mobilehud/fps_button_blue_64.tga	Textures/MobileHud/FPS_Button_Blue_64.tga	sRGB=false
 textures/mobilehud/fps_button_green.tga	Textures/MobileHud/FPS_Button_Green.tga	sRGB=false

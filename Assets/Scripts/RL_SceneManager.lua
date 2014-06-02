@@ -20,6 +20,18 @@ function OnBeforeSceneLoaded(self)
 	
 	--get the screen size
 	G.w, G.h = Screen:GetViewportSize()
+	
+	if G.isWindows then
+		G.helpButton = Game:CreateScreenMask(0, 0, "Textures/HelpButtons/RL_HelpButton_PC.tga")
+	else
+		G.helpButton = Game:CreateScreenMask(0, 0, "Textures/HelpButtons/RL_HelpButton_Touch.tga")
+	end
+	
+	--get the size of the help button, then move to the bottom left corner
+	local helpX, helpY = G.helpButton:GetTextureSize()
+	G.helpButton:SetPos( (G.w / 2) - helpX / 2, G.h - helpY) 
+	G.helpButton:SetBlending(Vision.BLEND_ALPHA)
+	G.helpTable = { (G.w / 2) - helpX / 2, G.h - helpY, (G.w / 2) + helpX / 2, G.h, -900, "new"}
 end
 
 function OnAfterSceneLoaded(self)

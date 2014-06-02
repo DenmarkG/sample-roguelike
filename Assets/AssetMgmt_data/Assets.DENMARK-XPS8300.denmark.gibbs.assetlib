@@ -1334,9 +1334,9 @@
                 ]
             },
             "File": {
-                "Hash": 1482279481,
-                "TimeStamp": 1400028786505531800,
-                "LastEditTime": 1400028786687531800
+                "Hash": 2434380215,
+                "TimeStamp": 1401730738663393200,
+                "LastEditTime": 1401730738852393200
             },
             "Texture": {
                 "FileFormat": "DDS",
@@ -1964,6 +1964,60 @@
                 "Width": 128,
                 "Height": 128,
                 "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/HelpButtons/RL_HelpButton_PC.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4244040042,
+                "TimeStamp": 1394565674390361900,
+                "LastEditTime": 1401731926691523300
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 64,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Textures/HelpButtons/RL_HelpButton_Touch.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1387307792,
+                "TimeStamp": 1394565688790801800,
+                "LastEditTime": 1401731937557436600
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 64,
+                "HasAlpha": true,
                 "sRGB": false
             },
             "Transformations": {

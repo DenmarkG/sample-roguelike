@@ -54,7 +54,7 @@ prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab
 prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab	
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
-scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p015jqgb74clgdtc.dds	sRGB=false
+scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.dds	sRGB=false
 scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.dds	sRGB=false
 scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.dds	sRGB=false
 scenes/sample_p03.dds	AssetMgmt_data/transformed/sample_p03dfq50hnclgdtc.dds	sRGB=false
@@ -78,6 +78,8 @@ textures/designtextures/flatcolors/white_128.tga	AssetMgmt_data/transformed/whit
 textures/designtextures/flatcolors/yellow_128.tga	AssetMgmt_data/transformed/yellow_128f71r3rxclgdtc.dds	sRGB=false
 textures/designtextures/texturegrid_blue.tga	AssetMgmt_data/transformed/texturegrid_blue7145v88clgdtc.dds	sRGB=false
 textures/green_128.tga	AssetMgmt_data/transformed/green_128gl76ydsclgdtc.dds	sRGB=false
+textures/helpbuttons/rl_helpbutton_pc.tga	AssetMgmt_data/transformed/rl_helpbutton_pchtyr9f8clgdtc.dds	sRGB=false
+textures/helpbuttons/rl_helpbutton_touch.tga	AssetMgmt_data/transformed/rl_helpbutton_touch55d5320clgdtc.dds	sRGB=false
 textures/mobilehud/fps_button_blue.tga	AssetMgmt_data/transformed/fps_button_bluehc8zbwjclgdtc.dds	sRGB=false
 textures/mobilehud/fps_button_blue_64.tga	AssetMgmt_data/transformed/fps_button_blue_645yn16zjclgdtc.dds	sRGB=false
 textures/mobilehud/fps_button_green.tga	AssetMgmt_data/transformed/fps_button_green6jsf5qnclgdtc.dds	sRGB=false

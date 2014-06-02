@@ -27,13 +27,14 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("X", "MOUSE", "CT_MOUSE_ABS_X")
 		self.map:MapTrigger("Y", "MOUSE", "CT_MOUSE_ABS_Y")
 		self.map:MapTrigger("RUN", "KEYBOARD", "CT_KB_LSHIFT")
+		self.map:MapTrigger("HELP", "KEYBOARD", "CT_KB_H")
 		
 		--Interaction controls:
 		self.map:MapTrigger("MAGIC", "KEYBOARD", "CT_KB_F")
 		self.map:MapTrigger("MELEE", "KEYBOARD", "CT_KB_SPACE", {once=true} )
 		
 		--GUI Display Controls
-		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true}) --will show the display whilst holding 
+		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true} ) --will show the inventory display whilst holding 
 	else
 		--mouse movement controls:
 		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY", {onceperframe=true, onpress=true} )
@@ -44,6 +45,7 @@ function OnAfterSceneLoaded(self)
 		--Interaction controls:
 		self.map:MapTrigger("MAGIC", G.greenTable, "CT_TOUCH_ANY", {once=true} )
 		self.map:MapTrigger("MELEE", G.redTable, "CT_TOUCH_ANY", {once=true} )
+		self.map:MapTrigger("HELP", G.helpTable, "CT_TOUCH_ANY") --will show the help menu whilst holding 
 		
 		--GUI Display Controls
 		self.map:MapTrigger("INVENTORY", G.blueTable, "CT_TOUCH_ANY", {once=true} ) --will show the display whilst holding 
@@ -88,6 +90,8 @@ function OnAfterSceneLoaded(self)
 	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
+	
+	self.count = 0
 end
 
 function OnExpose(self)
@@ -133,6 +137,7 @@ function OnThink(self)
 		local y = self.map:GetTrigger("Y")
 		local run = self.map:GetTrigger("RUN") > 0
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
+		local help = self.map:GetTrigger("HELP") > 0
 		
 		if self.currentState ~= self.states.attacking then
 			--if the player is not currently attacking:
@@ -201,6 +206,11 @@ function OnThink(self)
 		--toggle the inventory
 		if showInventory then
 			self:ToggleInventory()
+		end
+		
+		-- show 'Help'
+		if help then
+			ShowControls(self)
 		end
 		
 		-- Debug:PrintLine(""..self.currentState) 
@@ -346,7 +356,6 @@ function RotateToTarget(self, target)
 				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 180 )
 			elseif absAngle < 90 then
 				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360 )
-				
 			elseif absAngle < 180 then
 				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720 )
 			end
@@ -506,6 +515,29 @@ function PlayerDeath(self)
 	G.Lose(manager)
 end
 
+--HUD for the player's health, mana, and gem count
+function ShowPlayerStats(self)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
+	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
+end
+
+function ShowControls(self)
+	if G.isWindows then
+		Debug:PrintAt(10, 64, "Move: LEFT CLICK", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 96, "Run: LEFT SHIFT", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 128, "Melee: SPACEBAR", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 160, "Magic: F", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 182, "Inventory: 1", Vision.V_RGBA_WHITE, G.fontPath)
+	else
+		Debug:PrintAt(10, 64, "Move: TAP", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 96, "Run: YELLOW", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 128, "Melee: Red", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 160, "Magic: GREEN", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 182, "Inventory: Blue", Vision.V_RGBA_WHITE, G.fontPath)
+	end
+end
+
 --function for resetting the player's AI path
 function ClearPath(self)
 	self.lastPoint = nil
@@ -516,13 +548,6 @@ end
 --Begins the attack cool down after a spell or melee
 function StartCoolDown(self, coolDownTime)
 	self.timeToNextAttack = coolDownTime
-end
-
---HUD for the player's health, mana, and gem count
-function ShowPlayerStats(self)
-	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
-	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
-	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
 end
 
 --function for increasing/decreasing the player's attack power

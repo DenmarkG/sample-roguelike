@@ -58,8 +58,8 @@ prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab
 prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab	
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
-scenes/sample-level02_p01.dds#android-default	AssetMgmt_data/transformed/sample-level02_p015jqgb74clgdtc.rgba	sRGB=false
-scenes/sample-level02_p01.dds#android-pvr	AssetMgmt_data/transformed/sample-level02_p015jqgb74clgdtc.pvr	sRGB=false
+scenes/sample-level02_p01.dds#android-default	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.rgba	sRGB=false
+scenes/sample-level02_p01.dds#android-pvr	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.pvr	sRGB=false
 scenes/sample_p01.dds#android-default	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.rgba	sRGB=false
 scenes/sample_p01.dds#android-pvr	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.pvr	sRGB=false
 scenes/sample_p02.dds#android-default	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.rgba	sRGB=false
@@ -106,6 +106,10 @@ textures/designtextures/texturegrid_blue.tga#android-default	AssetMgmt_data/tran
 textures/designtextures/texturegrid_blue.tga#android-pvr	AssetMgmt_data/transformed/texturegrid_blue7145v88clgdtc.pvr	sRGB=false
 textures/green_128.tga#android-default	AssetMgmt_data/transformed/green_128gl76ydsclgdtc.etc	sRGB=false
 textures/green_128.tga#android-pvr	AssetMgmt_data/transformed/green_128gl76ydsclgdtc.pvr	sRGB=false
+textures/helpbuttons/rl_helpbutton_pc.tga#android-default	AssetMgmt_data/transformed/rl_helpbutton_pchtyr9f8clgdtc.rgba	sRGB=false
+textures/helpbuttons/rl_helpbutton_pc.tga#android-pvr	AssetMgmt_data/transformed/rl_helpbutton_pchtyr9f8clgdtc.pvr	sRGB=false
+textures/helpbuttons/rl_helpbutton_touch.tga#android-default	AssetMgmt_data/transformed/rl_helpbutton_touch55d5320clgdtc.rgba	sRGB=false
+textures/helpbuttons/rl_helpbutton_touch.tga#android-pvr	AssetMgmt_data/transformed/rl_helpbutton_touch55d5320clgdtc.pvr	sRGB=false
 textures/mobilehud/fps_button_blue.tga#android-default	AssetMgmt_data/transformed/fps_button_bluehc8zbwjclgdtc.rgba	sRGB=false
 textures/mobilehud/fps_button_blue.tga#android-pvr	AssetMgmt_data/transformed/fps_button_bluehc8zbwjclgdtc.pvr	sRGB=false
 textures/mobilehud/fps_button_blue_64.tga#android-default	AssetMgmt_data/transformed/fps_button_blue_645yn16zjclgdtc.rgba	sRGB=false
