@@ -37,7 +37,7 @@ function OnAfterSceneLoaded(self)
 		self.map:MapTrigger("INVENTORY", "KEYBOARD", "CT_KB_1", {once=true} ) --will show the inventory display whilst holding 
 	else
 		--mouse movement controls:
-		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY", {onceperframe=true, onpress=true} )
+		self.map:MapTrigger("CLICK", {0,0,G.w,G.h}, "CT_TOUCH_ANY")
 		self.map:MapTrigger("X", {0,0,G.w,G.h}, "CT_TOUCH_ABS_X")
 		self.map:MapTrigger("Y", {0,0,G.w,G.h}, "CT_TOUCH_ABS_Y")
 		self.map:MapTrigger("RUN", G.yellowTable, "CT_TOUCH_ANY")
