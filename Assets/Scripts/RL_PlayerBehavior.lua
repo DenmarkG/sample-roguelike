@@ -314,6 +314,11 @@ function NavigatePath(self)
 	end
 end
 
+--[[
+This function should be called every time the character needs to change direction.
+This directly affects the RotateCharacterModifier from HAT.  Since the character may have to
+rotate a lot in a short distance, the value is set very high (720 deg/sec) when this happens. 
+--]]
 function RotateToTarget(self, target)
 	--establish a deadZone
 	local deadZone = 5
@@ -321,15 +326,11 @@ function RotateToTarget(self, target)
 	--remove the z component since we only want the calculate the angle in 2 dimensions
 	target.z = 0
 	
-	----------------------------------------------------------------
-	--[[ 
-	IMPORTANT NOTE:
-	The forward direction was obtained this was because the object was exported facing the wrong direction
-	normally, you would just use self:GetObjDir() to get the forward direction
-	--]]
-	local myDir = -self:GetObjDir_Right()
-	local leftDir = self:GetObjDir()
-	----------------------------------------------------------------
+	--here we cache the direction of the player
+	local myDir = self:GetObjDir()
+	
+	--note: in vision, the function GetObjDir_Right actually gets the left vector (positive Y)
+	local leftDir = self:GetObjDir_Right()
 	
 	--cache the variables to be used to determine which way the player should turn
 	local myPos = self:GetPosition()
@@ -357,7 +358,7 @@ function RotateToTarget(self, target)
 			elseif absAngle < 90 then
 				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 360 )
 			elseif absAngle < 180 then
-				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720 )
+				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 540 )
 			end
 		else
 			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720)
@@ -400,10 +401,6 @@ function UpdateMouse(self, xPos, yPos)
 	if self.lastY ~= nil and self.lastX ~= nil then
 		self.mouseCursor:SetPos(self.lastX, self.lastY)
 	end
-end
-
-function CheckDistanceToTarget(self, target)
-	--
 end
 
 --actions that are performed each time a melee attack is executed
@@ -484,7 +481,7 @@ function CastSpell(self)
 	if self.numSpellsInPlay < self.maxSpellCount then
 		if self.currentMana - self.fireballManaCost >= 0 then
 			--set the direction to cast the spell
-			local myDir = -self:GetObjDir_Right()
+			local myDir = self:GetObjDir()
 			
 			--create the fireball spell
 			self.CreateFireball(self, myDir)

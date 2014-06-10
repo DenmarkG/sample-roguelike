@@ -19,7 +19,7 @@
             </StateMachine>
             <Rig>
                 <MangledTargetNames>
-                    <string>_RL_Character_Attack_BasicConfig_hkt_:HavokTools.hkCharacterHKX:RL_Character_Attack_BasicConfig.hkt:IncomingRefs</string>
+                    <string>_RL_Character_Posed_hkt_:HavokTools.hkCharacterHKX:RL_Character_Posed.hkt:IncomingRefs</string>
                 </MangledTargetNames>
             </Rig>
             <Ragdoll>
@@ -27,7 +27,7 @@
             </Ragdoll>
             <DeformableSkins>
                 <MangledTargetNames>
-                    <string>_RL_Character_Attack_BasicConfig_hkt_:HavokTools.hkCharacterHKX:RL_Character_Attack_BasicConfig.hkt:IncomingRefs</string>
+                    <string>_RL_Character_Posed_hkt_:HavokTools.hkCharacterHKX:RL_Character_Posed.hkt:IncomingRefs</string>
                 </MangledTargetNames>
             </DeformableSkins>
             <RigidSkins>
@@ -79,11 +79,11 @@
             <Skins>
                 <FileNameMeshNamePair>
                     <m_meshName>Sword</m_meshName>
-                    <m_fileName>..\Models\Character\Animations\RL_Character_Attack_BasicConfig.hkt</m_fileName>
+                    <m_fileName>..\Models\Character\Animations\RL_Character_Posed.hkt</m_fileName>
                 </FileNameMeshNamePair>
                 <FileNameMeshNamePair>
                     <m_meshName>Body</m_meshName>
-                    <m_fileName>..\Models\Character\Animations\RL_Character_Attack_BasicConfig.hkt</m_fileName>
+                    <m_fileName>..\Models\Character\Animations\RL_Character_Posed.hkt</m_fileName>
                 </FileNameMeshNamePair>
             </Skins>
             <BoneAttachments />

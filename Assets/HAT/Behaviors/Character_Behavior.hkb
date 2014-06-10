@@ -67,13 +67,13 @@
             <Notes />
         </hkBehaviorFile>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkClip" name="RL_Character_Idle_BasicAnimationConfig.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkClip" name="IdleAnimation" priority="50">
         <hkClip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Idle_BasicAnimationConfig.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:IdleAnimation:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:IdleAnimation:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
             <X>0</X>
@@ -83,7 +83,7 @@
             </AnimationCharacterProperty>
             <Animation>
                 <MangledTargetNames>
-                    <string>_RL_Character_Idle_BasicAnimationConfig_hkt_:HavokTools.hkAnimation:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</string>
+                    <string>_RL_Character_Idle_hkt_:HavokTools.hkAnimation:RL_Character_Idle.hkt:IncomingRefs</string>
                 </MangledTargetNames>
             </Animation>
             <AnimationBundleName>Default_Bundle</AnimationBundleName>
@@ -146,17 +146,17 @@
             </ClipEvents>
         </hkClip>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkState" name="RL_Character_Idle_BasicAnimationConfig.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkState" name="IdleState" priority="50">
         <hkState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Idle_BasicAnimationConfig.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkState:IdleState:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkState:IdleState:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>108</X>
-            <Y>123</Y>
+            <X>173</X>
+            <Y>195</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Walking.hkt_to_RL_Character_Idle_BasicAnimationConfig.hkt:StateTo</string>
@@ -171,12 +171,12 @@
             </TransitionsOut>
             <ChildNode>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkClip:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:IdleAnimation:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNode>
             <StateID>1</StateID>
             <StateProbability>1</StateProbability>
-            <W>306.524963</W>
+            <W>100</W>
             <H>25</H>
             <NestedTransitionsIn>
                 <MangledTargetNames />
@@ -317,13 +317,13 @@
             <SyncPoint>false</SyncPoint>
         </hkEvent>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkClip" name="RL_Character_Walking.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkClip" name="WalkAnimation" priority="50">
         <hkClip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Walking.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:WalkAnimation:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Walking.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:WalkAnimation:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
             <X>0</X>
@@ -398,17 +398,17 @@
             </ClipEvents>
         </hkClip>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkState" name="RL_Character_Walking.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkState" name="WalkState" priority="50">
         <hkState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Walking.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkState:WalkState:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Walking.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkState:WalkState:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>282</X>
-            <Y>305</Y>
+            <X>277</X>
+            <Y>273</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Idle_BasicAnimationConfig.hkt_to_RL_Character_Walking.hkt:StateTo</string>
@@ -423,12 +423,12 @@
             </TransitionsOut>
             <ChildNode>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkClip:RL_Character_Walking.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:WalkAnimation:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNode>
             <StateID>2</StateID>
             <StateProbability>1</StateProbability>
-            <W>182.022629</W>
+            <W>100</W>
             <H>25</H>
             <NestedTransitionsIn>
                 <MangledTargetNames />
@@ -653,9 +653,9 @@
             <Y>0</Y>
             <States>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkState:RL_Character_Idle_BasicAnimationConfig.hkt:ParentNodes</string>
-                    <string>__local__:HavokTools.hkState:RL_Character_Walking.hkt:ParentNodes</string>
-                    <string>__local__:HavokTools.hkState:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkState:IdleState:ParentNodes</string>
+                    <string>__local__:HavokTools.hkState:WalkState:ParentNodes</string>
+                    <string>__local__:HavokTools.hkState:AttackState:ParentNodes</string>
                     <string>__local__:HavokTools.hkState:WalkingAttack:ParentNodes</string>
                 </MangledTargetNames>
             </States>
@@ -671,7 +671,7 @@
             </Transitions>
             <StartState>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkState:RL_Character_Idle_BasicAnimationConfig.hkt:IncomingRefs</string>
+                    <string>__local__:HavokTools.hkState:IdleState:IncomingRefs</string>
                 </MangledTargetNames>
             </StartState>
             <StartStateSelectorVariable>
@@ -940,13 +940,13 @@
             <SyncPoint>false</SyncPoint>
         </hkEvent>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkClip" name="RL_Character_Attack_Attack.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkClip" name="AttackAnimation" priority="50">
         <hkClip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:AttackAnimation:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:AttackAnimation:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
             <X>0</X>
@@ -956,7 +956,7 @@
             </AnimationCharacterProperty>
             <Animation>
                 <MangledTargetNames>
-                    <string>_RL_Character_Attack_Attack_hkt_:HavokTools.hkAnimation:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                    <string>_RL_Character_Attack_hkt_:HavokTools.hkAnimation:RL_Character_Attack.hkt:IncomingRefs</string>
                 </MangledTargetNames>
             </Animation>
             <AnimationBundleName>Default_Bundle</AnimationBundleName>
@@ -1019,17 +1019,17 @@
             </ClipEvents>
         </hkClip>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkState" name="RL_Character_Attack_Attack.hkt" priority="50">
+    <HBT_ITEM type="HavokTools.hkState" name="AttackState" priority="50">
         <hkState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Attack_Attack.hkt:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkState:AttackState:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkState:RL_Character_Attack_Attack.hkt:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkState:AttackState:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>-22</X>
-            <Y>303</Y>
+            <X>55</X>
+            <Y>278</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Idle_BasicAnimationConfig.hkt_to_RL_Character_Attack_Attack.hkt:StateTo</string>
@@ -1042,12 +1042,12 @@
             </TransitionsOut>
             <ChildNode>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:AttackAnimation:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNode>
             <StateID>3</StateID>
             <StateProbability>1</StateProbability>
-            <W>219.949188</W>
+            <W>100</W>
             <H>25</H>
             <NestedTransitionsIn>
                 <MangledTargetNames />
@@ -1368,13 +1368,13 @@
             <Global>false</Global>
         </hkFloatVariable>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkClip" name="RL_Character_Attack_Attack.hkt00" priority="50">
+    <HBT_ITEM type="HavokTools.hkClip" name="AttackBlendAnimation" priority="50">
         <hkClip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:AttackBlendAnimation:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkClip:AttackBlendAnimation:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
             <X>0</X>
@@ -1384,7 +1384,7 @@
             </AnimationCharacterProperty>
             <Animation>
                 <MangledTargetNames>
-                    <string>_RL_Character_Attack_Attack_hkt_:HavokTools.hkAnimation:RL_Character_Attack_Attack.hkt:ParentNodes</string>
+                    <string>_RL_Character_Attack_hkt_:HavokTools.hkAnimation:RL_Character_Attack.hkt:IncomingRefs</string>
                 </MangledTargetNames>
             </Animation>
             <AnimationBundleName>Default_Bundle</AnimationBundleName>
@@ -1448,13 +1448,13 @@
             </ClipEvents>
         </hkClip>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkBlend" name="Blend00" priority="50">
+    <HBT_ITEM type="HavokTools.hkBlend" name="WalkAttackBlend" priority="50">
         <hkBlend xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkBlend:Blend00:IncomingRefs</MangledName>
+                <MangledName>__local__:HavokTools.hkBlend:WalkAttackBlend:IncomingRefs</MangledName>
             </IncomingRefs>
             <ParentNodes>
-                <MangledName>__local__:HavokTools.hkBlend:Blend00:ParentNodes</MangledName>
+                <MangledName>__local__:HavokTools.hkBlend:WalkAttackBlend:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
             <X>0</X>
@@ -1472,8 +1472,8 @@
             </BlendParameterCharacterProperty>
             <ChildNodes>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkClip:RL_Character_Attack_Attack.hkt00:ParentNodes</string>
-                    <string>__local__:HavokTools.hkClip:RL_Character_Walking.hkt:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:AttackBlendAnimation:ParentNodes</string>
+                    <string>__local__:HavokTools.hkClip:WalkAnimation:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNodes>
             <WeightCharprops>
@@ -1592,8 +1592,8 @@
                 <MangledName>__local__:HavokTools.hkState:WalkingAttack:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>191</X>
-            <Y>470</Y>
+            <X>163</X>
+            <Y>365</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:RL_Character_Walking.hkt_to_RL_Character_Attack_Attack.hkt:StateTo</string>
@@ -1606,7 +1606,7 @@
             </TransitionsOut>
             <ChildNode>
                 <MangledTargetNames>
-                    <string>__local__:HavokTools.hkBlend:Blend00:ParentNodes</string>
+                    <string>__local__:HavokTools.hkBlend:WalkAttackBlend:ParentNodes</string>
                 </MangledTargetNames>
             </ChildNode>
             <StateID>4</StateID>
@@ -1665,7 +1665,7 @@
             <EventPayload>
                 <MangledTargetNames />
             </EventPayload>
-            <Time>0.233333334</Time>
+            <Time>0.2333333</Time>
             <UseRelativeToEnd>false</UseRelativeToEnd>
             <UseAcyclic>false</UseAcyclic>
         </hkEventTrigger>

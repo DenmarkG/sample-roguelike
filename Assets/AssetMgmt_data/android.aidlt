@@ -12,6 +12,8 @@ meshes/levelblocks/sm_room_type-03.vcolmesh	Meshes/LevelBlocks/SM_Room_Type-03.v
 meshes/levelblocks/sm_room_type-03.vmesh	Meshes/LevelBlocks/SM_Room_Type-03.vmesh	LODSwitchDistances=
 meshes/rl_fulllevel.vcolmesh	Meshes/RL_FullLevel.vcolmesh	
 meshes/rl_fulllevel.vmesh	Meshes/RL_FullLevel.vmesh	LODSwitchDistances=
+meshes/rl_pillar.vcolmesh	Meshes/RL_Pillar.vcolmesh	
+meshes/rl_pillar.vmesh	Meshes/RL_Pillar.vmesh	LODSwitchDistances=
 meshes/rl_simpleground_mesh.vcolmesh	Meshes/RL_SimpleGround_MESH.vcolmesh	
 meshes/rl_simpleground_mesh.vmesh	Meshes/RL_SimpleGround_MESH.vmesh	LODSwitchDistances=
 meshes/rl_walltest.vcolmesh	Meshes/RL_WallTest.vcolmesh	
@@ -37,8 +39,6 @@ models/props/rl_lootbag_mod.model	Models/Props/RL_Lootbag_MOD.model	LODSwitchDis
 models/props/rl_lootbag_mod.vcolmesh	Models/Props/RL_Lootbag_MOD.vcolmesh	
 models/props/rl_meleesword_mod.anim	Models/Props/RL_MeleeSword_MOD.anim	
 models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwitchDistances=
-models/props/rl_pillar.vcolmesh	Models/Props/RL_Pillar.vcolmesh	
-models/props/rl_pillar.vmesh	Models/Props/RL_Pillar.vmesh	LODSwitchDistances=
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
@@ -60,26 +60,26 @@ prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
 scenes/sample-level02_p01.dds#android-default	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.rgba	sRGB=false
 scenes/sample-level02_p01.dds#android-pvr	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.pvr	sRGB=false
-scenes/sample_p01.dds#android-default	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.rgba	sRGB=false
-scenes/sample_p01.dds#android-pvr	AssetMgmt_data/transformed/sample_p01fbvrw7sclgdtc.pvr	sRGB=false
-scenes/sample_p02.dds#android-default	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.rgba	sRGB=false
-scenes/sample_p02.dds#android-pvr	AssetMgmt_data/transformed/sample_p027tgffh4clgdtc.pvr	sRGB=false
-scenes/sample_p03.dds#android-default	AssetMgmt_data/transformed/sample_p03dfq50hnclgdtc.rgba	sRGB=false
-scenes/sample_p03.dds#android-pvr	AssetMgmt_data/transformed/sample_p03dfq50hnclgdtc.pvr	sRGB=false
-scenes/sample_p04.dds#android-default	AssetMgmt_data/transformed/sample_p04bgfm9g8clgdtc.rgba	sRGB=false
-scenes/sample_p04.dds#android-pvr	AssetMgmt_data/transformed/sample_p04bgfm9g8clgdtc.pvr	sRGB=false
-scenes/sample_p05.dds#android-default	AssetMgmt_data/transformed/sample_p052l3gc0dclgdtc.rgba	sRGB=false
-scenes/sample_p05.dds#android-pvr	AssetMgmt_data/transformed/sample_p052l3gc0dclgdtc.pvr	sRGB=false
-scenes/sample_p06.dds#android-default	AssetMgmt_data/transformed/sample_p069r#ph84clgdtc.rgba	sRGB=false
-scenes/sample_p06.dds#android-pvr	AssetMgmt_data/transformed/sample_p069r#ph84clgdtc.pvr	sRGB=false
-scenes/sample_p07.dds#android-default	AssetMgmt_data/transformed/sample_p07dsxy40sclgdtc.rgba	sRGB=false
-scenes/sample_p07.dds#android-pvr	AssetMgmt_data/transformed/sample_p07dsxy40sclgdtc.pvr	sRGB=false
-scenes/sample_p08.dds#android-default	AssetMgmt_data/transformed/sample_p08bnpggfnclgdtc.rgba	sRGB=false
-scenes/sample_p08.dds#android-pvr	AssetMgmt_data/transformed/sample_p08bnpggfnclgdtc.pvr	sRGB=false
-scenes/sample_p09.dds#android-default	AssetMgmt_data/transformed/sample_p090sjbq#jclgdtc.rgba	sRGB=false
-scenes/sample_p09.dds#android-pvr	AssetMgmt_data/transformed/sample_p090sjbq#jclgdtc.pvr	sRGB=false
-scenes/sample_p10.dds#android-default	AssetMgmt_data/transformed/sample_p1043kmphnclgdtc.rgba	sRGB=false
-scenes/sample_p10.dds#android-pvr	AssetMgmt_data/transformed/sample_p1043kmphnclgdtc.pvr	sRGB=false
+scenes/sample_p01.dds#android-default	AssetMgmt_data/transformed/sample_p01b007mnsclgdtc.rgba	sRGB=false
+scenes/sample_p01.dds#android-pvr	AssetMgmt_data/transformed/sample_p01b007mnsclgdtc.pvr	sRGB=false
+scenes/sample_p02.dds#android-default	AssetMgmt_data/transformed/sample_p0263lc30xclgdtc.rgba	sRGB=false
+scenes/sample_p02.dds#android-pvr	AssetMgmt_data/transformed/sample_p0263lc30xclgdtc.pvr	sRGB=false
+scenes/sample_p03.dds#android-default	AssetMgmt_data/transformed/sample_p03fzk4hxxclgdtc.rgba	sRGB=false
+scenes/sample_p03.dds#android-pvr	AssetMgmt_data/transformed/sample_p03fzk4hxxclgdtc.pvr	sRGB=false
+scenes/sample_p04.dds#android-default	AssetMgmt_data/transformed/sample_p04bgj3p54clgdtc.rgba	sRGB=false
+scenes/sample_p04.dds#android-pvr	AssetMgmt_data/transformed/sample_p04bgj3p54clgdtc.pvr	sRGB=false
+scenes/sample_p05.dds#android-default	AssetMgmt_data/transformed/sample_p059j8fw2jclgdtc.rgba	sRGB=false
+scenes/sample_p05.dds#android-pvr	AssetMgmt_data/transformed/sample_p059j8fw2jclgdtc.pvr	sRGB=false
+scenes/sample_p06.dds#android-default	AssetMgmt_data/transformed/sample_p068vz6b10clgdtc.rgba	sRGB=false
+scenes/sample_p06.dds#android-pvr	AssetMgmt_data/transformed/sample_p068vz6b10clgdtc.pvr	sRGB=false
+scenes/sample_p07.dds#android-default	AssetMgmt_data/transformed/sample_p0776ypgksclgdtc.rgba	sRGB=false
+scenes/sample_p07.dds#android-pvr	AssetMgmt_data/transformed/sample_p0776ypgksclgdtc.pvr	sRGB=false
+scenes/sample_p08.dds#android-default	AssetMgmt_data/transformed/sample_p08b245#r4clgdtc.rgba	sRGB=false
+scenes/sample_p08.dds#android-pvr	AssetMgmt_data/transformed/sample_p08b245#r4clgdtc.pvr	sRGB=false
+scenes/sample_p09.dds#android-default	AssetMgmt_data/transformed/sample_p090wj9#zjclgdtc.rgba	sRGB=false
+scenes/sample_p09.dds#android-pvr	AssetMgmt_data/transformed/sample_p090wj9#zjclgdtc.pvr	sRGB=false
+scenes/sample_p10.dds#android-default	AssetMgmt_data/transformed/sample_p106tvf7bjclgdtc.rgba	sRGB=false
+scenes/sample_p10.dds#android-pvr	AssetMgmt_data/transformed/sample_p106tvf7bjclgdtc.pvr	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga#android-default	AssetMgmt_data/transformed/rl_cursor_diffuse_greeg#4s344clgdtc.rgba	sRGB=false
 textures/cursor/rl_cursor_diffuse_green.tga#android-pvr	AssetMgmt_data/transformed/rl_cursor_diffuse_greeng#4s344clgdtc.pvr	sRGB=false
 textures/cursor/rl_cursor_diffuse_green_32.tga#android-default	AssetMgmt_data/transformed/rl_cursor_diffuse_gree4sj5dfxclgdtc.rgba	sRGB=false

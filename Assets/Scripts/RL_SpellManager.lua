@@ -6,6 +6,7 @@ This script handles:
 Should be attached to any character (player or enemy) that can perform spells
 ]]--
 
+--callback function that is called after the scene has been loaded but before the first Think Loop
 function OnAfterSceneLoaded(self)
 	--keeps track of all spells currently active in the scene
 	self.spellsInPlay = {}
@@ -24,9 +25,15 @@ function OnAfterSceneLoaded(self)
 	--save the particle path
 	self.fireballParticlePath = "Particles\\RL_Fireball.xml"
 	
+	--how high off the ground the fireball should spawn
+	self.fireBallSpawnHeight = 50
+	
+	--function that modifies the mana by the amount. Used for both using and recovering mana
 	self.ModifyMana = function (self, amount)
+		--add the amount parameter to the current mana amount
 		self.currentMana = self.currentMana + amount
 		
+		--clamp the mana value between the max and zero
 		if self.currentMana > self.maxMana then
 			self.currentMana = self.maxMana
 		elseif self.currentMana < 0 then
@@ -35,6 +42,7 @@ function OnAfterSceneLoaded(self)
 	end
 end
 
+--This function allows variables to be tuned in the components window
 function OnExpose(self)
 	--tuning variables
 	self.maxMana = 100
@@ -45,6 +53,7 @@ function OnExpose(self)
 	self.fireballManaCost = 15
 end
 
+--callback function called once per frame
 function OnThink(self)
 	local numSpellsInPlay = table.getn(self.spellsInPlay)
 	
@@ -53,6 +62,8 @@ function OnThink(self)
 		local currentSpell = self.spellsInPlay[i]
 		if currentSpell ~= nil then
 			local hitSomething = currentSpell:Update()
+			
+			--if something was hit, remove this current fireball from the scene
 			if hitSomething then
 				--if a fireball hit something, or it's life is up, remove it from the scene
 				currentSpell.particle:Remove()
@@ -63,6 +74,7 @@ function OnThink(self)
 	end
 end	
 
+--function to create a new fireball. Called by the player when casting a spell
 function CreateNewFireball(owner, direction)
 	--create the fireball (a table) and set it's values based on the exposed tuning variables
 	local newFireball = {}
@@ -74,17 +86,17 @@ function CreateNewFireball(owner, direction)
 	
 	--variables for updating the position
 	newFireball.pos = owner:GetPosition()
-	newFireball.pos.z = newFireball.pos.z + 50 --ensures it won't spawn on the ground
+	newFireball.pos.z = newFireball.pos.z + owner.fireBallSpawnHeight --ensures it won't spawn on the ground
 	newFireball.dir = direction
 	newFireball.distance = 0
 	
 	--Creation of the Particle
-	local spawnPoint = GetSpawnPoint(owner):GetPosition()
-	newFireball.particle = Game:CreateEffect(spawnPoint, owner.fireballParticlePath)
-	newFireball.particle:SetDirection(newFireball.dir)
-	newFireball.particle:SetKey("Particle")
+	local spawnPoint = GetSpawnPoint(owner):GetPosition()  --set the spawn position
+	newFireball.particle = Game:CreateEffect(spawnPoint, owner.fireballParticlePath)  --create the particle
+	newFireball.particle:SetDirection(newFireball.dir)  --set the direction
+	newFireball.particle:SetKey("Particle") --give it a key in case we need to find it later
 	
-	--play the sound
+	--play the launch sound if it is not nil
 	local launchSound = Fmod:CreateSound(spawnPoint, owner.spellLaunchSoundPath, false)
 	if launchSound ~= nil then
 		launchSound:Play()
@@ -98,7 +110,7 @@ function CreateNewFireball(owner, direction)
 			--deal damage to the entity
 			hitObj:ModifyHealth(fireball.damage)
 			
-			--play the hit sound
+			--play the hit sound if it is not nil
 			local hitSound = Fmod:CreateSound(result[ImpactPoint], owner.spellHitSoundPath, false)
 			if hitSound ~= nil then
 				hitSound:Play()
@@ -106,7 +118,7 @@ function CreateNewFireball(owner, direction)
 		end
 	end
 	
-	--how the fireball should be updated each tick
+	--how the fireball should be updated each frame tick
 	newFireball.Update = function(fireball)
 		--calculate the next position based on speed an direcion
 		local nextPos = (fireball.dir * fireball.speed) + fireball.pos
@@ -119,26 +131,33 @@ function CreateNewFireball(owner, direction)
 			local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 			local hit, result = Physics.PerformRaycast(rayStart, nextPos, iCollisionFilterInfo)
 			
+			--if fireball hits something, get the type of object 
 			if hit == true then
 				if result ~= nil then
 					if result["HitType"] == "Entity" then
+						--if the other object is an entity, invoke the fireball's Callback function (created above)
 						fireball:HitCallBack(result)
 					end
 				end
+				
+				--set hitObj to true, since something was hit
 				hitObject = true
 			else
 				--if the fireball hits nothing, move it to the next point
 				fireball.distance = fireball.distance + (nextPos - fireball.pos):getLength()
 				fireball.pos = nextPos
 				fireball.particle:SetPosition(nextPos)
+				
+				--if the fireball has exceeded its max distance, then it is the same as hitting an object and this should return true
 				hitObject = (fireball.distance > fireball.range)
 			end
 		end
 		
+		--return true if the fireball hit 
 		return hitObject
 	end
 	
-	--add the new fireball to the array
+	--add the new fireball to the collection of all fireballs in the scene
 	table.insert(owner.spellsInPlay, newFireball)
 end
 
@@ -146,6 +165,7 @@ end
 function GetSpawnPoint(self)
 	local numChildren = self:GetNumChildren()
 	
+	--find the spawn point by iterating through the children of this object and finding the Entity by Key
 	for i = 0, numChildren - 1, 1 do
 		local entity = self:GetChild(i)
 		

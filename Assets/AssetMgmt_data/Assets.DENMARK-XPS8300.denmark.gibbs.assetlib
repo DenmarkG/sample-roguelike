@@ -89,7 +89,7 @@
             "File": {
                 "Hash": 2650868520,
                 "TimeStamp": 1400025973112141200,
-                "LastEditTime": 1400026017225552100
+                "LastEditTime": 1402351054528611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -157,7 +157,7 @@
             "File": {
                 "Hash": 3383316928,
                 "TimeStamp": 1398893726462436400,
-                "LastEditTime": 1399317109648664600
+                "LastEditTime": 1402351054433611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -205,7 +205,7 @@
             "File": {
                 "Hash": 2642152255,
                 "TimeStamp": 1398893766615087300,
-                "LastEditTime": 1399317109695669300
+                "LastEditTime": 1402351054158611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -253,7 +253,7 @@
             "File": {
                 "Hash": 513105551,
                 "TimeStamp": 1398893741279087300,
-                "LastEditTime": 1399317109777677500
+                "LastEditTime": 1402351054277611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -301,7 +301,7 @@
             "File": {
                 "Hash": 155063129,
                 "TimeStamp": 1398893753395087300,
-                "LastEditTime": 1399317109735673300
+                "LastEditTime": 1402351054339611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -349,7 +349,55 @@
             "File": {
                 "Hash": 615973571,
                 "TimeStamp": 1401395959365961200,
-                "LastEditTime": 1401395971916216100
+                "LastEditTime": 1402351054229611200
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/RL_Pillar.vcolmesh": {
+            "AssetType": "CollisionMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 386805545,
+                "TimeStamp": 1402351053195611200,
+                "LastEditTime": 1402351120869611200
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Meshes/RL_Pillar.vmesh": {
+            "AssetType": "StaticMesh",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "../Textures/textureGrid_Blue.tga",
+                    "Meshes/RL_Pillar.vmesh_data/materials.xml",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1126345554,
+                "TimeStamp": 1402351053189611200,
+                "LastEditTime": 1402351121872611200
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -467,9 +515,9 @@
                 ]
             },
             "File": {
-                "Hash": 3604083807,
-                "TimeStamp": 1398213050558385900,
-                "LastEditTime": 1398213051558585900
+                "Hash": 333489649,
+                "TimeStamp": 1402345261648028700,
+                "LastEditTime": 1402347114365453600
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -555,8 +603,8 @@
             },
             "File": {
                 "Hash": 1914662524,
-                "TimeStamp": 1398709877104852500,
-                "LastEditTime": 1398713321836367900
+                "TimeStamp": 1402347898930973700,
+                "LastEditTime": 1402347901462226800
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -577,9 +625,9 @@
                 ]
             },
             "File": {
-                "Hash": 3874842568,
-                "TimeStamp": 1398709877099852000,
-                "LastEditTime": 1398713319634367900
+                "Hash": 1038834838,
+                "TimeStamp": 1402347898928973500,
+                "LastEditTime": 1402347901894270000
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -928,54 +976,6 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Props/RL_Pillar.vcolmesh": {
-            "AssetType": "CollisionMesh",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2471869866,
-                "TimeStamp": 1400529027134546300,
-                "LastEditTime": 1400529168039546300
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Props/RL_Pillar.vmesh": {
-            "AssetType": "StaticMesh",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Props/RL_Pillar.vmesh_data/materials.xml",
-                    "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib",
-                    "Textures/RL_Pillar_occlusion.tga"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 27328047,
-                "TimeStamp": 1400529027129546300,
-                "LastEditTime": 1400529837169984300
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
         "Models/Props/RL_Waypoint_MOD.anim": {
             "AssetType": "Animation",
             "Common": {
@@ -1314,9 +1314,9 @@
                 ]
             },
             "File": {
-                "Hash": 2926463007,
-                "TimeStamp": 1401396430277932700,
-                "LastEditTime": 1401396431285932700
+                "Hash": 2598420347,
+                "TimeStamp": 1402350628035072200,
+                "LastEditTime": 1402350629038172500
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1361,14 +1361,14 @@
                 ]
             },
             "File": {
-                "Hash": 3580558142,
-                "TimeStamp": 1401396039199943800,
-                "LastEditTime": 1401396043474371200
+                "Hash": 2684416934,
+                "TimeStamp": 1402351355277611200,
+                "LastEditTime": 1402351370558611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1388,14 +1388,14 @@
                 ]
             },
             "File": {
-                "Hash": 2092543353,
-                "TimeStamp": 1401396039546978500,
-                "LastEditTime": 1401396045737597500
+                "Hash": 1640588039,
+                "TimeStamp": 1402351356620611200,
+                "LastEditTime": 1402351373206611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1415,14 +1415,14 @@
                 ]
             },
             "File": {
-                "Hash": 3336085629,
-                "TimeStamp": 1401396039883012100,
-                "LastEditTime": 1401396045878611600
+                "Hash": 3745812455,
+                "TimeStamp": 1402351357959611200,
+                "LastEditTime": 1402351373903611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1442,14 +1442,14 @@
                 ]
             },
             "File": {
-                "Hash": 2805361010,
-                "TimeStamp": 1401396040493073100,
-                "LastEditTime": 1401396046145638300
+                "Hash": 2806019369,
+                "TimeStamp": 1402351359308611200,
+                "LastEditTime": 1402351374393611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1469,14 +1469,14 @@
                 ]
             },
             "File": {
-                "Hash": 688769795,
-                "TimeStamp": 1401396040828106600,
-                "LastEditTime": 1401396046461669900
+                "Hash": 2552347412,
+                "TimeStamp": 1402351360680611200,
+                "LastEditTime": 1402351374886611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1496,14 +1496,14 @@
                 ]
             },
             "File": {
-                "Hash": 2617159489,
-                "TimeStamp": 1401396041510174800,
-                "LastEditTime": 1401396046594683200
+                "Hash": 2373503496,
+                "TimeStamp": 1402351362069611200,
+                "LastEditTime": 1402351375380611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1523,14 +1523,14 @@
                 ]
             },
             "File": {
-                "Hash": 3430130694,
-                "TimeStamp": 1401396041844208200,
-                "LastEditTime": 1401396046729696700
+                "Hash": 1937157774,
+                "TimeStamp": 1402351363418611200,
+                "LastEditTime": 1402351376001611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1550,14 +1550,14 @@
                 ]
             },
             "File": {
-                "Hash": 2857750125,
-                "TimeStamp": 1401396042523276100,
-                "LastEditTime": 1401396046863710100
+                "Hash": 2702229433,
+                "TimeStamp": 1402351364767611200,
+                "LastEditTime": 1402351378214611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1577,14 +1577,14 @@
                 ]
             },
             "File": {
-                "Hash": 205608700,
-                "TimeStamp": 1401396042859309700,
-                "LastEditTime": 1401396046996723400
+                "Hash": 230768628,
+                "TimeStamp": 1402351366124611200,
+                "LastEditTime": 1402351378981611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 1024,
+                "Width": 2048,
+                "Height": 2048,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -1604,14 +1604,14 @@
                 ]
             },
             "File": {
-                "Hash": 1103525245,
-                "TimeStamp": 1401396043032327000,
-                "LastEditTime": 1401396047077731500
+                "Hash": 1827252052,
+                "TimeStamp": 1402351366810611200,
+                "LastEditTime": 1402351381064611200
             },
             "Texture": {
                 "FileFormat": "DDS",
-                "Width": 1024,
-                "Height": 512,
+                "Width": 2048,
+                "Height": 1024,
                 "HasAlpha": true,
                 "sRGB": false
             },
@@ -2497,7 +2497,7 @@
             "File": {
                 "Hash": 179675895,
                 "TimeStamp": 1397514789247562100,
-                "LastEditTime": 1398213051645603300
+                "LastEditTime": 1402347901556236200
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2524,7 +2524,7 @@
             "File": {
                 "Hash": 3032011084,
                 "TimeStamp": 1397603584264887700,
-                "LastEditTime": 1398213051689612100
+                "LastEditTime": 1402347901573237900
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2659,7 +2659,7 @@
             "File": {
                 "Hash": 1888533058,
                 "TimeStamp": 1391550537909489900,
-                "LastEditTime": 1399317109636663400
+                "LastEditTime": 1402351054100611200
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2698,9 +2698,32 @@
             "Transformations": {
                 "TemplateName": "Default"
             }
+        },
+        "Models/Props/RL_Pillar.vcolmesh": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1402351119865611200
+            },
+            "File": {
+                "LastEditTime": 1402351119865611200
+            }
+        },
+        "Models/Props/RL_Pillar.vmesh": {
+            "AssetType": "__deleted__",
+            "Common": {
+                "DeleteTime": 1402351120868611200
+            },
+            "File": {
+                "LastEditTime": 1402351120868611200
+            }
         }
     },
     "TrackedFiles": {
+        "../Textures/textureGrid_Blue.tga": {
+            "Hash": 0,
+            "TimeStamp": 0,
+            "LastEditTime": 1402351120969611200
+        },
         "Meshes/LevelBlocks/Level_02.vmesh_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1400025973114141400,
@@ -2730,6 +2753,11 @@
             "Hash": 0,
             "TimeStamp": 1399317109332633000,
             "LastEditTime": 1399315240859790300
+        },
+        "Meshes/RL_Pillar.vmesh_data/materials.xml": {
+            "Hash": 0,
+            "TimeStamp": 1402351053192611200,
+            "LastEditTime": 1402351120969611200
         },
         "Meshes/RL_SimpleGround_MESH.vmesh_data/materials.xml": {
             "Hash": 0,
@@ -2761,11 +2789,6 @@
             "TimeStamp": 1399333223565168700,
             "LastEditTime": 1399332890240168700
         },
-        "Models/Props/RL_Pillar.vmesh_data/materials.xml": {
-            "Hash": 0,
-            "TimeStamp": 1400529027131546300,
-            "LastEditTime": 1400529165729546300
-        },
         "Models/Props/RL_Waypoint_MOD.model_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1399414993208581200,
@@ -2785,11 +2808,6 @@
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1396304969489450000
-        },
-        "Textures/RL_Pillar_occlusion.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1400529837201990700
         }
     }
 }

@@ -7,6 +7,7 @@ This should be attached to the trigger of a collectible. The model file associat
 should be a child of the trigger this is attached to
 --]]
 
+--callback function that is called after the scene has been loaded but before the first Think Loop
 function OnAfterSceneLoaded(self)
 	--the representation of the item itself is a table
 	self.item = {}
@@ -23,11 +24,13 @@ function OnAfterSceneLoaded(self)
 	GeneratePickupProperties(self)
 end
 
+--This function allows variables to be tuned in the components window
 function OnExpose(self)
 	self.type = "Health or Power or Mana"
 	self.itemValue = 25
 end
 
+--This callback function is called whenever an object (otherObj) enters the trigger that this script is attached to.
 function OnObjectEnter(self, otherObj)
 	--if hte object that enters the trigger is the player, add this item to the player's inventory
 	if otherObj:GetKey() == "Player" then
@@ -40,16 +43,18 @@ function OnObjectEnter(self, otherObj)
 	end
 end
 
+--this callback is called automatically before the scene is unloaded
 function OnBeforeSceneUnloaded(self)
 	--delete the screen masks
 	Game:DeleteAllUnrefScreenMasks()
 end
 
+--function to be called when the trigger has been hit by the player, to prevent re-use
 function Deactivate(self)
 	--deactivate the trigger
 	self:SetEnabled(false)
 
-	--hide the item
+	--hide the item and its children
 	for i = 0, self:GetNumChildren(), 1 do
 		local entity = self:GetChild(i)
 		if entity ~= nil then
@@ -58,6 +63,10 @@ function Deactivate(self)
 	end
 end
 
+--[[
+this function is called when the scene starts, and sets up the appropriate variables and functions
+for the pickup item. this is done so that the item type can be changed in the OnExpose function easily
+--]]
 function GeneratePickupProperties(self)
 	self.item.value = self.itemValue
 	local imagePath = ""
@@ -81,8 +90,15 @@ function GeneratePickupProperties(self)
 	self.item.itemImage:SetZVal(0)
 end
 
+--[[
+The following functions are all to be used to modify the player in some way when the player uses an
+item from the inventory.
+--]]
 function AddHealth(self, character)
+	--add Health to the player
 	character:ModifyHealth(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()
@@ -90,7 +106,10 @@ function AddHealth(self, character)
 end
 
 function AddMana(self, character)
+	--add Mana to the player
 	character:ModifyMana(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()
@@ -98,7 +117,10 @@ function AddMana(self, character)
 end
 
 function AddPower(self, character)
+	--add Attack power to the player
 	character:ModifyPower(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()

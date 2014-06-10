@@ -9,6 +9,8 @@ This script handles:
 This should be attached to the player
 --]]
 
+
+--this callback function is invoked automatically once the scene has been loaded
 function OnAfterSceneLoaded(self)
 	--loads items if the level is greater than 1
 	if G.currentLevel > 1 then
@@ -29,7 +31,7 @@ function OnAfterSceneLoaded(self)
 	self.inventoryIsVisible = false
 	
 	--positioning varibles for display
-	self.xSize = G.w / self.maxItems
+	self.xSize = G.w / self.maxItems --textures will be square, so the xSize will act as both vertical and horizontal size
 	self.vertStartPos = G.h * 3 / 4
 	
 	--functios to be used by other scripts
@@ -42,81 +44,118 @@ function OnAfterSceneLoaded(self)
 	self.Clear = ClearInventory
 end
 
+--this function is called when the player presses the button to toggle the inventory on or off
 function InventoryToggled(self)
+	--if the inventory is not visible show it
 	if not self.inventoryIsVisible then
-		-- Debug:PrintLine(""..table.getn(self.inventory) )
+		--if the inventory has items in it, show screen masks associated with them
 		if self.itemCount > 0 then
+			--iterate through each item in the inventory
 			for i = 1, table.getn(self.inventory), 1 do
+				--cache the currently selected item
 				local currentItem = self.inventory[i]
-				-- Debug:PrintAt(10, G.fontSize * i, ""..currentItem.name, Vision.V_RGBA_GREEN, G.fontPath)
+				--get the item image, and set its visibility, blending, size, and position on screen
 				currentItem.itemImage:SetVisible(true)
 				currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
-				currentItem.itemImage:SetTargetSize(self.xSize, self.xSize)
-				currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos)
+				currentItem.itemImage:SetTargetSize(self.xSize, self.xSize) --set the size of the item based on a pre-calculated value
+				currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos) --set the position based on the size
 			end
 			
+			--tell the game the inventory is now visible
 			self.inventoryIsVisible = true
 		end
+	--if the inventory is on screen, hide it
 	else
+		--iterate through each item in the inventory and hide it
 		if self.itemCount > 0 then
 			for i = 1, table.getn(self.inventory), 1 do
+				--cache the current item
 				local currentItem = self.inventory[i]
+				
+				--hide the screen mask of the item
 				currentItem.itemImage:SetVisible(false)
-				-- currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 			end
 			
+			--tell the game the inventory is no longer visible
 			self.inventoryIsVisible = false
 		end
 	end
 end
 
+--[[
+This function is called when the inventory is visbile and the player clicks a location.
+The function then determines if the player clicked on an item and uses that item
+*note: Y values start and zero on the top and increase going down the screen space
+--]]
 function ItemClicked(self, xPos, yPos)
-		if self.inventoryIsVisible then
-			local yUpperBound = self.vertStartPos + self.xSize
-			local ylowerBound = self.vertStartPos 
-			
-			if yPos < yUpperBound and yPos > ylowerBound then
-				local numElements = self.itemCount
-				local xUpperBound = self.xSize * numElements
-				if xPos < xUpperBound then
+	--this should only be used if the inventory is visible
+	if self.inventoryIsVisible then
+		--cache the upper and lower bounds of the inventory items on screen
+		local yUpperBound = self.vertStartPos + self.xSize
+		local ylowerBound = self.vertStartPos 
+		
+		--only continue if the click location is between the upper and lower bounds of the 
+		if yPos < yUpperBound and yPos > ylowerBound then
+			--get the right boundary of the inventory images
+			local xUpperBound = self.xSize * self.itemCount
+			--only continue if the click location is left of the right boundary
+			if xPos < xUpperBound then
+				--set the lower bound to 0
+				local xLowerBound = 0
+				
+				--search through the images to find the index of the item based on the click location
+				while xLowerBound <= xUpperBound do
+					--divide the space between the upper and lower bounds in half
+					local middle = math.floor( (xUpperBound + xLowerBound) / 2)
 					
-					local xLowerBound = 0
-					while xLowerBound <= xUpperBound do
-					
-						local middle = math.floor( (xUpperBound + xLowerBound) / 2)
-						
-						if xPos >= middle and xPos < middle + self.xSize then
-							local index = math.floor(xPos / self.xSize)
-							local item = self.inventory[index + 1]
-							item:UseCallback(self)
-							item.itemImage:SetVisible(false)
-							if self.itemCount == 1 then
-								self.inventory = {}
-								self.itemCount = 0
-							else
-								table.remove(self.inventory, index + 1)
-								self.ToggleInventory(self)
-								self.itemCount = self.itemCount - 1
-							end
-							
-							return true
-						elseif xPos < middle then
-							xUpperBound = middle
-						elseif xPos >= middle then
-							xLowerBound = middle
+					--if the mouse position lies on the image in the 'middle'...
+					if xPos >= middle and xPos < middle + self.xSize then
+						--calculate the index of the item that was clicked
+						local index = math.floor(xPos / self.xSize)
+						--use that index to get the item from the inventory
+						local item = self.inventory[index + 1]
+						--use the callback function on that item
+						item:UseCallback(self)
+						--hide the item
+						item.itemImage:SetVisible(false)
+						--if that was the last item, set the inventory to empty
+						if self.itemCount == 1 then
+							self.inventory = {}
+							--update the item count
+							self.itemCount = 0
+						--if that was not the last item, simply remove the item
+						else
+							table.remove(self.inventory, index + 1)
+							--hide the rest of the inventory
+							self.ToggleInventory(self)
+							--update the item count
+							self.itemCount = self.itemCount - 1
 						end
+						
+						--return that the item was selected successfully
+						return true
+					--if the click was left of the middle then search again with the middle as the upper bound
+					elseif xPos < middle then
+						xUpperBound = middle
+					--if the click was right of the middle then search again with the middle as the lower bound
+					elseif xPos >= middle then
+						xLowerBound = middle
 					end
 				end
 			end
-			
-			return false
 		end
+		
+		--if this point is reached, the item was not selected successfully
+		return false
 	end
+end
 
+--function that updates the number of gems the player has collected
 function AddNewGem(self)
 	self.gemsCollected = self.gemsCollected + 1
 end
 
+-------------------------------------------------------------------------------------------
 function AddNewItem(self, newItem)
 	-- Debug:PrintLine("Add Item called")
 	-- Debug:PrintLine(""..self.maxItems)
@@ -223,6 +262,10 @@ function ReloadExistingItem(self, item)
 	AddNewItem(self, item)
 end
 
+--[[
+The following functions are all to be used to modify the player in some way when the player uses an
+item from the inventory.
+--]]
 function AddHealth(self, character)
 	character:ModifyHealth(self.value)
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
