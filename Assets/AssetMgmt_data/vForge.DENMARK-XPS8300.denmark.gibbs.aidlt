@@ -90,6 +90,7 @@ textures/mobilehud/fps_button_yellow.tga	Textures/MobileHud/FPS_Button_Yellow.tg
 textures/mobilehud/fps_button_yellow_64.tga	Textures/MobileHud/FPS_Button_Yellow_64.tga	sRGB=false
 textures/mobilehud/fps_dpad_128.tga	Textures/MobileHud/FPS_Dpad_128.tga	sRGB=false
 textures/mobilehud/fps_dpad_64.tga	Textures/MobileHud/FPS_Dpad_64.tga	sRGB=false
+textures/potions/rl_emptypotion_diffuse.tga	Textures/Potions/RL_EmptyPotion_DIFFUSE.tga	sRGB=false
 textures/potions/rl_healthpotion_diffuse.tga	Textures/Potions/RL_HealthPotion_DIFFUSE.tga	sRGB=false
 textures/potions/rl_manapotion_diffuse.tga	Textures/Potions/RL_ManaPotion_DIFFUSE.tga	sRGB=false
 textures/potions/rl_powerpotion_diffuse.tga	Textures/Potions/RL_PowerPotion_DIFFUSE.tga	sRGB=false
@@ -105,4 +106,3 @@ textures/sky/skybox_basic_sides.tga	Textures/Sky/SkyBox_Basic_Sides.tga	sRGB=fal
 textures/sky/skybox_basic_top.tga	Textures/Sky/SkyBox_Basic_Top.tga	sRGB=false
 textures/texturegrid_blue.tga	Textures/textureGrid_Blue.tga	sRGB=false
 textures/yellow_128.tga	Textures/Yellow_128.tga	sRGB=false
-textures/potions/rl_emptypotion_diffuse.tga	Textures/Potions/RL_EmptyPotion_DIFFUSE.tga	sRGB=false

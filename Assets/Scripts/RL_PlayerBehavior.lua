@@ -100,6 +100,11 @@ function OnAfterSceneLoaded(self)
 	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
+	
+	self.isAiDebugInfoOn = true
+	if self.isAiDebugInfoOn then
+		--supposed to draw character controller radius but.... wont work in 2014.0.5
+	end
 end
 
 --the OnExpose function allows variables to be changed in the component panel
@@ -257,6 +262,8 @@ function OnThink(self)
 		if help then
 			ShowControls(self)
 		end
+		
+		ShowAIDebugInfo(self)
 	else
 		--when the game is over, or the player's health reaches zero, stop movment, and clear the AI Path
 		
@@ -305,6 +312,8 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 		
 		--if a path was found, get and store information about the path
 		if path ~= nil then
+			self.numPoints = table.getn(path)
+			self.endPoint = path[numPoints]
 			--store the path
 			self.path = path
 			--this variable will store how far along the path this character has traveled
@@ -661,6 +670,10 @@ This function is used for resetting the player's AI path.
 It is called when the player should stop following the current path
 --]]
 function ClearPath(self)
+	--set the number of points back to 0
+	self.numPoints = 0
+	--set the end point back to nil
+	self.endPoint = nil
 	--set the previous point to nil
 	self.lastPoint = nil
 	--set the next point to nil
@@ -694,4 +707,24 @@ function RotateXY(x, y, z, angle)
 	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
 	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )
 	return Vision.hkvVec3(_x, _y, z)
+end
+
+--[[
+This function will show the Ai information for the current player including:
+-the path
+-the 
+-
+--]]
+function ShowAIDebugInfo(self)
+	if self.isAiDebugInfoOn then
+		--we'll add height buffer to all of the debug drawing so that they won't z fight with the ground
+		local heightOffset = Vision.hkvVec3(0,0,15)
+		if self.path ~= nil then
+			for i = 1, self.numPoints - 1, 1 do
+				local currentPoint = self.path[i]
+				local nextPoint = self.path[i+1]
+				Debug.Draw:Line(currentPoint + heightOffset, nextPoint + heightOffset, Vision.V_RGBA_RED)
+			end
+		end
+	end
 end
