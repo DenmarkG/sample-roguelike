@@ -206,7 +206,7 @@
                     <anyType xsi:type="xsd:string">Viewport.UpAxis</anyType>
                 </Keys>
                 <Values>
-                    <anyType xsi:type="xsd:string">11111111110101101100011</anyType>
+                    <anyType xsi:type="xsd:string">1111111111010111100011</anyType>
                     <anyType xsi:type="xsd:string">1101001</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="ArrayOfString" />
@@ -261,7 +261,7 @@
                     <anyType xsi:type="xsd:float">21</anyType>
                     <anyType xsi:type="xsd:string">Loop</anyType>
                     <anyType xsi:type="xsd:int">30</anyType>
-                    <anyType xsi:type="xsd:string">Frames</anyType>
+                    <anyType xsi:type="xsd:string">Seconds</anyType>
                     <anyType xsi:type="xsd:float">1</anyType>
                     <anyType xsi:type="xsd:boolean">true</anyType>
                     <anyType xsi:type="xsd:string">AccumulateMotionOn</anyType>

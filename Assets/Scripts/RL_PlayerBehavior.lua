@@ -10,8 +10,10 @@ This script handles:
 This should be attached to the player.
 The player must also have a behavior component attached
 ]]--
+
+--callback function that is called after the scene has been loaded but before the first Think Loop
 function OnAfterSceneLoaded(self)	
-	--grab the behavior component
+	--grab the behavior component or create one if it is nil
 	self.behaviorComponent = self:GetComponentOfType("vHavokBehaviorComponent")
 	if self.behaviorComponent == nil then
 		self.behaviorComponent = self:AddComponentOfType("vHavokBehaviorComponent")
@@ -20,7 +22,7 @@ function OnAfterSceneLoaded(self)
 	--create the input map
 	self.map = Input:CreateMap("PlayerInputMap")
 	
-	--set the controls for the input map
+	--set the controls for the input map and assign controls for both Windows and Touch Devices
 	if G.isWindows then		
 		--mouse movement controls:
 		self.map:MapTrigger("CLICK", "MOUSE", "CT_MOUSE_LEFT_BUTTON")
@@ -54,6 +56,8 @@ function OnAfterSceneLoaded(self)
 	--establish a zero Vector
 	self.zeroVector = Vision.hkvVec3(0,0,0)
 	
+	self.moveSpeed = 0  --variable that will tell the walk animation how fast to play
+	
 	--variable to be used for attack cool downs
 	self.timeToNextAttack = 0 
 	
@@ -61,18 +65,24 @@ function OnAfterSceneLoaded(self)
 	self.deathSoundPath = "Sounds/RL_CharacterDeath.wav"
 	self.swordHitSoundPath = "Sounds/RL_SwordHitSound.wav"
 	
-	--variables for the mouse cursor
-	self.mouseCursor = Game:CreateTexture("Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	--create the screen mask to show the mouse cursor
 	self.mouseCursor = Game:CreateScreenMask(G.w / 2.0, G.h / 2.0, "Textures/Cursor/RL_Cursor_Diffuse_Green_32.tga")
+	--set the blending of the cursor to alpha (the visibility of the cursor will be based on the alpha channel of the texutre)
 	self.mouseCursor:SetBlending(Vision.BLEND_ALPHA)
+	--store the vertical and horizontal size of the texture
 	self.cursorSizeX, self.cursorSizeY  = self.mouseCursor:GetTextureSize()
+	--set the z value of the cursor so it draws on top of all other elements on scren
 	self.mouseCursor:SetZVal(5)
 	
-	--variables for keeping track of click location and times for particle
+	--store the location of the click particle
 	self.clickParticlePath = "Particles\\RL_ClickParticle.xml"
+	
+	--the next few variables will be used to keep track of mouse clicks, and allow for a brief cooldown time between clicks
 	self.lastClickTime = 0
 	self.clickCoolDown = .25
-	self.goalRadius = 75 --how far the character should stop from a goal point
+	
+	--store how far the character should stop from a goal point
+	self.goalRadius = 75 
 	
 	--the player states, for switching between animations/actions
 	self.states = {}
@@ -85,99 +95,123 @@ function OnAfterSceneLoaded(self)
 	--bool to tell the game if the player is still alive
 	self.isAlive = true
 	
-	self.aimedAtTarget = true
+	self.aimedAtTarget = true --tells if the player is properly aimed at the next/target position
 	
 	--public functions to modify the attack power, and die
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
-	
-	self.count = 0
 end
 
+--the OnExpose function allows variables to be changed in the component panel
 function OnExpose(self)
 	--setting up the tuning values:
 	--Melee attack tunining
-	self.meleeDamage = 10
-	self.attackAngle = 60
-	self.attackRange = 70
+	self.meleeDamage = 25 -- how much damage the player does when an attack lands
+	self.attackAngle = 60 -- the angle in which to check for an attack
+	self.attackRange = 70 -- how far from the player a melee attack can land
 
 	--Magic attack tuning
-	self.fireballDamage = 25
-	self.maxSpellCount = 3
-	self.spellCoolDown = .75 --how long the player must wait before doing another attack after a spell
-	self.meleeCoolDown = .5 --how long the player must wait before doing another attack after a melee
+	self.fireballDamage = 25 --how much damage a fireball will do when it lands
+	self.maxSpellCount = 3 --how many fireballs can be in play at one time
+	self.spellCoolDown = 1 --how long the player must wait before doing another attack after a spell
+	self.meleeCoolDown = 1 --how long the player must wait before doing another attack after a melee
 	
 	--locomotion values
-	self.moveSpeed = 0
-	self.walkSpeed = 2.5
-	self.runSpeed = 5
+	self.walkSpeed = 2.5 --how fast the walk animation should play when walking
+	self.runSpeed = 5 --how fast the walk animation should play when running
 end
 
+--this callback is called automatically before the scene is unloaded
 function OnBeforeSceneUnloaded(self)
 	--delete the controller map
 	Input:DestroyMap(self.map)
+	--set the controller map to nil
 	self.map = nil
 end
 
+--callback function called automatically once per frame
 function OnThink(self)
 	--this should only run if the level/game is not over, and the player is still alive
 	if not G.gameOver  and self.isAlive then
 		
-		--cool down any active timers
+		--first, cool down any active timers
+		--cool down the attack timer
 		if self.timeToNextAttack > 0 then
 			self.timeToNextAttack = self.timeToNextAttack - Timer:GetTimeDiff()
 		end
 		
+		--cool down the click timer
 		if self.lastClickTime > 0 then
 			self.lastClickTime = self.lastClickTime - Timer:GetTimeDiff()
 		end
 		
-		--cash the non-combat input controls
+		--cache the non-combat input
 		local x = self.map:GetTrigger("X")
 		local y = self.map:GetTrigger("Y")
 		local run = self.map:GetTrigger("RUN") > 0
 		local showInventory = self.map:GetTrigger("INVENTORY") > 0
 		local help = self.map:GetTrigger("HELP") > 0
 		
+		--set the move speed based on if the player is running or not
+		if run then
+			--if running, the moveSpeed should be the runSpeed
+			self.moveSpeed = self.runSpeed
+		else
+			--if not running, the moveSpeed should be the walkSpeed
+			self.moveSpeed = self.walkSpeed
+		end
+		
+		--check to see if the player is attacking
 		if self.currentState ~= self.states.attacking then
 			--if the player is not currently attacking:
-			--cache the combat controls
+			--cache the combat input
 			local magic = self.map:GetTrigger("MAGIC") > 0
 			local melee = self.map:GetTrigger("MELEE") > 0
-			
-			--set the move speed
-			if run then
-				self.moveSpeed = self.runSpeed
-			else
-				self.moveSpeed = self.walkSpeed
-			end
 			
 			--the current attck cool down
 			if self.timeToNextAttack <= 0 then
 				self.timeToNextAttack = 0
 				
 				--if the timer is ready, and an attack trigger has been called, perform an attack
+				--only one can be done at a time, and the spell takes precedence
 				if magic then
+					--if magic button was pressed, call the function to cast a spell
 					CastSpell(self)
 				elseif melee then
+					--if the melee button was pressed then call the function to perform a melee attack
 					PerformMelee(self)
 				end
 			end		
 		else
 			--if the player is attacking:
-			--local attackStopped = self.behaviorComponent:WasEventTriggered("AttackStop") -->behavior bug; fixed in 2014.1.0
+			--check to see if the attack has stopped
 			local attackStopped = not (self.timeToNextAttack > 0)
+			
 			
 			--if the timer is less than or equal to 0, stop the attack
 			if attackStopped then
-				self.currentState = self.prevState
+				--set the player's current state based on whether the path is nil or not.
+				if self.path == nil then
+					--if the path is nil, return to the idle state and stop walking
+					self.currentState = self.states.idle
+					self.behaviorComponent:TriggerEvent("MoveStop")
+				else
+					--if the path is not nil, set the current state to walking and begin walking
+					self.currentState = self.states.walking
+					self.behaviorComponent:TriggerEvent("MoveStart")
+				end
+				
+				--set the attack as the previous state
+				self.prevState = self.states.attacking
 			end
 		end
 		
 		--check to see if the player clicked the mouse
 		if self.map:GetTrigger("CLICK") > 0 then
 			--if the mouse was clicked, and the inventory is visble, check for an item selection
+			--assume an item has not been used
 			local itemUsed = false
+			--if the inventory is visible, then check to see if an item was clicked
 			if self.inventoryIsVisible then
 				itemUsed = self.InventoryItemClicked(self, x, y)
 			end
@@ -187,7 +221,7 @@ function OnThink(self)
 				UpdateTargetPosition(self, x, y)
 			end
 		end
-		
+------------------------------------------------------------------------------		
 		--follow the path if one exists
 		if self.path ~= nil then
 			NavigatePath(self)
@@ -212,8 +246,6 @@ function OnThink(self)
 		if help then
 			ShowControls(self)
 		end
-		
-		-- Debug:PrintLine(""..self.currentState) 
 	else
 		--when the game is over, or the player's health reaches zero, stop movment, and clear the AI Path
 		self.mouseCursor:SetVisible(false)
@@ -228,10 +260,7 @@ function OnThink(self)
 		end
 	end
 	
-	--INSIDER ONLY, REMOVE BEFORE FINAL RELEASE
-	--showing the difference between vectors and their representations
-	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir_Right() * 50), Vision.V_RGBA_GREEN)
-	--Debug.Draw:Line(self:GetPosition(), self:GetPosition() + (self:GetObjDir() * 50), Vision.V_RGBA_RED)
+	Debug:PrintLine(""..self.currentState)
 end
 
 
@@ -301,8 +330,13 @@ function NavigatePath(self)
 	if self.pathProgress >= self.pathLength then
 		self.behaviorComponent:TriggerEvent("MoveStop")
 		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
-		self.prevState = self.currentState
-		self.currentState = self.states.idle
+		
+		if self.currentState == self.states.walking then
+			self.prevState = self.currentState
+			self.currentState = self.states.idle
+		elseif self.currentState == "attacking" then
+			self.prevState = self.states.idle
+		end
 		
 		--if the player reaches the end, but is not aimed properly, keep rotating
 		if self.aimedAtTarget == false then
@@ -406,8 +440,8 @@ end
 --actions that are performed each time a melee attack is executed
 function PerformMelee(self)
 	--clear the path, stop movement and rotation
-	ClearPath(self)
-	StopRotation(self)
+	--ClearPath(self)
+	--StopRotation(self)
 	
 	--set the previous state to the current state
 	self.prevState = self.currentState

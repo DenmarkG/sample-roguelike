@@ -967,7 +967,7 @@
             <SyncHalfCycleInPingPong>false</SyncHalfCycleInPingPong>
             <FlagMirror>false</FlagMirror>
             <ForceDensePose>false</ForceDensePose>
-            <PlaybackSpeedMultiplier>1.5</PlaybackSpeedMultiplier>
+            <PlaybackSpeedMultiplier>2</PlaybackSpeedMultiplier>
             <CropStart>0</CropStart>
             <CropEnd>0</CropEnd>
             <StartTime>0</StartTime>
@@ -992,9 +992,7 @@
                 <MangledTargetNames />
             </ClipDurationVariable>
             <ClipEventTriggers>
-                <MangledTargetNames>
-                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger01:ParentNodes</string>
-                </MangledTargetNames>
+                <MangledTargetNames />
             </ClipEventTriggers>
             <PlaybackSpeedMultiplierCharprop>
                 <MangledTargetNames />
@@ -1329,28 +1327,6 @@
                 <MangledTargetNames />
             </Condition>
         </hkTransition>
-    </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger01" priority="50">
-        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger01:IncomingRefs</MangledName>
-            </IncomingRefs>
-            <ParentNodes>
-                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger01:ParentNodes</MangledName>
-            </ParentNodes>
-            <Notes />
-            <Event>
-                <MangledTargetNames>
-                    <string>__local__:HavokTools.hkEvent:AttackStop:ParentNodes</string>
-                </MangledTargetNames>
-            </Event>
-            <EventPayload>
-                <MangledTargetNames />
-            </EventPayload>
-            <Time>1</Time>
-            <UseRelativeToEnd>false</UseRelativeToEnd>
-            <UseAcyclic>false</UseAcyclic>
-        </hkEventTrigger>
     </HBT_ITEM>
     <HBT_ITEM type="HavokTools.hkFloatVariable" name="AnimMoveSpeed" priority="1">
         <hkFloatVariable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">

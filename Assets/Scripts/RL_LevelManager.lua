@@ -21,6 +21,10 @@ function OnAfterSceneLoaded(self)
 	self.waitTime = 5 --time to wait before allowing the load of the next scene
 	self.timeBeforeReload = 0
 	
+	--these functions are called by other scripts
+	G.Lose = LoseLevel
+	G.Win = WinLevel
+	
 	--Load player data if not the first level (permadeath)
 	if (G.currentLevel > 1) then
 		LoadData(G.player)

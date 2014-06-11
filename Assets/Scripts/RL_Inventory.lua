@@ -17,10 +17,14 @@ function OnAfterSceneLoaded(self)
 		LoadItems(self)
 	end
 	
-	--set up the inventory if it has not be created already
+	--first we make sure that the inventory exists,
+	--if it doesn't create it and set it to the default values
 	if self.inventory == nil then
+		--create the table that will store the items in the inventory
 		self.inventory = {}
-		self.maxItems = 8
+		--set the number of maximum items to the value created in the OnExpose function
+		self.maxItems = self.maxInventoryItems
+		--set the initial item count to zero
 		self.itemCount = 0
 	end	
 	
@@ -34,7 +38,7 @@ function OnAfterSceneLoaded(self)
 	self.xSize = G.w / self.maxItems --textures will be square, so the xSize will act as both vertical and horizontal size
 	self.vertStartPos = G.h * 3 / 4
 	
-	--functios to be used by other scripts
+	--the following are functios in this script, assigned to variables so they can be used by other scripts at runtime
 	self.AddItem = AddNewItem
 	self.AddGem = AddNewGem
 	self.ToggleInventory = InventoryToggled
@@ -42,6 +46,11 @@ function OnAfterSceneLoaded(self)
 	self.SaveInventory = SaveItems
 	self.LoadInventory = LoadItems
 	self.Clear = ClearInventory
+end
+
+--the OnExpose function allows variables to be changed in the component panel
+function OnExpose(self)
+	self.maxInventoryItems = 8
 end
 
 --this function is called when the player presses the button to toggle the inventory on or off
@@ -155,56 +164,89 @@ function AddNewGem(self)
 	self.gemsCollected = self.gemsCollected + 1
 end
 
--------------------------------------------------------------------------------------------
+--[[
+This function is called whenever the player picks up an item.
+If the item is not already in the inventory, and the inventory is not full,
+then the item is added to the inventory
+--]]
 function AddNewItem(self, newItem)
-	-- Debug:PrintLine("Add Item called")
-	-- Debug:PrintLine(""..self.maxItems)
-	
+	--first we make sure that the inventory exists,
+	--if it doesn't create it and set it to the default values
 	if self.inventory == nil then
-		-- Debug:PrintLine("self.inventory == nil")
+		--create the table that will store the items in the inventory
 		self.inventory = {}
-		self.maxItems = 8
+		--set the number of maximum items to the value created in the OnExpose function
+		self.maxItems = self.maxInventoryItems
+		--set the initial item count to zero
 		self.itemCount = 0
 	end
 	
+	--assume that the item is not in the inventory...
 	local notInInventory = true
+	
+	--then check all the items in the inventory
 	if self.itemCount > 0 then
-		-- Debug:PrintLine("self.itemCount > 0")
 		for i = 0, table.getn(self.inventory), 1 do
+			--cache the currently selected item in the inventory to compare with the new item
 			local item = self.inventory[i]
+			
+			--if the items are the same, then the new item is already in the inventory
 			if newItem == item then
 				notInInventory = false
 			end
 		end
 	end
-
+	
+	--if the item is not in the inventory, and the inventory is not full then add the new item
 	if notInInventory and not (self.itemCount >= self.maxItems) then
-		-- Debug:PrintLine("notInInventory and not (self.itemCount >= self.maxItems)")
-		-- Debug:PrintLine("inside!")
-		
-		if self.itemCount > 0 then
-			self.inventory[self.itemCount + 1] = newItem
-			--Debug:PrintLine(""..newItem.name.." "..newItem.value)
-		else
-			self.inventory[1] = newItem
-			--Debug:PrintLine(""..newItem.name.." "..newItem.value)
-		end
-		
+		--add the new item to the first available slot in the table
+		self.inventory[self.itemCount + 1] = newItem
+		--increase the item count by one
 		self.itemCount = self.itemCount + 1
 	end
-	
-	-- Debug:PrintLine(""..self.itemCount)
 end
 
+--[[
+This function empties the inventory of all items, and sets the count back to zero.
+It is called when the player dies
+--]]
+function ClearInventory(self)
+	--loop through each item in the player's inventory
+	if player.itemCount ~= nil and player.itemCount ~= 0 then
+		for i = 1, player.itemCount, 1 do 
+			--remove each item
+			table.remove(self.inventory, i)
+		end
+		
+		--reset the inventory table
+		player.inventory = {}
+		--set the item count back to zero
+		player.itemCount = 0
+	end
+end
+
+--[[
+This function is used to save all the items in the inventory once a level has been successfully completed.
+It is called by the level manager before the next scene is loaded
+--]]
 function SaveItems(self)
-	--player inventory
 	if player.itemCount == nil or player.itemCount == 0 then
+		--if the inventory is empty, the save no items, only a count of zero.
+		--this count will be used to determine the number of items to load.
 		PersistentData:SetNumber("PlayerStats", "itemCount", 0)
 	else
+		--if the inventory is not empty...
+		
+		--first save the number of items; This count will be used to determine the number of items to load.
 		PersistentData:SetNumber("PlayerStats", "itemCount", player.itemCount)
-		for i = 1, player.itemCount, 1 do 
+		--then loop through each item
+		for i = 1, player.itemCount, 1 do
+			--save a name for each item based on the number of items looped through
+			--this will prevent saving exact duplicates, and make loading easier
 			local localName = "item"..i
+			--cache the currently selected item
 			local item = player.inventory[i]
+			--save the name, image path, and value for the currently selected item
 			PersistentData:SetString("Items", localName..".name", item.name)
 			PersistentData:SetString("Items", localName..".imagePath", item.imagePath)
 			PersistentData:SetString("Items", localName..".value", item.value)
@@ -212,42 +254,50 @@ function SaveItems(self)
 	end
 end
 
+--[[
+This function is used to Load previously saved inventory data.  
+It is called by the level manager at the beginning of any level after the first level.
+--]]
 function LoadItems(self)
-	-- player inventory
+	--first load the number of items that was previously saved.
 	local itemCount = PersistentData:GetNumber("PlayerStats", "itemCount", 0)
+	--if the number of items saved was greater than zero, then load the items that were saved
 	if itemCount ~= 0 then
-		-- Debug:PrintLine("itemCount = "..itemCount)
+		--loop through each item, up to the number of items saved
 		for i = 1, itemCount, 1 do 
+			--since we saved each item with a unique name, we must load each the same way
 			local localName = "item"..i
+			--the item's data representation of the item is a table, so create that now.
 			local item = {}
+			--load the name, image path, and value that was previously saved.
 			item.name = PersistentData:GetString("Items", localName..".name", "HealthPotion")
 			item.imagePath = PersistentData:GetString("Items", localName..".imagePath", "Textures/Potions/RL_HealthPotion_DIFFUSE.tga")
 			item.value = PersistentData:GetString("Items", localName..".value", 7)
-			-- Debug:PrintLine("Reload func is not nil")
+			--pass the item to the reload item function to create the rest of the information based on the data that was loaded.
+			--this function will then add the item to the inventory
 			ReloadExistingItem(self, item)
 		end
 	end
 end
 
-function ClearInventory(self)
-	if player.itemCount ~= nil and player.itemCount ~= 0 then
-		for i = 1, player.itemCount, 1 do 
-			table.remove(self.inventory, i)
-		end
-		
-		self.inventory = {}
-		self.itemCount = 0
-	end
-end
-
+--[[
+This function is called whenever a previously saved item is loaded. 
+It works similarly to the way that the GeneratePickupProperties function works on the Collectible script.
+This function then adds the item to the inventory once the properties have been generated.
+--]]
 function ReloadExistingItem(self, item)
+	--because the order of Callback functions cannot be guaranteed, it is possible the inventory hasn't be created yet when this funciton is called.
+	--if that is the case, we need to create the inventory and set it to the default values. 
 	if self.inventory == nil then
-		Debug:PrintLine("Inventory not nil anymore")
+		--create the table that will store the items in the inventory
 		self.inventory = {}
-		self.maxItems = 8
+		--set the number of maximum items to the value created in the OnExpose function
+		self.maxItems = self.maxInventoryItems
+		--set the initial item count to zero
 		self.itemCount = 0
 	end	
 	
+	--assign the proper callback function based on the item name. 
 	if item.name == "HealthPotion" then
 		item.UseCallback = AddHealth
 	elseif item.name == "ManaPotion" then
@@ -256,18 +306,25 @@ function ReloadExistingItem(self, item)
 		item.UseCallback = AddPower
 	end
 	
+	--create the ScreenMask that will represent the item when the inventory is displayed
 	item.itemImage = Game:CreateScreenMask(0, 0, "".. item.imagePath)
+	--hide the new ScreenMask
 	item.itemImage:SetVisible(false)
+	--set the depth of the ScreenMask so it will draw over the rest of the scene
 	item.itemImage:SetZVal(0)
+	--add the item to the inventory
 	AddNewItem(self, item)
 end
 
 --[[
-The following functions are all to be used to modify the player in some way when the player uses an
+The following functions are all used to modify the player in some way when the player uses an
 item from the inventory.
 --]]
 function AddHealth(self, character)
+	--add Health to the player
 	character:ModifyHealth(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()
@@ -275,7 +332,10 @@ function AddHealth(self, character)
 end
 
 function AddMana(self, character)
+	--add Mana to the player
 	character:ModifyMana(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()
@@ -283,7 +343,10 @@ function AddMana(self, character)
 end
 
 function AddPower(self, character)
+	--add Attack power to the player
 	character:ModifyPower(self.value)
+	
+	--set up and play the sound if it is not nil
 	local useSound = Fmod:CreateSound(character:GetPosition(), "Sounds/RL_PotionSound.wav", false)
 	if useSound ~= nil then
 		useSound:Play()

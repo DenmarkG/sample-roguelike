@@ -85,13 +85,16 @@ function GeneratePickupProperties(self)
 	
 	--set the variables for drawing the inventory item on screen
 	self.item.imagePath = imagePath
+	--create the ScreenMask that will represent the item when the inventory is displayed
 	self.item.itemImage = Game:CreateScreenMask(0, 0, "".. imagePath)
+	--hide the new ScreenMask
 	self.item.itemImage:SetVisible(false)
+	--set the depth of the ScreenMask so it will draw over the rest of the scene
 	self.item.itemImage:SetZVal(0)
 end
 
 --[[
-The following functions are all to be used to modify the player in some way when the player uses an
+The following functions are all used to modify the player in some way when the player uses an
 item from the inventory.
 --]]
 function AddHealth(self, character)
