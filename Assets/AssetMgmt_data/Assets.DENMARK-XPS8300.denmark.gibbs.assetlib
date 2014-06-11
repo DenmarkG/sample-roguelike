@@ -2294,6 +2294,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Textures/Potions/RL_EmptyPotion_DIFFUSE.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 4095835189,
+                "TimeStamp": 1402518368145466700,
+                "LastEditTime": 1402518901752514700
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 128,
+                "Height": 128,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Textures/Potions/RL_HealthPotion_DIFFUSE.tga": {
             "AssetType": "Texture",
             "Common": {

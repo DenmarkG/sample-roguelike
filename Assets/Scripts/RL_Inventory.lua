@@ -46,6 +46,11 @@ function OnAfterSceneLoaded(self)
 	self.SaveInventory = SaveItems
 	self.LoadInventory = LoadItems
 	self.Clear = ClearInventory
+	
+	--create a ScreenMask to represent an empty item slot when the inventory is empty
+	self.placeHolderTextures = {}
+	self.placeHolderTexturePath = "Textures/Potions/RL_EmptyPotion_DIFFUSE.tga"
+	CreatePlaceHolderTextures(self)
 end
 
 --the OnExpose function allows variables to be changed in the component panel
@@ -53,41 +58,64 @@ function OnExpose(self)
 	self.maxInventoryItems = 8
 end
 
+--[[
+This function creates place holder screen masks that will represent empty spaces in the player inventory.
+We do this so that there is still something that shows up on screen when the player toggles the inventory, 
+even if the inventory is empty.
+--]]
+function CreatePlaceHolderTextures(self)
+	for i = 1, self.maxInventoryItems, 1 do
+		--store the mask in a local variable
+		local emtpyMask = Game:CreateScreenMask(G.w / 2, G.h / 2 , "".. self.placeHolderTexturePath)
+		--set the mask's visibility, blending, size, and position on screen
+		emtpyMask:SetBlending(Vision.BLEND_ALPHA)
+		emtpyMask:SetVisible(false)
+		emtpyMask:SetTargetSize(self.xSize, self.xSize) --set the size of the item based on a pre-calculated value
+		emtpyMask:SetPos( (i-1) * self.xSize, self.vertStartPos) --set the position based on the size
+		self.placeHolderTextures[i] = emtpyMask
+	end
+end
+
 --this function is called when the player presses the button to toggle the inventory on or off
 function InventoryToggled(self)
-	--if the inventory is not visible show it
-	if not self.inventoryIsVisible then
-		--if the inventory has items in it, show screen masks associated with them
-		if self.itemCount > 0 then
-			--iterate through each item in the inventory
-			for i = 1, table.getn(self.inventory), 1 do
-				--cache the currently selected item
-				local currentItem = self.inventory[i]
+	if not self.inventoryIsVisible then --if the inventory is not visible show it
+		--iterate through each item in the inventory
+		for i = 1, self.maxInventoryItems, 1 do
+			--cache the currently selected item
+			local currentItem = self.inventory[i]
+			--check to see if the item is nil
+			if currentItem ~= nil then
 				--get the item image, and set its visibility, blending, size, and position on screen
 				currentItem.itemImage:SetVisible(true)
 				currentItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
 				currentItem.itemImage:SetTargetSize(self.xSize, self.xSize) --set the size of the item based on a pre-calculated value
 				currentItem.itemImage:SetPos( (i-1) * self.xSize, self.vertStartPos) --set the position based on the size
+			else
+				local emptyMask = self.placeHolderTextures[i]
+				emptyMask:SetVisible(true)
 			end
-			
-			--tell the game the inventory is now visible
-			self.inventoryIsVisible = true
 		end
-	--if the inventory is on screen, hide it
-	else
+		
+		--tell the game the inventory is now visible
+		self.inventoryIsVisible = true
+	else --if the inventory is on screen, hide it
+		
 		--iterate through each item in the inventory and hide it
-		if self.itemCount > 0 then
-			for i = 1, table.getn(self.inventory), 1 do
-				--cache the current item
-				local currentItem = self.inventory[i]
-				
+		for i = 1, self.maxInventoryItems, 1 do
+			--cache the current item
+			local currentItem = self.inventory[i]
+			if currentItem ~= nil then
 				--hide the screen mask of the item
 				currentItem.itemImage:SetVisible(false)
+			else
+				--if there is no item in the current slot, hide the placeholder mask
+				local emptyMask = self.placeHolderTextures[i]
+				emptyMask:SetVisible(false)
 			end
-			
-			--tell the game the inventory is no longer visible
-			self.inventoryIsVisible = false
 		end
+		
+		--tell the game the inventory is no longer visible
+		self.inventoryIsVisible = false
 	end
 end
 
@@ -132,6 +160,8 @@ function ItemClicked(self, xPos, yPos)
 							self.inventory = {}
 							--update the item count
 							self.itemCount = 0
+							--hide the inventory
+							self.ToggleInventory(self)
 						--if that was not the last item, simply remove the item
 						else
 							table.remove(self.inventory, index + 1)
@@ -203,6 +233,22 @@ function AddNewItem(self, newItem)
 		self.inventory[self.itemCount + 1] = newItem
 		--increase the item count by one
 		self.itemCount = self.itemCount + 1
+	end
+	
+	--Since the inventory has changed, we want to draw the new texture if the inventory is visible
+	if self.inventoryIsVisible then
+		--get the current placeholder mask located in the position we want to draw the new item
+		local emptyMask = self.placeHolderTextures[self.itemCount]
+		--set that placeholder to invisible
+		emptyMask:SetVisible(false)
+		--set the new item to visible
+		newItem.itemImage:SetVisible(true)
+		--set the blending on the new item's mask
+		newItem.itemImage:SetBlending(Vision.BLEND_ALPHA)
+		--set the size of the new screen mask
+		newItem.itemImage:SetTargetSize(self.xSize, self.xSize) --set the size of the item based on a pre-calculated value
+		--set the position of the new screen mask
+		newItem.itemImage:SetPos( (self.itemCount-1) * self.xSize, self.vertStartPos) --set the position based on the size
 	end
 end
 
