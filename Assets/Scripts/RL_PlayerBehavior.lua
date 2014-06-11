@@ -119,6 +119,15 @@ function OnExpose(self)
 	--locomotion values
 	self.walkSpeed = 2.5 --how fast the walk animation should play when walking
 	self.runSpeed = 5 --how fast the walk animation should play when running
+	
+	--the radius Havok AI should search for available points 
+	self.aiSearchRadius = 20
+	
+	--the number of rays to cast when checking for an attack hit
+	self.numRays = 5
+	
+	--the height at which we'll check for an attck hit
+	self.attackHeight = 25
 end
 
 --this callback is called automatically before the scene is unloaded
@@ -213,6 +222,7 @@ function OnThink(self)
 			local itemUsed = false
 			--if the inventory is visible, then check to see if an item was clicked
 			if self.inventoryIsVisible then
+				--if an item was clicked then this will evaluate to true
 				itemUsed = self.InventoryItemClicked(self, x, y)
 			end
 			
@@ -221,12 +231,13 @@ function OnThink(self)
 				UpdateTargetPosition(self, x, y)
 			end
 		end
-------------------------------------------------------------------------------		
-		--follow the path if one exists
+		
+		--call the function to follow the path if one exists
 		if self.path ~= nil then
 			NavigatePath(self)
 		end
 		
+		--if the player has a rotation target, then it should rotate in that direction.  
 		if self.rotationTarget ~= nil then
 			RotateToTarget(self, self.rotationTarget)
 		end
@@ -234,62 +245,75 @@ function OnThink(self)
 		--update the mouse position on screen
 		UpdateMouse(self, x, y)
 		
-		--show the player's stats
+		--show the player's health, mana, and gems collected
 		ShowPlayerStats(self)
 		
-		--toggle the inventory
+		--toggle the inventory if the inventory button was pressed
 		if showInventory then
 			self:ToggleInventory()
 		end
 		
-		-- show 'Help'
+		-- show 'Help' if the help button was pressed
 		if help then
 			ShowControls(self)
 		end
 	else
 		--when the game is over, or the player's health reaches zero, stop movment, and clear the AI Path
+		
+		--hide the cursor
 		self.mouseCursor:SetVisible(false)
+		--clear the player's path so that it stops moving
 		ClearPath(self)
+		--stop any of the player's rotation
 		StopRotation(self)
 		
+		--make sure the player goes into the idle state
 		if self.currentState ~= self.states.idle then
+			--stop the walk animation
 			self.behaviorComponent:TriggerEvent("MoveStop")
 			
+			--save the current state as the previous state
 			self.prevState = self.currentState
+			--set the current state to idle
 			self.currentState = self.states.idle
 		end
 	end
-	
-	Debug:PrintLine(""..self.currentState)
 end
 
-
+--[[
+This function takes the mouse's current position, and uses it to find a path for the player.  
+It is called when the mouse is clicked, but only if an inventory item was not selected.
+--]]
 function UpdateTargetPosition(self, mouseX, mouseY)
 	--get a point on the navmesh based on the mouse position
 	local goal = AI:PickPoint(mouseX, mouseY)
 	
+	--if a valid goal point was found, then we should find a path to the player
 	if goal ~= nil then
-		--spawn the particle if that point is not nil
+		--spawn the particle at the clicked location
 		local particlePos =  Vision.hkvVec3(goal.x, goal.y, goal.z + .1)
+		--
 		if self.lastClickTime <= 0 then
 			Game:CreateEffect(particlePos, self.clickParticlePath)
 			self.lastClickTime = self.clickCoolDown
 		end
 		
-		--set the start point for the path
+		--set the start point for the path as the player's current position
 		local start = self:GetPosition()
 		--create the path based ont the start and goal points
-		local path = AI:FindPath(start, goal, 20.0, -1)
+		local path = AI:FindPath(start, goal, self.aiSearchRadius)
 		
+		--if a path was found, get and store information about the path
 		if path ~= nil then
-			--if a path exists:
-			local numPoints = table.getn(path)
-			local endPoint = path[numPoints]
+			--store the path
 			self.path = path
+			--this variable will store how far along the path this character has traveled
 			self.pathProgress = 0
+			--store the total length of the path
 			self.pathLength = AI:GetPathLength(path)
-			-- Debug:PrintLine("length: "..self.pathLength)
+			--store the goal point of the path
 			self.goalPoint = goal
+			--store the start point of the path
 			self.lastPoint = start
 			
 			--[[
@@ -302,13 +326,20 @@ function UpdateTargetPosition(self, mouseX, mouseY)
 	end
 end
 
+--[[
+This function moves the character along the path that was found, and stops the player when the end of the path is reached.
+This also assigns a rotation target for the player to turn toward while walking.
+--]]
 function NavigatePath(self)
-	-- --if the character is not currently moving, he should start now
-	if self.currentState == self.states.idle then		
+	--if the character is not currently in a moving state, it should start now
+	--note that if the character is currently attacking, it will start walking AFTER the attack has finished
+	if self.currentState == self.states.idle then	
+		--start the walk animation
 		self.behaviorComponent:TriggerEvent("MoveStart")
 		
-		--update the previous state
+		--update the previous state to be the current state
 		self.prevState = self.currentState
+		--set the current state to the walking state.
 		self.currentState = self.states.walking
 	end
 	
@@ -318,32 +349,44 @@ function NavigatePath(self)
 	--check the distance to the next point
 	local distanceToNext = self:GetPosition():getDistanceTo(self.nextPoint)
 	
-	--if the player is in range, recaculate the next point, and update the progress
+	--if the next point is within the goal radius, find the next point, and update the path progress
 	if distanceToNext <= self.goalRadius then
+		--add the distance traveled since the last point to the overall distance traveled
 		self.pathProgress = self.pathProgress + (self.lastPoint:getDistanceTo(self.nextPoint) )
+		--set the current point as the previous point
 		self.lastPoint = self.nextPoint
+		--find the new point to travel to 
 		self.nextPoint = AI:GetPointOnPath(self.path, self.pathProgress)
+		--set the rotation target as the next point on the path so the player can rotate toward it
 		self.rotationTarget = self.nextPoint
 	end
 	
-	--if the end of the path has been reached, reset the variables
+	--if the end of the path has been reached, stop movement and set state to idle
 	if self.pathProgress >= self.pathLength then
+		--stop the walk animation
 		self.behaviorComponent:TriggerEvent("MoveStop")
+		--reset the rotation speed to zero
 		self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
 		
-		if self.currentState == self.states.walking then
+		--set the current and previous states
+		if self.currentState ~= self.states.attacking then
+			--if th player is not attacking, set the previous state to the current state
 			self.prevState = self.currentState
+			--then set the current state to idle
 			self.currentState = self.states.idle
-		elseif self.currentState == "attacking" then
+		else
+			--if the player is attacking, set the previous state to idle.
+			--we do this so the player stops moving after the attack
 			self.prevState = self.states.idle
 		end
 		
 		--if the player reaches the end, but is not aimed properly, keep rotating
+		--this way, the player can still rotate fully when the path's end is close to the start
 		if self.aimedAtTarget == false then
 			self.rotationTarget = self.goalPoint
 		end
 		
-		--remove the references to the path
+		--call the function to reset the path
 		ClearPath(self)
 	end
 end
@@ -386,6 +429,7 @@ function RotateToTarget(self, target)
 		self.aimedAtTarget = false
 		
 		--the speed of roation is based on the angle; greater angle, greater speed
+		--NOTE: the value is very high here so that the player turns smoothly and quickly. 
 		if myDir:dot(targetDir) > 0 then
 			if absAngle < 45 then
 				self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 180 )
@@ -398,30 +442,44 @@ function RotateToTarget(self, target)
 			self.behaviorComponent:SetFloatVar("RotationSpeed", sign * 720)
 		end
 	else
+		--if the angle is less than the deadzone, then we can stop the rotation
 		self.aimedAtTarget = true
 		StopRotation(self)
 	end
 end
 
---stops the rotation of the player
+--[[
+This function is used to stop the rotation of the player
+--]]
 function StopRotation(self)
+	--remove any rotation delta on the character controller
 	self:ResetRotationDelta()
+	--set the variable that controls rotation back to zero
 	self.behaviorComponent:SetFloatVar("RotationSpeed", 0)
+	--clear the rotation target
 	self.rotationTarget = nil
 end
 
+--[[
+This funcion is used to set the mouse cursor's position on screen.
+It also keeps the mouse from being drawn offscreen by clamping the x and y position values
+--]]
 function UpdateMouse(self, xPos, yPos)
-	--clamp the mouse x position to the screen space
+	--clamp the mouse x position to the screen space in relation to the cursor's size
 	if xPos > G.w - self.cursorSizeX then
 		xPos = G.w - self.cursorSizeX
 	end
 	
-	--clamp the mouse y position to the screen space
+	--clamp the mouse y position to the screen space in relation to the cursor's size
 	if yPos > G.h - self.cursorSizeY then
 		yPos = G.h - self.cursorSizeY 
 	end
 	
-	--set the last x position
+	--[[
+	Here we store the last x and y position's since the player may not always be touching the
+	screen on a device, but we still want to draw the cursor's last location.
+	--]]
+	--store the last x position
 	if xPos ~= 0 then
 		self.lastX = xPos
 	end
@@ -437,12 +495,10 @@ function UpdateMouse(self, xPos, yPos)
 	end
 end
 
---actions that are performed each time a melee attack is executed
+--[[
+This function performs actions that are performed each time a melee attack is executed
+--]]
 function PerformMelee(self)
-	--clear the path, stop movement and rotation
-	--ClearPath(self)
-	--StopRotation(self)
-	
 	--set the previous state to the current state
 	self.prevState = self.currentState
 	
@@ -464,40 +520,53 @@ This function checks for an attack hit by casting a series of rays within a spec
 If any one of those rays hit an enemy, the loop is broken and damage is done to the enemy
 --]]
 function CheckForAttackHit(self)
-	self.numRays = 5
+	--get this character's current direction and position
 	local myDir = -self:GetObjDir_Right() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
-	myPos.z = myPos.z + 25
+	--adjust the position so that the ray is not on the ground
+	myPos.z = myPos.z + self.attackHeight
 	
+	--[[
+	In order to check for an attack, we will cast rays equal to the specified number (self.numRays) 
+	within the specified angle (self.attackAngle).
+	This loop will calculate the direction in which each ray should be cast, and checks for a hit.
+	If the ray hits nothing, the loop will continue until all rays have been cast. 
+	--]]
 	for i = -math.floor(self.numRays / 2), math.floor(self.numRays / 2), 1 do
 		--calculate the angle to cast a ray in relation to the current direction
 		local currentAngle = ( (self.attackAngle / (self.numRays - 1) ) * i) 
 		--convert the current angle to raidans
 		currentAngle = currentAngle * (math.pi / 180)
 		
-		--rotate the forward direction based on the angle just calculated
+		--get the direction to cast a ray based on the angle we just calculated
 		local newDir = RotateXY(myDir.x, myDir.y, myDir.z, currentAngle)
 		
-		--establish the starting point for the ray
+		--the ray should start at this character's current position
 		local rayStart = myPos
+		--the ray should end at a point that is equal to the attack range in distance away, 
+		--and in the direction that we just calculated
 		local rayEnd = myPos + (newDir * self.attackRange)
 		
 		--get the collision info
 		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
+		--perform the raycast
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
 		
+		--check to see if the ray hit
 		if hit == true then
-			--check to see if a target was hit
+			--check to see if the object hiw was an entity
 			if result ~= nil and result["HitType"] == "Entity" then
+				--get the information about the HitObject
 				local hitObj = result["HitObject"]
+				--Check that the Key of the hit object was "Enemy"
 				if hitObj:GetKey() == "Enemy" then
-					--play the hit sound
+					--get and play the hit sound if it is not nil
 					local hitSound = Fmod:CreateSound(result[ImpactPoint], self.swordHitSoundPath, false)
 					if hitSound ~= nil then
 						hitSound:Play()
 					end
 					
-					--damage the enmy
+					--call the funtion to deal damage to the enmy
 					hitObj.ModifyHealth(hitObj, -self.meleeDamage)
 					
 					--break this loop to avoid hitting the same enemy twice
@@ -508,19 +577,22 @@ function CheckForAttackHit(self)
 	end
 end
 
+--[[
+This function simply checks to see if a a spell can be cast, and, if so, calls the appropriate function
+from the SpellManager script to create and update the spell (in this case they are all fireballs)
+--]]
 function CastSpell(self)
-	--stop any current player rotation
-	StopRotation(self)
-	
+	--only cast a new spell if the max number of spells in play has not been reached
 	if self.numSpellsInPlay < self.maxSpellCount then
+		--check to see if the player has enough mana available to cast a new spell
 		if self.currentMana - self.fireballManaCost >= 0 then
-			--set the direction to cast the spell
+			--set the direction to cast the spell; in this case, the player's forward direction
 			local myDir = self:GetObjDir()
 			
-			--create the fireball spell
+			--call the function to create the fireball spell
 			self.CreateFireball(self, myDir)
 			
-			--update the current mana
+			--call the function to update the current mana
 			self:ModifyMana(-self.fireballManaCost)
 			
 			--start the cool down timer
@@ -529,9 +601,12 @@ function CastSpell(self)
 	end
 end
 
---actions to complete when the player's health reaches zero
+--[[
+This function is to be called when the player's health reaches zero.
+It hides the character, plays a sound, and changes the appropriate booleans to end the game
+--]]
 function PlayerDeath(self)
-	--play the death sound
+	--find and play the death sound if it exists
 	local deathSound = Fmod:CreateSound(self:GetPosition(), self.deathSoundPath, false)
 	if deathSound ~= nil then
 		deathSound:Play()
@@ -542,25 +617,37 @@ function PlayerDeath(self)
 	
 	--end the game when the player dies
 	G.gameOver = true
+	--call the function to lose the level
 	local manager = Game:GetEntity("LevelManager")
 	G.Lose(manager)
 end
 
---HUD for the player's health, mana, and gem count
+--[[
+This funciton creates the HUD for the player's health, mana, and gem count using Debug:PrintAt
+--]]
 function ShowPlayerStats(self)
+	--the line for player health
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
+	--the line for player mana
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
+	--the line for player gem count
 	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
 end
 
+--[[
+This function is called whenever the help button is pressed.  It shows the controls for the game using Debug:PrintAt.
+Since the controls vary by platform, this does a check to determine which set of controls to display.  
+--]]
 function ShowControls(self)
 	if G.isWindows then
+		--Show the Windows controls
 		Debug:PrintAt(10, 64, "Move: LEFT CLICK", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 96, "Run: LEFT SHIFT", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 128, "Melee: SPACEBAR", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 160, "Magic: F", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 182, "Inventory: 1", Vision.V_RGBA_WHITE, G.fontPath)
 	else
+		--Show the Touch controls
 		Debug:PrintAt(10, 64, "Move: TAP", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 96, "Run: YELLOW", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 128, "Melee: Red", Vision.V_RGBA_WHITE, G.fontPath)
@@ -569,25 +656,40 @@ function ShowControls(self)
 	end
 end
 
---function for resetting the player's AI path
+--[[
+This function is used for resetting the player's AI path. 
+It is called when the player should stop following the current path
+--]]
 function ClearPath(self)
+	--set the previous point to nil
 	self.lastPoint = nil
+	--set the next point to nil
 	self.nextPoint = nil
+	--set the path to nil
 	self.path = nil
 end
 
---Begins the attack cool down after a spell or melee
+--[[
+This function begins the attack cool down by setting the timeToNextAttack to the cool down time.
+Since it is not zero, timeToNextAttack will decrement in the OnThink callback.
+--]]
 function StartCoolDown(self, coolDownTime)
 	self.timeToNextAttack = coolDownTime
 end
 
---function for increasing/decreasing the player's attack power
+--[[
+This function is used for increasing/decreasing the player's attack power.
+Currently it is only used by the Power Potion to increase the attack power. 
+--]]
 function ModifyAttackPower(self, amount)
 	self.meleeDamage = self.meleeDamage + amount
 	self.fireballDamage =  self.fireballDamage + amount
 end
 
---function to be used by the attack, rotates a vector about the z axis
+--[[
+This is a utilty function to be used by the ShowViewAngle and CheckForAttackHit functions. 
+It rotates a vector about the z axis and returns the the rotated vector. 
+--]]
 function RotateXY(x, y, z, angle)
 	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
 	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )

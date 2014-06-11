@@ -508,7 +508,7 @@ end
 
 --[[
 This function begins the attack cool down by setting the timeToNextAttack to the cool down time.
-Since it is not zero, timeToNextAttack will decrement in the OnThink callback
+Since it is not zero, timeToNextAttack will decrement in the OnThink callback.
 --]]
 function StartCoolDown(self, coolDownTime)
 	self.timeToNextAttack = coolDownTime
