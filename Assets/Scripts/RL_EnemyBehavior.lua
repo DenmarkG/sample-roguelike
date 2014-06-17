@@ -99,8 +99,14 @@ function OnThink(self)
 			end
 		end
 		
-		--Show the enemy's FOV using debug lines
-		ShowViewAngle(self)
+		--if the debugging mode is enabled, Draw the debug info
+		if G.isAiDebugInfoOn then
+			--Show the enemy's FOV using debug lines
+			ShowViewAngle(self)
+			
+			--show the enemy paths
+			ShowAIDebugInfo(self)
+		end
 	end
 end
 
@@ -522,4 +528,30 @@ function RotateXY(x, y, z, angle)
 	local _x = (x * math.cos(angle) ) - (y * math.sin(angle) )
 	local _y = (x * math.sin(angle) ) + (y * math.cos(angle) )
 	return Vision.hkvVec3(_x, _y, z)
+end
+
+--[[
+This function will show the Ai information for the current player including:
+-the path
+-the player radius
+--]]
+function ShowAIDebugInfo(self)
+	--we'll add height buffer to all of the debug drawing so that they won't z fight with the ground
+	local heightOffset = Vision.hkvVec3(0,0,15)
+	
+	--whenever the path is not nil, we want to draw the path that was calculated
+	if self.path ~= nil then
+		--get the number of points in the path
+		local numPoints = table.getn(self.path)
+		
+		--loop through each point in the path
+		for i = 1, numPoints - 1, 1 do
+			--store the current point and the next point
+			local currentPoint = self.path[i]
+			local nextPoint = self.path[i+1]
+			
+			--draw a line from the current point to the next point
+			Debug.Draw:Line(currentPoint + heightOffset, nextPoint + heightOffset, Vision.V_RGBA_RED)
+		end
+	end
 end

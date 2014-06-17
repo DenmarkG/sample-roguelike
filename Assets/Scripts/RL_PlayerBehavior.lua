@@ -1,4 +1,4 @@
---[[
+﻿--[[
 Author: Denmark Gibbs
 This script handles:
 	-all input and control for the player
@@ -101,9 +101,19 @@ function OnAfterSceneLoaded(self)
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
 	
-	self.isAiDebugInfoOn = true
-	if self.isAiDebugInfoOn then
-		--supposed to draw character controller radius but.... wont work in 2014.0.5
+	
+	--this section is used for drawing the AI/debug information. 
+	--when self.isAiDebugInfoOn is true, the player radius and path will be drawn on screen
+	self.playerDebugCircle = Game:GetPath("PlayersCircle")
+	if self.playerDebugCircle ~= nil then
+		--this is the original info for the path, which came directly from the editor
+		--we need this info since the size of the path will change later
+		self.originalRadius = 200
+		self.originalTangentDistance = 110.3568
+		
+		--call the function to set the new positions of the pathNodes based on the
+		--ai search radius declared in the OnExpose function
+		SetPathNodesToPlayerRadius(self) 
 	end
 end
 
@@ -125,8 +135,9 @@ function OnExpose(self)
 	self.walkSpeed = 2.5 --how fast the walk animation should play when walking
 	self.runSpeed = 5 --how fast the walk animation should play when running
 	
-	--the radius Havok AI should search for available points 
-	self.aiSearchRadius = 20
+	--the radius Havok AI should search for available points. 
+	--Smaller numbers will result in bumping and sliding around corners
+	self.aiSearchRadius = 45
 	
 	--the number of rays to cast when checking for an attack hit
 	self.numRays = 5
@@ -263,7 +274,10 @@ function OnThink(self)
 			ShowControls(self)
 		end
 		
-		ShowAIDebugInfo(self)
+		
+		if G.isAiDebugInfoOn then
+			ShowAIDebugInfo(self)
+		end
 	else
 		--when the game is over, or the player's health reaches zero, stop movment, and clear the AI Path
 		
@@ -710,21 +724,81 @@ function RotateXY(x, y, z, angle)
 end
 
 --[[
+This is another Utility funciton that caluclates the new tangents, once the nodes of the path have been moved.
+***Note*** that in the scene, the bezier handles are ~110 units away from the player, and the radius is 200 units.
+we will use this information to find position of the new tangents
+--]]
+function CalculateNewTangents(self)
+	self.tangentDistance = (self.originalTangentDistance *  self.aiSearchRadius) / self.originalRadius
+end
+
+--[[
+This is utility function for getting the path nodes for drawing the path with the proper radius.
+This function will find the nodes as children of the path, then assign each to a varible to be used later
+--]]
+function SetPathNodesToPlayerRadius(self)
+	--cache the player's current position
+	local currentPosition = self:GetPosition()
+	
+	--get the distance of the new tangents
+	CalculateNewTangents(self)
+	
+	--[[
+	Get each node by its key, then store it to a member variable.
+	also, we will offset the node by the search radius so that the path accurately reflects the radius
+	once this is done we must set the tangents to the proper position, so that the circle maintains its relative shape
+	Note that the in/out tangents follow a counter-clockwise pattern
+	--]]
+	
+	--the positive X direction
+	self.node_PosX = self.playerDebugCircle:GetPathNode("Node_PosX")
+	self.node_PosX:SetPosition(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y, currentPosition.z) )
+	self.node_PosX:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z), 
+										Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z))
+	
+	--the positive Y direction
+	self.node_PosY = self.playerDebugCircle:GetPathNode("Node_PosY")
+	self.node_PosY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
+	self.node_PosY:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z), 
+										Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z))
+	
+	--the negative X direcion
+	self.node_NegX = self.playerDebugCircle:GetPathNode("Node_NegX")
+	self.node_NegX:SetPosition(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y, currentPosition.z) )
+	self.node_NegX:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z), 
+										Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z))
+
+	--the negative X direcion
+	self.node_NegY = self.playerDebugCircle:GetPathNode("Node_NegY")
+	self.node_NegY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
+	self.node_NegY:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
+										Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z))
+end
+
+--[[
 This function will show the Ai information for the current player including:
 -the path
--the 
--
+-the player radius
 --]]
 function ShowAIDebugInfo(self)
-	if self.isAiDebugInfoOn then
-		--we'll add height buffer to all of the debug drawing so that they won't z fight with the ground
-		local heightOffset = Vision.hkvVec3(0,0,15)
-		if self.path ~= nil then
-			for i = 1, self.numPoints - 1, 1 do
-				local currentPoint = self.path[i]
-				local nextPoint = self.path[i+1]
-				Debug.Draw:Line(currentPoint + heightOffset, nextPoint + heightOffset, Vision.V_RGBA_RED)
-			end
+	--we'll add height buffer to all of the debug drawing so that they won't z fight with the ground
+	local heightOffset = Vision.hkvVec3(0,0,15)
+	
+	--whenever the path is not nil, we want to draw the path that was calculated
+	if self.path ~= nil then
+		--loop through each point in the path
+		for i = 1, self.numPoints - 1, 1 do
+			--store the current point and the next point
+			local currentPoint = self.path[i]
+			local nextPoint = self.path[i+1]
+			
+			--draw a line from the current point to the next point
+			Debug.Draw:Line(currentPoint + heightOffset, nextPoint + heightOffset, Vision.V_RGBA_GREEN)
 		end
+	end
+	
+	--draw the path represents the player radius
+	if self.playerDebugCircle ~= nil then
+		Renderer.Draw:Path(self.playerDebugCircle, Vision.V_RGBA_PURPLE)
 	end
 end

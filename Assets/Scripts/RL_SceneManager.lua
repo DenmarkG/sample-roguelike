@@ -42,6 +42,9 @@ function OnBeforeSceneLoaded(self)
 	G.helpButton:SetPos( (G.w / 2) - helpX / 2, G.h - helpY) 
 	G.helpButton:SetBlending(Vision.BLEND_ALPHA)
 	G.helpTable = { (G.w / 2) - helpX / 2, G.h - helpY, (G.w / 2) + helpX / 2, G.h, G.helpButtonPriority, "new"}
+	
+	--when this is true, the game will draw the debug and AI info
+	G.isAiDebugInfoOn = true
 end
 
 --called after the scene has loaded
