@@ -642,7 +642,6 @@ function PlayerDeath(self)
 	G.gameOver = true
 	--call the function to lose the level
 	local manager = Game:GetEntity("LevelManager")
-	G.Lose(manager)
 end
 
 --[[

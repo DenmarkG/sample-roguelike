@@ -1044,6 +1044,33 @@
                 "TemplateName": "Default"
             }
         },
+        "Particles/Beam_01.dds": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3297320384,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1403113057993507600
+            },
+            "Texture": {
+                "FileFormat": "DDS",
+                "Width": 256,
+                "Height": 128,
+                "HasAlpha": true,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
         "Particles/Effect_Cone.model": {
             "AssetType": "Model",
             "Common": {
@@ -1061,6 +1088,33 @@
                 "Hash": 1099973093,
                 "TimeStamp": 1395973008000000000,
                 "LastEditTime": 1401312098496318000
+            },
+            "Model": {
+                "LODSwitchDistances": [
+
+                ]
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/Effect_Ring.model": {
+            "AssetType": "Model",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/Textures/Beam_01.dds",
+                    "Shaders/BaseShaders.ShaderLib",
+                    "Shaders/vMaterial.ShaderLib"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3946361196,
+                "TimeStamp": 1395973008000000000,
+                "LastEditTime": 1403113057928507600
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -1168,6 +1222,28 @@
                 "Hash": 1874152380,
                 "TimeStamp": 1400701080906695300,
                 "LastEditTime": 1400701081906795300
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Particles/RL_EndGamePortal.vpfx": {
+            "AssetType": "Particle",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+                    "Particles/Beam_01.dds",
+                    "Particles/HaloRing_06.dds",
+                    "Particles/Light.dds"
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1441171711,
+                "TimeStamp": 1403113388911507600,
+                "LastEditTime": 1403113399517507600
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1317,6 +1393,26 @@
                 "Hash": 770951309,
                 "TimeStamp": 1403027119178106800,
                 "LastEditTime": 1403027120284217400
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Prefabs/RL_WinTriggerPrefab.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 1814846770,
+                "TimeStamp": 1403113324118507600,
+                "LastEditTime": 1403113325221507600
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -2807,6 +2903,11 @@
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1395862584740002600
+        },
+        "Particles/Textures/Beam_01.dds": {
+            "Hash": 0,
+            "TimeStamp": 0,
+            "LastEditTime": 1403113057992507600
         },
         "Particles/Textures/Light.dds": {
             "Hash": 0,

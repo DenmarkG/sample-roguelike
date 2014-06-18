@@ -1,7 +1,6 @@
 {
-	"itemCount":	2,
 	"health":	100,
 	"mana":	100,
-	"attack":	10,
+	"attack":	25,
 	"magic":	25
 }

@@ -42,11 +42,14 @@ models/props/rl_meleesword_mod.model	Models/Props/RL_MeleeSword_MOD.model	LODSwi
 models/props/rl_waypoint_mod.anim	Models/Props/RL_Waypoint_MOD.anim	
 models/props/rl_waypoint_mod.model	Models/Props/RL_Waypoint_MOD.model	LODSwitchDistances=
 models/props/rl_waypoint_mod.vcolmesh	Models/Props/RL_Waypoint_MOD.vcolmesh	
+particles/beam_01.dds	AssetMgmt_data/transformed/beam_01d928ys0clgdtc.pvr	sRGB=false
 particles/effect_cone.model	Particles/Effect_Cone.model	LODSwitchDistances=
+particles/effect_ring.model	Particles/Effect_Ring.model	LODSwitchDistances=
 particles/flaregroup.dds	AssetMgmt_data/transformed/flaregrouph6sg7zjclgdtc.pvr	sRGB=false
 particles/haloring_06.dds	AssetMgmt_data/transformed/haloring_068qw9tc4clgdtc.pvr	sRGB=false
 particles/light.dds	AssetMgmt_data/transformed/lighthkx#rrxclgdtc.pvr	sRGB=false
 particles/rl_clickparticle.vpfx	Particles/RL_ClickParticle.vpfx	
+particles/rl_endgameportal.vpfx	Particles/RL_EndGamePortal.vpfx	
 particles/rl_enemydeathflame.vpfx	Particles/RL_EnemyDeathFlame.vpfx	
 particles/rl_fireball.vpfx	Particles/RL_Fireball.vpfx	
 particles/smokesequence_a.dds	AssetMgmt_data/transformed/smokesequence_a1hnnds4clgdtc.pvr	sRGB=false
@@ -54,6 +57,7 @@ prefabs/prefabs/healthloot.prefab	Prefabs/Prefabs/HealthLoot.prefab
 prefabs/prefabs/rl_enemy.prefab	Prefabs/Prefabs/RL_Enemy.prefab	
 prefabs/prefabs/rl_gem.prefab	Prefabs/Prefabs/RL_Gem.prefab	
 prefabs/prefabs/rl_player.prefab	Prefabs/Prefabs/RL_Player.prefab	
+prefabs/prefabs/rl_wintriggerprefab.prefab	Prefabs/Prefabs/RL_WinTriggerPrefab.prefab	
 scenes/sample-level02_p01.dds	AssetMgmt_data/transformed/sample-level02_p01926fkqxclgdtc.pvr	sRGB=false
 scenes/sample_p01.dds	AssetMgmt_data/transformed/sample_p01gt8#bg8clgdtc.pvr	sRGB=false
 scenes/sample_p02.dds	AssetMgmt_data/transformed/sample_p025czvzh8clgdtc.pvr	sRGB=false

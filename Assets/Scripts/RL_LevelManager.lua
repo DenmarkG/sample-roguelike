@@ -5,7 +5,8 @@ This script handles:
 	--player winning and losing
 	--scene loading
 	
-Should be attached to a Level Manager entity in the scene
+Should be attached to the level's win trigger box entity in the scene. 
+When the player hits the trigger that this script is attached to, the level will end.
 ]]--
 
 --callback function that is called after the scene has been loaded but before the first Think Loop
@@ -23,7 +24,11 @@ function OnAfterSceneLoaded(self)
 	
 	--these functions are called by other scripts
 	G.Lose = LoseLevel
-	G.Win = WinLevel
+	G.WinThisLevel = WinLevel
+	
+	--set the size of the font characters for debug printing to the the screen
+	self.fontCharacterWidth = 8
+	self.fontCharacterHeight = 32
 	
 	--Load player data if not the first level (permadeath)
 	if (G.currentLevel > 1) then
@@ -34,31 +39,27 @@ end
 --callback function called automatically once per frame
 function OnThink(self)
 	if not G.gameOver then
-		--check the win requirements to see if the player has won...
-		if G.gemGoal ~= 0 and G.player.gemsCollected == G.gemGoal then
-			WinLevel(self)
-			G.win = true
-		end
-		
-		--or lost
+		--Check to see if the player is alive
 		if not G.player.isAlive then
 			LoseLevel(self)
 		end
 	else
 		--when the game is over show the player what's going on with a screen maask and text
-		Debug:PrintAt( (G.w / 2.0) - (self.endText1:len() * 8), G.h / 2.0, "" .. self.endText1, Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt( (G.w / 2.0) - (self.endText1:len() * self.fontCharacterWidth), G.h / 2.0, "" .. self.endText1, Vision.V_RGBA_WHITE, G.fontPath)
+		self.gemCollectedText = "Gems Collected: ".. G.player.gemsCollected .."/".. G.gemGoal
+		Debug:PrintAt( (G.w / 2.0) - (self.gemCollectedText:len() * self.fontCharacterWidth), G.h / 2.0 + self.fontCharacterHeight * 2, "" .. self.gemCollectedText, Vision.V_RGBA_WHITE, G.fontPath)
 		
 		--count down until the player can proceed
 		if self.timeBeforeReload > 0 then
 			self.timeBeforeReload = self.timeBeforeReload - Timer:GetTimeDiff()
-			Debug:PrintAt( (G.w / 2.0) - ((self.endText3:len() + 1) * 8), G.h / 2.0 + 32, "" .. self.endText3 .. math.ceil(self.timeBeforeReload), Vision.V_RGBA_WHITE, G.fontPath)
+			Debug:PrintAt( (G.w / 2.0) - ( (self.endText3:len() + 1) * self.fontCharacterWidth), G.h / 2.0 + self.fontCharacterHeight, "" .. self.endText3 .. math.ceil(self.timeBeforeReload), Vision.V_RGBA_WHITE, G.fontPath)
 		elseif self.timeBeforeReload < 0 then
 			self.timeBeforeReload = 0
 		end
 		
 		--allow the player to proceed by tapping the screen or clicking
 		if self.timeBeforeReload <= 0 then
-			Debug:PrintAt( (G.w / 2.0) - (self.endText2:len() * 8), G.h / 2.0 + 32, "" .. self.endText2, Vision.V_RGBA_WHITE, G.fontPath)
+			Debug:PrintAt( (G.w / 2.0) - (self.endText2:len() * self.fontCharacterWidth), G.h / 2.0 + self.fontCharacterHeight, "" .. self.endText2, Vision.V_RGBA_WHITE, G.fontPath)
 			
 			--the player can't continue until a specific button is pressed (varies by platform)
 			local continue = false
@@ -113,6 +114,10 @@ end
 
 --this function is called when the game is over and the player has collected all gems
 function WinLevel(self)
+	--Set the global variables for win and Game Over to true
+	G.win = true
+	G.gameOver = true
+	
 	--Show the Win Screen and tell the player when s/he can play again
 	self.endText1 = "You Win!"
 	self.endText2 = ""
@@ -208,7 +213,7 @@ function LoadData(player)
 	--if data has not already been loaded, load the existing data
 	PersistentData:Load("PlayerStats")
 	
-	-- load the player stats:
+	--load the player stats:
 	--load the data for each category. The defaults are in place in the event the data does not load properly
 	player.currentHealth = PersistentData:GetNumber("PlayerStats", "health", 17)--defaulting to 17 to show somehting went wrongs
 	player.currentMana = PersistentData:GetNumber("PlayerStats", "mana", 17) 
