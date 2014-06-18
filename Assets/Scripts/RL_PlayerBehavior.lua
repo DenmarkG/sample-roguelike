@@ -101,7 +101,6 @@ function OnAfterSceneLoaded(self)
 	self.ModifyPower = ModifyAttackPower
 	self.Die = PlayerDeath
 	
-	
 	--this section is used for drawing the AI/debug information. 
 	--when self.isAiDebugInfoOn is true, the player radius and path will be drawn on screen
 	self.playerDebugCircle = Game:GetPath("PlayersCircle")
@@ -751,29 +750,40 @@ function SetPathNodesToPlayerRadius(self)
 	
 	--the positive X direction
 	self.node_PosX = self.playerDebugCircle:GetPathNode("Node_PosX")
-	self.node_PosX:SetPosition(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y, currentPosition.z) )
-	self.node_PosX:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z), 
-										Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z))
+	if self.node_PosX ~= nil then
+		Debug:PrintLine("node_PosX set")
+		self.node_PosX:SetPosition(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y, currentPosition.z) )
+		self.node_PosX:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z), 
+											Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z) )
+	end	
 	
 	--the positive Y direction
 	self.node_PosY = self.playerDebugCircle:GetPathNode("Node_PosY")
-	self.node_PosY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
-	self.node_PosY:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z), 
-										Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z))
+	if self.node_PosY ~= nil then
+		Debug:PrintLine("node_PosY set")		
+		self.node_PosY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
+		self.node_PosY:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z), 
+											Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
+	end
 	
 	--the negative X direcion
 	self.node_NegX = self.playerDebugCircle:GetPathNode("Node_NegX")
-	self.node_NegX:SetPosition(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y, currentPosition.z) )
-	self.node_NegX:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z), 
-										Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z))
-
-	--the negative X direcion
+		if self.node_NegX ~= nil then
+		Debug:PrintLine("node_NegX set")
+		self.node_NegX:SetPosition(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y, currentPosition.z) )
+		self.node_NegX:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z), 
+											Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z) )
+	end
+	
+	--the negative Y direcion
 	self.node_NegY = self.playerDebugCircle:GetPathNode("Node_NegY")
-	self.node_NegY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
-	self.node_NegY:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
-										Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z))
+	if self.node_NegY ~= nil then
+		Debug:PrintLine("node_NegY set")
+		self.node_NegY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
+		self.node_NegY:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
+											Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
+	end
 end
-
 --[[
 This function will show the Ai information for the current player including:
 -the path

@@ -11,6 +11,17 @@ Should be attached to a Trigger in the scene with the Gem model as a child of th
 function OnAfterSceneLoaded(self)	
 	--save the sound path for when the gem is picked up
 	self.GemSoundPath = "Sounds/RL_GemSound.mp3"
+	
+	--get the actual gem model that is a child of this trigger
+	self.gemModel = self:GetChild("GemModel")
+	
+	--set up the animation
+	if self.gemModel ~= nil then
+		--add the animation component to the model
+		self.gemModel.gemAnimation = self.gemModel:AddAnimation("GemAnimation")
+		--play the animation
+		self.gemModel.gemAnimation:Play("GemSpin", true)
+	end
 end
 
 --This callback function is called whenever an object (otherObj) enters the trigger that this script is attached to.

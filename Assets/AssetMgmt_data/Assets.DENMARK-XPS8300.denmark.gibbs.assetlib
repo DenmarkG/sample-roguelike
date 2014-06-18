@@ -806,9 +806,9 @@
                 ]
             },
             "File": {
-                "Hash": 592976672,
-                "TimeStamp": 1400009994511457600,
-                "LastEditTime": 1400010035073513400
+                "Hash": 1849342559,
+                "TimeStamp": 1403117906549130700,
+                "LastEditTime": 1403117908840130700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -829,9 +829,9 @@
                 ]
             },
             "File": {
-                "Hash": 1924204443,
-                "TimeStamp": 1400009994506457100,
-                "LastEditTime": 1400010094377443200
+                "Hash": 2731490882,
+                "TimeStamp": 1403117906544130700,
+                "LastEditTime": 1403117908949130700
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -854,9 +854,9 @@
                 ]
             },
             "File": {
-                "Hash": 671146150,
-                "TimeStamp": 1400009994512457700,
-                "LastEditTime": 1400010035035509600
+                "Hash": 2771463950,
+                "TimeStamp": 1403117906550130700,
+                "LastEditTime": 1403117908840130700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1241,9 +1241,9 @@
                 ]
             },
             "File": {
-                "Hash": 1441171711,
-                "TimeStamp": 1403113388911507600,
-                "LastEditTime": 1403113399517507600
+                "Hash": 4075979412,
+                "TimeStamp": 1403122916627315600,
+                "LastEditTime": 1403122920565709400
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1370,9 +1370,9 @@
                 ]
             },
             "File": {
-                "Hash": 1068451331,
-                "TimeStamp": 1400026633767200100,
-                "LastEditTime": 1400026634869310300
+                "Hash": 2288050277,
+                "TimeStamp": 1403118793385999800,
+                "LastEditTime": 1403118794389100100
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -2539,7 +2539,7 @@
             "File": {
                 "Hash": 2248476326,
                 "TimeStamp": 1400010079330938700,
-                "LastEditTime": 1400010094368442300
+                "LastEditTime": 1403117908869130700
             },
             "Texture": {
                 "FileFormat": "TGA",

@@ -11,7 +11,7 @@ end
 --This callback function is called whenever an object (otherObj) enters the trigger that this script is attached to.
 --In the case of this script, it will call the function to trigger the end of the level.
 function OnObjectEnter(self, otherObj)
-	--if hte object that enters the trigger is the player, add this item to the player's inventory
+	--if hte object that enters the trigger is the player, call the function to win the level
 	if otherObj:GetKey() == "Player" then
 		G.WinThisLevel(G.levelManager)
 	end

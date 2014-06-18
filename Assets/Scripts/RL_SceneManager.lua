@@ -49,11 +49,11 @@ end
 
 --called after the scene has loaded
 function OnAfterSceneLoaded(self)
-	--find the location of all the waypoints in the scene
-	FindWaypoints(self)
-	
 	--enable debug drawing (for the HUD and the enemy vision cone)
 	Debug:Enable(true)
+
+	--find the location of all the waypoints in the scene
+	FindWaypoints(self)
 	
 	--cache the player and level manager for easy access by other scripts
 	G.player = Game:GetEntity("Player")
