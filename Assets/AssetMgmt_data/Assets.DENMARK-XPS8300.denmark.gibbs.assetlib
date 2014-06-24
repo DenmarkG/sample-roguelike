@@ -1219,9 +1219,9 @@
                 ]
             },
             "File": {
-                "Hash": 1874152380,
-                "TimeStamp": 1400701080906695300,
-                "LastEditTime": 1400701081906795300
+                "Hash": 4163098179,
+                "TimeStamp": 1403639997865428700,
+                "LastEditTime": 1403640003085428700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1232,18 +1232,16 @@
             "Common": {
                 "Tags": "__NEW_ASSET__",
                 "Dependencies": [
-                    "Particles/Beam_01.dds",
-                    "Particles/HaloRing_06.dds",
-                    "Particles/Light.dds"
+                    "Particles/HaloRing_06.dds"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 4075979412,
-                "TimeStamp": 1403122916627315600,
-                "LastEditTime": 1403122920565709400
+                "Hash": 1440871149,
+                "TimeStamp": 1403639997852428700,
+                "LastEditTime": 1403640003071428700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1255,17 +1253,16 @@
                 "Tags": "__NEW_ASSET__",
                 "Dependencies": [
                     "Particles/FlareGroup.dds",
-                    "Particles/HaloRing_06.dds",
-                    "Particles/Light.dds"
+                    "Particles/HaloRing_06.dds"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 1635307626,
-                "TimeStamp": 1401312477694234000,
-                "LastEditTime": 1401313107986256900
+                "Hash": 3292431246,
+                "TimeStamp": 1403639997897428700,
+                "LastEditTime": 1403640000876428700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1283,9 +1280,9 @@
                 ]
             },
             "File": {
-                "Hash": 2109993966,
-                "TimeStamp": 1396465807369712300,
-                "LastEditTime": 1396465808370812400
+                "Hash": 2824182521,
+                "TimeStamp": 1403639997909428700,
+                "LastEditTime": 1403640003044428700
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1410,9 +1407,9 @@
                 ]
             },
             "File": {
-                "Hash": 1814846770,
-                "TimeStamp": 1403113324118507600,
-                "LastEditTime": 1403113325221507600
+                "Hash": 1835848682,
+                "TimeStamp": 1403639094753428700,
+                "LastEditTime": 1403639095813428700
             },
             "Transformations": {
                 "TemplateName": "Default"

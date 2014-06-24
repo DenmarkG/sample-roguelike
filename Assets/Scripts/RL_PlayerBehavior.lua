@@ -110,6 +110,11 @@ function OnAfterSceneLoaded(self)
 		self.originalRadius = 200
 		self.originalTangentDistance = 110.3568
 		
+		--make sure the path is closed to avoid odd shapes
+		if not self.playerDebugCircle:IsClosed() then
+			self.playerDebugCircle:SetClosed(true)
+		end
+		
 		--call the function to set the new positions of the pathNodes based on the
 		--ai search radius declared in the OnExpose function
 		SetPathNodesToPlayerRadius(self) 
@@ -650,9 +655,9 @@ function ShowPlayerStats(self)
 	--the line for player health
 	Debug:PrintAt(G.w * (3 / 4), G.fontSize, "Health: "..self.currentHealth.."/"..self.maxHealth, Vision.V_RGBA_RED, G.fontPath)
 	--the line for player mana
-	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_BLUE, G.fontPath)
+	Debug:PrintAt(G.w * (3 / 4), G.fontSize * 2, "  Mana: ".. self.currentMana .."/"..self.maxMana, Vision.V_RGBA_PURPLE, G.fontPath)
 	--the line for player gem count
-	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_GREEN, G.fontPath)
+	Debug:PrintAt(G.w / 10, G.fontSize, "Gems: "..self.gemsCollected .. "/".. G.gemGoal, Vision.V_RGBA_YELLOW, G.fontPath)
 end
 
 --[[
@@ -666,14 +671,14 @@ function ShowControls(self)
 		Debug:PrintAt(10, 96, "Run: LEFT SHIFT", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 128, "Melee: SPACEBAR", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 160, "Magic: F", Vision.V_RGBA_WHITE, G.fontPath)
-		Debug:PrintAt(10, 182, "Inventory: 1", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 192, "Inventory: 1", Vision.V_RGBA_WHITE, G.fontPath)
 	else
 		--Show the Touch controls
 		Debug:PrintAt(10, 64, "Move: TAP", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 96, "Run: YELLOW", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 128, "Melee: Red", Vision.V_RGBA_WHITE, G.fontPath)
 		Debug:PrintAt(10, 160, "Magic: GREEN", Vision.V_RGBA_WHITE, G.fontPath)
-		Debug:PrintAt(10, 182, "Inventory: Blue", Vision.V_RGBA_WHITE, G.fontPath)
+		Debug:PrintAt(10, 192, "Inventory: Blue", Vision.V_RGBA_WHITE, G.fontPath)
 	end
 end
 
@@ -748,10 +753,13 @@ function SetPathNodesToPlayerRadius(self)
 	Note that the in/out tangents follow a counter-clockwise pattern
 	--]]
 	
+	local count = 0
+	
 	--the positive X direction
 	self.node_PosX = self.playerDebugCircle:GetPathNode("Node_PosX")
 	if self.node_PosX ~= nil then
-		Debug:PrintLine("node_PosX set")
+		count = count + 1
+		Debug:PrintLine(""..count)
 		self.node_PosX:SetPosition(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y, currentPosition.z) )
 		self.node_PosX:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z) )
@@ -760,7 +768,8 @@ function SetPathNodesToPlayerRadius(self)
 	--the positive Y direction
 	self.node_PosY = self.playerDebugCircle:GetPathNode("Node_PosY")
 	if self.node_PosY ~= nil then
-		Debug:PrintLine("node_PosY set")		
+		count = count + 1
+		Debug:PrintLine(""..count)		
 		self.node_PosY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
 		self.node_PosY:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
@@ -769,7 +778,8 @@ function SetPathNodesToPlayerRadius(self)
 	--the negative X direcion
 	self.node_NegX = self.playerDebugCircle:GetPathNode("Node_NegX")
 		if self.node_NegX ~= nil then
-		Debug:PrintLine("node_NegX set")
+		count = count + 1
+		Debug:PrintLine(""..count)
 		self.node_NegX:SetPosition(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y, currentPosition.z) )
 		self.node_NegX:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z) )
@@ -778,7 +788,8 @@ function SetPathNodesToPlayerRadius(self)
 	--the negative Y direcion
 	self.node_NegY = self.playerDebugCircle:GetPathNode("Node_NegY")
 	if self.node_NegY ~= nil then
-		Debug:PrintLine("node_NegY set")
+		count = count + 1
+		Debug:PrintLine(""..count)
 		self.node_NegY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
 		self.node_NegY:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
@@ -808,6 +819,6 @@ function ShowAIDebugInfo(self)
 	
 	--draw the path represents the player radius
 	if self.playerDebugCircle ~= nil then
-		Renderer.Draw:Path(self.playerDebugCircle, Vision.V_RGBA_PURPLE)
+		--Renderer.Draw:Path(self.playerDebugCircle, Vision.V_RGBA_PURPLE)
 	end
 end
