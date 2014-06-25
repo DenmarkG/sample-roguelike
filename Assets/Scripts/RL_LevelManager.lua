@@ -129,7 +129,7 @@ function WinLevel(self)
 		self.endText2 = "   Touch Screen To Continue "
 	end
 	
-	self.endText3 = "    Play Again in: "
+	self.endText3 = "      Play Again in: "
 	
 	--set the game state to game over
 	G.gameOver = true

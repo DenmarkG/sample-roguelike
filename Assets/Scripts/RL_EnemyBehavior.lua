@@ -61,7 +61,7 @@ function OnExpose(self)
 	self.eyeHeight = 50
 	
 	--the radius Havok AI should search for available points 
-	self.aiSearchRadius = 20
+	self.aiSearchRadius = 45
 	--how long to cool down after an attack
 	self.meleeCoolDown = 1.5
 	

@@ -747,7 +747,7 @@ function SetPathNodesToPlayerRadius(self)
 	CalculateNewTangents(self)
 	
 	--[[
-	Get each node by its key, then store it to a member variable.
+	In this section, we get each node by its key, then store it to a member variable.
 	also, we will offset the node by the search radius so that the path accurately reflects the radius
 	once this is done we must set the tangents to the proper position, so that the circle maintains its relative shape
 	Note that the in/out tangents follow a counter-clockwise pattern
@@ -758,8 +758,6 @@ function SetPathNodesToPlayerRadius(self)
 	--the positive X direction
 	self.node_PosX = self.playerDebugCircle:GetPathNode("Node_PosX")
 	if self.node_PosX ~= nil then
-		count = count + 1
-		Debug:PrintLine(""..count)
 		self.node_PosX:SetPosition(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y, currentPosition.z) )
 		self.node_PosX:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x + self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z) )
@@ -768,8 +766,6 @@ function SetPathNodesToPlayerRadius(self)
 	--the positive Y direction
 	self.node_PosY = self.playerDebugCircle:GetPathNode("Node_PosY")
 	if self.node_PosY ~= nil then
-		count = count + 1
-		Debug:PrintLine(""..count)		
 		self.node_PosY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
 		self.node_PosY:SetControlVertices(Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y + self.aiSearchRadius, currentPosition.z) )
@@ -778,8 +774,6 @@ function SetPathNodesToPlayerRadius(self)
 	--the negative X direcion
 	self.node_NegX = self.playerDebugCircle:GetPathNode("Node_NegX")
 		if self.node_NegX ~= nil then
-		count = count + 1
-		Debug:PrintLine(""..count)
 		self.node_NegX:SetPosition(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y, currentPosition.z) )
 		self.node_NegX:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y + self.tangentDistance, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x - self.aiSearchRadius, currentPosition.y - self.tangentDistance, currentPosition.z) )
@@ -788,13 +782,25 @@ function SetPathNodesToPlayerRadius(self)
 	--the negative Y direcion
 	self.node_NegY = self.playerDebugCircle:GetPathNode("Node_NegY")
 	if self.node_NegY ~= nil then
-		count = count + 1
-		Debug:PrintLine(""..count)
 		self.node_NegY:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
 		self.node_NegY:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
 											Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
 	end
+	
+	--[[
+	Here we find the fifth node that gets created at runtime.
+	We can't search by key since the new node that gets created is a duplicate of the first.  Instead we get it by index,
+	since we know that it is added to the end of the list of children of the path entity.
+	--]]
+	local nodeIndex = self.playerDebugCircle:GetPathNodeCount() - 1
+	local fifthNode = self.playerDebugCircle:GetPathNode(nodeIndex)
+		
+	--Now, we set it's tangents to be the same as the first, since it will be located in the same position
+	fifthNode:SetPosition(Vision.hkvVec3(currentPosition.x, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
+	fifthNode:SetControlVertices(Vision.hkvVec3(currentPosition.x - self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z), 
+										Vision.hkvVec3(currentPosition.x + self.tangentDistance, currentPosition.y - self.aiSearchRadius, currentPosition.z) )
 end
+
 --[[
 This function will show the Ai information for the current player including:
 -the path
@@ -819,6 +825,6 @@ function ShowAIDebugInfo(self)
 	
 	--draw the path represents the player radius
 	if self.playerDebugCircle ~= nil then
-		--Renderer.Draw:Path(self.playerDebugCircle, Vision.V_RGBA_PURPLE)
+		Renderer.Draw:Path(self.playerDebugCircle, Vision.V_RGBA_PURPLE)
 	end
 end

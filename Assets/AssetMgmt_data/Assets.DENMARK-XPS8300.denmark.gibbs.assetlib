@@ -89,7 +89,7 @@
             "File": {
                 "Hash": 2650868520,
                 "TimeStamp": 1400025973112141200,
-                "LastEditTime": 1402351054528611200
+                "LastEditTime": 1403726868294584400
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -157,7 +157,7 @@
             "File": {
                 "Hash": 3383316928,
                 "TimeStamp": 1398893726462436400,
-                "LastEditTime": 1402351054433611200
+                "LastEditTime": 1403726868115548600
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -205,7 +205,7 @@
             "File": {
                 "Hash": 2642152255,
                 "TimeStamp": 1398893766615087300,
-                "LastEditTime": 1402351054158611200
+                "LastEditTime": 1403726868079541400
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -253,7 +253,7 @@
             "File": {
                 "Hash": 513105551,
                 "TimeStamp": 1398893741279087300,
-                "LastEditTime": 1402351054277611200
+                "LastEditTime": 1403726868260577600
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -301,7 +301,7 @@
             "File": {
                 "Hash": 155063129,
                 "TimeStamp": 1398893753395087300,
-                "LastEditTime": 1402351054339611200
+                "LastEditTime": 1403726868184562400
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -349,7 +349,7 @@
             "File": {
                 "Hash": 615973571,
                 "TimeStamp": 1401395959365961200,
-                "LastEditTime": 1402351054229611200
+                "LastEditTime": 1403726868221569800
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -372,9 +372,9 @@
                 ]
             },
             "File": {
-                "Hash": 386805545,
-                "TimeStamp": 1402351053195611200,
-                "LastEditTime": 1402351120869611200
+                "Hash": 2291432232,
+                "TimeStamp": 1403726867255376600,
+                "LastEditTime": 1403726868059537400
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -385,19 +385,19 @@
             "Common": {
                 "Tags": "__NEW_ASSET__",
                 "Dependencies": [
-                    "../Textures/textureGrid_Blue.tga",
                     "Meshes/RL_Pillar.vmesh_data/materials.xml",
                     "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib"
+                    "Shaders/vMaterial.ShaderLib",
+                    "Textures/textureGrid_Blue.tga"
                 ],
                 "Variants": [
 
                 ]
             },
             "File": {
-                "Hash": 1126345554,
-                "TimeStamp": 1402351053189611200,
-                "LastEditTime": 1402351121872611200
+                "Hash": 544339123,
+                "TimeStamp": 1403726867250375600,
+                "LastEditTime": 1403726868149555400
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -1239,9 +1239,9 @@
                 ]
             },
             "File": {
-                "Hash": 1440871149,
-                "TimeStamp": 1403639997852428700,
-                "LastEditTime": 1403640003071428700
+                "Hash": 2693594802,
+                "TimeStamp": 1403726895200964600,
+                "LastEditTime": 1403726899193763000
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -2617,7 +2617,7 @@
             "File": {
                 "Hash": 179675895,
                 "TimeStamp": 1397514789247562100,
-                "LastEditTime": 1402347901556236200
+                "LastEditTime": 1403725546820684400
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2627,7 +2627,33 @@
                 "sRGB": false
             },
             "Transformations": {
-                "TemplateName": "Default"
+                "pcdx9": {
+                    "TextureTransformationRule": {
+                        "Compression": "Quality",
+                        "Usage": "Undefined",
+                        "RemoveAlphaChannel": false,
+                        "CreateMipMaps": false,
+                        "DownscaleLevel": 0,
+                        "MinimumSize": 0,
+                        "MaximumSize": 0
+                    }
+                },
+                "ios": {
+                    "TextureTransformationRule": {
+                        "Compression": "Quality",
+                        "Usage": "Undefined",
+                        "RemoveAlphaChannel": false,
+                        "CreateMipMaps": true,
+                        "DownscaleLevel": 0,
+                        "MinimumSize": 0,
+                        "MaximumSize": 0
+                    }
+                },
+                "android": {
+                    "None": {
+
+                    }
+                }
             }
         },
         "Textures/RL_Sword_Diffuse.tga": {
@@ -2779,7 +2805,7 @@
             "File": {
                 "Hash": 1888533058,
                 "TimeStamp": 1391550537909489900,
-                "LastEditTime": 1402351054100611200
+                "LastEditTime": 1403726868065538600
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2821,11 +2847,6 @@
         }
     },
     "TrackedFiles": {
-        "../Textures/textureGrid_Blue.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1402351120969611200
-        },
         "Meshes/LevelBlocks/Level_02.vmesh_data/materials.xml": {
             "Hash": 0,
             "TimeStamp": 1400025973114141400,

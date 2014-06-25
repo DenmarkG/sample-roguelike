@@ -151,8 +151,7 @@ textures/rl_lootbag_diffuse.tga#android-default	AssetMgmt_data/transformed/rl_lo
 textures/rl_lootbag_diffuse.tga#android-pvr	AssetMgmt_data/transformed/rl_lootbag_diffusehfp7xdsclgdtc.pvr	sRGB=false
 textures/rl_pillar_diffuse.tga#android-default	AssetMgmt_data/transformed/rl_pillar_diffusebhl29vsclgdtc.rgba	sRGB=false
 textures/rl_pillar_diffuse.tga#android-pvr	AssetMgmt_data/transformed/rl_pillar_diffusebhl29vsclgdtc.pvr	sRGB=false
-textures/rl_player_diffuse.tga#android-default	AssetMgmt_data/transformed/rl_player_diffuse0pff2zxclgdtc.etc	sRGB=false
-textures/rl_player_diffuse.tga#android-pvr	AssetMgmt_data/transformed/rl_player_diffuse0pff2zxclgdtc.pvr	sRGB=false
+textures/rl_player_diffuse.tga	Textures/RL_Player_Diffuse.tga	sRGB=false
 textures/rl_sword_diffuse.tga#android-default	AssetMgmt_data/transformed/rl_sword_diffusec9g6k9jclgdtc.etc	sRGB=false
 textures/rl_sword_diffuse.tga#android-pvr	AssetMgmt_data/transformed/rl_sword_diffusec9g6k9jclgdtc.pvr	sRGB=false
 textures/rl_winscreenmask_diffuse.tga#android-default	AssetMgmt_data/transformed/rl_winscreenmask_diffugzhm8lnclgdtc.rgba	sRGB=false
