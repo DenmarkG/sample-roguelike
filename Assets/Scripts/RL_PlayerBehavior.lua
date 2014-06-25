@@ -548,7 +548,7 @@ If any one of those rays hit an enemy, the loop is broken and damage is done to 
 --]]
 function CheckForAttackHit(self)
 	--get this character's current direction and position
-	local myDir = -self:GetObjDir_Right() --(angle/self.numRays - 1)
+	local myDir = self:GetObjDir() --(angle/self.numRays - 1)
 	local myPos = self:GetPosition()
 	--adjust the position so that the ray is not on the ground
 	myPos.z = myPos.z + self.attackHeight
@@ -578,6 +578,8 @@ function CheckForAttackHit(self)
 		local iCollisionFilterInfo = Physics.CalcFilterInfo(Physics.LAYER_ALL, 0,0,0)
 		--perform the raycast
 		local hit, result = Physics.PerformRaycast(rayStart, rayEnd, iCollisionFilterInfo)
+		
+		Debug.Draw:Line(rayStart, rayEnd, Vision.V_RGBA_YELLOW)
 		
 		--check to see if the ray hit
 		if hit == true then
