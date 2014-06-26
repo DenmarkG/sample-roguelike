@@ -143,12 +143,6 @@ function WinLevel(self)
 	StartTimer(self)
 end
 
---called when the game is over
---sets the time to reload to the wait time
-function StartTimer(self)
-	self.timeBeforeReload = self.waitTime
-end
-
 --this is called if the player dies before collecting all gems
 function LoseLevel(self)
 	--Show the Win Screen and tell the player when s/he can play again
@@ -177,6 +171,12 @@ function LoseLevel(self)
 	
 	--start the countdown Timer
 	StartTimer(self)
+end
+
+--called when the game is over
+--sets the time to reload to the wait time
+function StartTimer(self)
+	self.timeBeforeReload = self.waitTime
 end
 
 --this function loads the next level in the sequence

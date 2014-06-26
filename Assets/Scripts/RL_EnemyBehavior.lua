@@ -55,7 +55,7 @@ function OnExpose(self)
 	self.numRays = 5  --number of rays to cast when checking for an attack hit
 	self.attackAngle = 60  --the angle the character attacks within 
 	self.attackRange = 70  --how far away an attack can hit within the attackAngle
-	self.meleeDamage = 5  --how much damage is done if an attack hits
+	self.meleeDamage = 15 --how much damage is done if an attack hits
 	
 	--how high from the ground the enemy will cast a ray to check for the player
 	self.eyeHeight = 50
